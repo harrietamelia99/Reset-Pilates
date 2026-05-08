@@ -8,9 +8,9 @@ type Props = {
 };
 
 /**
- * Edge-to-edge hero wordmark without `transform: scale()` — scaling via layout-sized `font-size`
- * avoids flex centering bugs (scaled visuals ≠ layout box). Optional `100vw` strip breaks out
- * of any accidental ancestor shrink. Binary-search font size so intrinsic width matches viewport.
+ * Full-bleed hero wordmark: binary-search `font-size` (no transform scale).
+ * Width buffer + post-pass bump fix integer rounding / right-edge gap.
+ * Strong translateY pulls ink to the hero bottom (font line-box gap).
  */
 export function HeroBackgroundWordmark({ heroRef }: Props) {
   const breakoutRef = useRef<HTMLDivElement>(null);
@@ -25,43 +25,53 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
     const fit = () => {
       const hero = heroRef.current;
       const vv = window.visualViewport;
-      /** Prefer layout viewport width; match hero strip when it matches (sub-pixel safe). */
       const heroW = hero?.getBoundingClientRect().width ?? 0;
       const layoutW = document.documentElement.clientWidth;
       const innerW = window.innerWidth;
       const vw = vv?.width ?? 0;
-      const targetW = Math.max(heroW, layoutW, innerW, vw, breakout.clientWidth);
 
-      if (targetW <= 0) return;
-
+      const raw = Math.max(heroW, layoutW, innerW, vw, breakout.clientWidth);
       /**
-       * Find the smallest font-size (px) whose rendered width is still >= targetW
-       * (then hero `overflow-hidden` can clip a hair — reads flush, no side gutters).
+       * Require slightly more than layout width so offsetWidth rounding / subpixels
+       * never leave a strip beside the period (hero clips overflow).
        */
+      const targetNeed = Math.ceil(raw * 1.025 + 4);
+
+      if (targetNeed <= 0) return;
+
       let lo = 4;
       let hi = 48;
       text.style.fontSize = `${hi}px`;
       void text.offsetWidth;
-      while (text.offsetWidth < targetW && hi < 4000) {
+      while (text.offsetWidth < targetNeed && hi < 4000) {
         hi *= 2;
         text.style.fontSize = `${hi}px`;
         void text.offsetWidth;
       }
-      if (text.offsetWidth < targetW) {
+      if (text.offsetWidth < targetNeed) {
         setFontPx(hi);
         return;
       }
 
-      for (let i = 0; i < 36; i++) {
+      for (let i = 0; i < 40; i++) {
         const mid = (lo + hi) / 2;
         text.style.fontSize = `${mid}px`;
         void text.offsetWidth;
-        if (text.offsetWidth >= targetW) hi = mid;
+        if (text.offsetWidth >= targetNeed) hi = mid;
         else lo = mid;
       }
 
-      const chosen = hi;
+      let chosen = hi;
       text.style.fontSize = `${chosen}px`;
+      void text.offsetWidth;
+
+      /** Micro-step until width clears target (handles float font sizes vs integer metrics). */
+      while (text.offsetWidth < targetNeed && chosen < 4000) {
+        chosen += 0.2;
+        text.style.fontSize = `${chosen}px`;
+        void text.offsetWidth;
+      }
+
       setFontPx(chosen);
     };
 
@@ -107,8 +117,11 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
             lineHeight: 1,
             padding: 0,
             margin: 0,
-            /** Pull raster down so ink sits on the section edge (line-box / metrics gap above grey strip). */
-            transform: "translateY(calc(0.12em + 4px))",
+            /**
+             * Push glyph raster down into the section edge (line-box space below baseline).
+             * Sized so typical Bethany metrics sit flush with hero bottom after overflow clip.
+             */
+            transform: "translateY(calc(0.28em + 18px))",
             color: "var(--color-charcoal)",
             opacity: fontPx != null ? 1 : 0,
             transition: fontPx != null ? "opacity 0.12s ease-out" : undefined,
