@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Mail, Tag } from "lucide-react";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
@@ -30,29 +31,40 @@ export default function HomePage() {
       <MotionSection className="surface-editorial-dark relative overflow-hidden border-t border-white/10 py-16 md:py-24">
         <div className="grain-layer opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet className="flex flex-col gap-8 px-8 py-12 md:flex-row md:items-center md:justify-between md:px-14 md:py-14">
-            <div className="relative flex-1">
-              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
-                Intro offer
-              </p>
-              <div className="rule-section my-6 w-full" aria-hidden />
-              <h2 className="text-2xl font-bold uppercase tracking-heading text-editorial-ink md:text-3xl">
-                New to Reset?
-              </h2>
-              <p className="mt-4 max-w-xl text-mid-grey">
-                Try three classes for £45 (reformer or hot mat) or three mat classes for £30. The perfect
-                way to find your flow.
-              </p>
-              <div className="rule-section mt-8 w-full" aria-hidden />
-            </div>
-            <Link
-              href="/pricing"
-              className="inline-flex shrink-0 items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90 md:self-end"
-            >
-              <Tag className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
-              Claim your intro deal
-            </Link>
-          </PaperSheet>
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 lg:items-center">
+            <figure className="relative mx-auto aspect-square w-full max-w-md overflow-hidden border border-white/20 bg-white/5 lg:mx-0 lg:max-w-none">
+              <Image
+                src="/images/reset-studio-sign.png"
+                alt="Reset Pilates Studio exterior sign — Pilates Studio, Est. 2026"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 45vw"
+              />
+            </figure>
+            <PaperSheet className="flex flex-col gap-8 px-8 py-12 md:flex-row md:items-center md:justify-between md:px-14 md:py-14">
+              <div className="relative flex-1">
+                <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
+                  Intro offer
+                </p>
+                <div className="rule-section my-6 w-full" aria-hidden />
+                <h2 className="text-2xl font-bold uppercase tracking-heading text-editorial-ink md:text-3xl">
+                  New to Reset?
+                </h2>
+                <p className="mt-4 max-w-xl text-mid-grey">
+                  Try three classes for £45 (reformer or hot mat) or three mat classes for £30. The perfect
+                  way to find your flow.
+                </p>
+                <div className="rule-section mt-8 w-full" aria-hidden />
+              </div>
+              <Link
+                href="/pricing"
+                className="inline-flex shrink-0 items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90 md:self-end"
+              >
+                <Tag className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+                Claim your intro deal
+              </Link>
+            </PaperSheet>
+          </div>
         </div>
       </MotionSection>
 
