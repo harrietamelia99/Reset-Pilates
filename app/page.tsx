@@ -24,8 +24,7 @@ export default function HomePage() {
     <>
       <HomeHero />
 
-      <MotionSection className="surface-editorial-dark relative py-16 md:py-24">
-        <div className="grain-layer opacity-30" aria-hidden />
+      <MotionSection className="relative border-t border-light-grey bg-cream py-16 md:py-24">
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
           <PaperSheet className="flex flex-col gap-8 px-8 py-12 md:flex-row md:items-center md:justify-between md:px-14 md:py-14">
             <div className="relative flex-1">
