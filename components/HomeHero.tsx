@@ -64,10 +64,7 @@ export function HomeHero() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-mid-grey/15 via-mid-grey/40 to-mid-grey/55"
-          aria-hidden
-        />
+        <div className="absolute inset-0 bg-mid-grey/38" aria-hidden />
       </div>
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />

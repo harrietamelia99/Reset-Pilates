@@ -23,7 +23,7 @@ export function DevHostHint() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] border-t border-charcoal/20 bg-amber-100 px-4 py-3 text-center font-accent text-xs text-charcoal shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
+    <div className="fixed bottom-0 left-0 right-0 z-[100] border-t border-charcoal/25 bg-amber-100 px-4 py-3 text-center font-accent text-xs text-charcoal">
       <strong className="font-sans uppercase tracking-wide">Dev server URL</strong>
       {" — "}
       <span className="text-mid-grey">

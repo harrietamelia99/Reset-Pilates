@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useState } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
   poster?: boolean;
 };
 
-function PaperClipSvg({ gradId, shadowId }: { gradId: string; shadowId: string }) {
+function PaperClipSvg() {
   return (
     <svg
       width="40"
@@ -24,57 +24,19 @@ function PaperClipSvg({ gradId, shadowId }: { gradId: string; shadowId: string }
       className="-rotate-[36deg]"
       aria-hidden
     >
-      <defs>
-        <linearGradient id={gradId} x1="3" y1="3" x2="21" y2="21" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#545456" />
-          <stop offset="0.28" stopColor="#FFFFFF" />
-          <stop offset="0.52" stopColor="#8E898A" />
-          <stop offset="0.78" stopColor="#C6C5C4" />
-          <stop offset="1" stopColor="#2b2b29" />
-        </linearGradient>
-        <filter
-          id={shadowId}
-          x="-35%"
-          y="-35%"
-          width="170%"
-          height="170%"
-          colorInterpolationFilters="sRGB"
-        >
-          <feDropShadow
-            dx="0.4"
-            dy="1.2"
-            stdDeviation="1.1"
-            floodColor="#2b2b29"
-            floodOpacity="0.28"
-          />
-        </filter>
-      </defs>
       <path
         d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.38-8.38A4 4 0 1 1 18 18l-8.38 8.38a2 2 0 0 1-2.83-2.83l8.49-8.48"
-        stroke="rgba(43, 43, 41, 0.12)"
-        strokeWidth="2.15"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        transform="translate(0.35 0.55)"
-      />
-      <path
-        d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.38-8.38A4 4 0 1 1 18 18l-8.38 8.38a2 2 0 0 1-2.83-2.83l8.49-8.48"
-        stroke={`url(#${gradId})`}
+        stroke="#2b2b29"
         strokeWidth="1.85"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
-        filter={`url(#${shadowId})`}
       />
     </svg>
   );
 }
 
 export function PaperSheet({ children, className, pin = true, poster = false }: Props) {
-  const reactId = useId().replace(/:/g, "");
-  const gradId = `clip-metal-${reactId}`;
-  const shadowId = `clip-shadow-${reactId}`;
   const [useSvgFallback, setUseSvgFallback] = useState(false);
 
   return (
@@ -86,12 +48,9 @@ export function PaperSheet({ children, className, pin = true, poster = false }: 
       )}
     >
       {pin && (
-        <span
-          className="pointer-events-none absolute -left-0.5 -top-1 z-10 h-11 w-11 drop-shadow-sm"
-          aria-hidden
-        >
+        <span className="pointer-events-none absolute -left-0.5 -top-1 z-10 h-11 w-11" aria-hidden>
           {useSvgFallback ? (
-            <PaperClipSvg gradId={gradId} shadowId={shadowId} />
+            <PaperClipSvg />
           ) : (
             <Image
               src="/images/paperclip.png"

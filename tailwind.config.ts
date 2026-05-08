@@ -29,10 +29,6 @@ const config: Config = {
           "monospace",
         ],
       },
-      boxShadow: {
-        lift: "0 18px 48px rgba(43, 43, 41, 0.06)",
-        editorial: "0 28px 90px rgba(43, 43, 41, 0.38), 0 0 0 1px rgba(43, 43, 41, 0.06)",
-      },
       letterSpacing: {
         /** Brand heading tracking — 0.196em */
         heading: "0.196em",

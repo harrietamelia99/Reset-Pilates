@@ -100,14 +100,14 @@ export default function HomePage() {
             offer won&apos;t last.
           </p>
           <div className="mt-10 grid gap-6 border-t border-white/10 pt-10 md:grid-cols-2">
-            <div className="border border-white/20 bg-white/[0.03] p-8 backdrop-blur-[2px]">
+            <div className="border border-white/25 bg-transparent p-8">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
                 Reformer
               </p>
               <p className="mt-4 text-2xl font-bold display-track">£65/month</p>
               <p className="mt-2 text-sm text-white/75">4 classes per month</p>
             </div>
-            <div className="border border-white/20 bg-white/[0.03] p-8 backdrop-blur-[2px]">
+            <div className="border border-white/25 bg-transparent p-8">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">Mat</p>
               <p className="mt-4 text-2xl font-bold display-track">£35/month</p>
               <p className="mt-2 text-sm text-white/75">4 classes per month</p>

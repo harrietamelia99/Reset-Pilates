@@ -22,13 +22,12 @@ export function PricingCard({
 }: Props) {
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
       className={cn(
-        "flex flex-col border p-8 transition-shadow",
+        "flex flex-col border p-8 transition-colors",
         emphasis
-          ? "border-charcoal bg-charcoal text-white shadow-lift"
-          : "border-light-grey bg-white shadow-sm hover:shadow-lift",
+          ? "border-charcoal bg-charcoal text-white"
+          : "border-light-grey bg-white hover:border-charcoal/25",
         className
       )}
     >
