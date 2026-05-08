@@ -6,7 +6,7 @@ import { SocialIconRow } from "@/components/SocialIconRow";
 
 export function Footer() {
   return (
-    <footer className="surface-editorial-dark relative border-t border-white/10">
+    <footer className="surface-editorial-dark-deep relative border-t border-white/10">
       <div className="grain-layer opacity-20" aria-hidden />
       <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:px-6 lg:grid-cols-4 lg:gap-10">
         <div>
