@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { Clock, Mail, MapPin } from "lucide-react";
 import { CONTACT, NAV_LINKS } from "@/lib/constants";
 import { LogoWordmark } from "@/components/LogoWordmark";
+import { SocialIconRow } from "@/components/SocialIconRow";
 
 export function Footer() {
   return (
@@ -38,44 +40,30 @@ export function Footer() {
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/45">
             Visit
           </p>
-          <address className="mt-4 not-italic text-sm leading-relaxed text-white/65">
-            {CONTACT.addressLine}
-          </address>
-          <p className="mt-3 text-sm text-white/65">
-            <a href={`mailto:${CONTACT.email}`} className="transition hover:text-white">
-              {CONTACT.email}
-            </a>
-          </p>
-          <p className="mt-2 text-sm text-white/65">{CONTACT.hours}</p>
+          <ul className="mt-4 space-y-4 text-sm leading-relaxed text-white/65">
+            <li className="flex gap-3">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/40" strokeWidth={1.5} aria-hidden />
+              <address className="not-italic">{CONTACT.addressLine}</address>
+            </li>
+            <li className="flex gap-3">
+              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-white/40" strokeWidth={1.5} aria-hidden />
+              <a href={`mailto:${CONTACT.email}`} className="transition hover:text-white">
+                {CONTACT.email}
+              </a>
+            </li>
+            <li className="flex gap-3">
+              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-white/40" strokeWidth={1.5} aria-hidden />
+              <span>{CONTACT.hours}</span>
+            </li>
+          </ul>
         </div>
 
         <div>
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/45">
             Social
           </p>
-          <ul className="mt-4 flex gap-4">
-            <li>
-              <a
-                href={CONTACT.instagram.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium uppercase tracking-wide text-white/85 transition hover:text-white"
-              >
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a
-                href={CONTACT.facebook.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium uppercase tracking-wide text-white/85 transition hover:text-white"
-              >
-                Facebook
-              </a>
-            </li>
-          </ul>
-          <p className="mt-6 font-accent text-[11px] uppercase tracking-[0.12em] text-white/45">
+          <SocialIconRow tone="dark" className="mt-4" />
+          <p className="mt-5 font-accent text-[11px] uppercase tracking-[0.12em] text-white/45">
             Follow {CONTACT.instagram.handle}
           </p>
         </div>

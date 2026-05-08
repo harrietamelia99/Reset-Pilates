@@ -1,9 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { Activity, Flame, LayoutGrid } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { BOOKING_HREF } from "@/lib/constants";
+
+const CLASS_CARD_ICONS = {
+  reformer: Activity,
+  hotMat: Flame,
+  mat: LayoutGrid,
+} as const;
+
+export type ClassCardIconKey = keyof typeof CLASS_CARD_ICONS;
 
 type Props = {
   title: string;
@@ -12,6 +21,7 @@ type Props = {
   linkLabel?: string;
   level?: string;
   className?: string;
+  icon?: ClassCardIconKey;
 };
 
 export function ClassCard({
@@ -21,7 +31,9 @@ export function ClassCard({
   linkLabel = "View classes",
   level,
   className,
+  icon,
 }: Props) {
+  const Icon = icon ? CLASS_CARD_ICONS[icon] : null;
   return (
     <motion.article
       whileHover={{ scale: 1.02 }}
@@ -31,6 +43,14 @@ export function ClassCard({
         className
       )}
     >
+      {Icon && (
+        <div
+          className="mb-5 inline-flex h-11 w-11 items-center justify-center border border-charcoal/12 bg-cream/50 text-charcoal"
+          aria-hidden
+        >
+          <Icon className="h-5 w-5" strokeWidth={1.25} />
+        </div>
+      )}
       {level && (
         <span className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
           {level}

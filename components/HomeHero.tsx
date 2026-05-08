@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { CalendarDays, LayoutList } from "lucide-react";
 import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
@@ -127,22 +128,25 @@ export function HomeHero() {
                       {BOOKING_HREF.startsWith("/") ? (
                         <Link
                           href={BOOKING_HREF}
-                          className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
+                          className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
                         >
+                          <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
                           Book a Class
                         </Link>
                       ) : (
                         <a
                           href={BOOKING_HREF}
-                          className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
+                          className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
                         >
+                          <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
                           Book a Class
                         </a>
                       )}
                       <Link
                         href="/classes"
-                        className="inline-flex min-h-[44px] items-center justify-center border-2 border-charcoal bg-white px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-light-grey"
+                        className="inline-flex min-h-[44px] items-center justify-center gap-2 border-2 border-charcoal bg-white px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-light-grey"
                       >
+                        <LayoutList className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
                         View Classes
                       </Link>
                     </div>

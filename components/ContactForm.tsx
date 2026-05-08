@@ -1,5 +1,6 @@
 "use client";
 
+import { Mail, MessageSquare, Send, Tags, User } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FORMSPREE_ACTION } from "@/lib/constants";
@@ -56,7 +57,11 @@ export function ContactForm() {
       {/* TODO: Replace FORMSPREE_ACTION in lib/constants.ts with your Formspree endpoint. */}
 
       <div>
-        <label htmlFor="name" className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
+        <label
+          htmlFor="name"
+          className="flex items-center gap-2 font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey"
+        >
+          <User className="h-3.5 w-3.5 shrink-0 text-warm-grey/90" strokeWidth={1.5} aria-hidden />
           Name
         </label>
         <input
@@ -72,7 +77,11 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="email" className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
+        <label
+          htmlFor="email"
+          className="flex items-center gap-2 font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey"
+        >
+          <Mail className="h-3.5 w-3.5 shrink-0 text-warm-grey/90" strokeWidth={1.5} aria-hidden />
           Email
         </label>
         <input
@@ -88,7 +97,11 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="subject" className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
+        <label
+          htmlFor="subject"
+          className="flex items-center gap-2 font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey"
+        >
+          <Tags className="h-3.5 w-3.5 shrink-0 text-warm-grey/90" strokeWidth={1.5} aria-hidden />
           Subject
         </label>
         <select
@@ -104,7 +117,11 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
+        <label
+          htmlFor="message"
+          className="flex items-center gap-2 font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey"
+        >
+          <MessageSquare className="h-3.5 w-3.5 shrink-0 text-warm-grey/90" strokeWidth={1.5} aria-hidden />
           Message
         </label>
         <textarea
@@ -121,9 +138,16 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="inline-flex items-center justify-center border border-charcoal bg-charcoal px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-charcoal/90 disabled:opacity-60"
+        className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-charcoal/90 disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Send message"}
+        {status === "sending" ? (
+          "Sending…"
+        ) : (
+          <>
+            <Send className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+            Send message
+          </>
+        )}
       </button>
 
       {status === "success" && (

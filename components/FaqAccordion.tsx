@@ -1,6 +1,8 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/cn";
 
 export type FaqItem = {
   q: string;
@@ -41,9 +43,14 @@ export function FaqAccordion({ groups }: Props) {
                     <span className="text-base font-semibold uppercase tracking-wide text-charcoal">
                       {item.q}
                     </span>
-                    <span className="mt-0.5 shrink-0 font-accent text-xs text-warm-grey">
-                      {open ? "−" : "+"}
-                    </span>
+                    <ChevronDown
+                      className={cn(
+                        "mt-0.5 h-5 w-5 shrink-0 text-warm-grey transition-transform duration-200",
+                        open && "rotate-180"
+                      )}
+                      strokeWidth={1.5}
+                      aria-hidden
+                    />
                   </button>
                   {open && (
                     <div className="overflow-hidden">

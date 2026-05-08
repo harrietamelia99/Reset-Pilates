@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BOOKING_HREF, NAV_LINKS } from "@/lib/constants";
 import { LogoWordmark } from "@/components/LogoWordmark";
@@ -16,12 +17,14 @@ function NavBookNow({
   if (BOOKING_HREF.startsWith("/")) {
     return (
       <Link href={BOOKING_HREF} className={className} onClick={onClick}>
+        <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
         Book Now
       </Link>
     );
   }
   return (
     <a href={BOOKING_HREF} className={className} onClick={onClick}>
+      <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
       Book Now
     </a>
   );
@@ -54,7 +57,7 @@ export function Navbar() {
               {l.label}
             </Link>
           ))}
-          <NavBookNow className="inline-flex items-center justify-center border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-mid-grey" />
+          <NavBookNow className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-mid-grey" />
         </nav>
 
         <button
@@ -108,7 +111,7 @@ export function Navbar() {
             </Link>
           ))}
           <NavBookNow
-            className="mt-6 inline-flex items-center justify-center border border-charcoal bg-charcoal px-5 py-3 text-sm font-bold uppercase tracking-wide text-white"
+            className="mt-6 inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-3 text-sm font-bold uppercase tracking-wide text-white"
             onClick={() => setOpen(false)}
           />
           {/* TODO: Set BOOKING_HREF in lib/constants.ts to your live Momence URL when ready. */}

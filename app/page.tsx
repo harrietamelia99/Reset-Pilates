@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  ArrowRight,
+  ChevronRight,
+  Mail,
+  Sparkles,
+  Sun,
+  Tag,
+  Waves,
+} from "lucide-react";
+import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
 import { HomeHero } from "@/components/HomeHero";
+import { WhyResetGrid } from "@/components/WhyResetGrid";
 import { MotionSection } from "@/components/MotionSection";
 import { ClassCard } from "@/components/ClassCard";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
@@ -42,8 +53,9 @@ export default function HomePage() {
             </div>
             <Link
               href="/pricing"
-              className="inline-flex shrink-0 items-center justify-center border border-charcoal bg-charcoal px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90 md:self-end"
+              className="inline-flex shrink-0 items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90 md:self-end"
             >
+              <Tag className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
               Claim your intro deal
             </Link>
           </PaperSheet>
@@ -63,14 +75,17 @@ export default function HomePage() {
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           <ClassCard
+            icon="reformer"
             title="Reformer Pilates"
             description="Dynamic movement on the reformer machine. Strength, control and flow."
           />
           <ClassCard
+            icon="hotMat"
             title="Hot Mat Pilates"
             description="Infrared-heated Pilates designed to deepen your practice and elevate results."
           />
           <ClassCard
+            icon="mat"
             title="Mat Pilates"
             description="Foundation-led mat classes for all levels. Available pending final scheduling."
           />
@@ -85,32 +100,46 @@ export default function HomePage() {
             Pre-launch · Limited
           </p>
           <div className="rule-editorial-light my-8" />
-          <h2 className="text-3xl font-bold uppercase tracking-heading md:text-4xl">
-            Become a founding member.
-          </h2>
+          <div className="flex flex-wrap items-center gap-3">
+            <Sparkles className="h-8 w-8 text-white/40" strokeWidth={1.25} aria-hidden />
+            <h2 className="text-3xl font-bold uppercase tracking-heading md:text-4xl">
+              Become a founding member.
+            </h2>
+          </div>
           <p className="mt-5 max-w-2xl text-white/85">
             Be one of the first 30 members and lock in a special rate for your first 12 months. This
             offer won&apos;t last.
           </p>
           <div className="mt-10 grid gap-6 border-t border-white/10 pt-10 md:grid-cols-2">
             <div className="border border-white/20 bg-white/[0.03] p-8 backdrop-blur-[2px]">
-              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
-                Reformer
-              </p>
-              <p className="mt-4 text-2xl font-bold display-track">£65/month</p>
-              <p className="mt-2 text-sm text-white/75">4 classes per month</p>
+              <div className="flex items-start gap-3">
+                <Waves className="mt-0.5 h-5 w-5 shrink-0 text-white/45" strokeWidth={1.35} aria-hidden />
+                <div>
+                  <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
+                    Reformer
+                  </p>
+                  <p className="mt-4 text-2xl font-bold display-track">£65/month</p>
+                  <p className="mt-2 text-sm text-white/75">4 classes per month</p>
+                </div>
+              </div>
             </div>
             <div className="border border-white/20 bg-white/[0.03] p-8 backdrop-blur-[2px]">
-              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">Mat</p>
-              <p className="mt-4 text-2xl font-bold display-track">£35/month</p>
-              <p className="mt-2 text-sm text-white/75">4 classes per month</p>
+              <div className="flex items-start gap-3">
+                <Sun className="mt-0.5 h-5 w-5 shrink-0 text-white/45" strokeWidth={1.35} aria-hidden />
+                <div>
+                  <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">Mat</p>
+                  <p className="mt-4 text-2xl font-bold display-track">£35/month</p>
+                  <p className="mt-2 text-sm text-white/75">4 classes per month</p>
+                </div>
+              </div>
             </div>
           </div>
           <Link
             href="/pricing"
-            className="mt-10 inline-flex items-center justify-center border border-white bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-light-grey"
+            className="mt-10 inline-flex items-center justify-center gap-2 border border-white bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-light-grey"
           >
             Secure your spot
+            <ChevronRight className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
           </Link>
         </div>
       </MotionSection>
@@ -124,34 +153,7 @@ export default function HomePage() {
             Pilates with purpose.
           </h2>
         </div>
-        <div className="mt-14 grid md:grid-cols-2 border-t border-l border-charcoal">
-          {[
-            {
-              t: "Dynamic, results-driven movement",
-              d: "Not your average stretch session — sessions are built to challenge, refine, and reset.",
-            },
-            {
-              t: "Infrared-heated classes",
-              d: "Muscles warm faster, recovery comes sooner — heat with intention.",
-            },
-            {
-              t: "Beginners welcome",
-              d: "Every class is inclusive and adjustable. Show up as you are.",
-            },
-            {
-              t: "A space that's yours",
-              d: "Intimate, considered, never crowded — room to breathe and move.",
-            },
-          ].map((item) => (
-            <div
-              key={item.t}
-              className="border-b border-r border-charcoal p-8 transition-colors duration-300 hover:bg-cream/70 md:p-10"
-            >
-              <h3 className="text-lg font-bold uppercase tracking-heading text-charcoal">{item.t}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-mid-grey">{item.d}</p>
-            </div>
-          ))}
-        </div>
+        <WhyResetGrid />
       </MotionSection>
 
       <MotionSection className="surface-editorial-dark relative py-16 md:py-20">
@@ -170,9 +172,10 @@ export default function HomePage() {
               </blockquote>
               <Link
                 href="/about"
-                className="mt-8 inline-flex items-center text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 hover:underline"
+                className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 hover:underline"
               >
                 Meet Mari
+                <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
               </Link>
             </div>
           </PaperSheet>
@@ -199,14 +202,16 @@ export default function HomePage() {
                 href="https://www.instagram.com/reset_pilatesstudio/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border border-charcoal bg-charcoal px-6 py-3 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
+                className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-6 py-3 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
               >
+                <InstagramGlyph className="h-4 w-4 shrink-0 text-white" />
                 @reset_pilatesstudio
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-charcoal hover:text-white"
+                className="inline-flex items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-charcoal hover:text-white"
               >
+                <Mail className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
                 Email the studio
               </Link>
             </div>
