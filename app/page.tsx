@@ -67,17 +67,14 @@ export default function HomePage() {
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           <ClassCard
-            icon="reformer"
             title="Reformer Pilates"
             description="Dynamic movement on the reformer machine. Strength, control and flow."
           />
           <ClassCard
-            icon="hotMat"
             title="Hot Mat Pilates"
             description="Infrared-heated Pilates designed to deepen your practice and elevate results."
           />
           <ClassCard
-            icon="mat"
             title="Mat Pilates"
             description="Foundation-led mat classes for all levels. Available pending final scheduling."
           />

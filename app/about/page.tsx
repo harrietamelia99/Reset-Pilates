@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { MapPin } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -63,8 +62,7 @@ export default function AboutPage() {
       <section className="border-t border-light-grey bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Studio</p>
-          <h2 className="mt-4 flex flex-wrap items-center gap-3 text-2xl font-bold uppercase tracking-heading text-charcoal">
-            <MapPin className="h-7 w-7 shrink-0 text-charcoal/55" strokeWidth={1.25} aria-hidden />
+          <h2 className="mt-4 text-2xl font-bold uppercase tracking-heading text-charcoal">
             Find us in Nailsea.
           </h2>
           <address className="mt-6 not-italic text-mid-grey">

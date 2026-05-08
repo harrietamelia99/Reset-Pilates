@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PoundSterling } from "lucide-react";
 import { BookingWidget } from "@/components/BookingWidget";
 import { MotionSection } from "@/components/MotionSection";
 import { PricingCard } from "@/components/PricingCard";
@@ -65,8 +64,7 @@ export default function PricingPage() {
       <header className="page-hero">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
           <div>
-            <h1 className="flex flex-wrap items-center gap-3 text-4xl font-bold uppercase tracking-heading text-charcoal md:text-5xl">
-              <PoundSterling className="h-9 w-9 shrink-0 text-charcoal/45 md:h-10 md:w-10" strokeWidth={1.25} aria-hidden />
+            <h1 className="text-4xl font-bold uppercase tracking-heading text-charcoal md:text-5xl">
               Simple, honest pricing.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-mid-grey">

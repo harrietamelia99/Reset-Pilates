@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Layers } from "lucide-react";
 import { ClassDetailCard } from "@/components/ClassCard";
 import { MotionSection } from "@/components/MotionSection";
 import { BOOKING_HREF } from "@/lib/constants";
@@ -26,8 +25,7 @@ export default function ClassesPage() {
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
               Nailsea · North Somerset
             </p>
-            <h1 className="mt-4 flex flex-wrap items-center gap-3 text-4xl font-bold uppercase tracking-heading text-charcoal md:text-5xl">
-              <Layers className="h-9 w-9 shrink-0 text-charcoal/50 md:h-10 md:w-10" strokeWidth={1.25} aria-hidden />
+            <h1 className="mt-4 text-4xl font-bold uppercase tracking-heading text-charcoal md:text-5xl">
               Our Classes
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-mid-grey">
