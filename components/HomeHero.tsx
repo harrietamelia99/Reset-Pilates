@@ -7,6 +7,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { staggerContainer, fadeItem } from "@/lib/motion";
 import { HeroBookingSheet } from "@/components/HeroBookingSheet";
+import { LogoWordmark } from "@/components/LogoWordmark";
 
 export function HomeHero() {
   const slotRef = useRef<HTMLDivElement>(null);
@@ -66,6 +67,14 @@ export function HomeHero() {
       </div>
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
+
+      {/* Large background wordmark — matches poster hero reference */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[5] flex items-center justify-center overflow-hidden px-3 md:px-6"
+        aria-hidden
+      >
+        <LogoWordmark className="max-w-[min(100%,96vw)] text-center text-[clamp(4rem,28vw,17rem)] leading-[0.82] tracking-tight text-charcoal/[0.14]" />
+      </div>
 
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         {/* Navbar sits above this section in the document; flex-center places the sheet in the viewport band */}
