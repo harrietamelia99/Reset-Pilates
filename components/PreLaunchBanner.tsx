@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Megaphone, X } from "lucide-react";
+import { Megaphone } from "lucide-react";
 import { useEffect, useState } from "react";
+import { CloseIcon } from "@/components/icons/CloseIcon";
 import { OPENING_DATE_LABEL } from "@/lib/constants";
 
 const STORAGE_KEY = "reset-prelaunch-banner-dismissed";
@@ -45,7 +46,7 @@ export function PreLaunchBanner() {
           className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-light-grey transition hover:bg-white/10 hover:text-white"
           aria-label="Dismiss announcement"
         >
-          <X className="h-4 w-4" strokeWidth={1.5} aria-hidden />
+          <CloseIcon className="h-4 w-4 shrink-0" />
         </button>
       </div>
     </div>

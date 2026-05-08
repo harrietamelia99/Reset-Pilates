@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays, X } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BOOKING_HREF, CONTACT, NAV_LINKS } from "@/lib/constants";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
+import { CloseIcon } from "@/components/icons/CloseIcon";
 import { LogoWordmark } from "@/components/LogoWordmark";
 import { cn } from "@/lib/cn";
 
@@ -130,7 +131,7 @@ export function Navbar() {
           aria-label="Close menu"
           onClick={() => setOpen(false)}
         >
-          <X className="h-6 w-6" strokeWidth={1.75} aria-hidden />
+          <CloseIcon className="h-6 w-6 shrink-0" />
         </button>
         <nav
           className="mx-auto flex max-h-screen flex-col gap-1 overflow-y-auto px-6 pb-12 pt-24"
