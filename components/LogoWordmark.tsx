@@ -9,14 +9,14 @@ type Props = {
 
 /**
  * Wordmark “reset.” — Bethany Elingston (`--font-logo-wordmark`, self-hosted OTF).
- * Slight negative tracking keeps an editorial feel without crowding glyphs.
+ * Letter-spacing matches brand artwork: open, airy kerning (not condensed).
  */
 export function LogoWordmark({ className, variant = "default", as: Tag = "span" }: Props) {
   return (
     <Tag
       className={cn(
         "font-logo font-normal lowercase leading-none antialiased",
-        "tracking-[-0.04em] [font-feature-settings:'kern'_1]",
+        "tracking-[0.07em] [font-feature-settings:'kern'_1]",
         variant === "light" ? "text-white" : "text-charcoal",
         className
       )}

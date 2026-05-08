@@ -68,12 +68,12 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      {/* Megawordmark — full width, flush to section bottom, fully visible (no crop) */}
+      {/* Megawordmark — full bleed width (fits viewport so overflow-hidden doesn’t crop sides), flush bottom */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] px-3 pb-5 sm:px-5 sm:pb-8 md:px-8 md:pb-10"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] px-0 pb-3 sm:pb-5 md:pb-6"
         aria-hidden
       >
-        <LogoWordmark className="block w-full max-w-none text-center text-[clamp(4rem,min(44vw,32rem),32rem)] leading-[0.64] text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]" />
+        <LogoWordmark className="block w-full max-w-none whitespace-nowrap text-center text-[length:clamp(3.5rem,calc((100vw-1.5rem)/5.75),50rem)] leading-[0.64] text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]" />
       </div>
 
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
