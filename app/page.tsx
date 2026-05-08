@@ -172,20 +172,22 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
-        <div className="max-w-2xl">
-          <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
-            Why Reset
-          </p>
-          <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
-            Pilates with purpose.
-          </h2>
+      <MotionSection className="relative grain-muted border-t border-light-grey">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
+          <div className="max-w-2xl">
+            <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
+              Why Reset
+            </p>
+            <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
+              Pilates with purpose.
+            </h2>
+          </div>
+          <div className="rule-section mt-8 max-w-xl" aria-hidden />
+          <WhyResetGrid />
         </div>
-        <div className="rule-section mt-8 max-w-xl" aria-hidden />
-        <WhyResetGrid />
       </MotionSection>
 
-      <MotionSection className="surface-editorial-dark relative py-16 md:py-20">
+      <MotionSection className="relative border-t border-light-grey bg-white py-16 md:py-20">
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
           <PaperSheet
             pin={false}
@@ -214,7 +216,7 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="surface-editorial-dark relative py-16 md:py-20">
+      <MotionSection className="relative border-t border-light-grey bg-light-grey/40 py-16 md:py-20">
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
           <PaperSheet flat className="flex flex-col justify-between gap-8 px-8 py-10 md:flex-row md:items-center md:px-12 md:py-12">
             <div className="min-w-0 flex-1">

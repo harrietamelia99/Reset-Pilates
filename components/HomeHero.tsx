@@ -17,7 +17,7 @@ export function HomeHero() {
   const [fit, setFit] = useState({ scale: 1, naturalH: 560 });
   const [flyerStyle, setFlyerStyle] = useState<CSSProperties>({
     transform: "scale(1)",
-    transformOrigin: "top center",
+    transformOrigin: "center center",
   });
 
   useLayoutEffect(() => {
@@ -29,11 +29,11 @@ export function HomeHero() {
       /** Leave a little slack so the sheet + paperclip never kiss the viewport edge */
       const avail = Math.max(0, slot.clientHeight - 20);
       flushSync(() => {
-        setFlyerStyle({ transform: "scale(1)", transformOrigin: "top center" });
+        setFlyerStyle({ transform: "scale(1)", transformOrigin: "center center" });
       });
       const nh = flyer.offsetHeight;
       const scale = nh <= avail ? 1 : avail / nh;
-      setFlyerStyle({ transform: `scale(${scale})`, transformOrigin: "top center" });
+      setFlyerStyle({ transform: `scale(${scale})`, transformOrigin: "center center" });
       setFit({ scale, naturalH: nh });
     };
 
@@ -70,14 +70,14 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      <div className="relative z-10 mx-auto flex h-full min-h-0 max-w-6xl flex-col px-4 pb-3 pt-24 md:px-6 md:pb-5 md:pt-28 lg:pt-[7rem]">
-        {/* Slot centers the flyer; scales down when viewport is short */}
+      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
+        {/* Navbar sits above this section in the document; flex-center places the sheet in the viewport band */}
         <div
           ref={slotRef}
-          className="relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-visible py-0.5 md:py-1"
+          className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center overflow-visible"
         >
           <div
-            className="relative mx-auto w-full max-w-[min(42rem,100%)] overflow-visible px-1 sm:px-4"
+            className="relative mx-auto flex w-full max-w-[min(42rem,100%)] items-center justify-center overflow-visible px-1 sm:px-4"
             style={{
               height: bridgeHeight,
               maxHeight: "100%",
@@ -86,7 +86,7 @@ export function HomeHero() {
             <div
               ref={flyerRef}
               style={flyerStyle}
-              className="absolute left-0 right-0 top-0 w-full max-w-[min(42rem,100%)] will-change-transform"
+              className="relative w-full max-w-[min(42rem,100%)] will-change-transform"
             >
               <motion.div
                 variants={staggerContainer}
