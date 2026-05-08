@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import type { CSSProperties, RefObject } from "react";
+import type { CSSProperties } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { staggerContainer, fadeItem } from "@/lib/motion";
@@ -10,83 +10,9 @@ import { HeroBookingSheet } from "@/components/HeroBookingSheet";
 import { LogoWordmark } from "@/components/LogoWordmark";
 import { cn } from "@/lib/cn";
 
-/** Fit “reset.” + 24px tracking to container width (avoids overflow clip looking centered). */
-function useMegawordmarkFit(wordRef: RefObject<HTMLElement | null>, wrapRef: RefObject<HTMLDivElement | null>) {
-  const [fontPx, setFontPx] = useState<number | null>(null);
-
-  useLayoutEffect(() => {
-    let cancelled = false;
-    let ro: ResizeObserver | null = null;
-    let rafUntilRefs = 0;
-
-    const fit = () => {
-      const wrap = wrapRef.current;
-      const word = wordRef.current;
-      if (!wrap || !word || cancelled) return;
-
-      const maxW = wrap.getBoundingClientRect().width;
-      if (maxW < 8) return;
-
-      let lo = 12;
-      let hi = Math.min(maxW * 4, 8000);
-      for (let i = 0; i < 44; i++) {
-        const mid = (lo + hi) / 2;
-        word.style.fontSize = `${mid}px`;
-        void word.offsetWidth;
-        if (word.scrollWidth <= maxW) lo = mid;
-        else hi = mid;
-      }
-      word.style.removeProperty("font-size");
-
-      const safe = Number.isFinite(lo) && lo >= 12 && lo <= 8000 ? lo : null;
-      if (!cancelled) setFontPx(safe);
-    };
-
-    const scheduleFit = () => requestAnimationFrame(fit);
-
-    const attach = () => {
-      const wrap = wrapRef.current;
-      const word = wordRef.current;
-      if (!wrap || !word) {
-        rafUntilRefs += 1;
-        if (rafUntilRefs < 90 && !cancelled) requestAnimationFrame(attach);
-        return;
-      }
-
-      fit();
-      void document.fonts.ready.then(() => {
-        if (!cancelled) scheduleFit();
-      });
-
-      ro = new ResizeObserver(() => scheduleFit());
-      ro.observe(wrap);
-      window.addEventListener("orientationchange", fit);
-    };
-
-    attach();
-
-    return () => {
-      cancelled = true;
-      ro?.disconnect();
-      window.removeEventListener("orientationchange", fit);
-    };
-  }, [wordRef, wrapRef]);
-
-  return fontPx;
-}
-
-/** Always use explicit font-size (inline) so the megawordmark never loses sizing to purge/CSS order. */
-const MEGAWORD_FALLBACK_FONT =
-  "clamp(3.5rem, calc(100vw / 6.25), min(50rem, 42vw))";
-
 export function HomeHero() {
   const slotRef = useRef<HTMLDivElement>(null);
   const flyerRef = useRef<HTMLDivElement>(null);
-  const megawordWrapRef = useRef<HTMLDivElement>(null);
-  const megawordRef = useRef<HTMLElement>(null);
-  const megafontPx = useMegawordmarkFit(megawordRef, megawordWrapRef);
-  const megafontApplied =
-    megafontPx != null && Number.isFinite(megafontPx) && megafontPx >= 12 && megafontPx <= 8000;
 
   const [fit, setFit] = useState({ scale: 1, naturalH: 560 });
   const [flyerStyle, setFlyerStyle] = useState<CSSProperties>({
@@ -128,6 +54,17 @@ export function HomeHero() {
 
   const bridgeHeight = fit.naturalH * fit.scale;
 
+  /**
+   * Megawordmark sizing — CSS-only (no binary-search JS).
+   * Fixed `letter-spacing: 24px` on LogoWordmark made width dominated by px gaps at small font sizes,
+   * shrinking the fitted text until it was effectively invisible. Here we use em spacing + vw clamp.
+   */
+  const megawordStyle: CSSProperties = {
+    fontSize:
+      "clamp(3.75rem, calc((100vw - 1rem) / 5.25), min(42rem, min(92vw, 55vh)))",
+    letterSpacing: "0.11em",
+  };
+
   return (
     <section className="surface-poster-hero relative isolate h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
@@ -144,27 +81,21 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      {/* Megawordmark — behind flyer only (flyer has z-10); full-width layer so it sits in the hero “plate” */}
+      {/* Megawordmark: z-[2] stays below content column (z-10) so it reads as the hero plate; letterSpacing/fontSize inline override LogoWordmark defaults */}
       <div
-        ref={megawordWrapRef}
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[6] flex w-full justify-center px-0 pb-0"
+        className="pointer-events-none absolute inset-x-0 bottom-0 left-0 right-0 z-[2] flex w-full justify-center px-0 pb-0"
         aria-hidden
       >
         <LogoWordmark
-          ref={megawordRef}
-          style={{
-            fontSize: megafontApplied ? `${megafontPx}px` : MEGAWORD_FALLBACK_FONT,
-          }}
+          style={megawordStyle}
           className={cn(
-            "inline-block w-max max-w-full whitespace-nowrap text-charcoal drop-shadow-[0_2px_28px_rgba(255,255,255,0.14)]",
-            /** subtle wash so it reads clearly on concrete behind the card */
-            "[text-shadow:0_1px_0_rgba(255,255,255,0.06)]"
+            "inline-block w-max max-w-[min(100%,100vw)] whitespace-nowrap text-charcoal",
+            "drop-shadow-[0_2px_32px_rgba(255,255,255,0.18)] [text-shadow:0_1px_0_rgba(255,255,255,0.08)]"
           )}
         />
       </div>
 
-      <div className="relative mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
-        {/* Navbar sits above this section in the document; flex-center places the sheet in the viewport band */}
+      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         <div
           ref={slotRef}
           className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center overflow-visible"
