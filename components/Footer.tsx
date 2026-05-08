@@ -11,7 +11,7 @@ export function Footer() {
       <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:px-6 lg:grid-cols-4 lg:gap-10">
         <div>
           <Link href="/" className="inline-block" aria-label="Reset Pilates home">
-            <LogoWordmark variant="light" className="h-9 w-auto max-w-[min(100%,260px)] md:h-10" />
+            <LogoWordmark variant="light" className="text-3xl leading-none md:text-4xl" />
           </Link>
           <p className="mt-4 font-accent text-[11px] uppercase tracking-[0.15em] text-white/50">
             Pilates studio · Nailsea

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Playfair_Display } from "next/font/google";
+import { Bodoni_Moda, IBM_Plex_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { DevHostHint } from "@/components/DevHostHint";
 import { Footer } from "@/components/Footer";
@@ -10,6 +10,15 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
   display: "swap",
+});
+
+const logoSerif = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-logo-serif",
+  display: "swap",
+  weight: "variable",
+  axes: ["opsz"],
+  adjustFontFallback: false,
 });
 
 /** Loads as `--font-accent` until self-hosted Anca Coder files are added to `/public/fonts/` (see `globals.css`). */
@@ -50,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB" className={`${playfair.variable} ${accentMono.variable}`}>
+    <html lang="en-GB" className={`${logoSerif.variable} ${playfair.variable} ${accentMono.variable}`}>
       <body className="min-h-screen flex flex-col">
         <PreLaunchBanner />
         <Navbar />

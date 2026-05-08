@@ -20,6 +20,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+        logo: ["var(--font-logo-serif)", "var(--font-playfair)", "Georgia", "serif"],
         playfair: ["var(--font-playfair)", "Georgia", "serif"],
         accent: [
           "var(--font-accent)",

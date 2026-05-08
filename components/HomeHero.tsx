@@ -74,7 +74,7 @@ export function HomeHero() {
         aria-hidden
       >
         <div className="flex justify-center px-2 sm:px-4">
-          <LogoWordmark className="h-[clamp(4rem,38vw,24rem)] max-h-[70vh] w-auto max-w-[min(100%,96vw)] translate-y-[30%] opacity-90 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)] [&_img]:object-center" />
+          <LogoWordmark className="block w-max max-w-[min(100%,96vw)] translate-y-[30%] text-center text-[clamp(4rem,38vw,24rem)] leading-[0.66] tracking-[-0.03em] text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]" />
         </div>
       </div>
 

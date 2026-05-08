@@ -67,7 +67,7 @@ export function Navbar() {
           aria-label="Reset Pilates home"
           onClick={() => setOpen(false)}
         >
-          <LogoWordmark priority className="h-[clamp(1.375rem,3.4vw,1.6875rem)] max-w-[min(100%,240px)]" />
+          <LogoWordmark className="text-[clamp(1.375rem,3.4vw,1.6875rem)] leading-none tracking-[-0.02em]" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
