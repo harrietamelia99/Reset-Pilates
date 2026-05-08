@@ -123,68 +123,68 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-[#2e2e30]/80" aria-hidden />
         </div>
         <div className="grain-layer z-[1] opacity-20" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28 lg:py-32">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-18 lg:py-20">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
             <header className="lg:col-span-7 xl:col-span-6">
               <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-white/50">
                 Pre-launch · Limited
               </p>
-              <div className="mt-5 h-px w-14 bg-white/25" aria-hidden />
-              <h2 className="mt-8 max-w-[17ch] text-3xl font-bold uppercase leading-[1.12] tracking-heading text-white md:max-w-none md:text-[clamp(2rem,4vw,3rem)] md:leading-[1.08]">
+              <div className="mt-4 h-px w-14 bg-white/25" aria-hidden />
+              <h2 className="mt-5 max-w-[17ch] text-2xl font-bold uppercase leading-[1.12] tracking-heading text-white sm:text-3xl md:max-w-none md:text-[clamp(1.75rem,3.5vw,2.5rem)] md:leading-[1.08]">
                 Become a founding member.
               </h2>
             </header>
             <div className="flex flex-col justify-end lg:col-span-5 lg:col-start-8 xl:col-span-5 xl:col-start-8">
-              <p className="font-sans text-[1.0625rem] font-normal leading-[1.65] tracking-[0.01em] text-white/[0.82] md:text-lg md:leading-relaxed">
+              <p className="font-sans text-[1rem] font-normal leading-relaxed tracking-[0.01em] text-white/[0.82] md:text-[1.0625rem]">
                 Be among the first 30 members and lock in a preferential rate for your first 12 months —
                 this invitation closes once we open.
               </p>
             </div>
           </div>
 
-          <div className="mt-16 border-t border-white/[0.08] pt-9 md:mt-20 md:pt-11">
+          <div className="mt-10 border-t border-white/[0.08] pt-6 md:mt-12 md:pt-8">
             <p className="max-w-2xl font-sans text-[11px] uppercase tracking-[0.18em] text-white/40">
               Founding cohort · 30 places · rate locked 12 months · closes at opening
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 sm:gap-6 lg:mt-16 lg:grid-cols-2 lg:gap-8">
-            <article className="flex flex-col border border-white/10 bg-white/[0.025] p-9 backdrop-blur-[2px] md:p-10">
+          <div className="mt-8 grid max-w-4xl gap-4 sm:mt-10 sm:gap-5 lg:mx-auto lg:mt-10 lg:grid-cols-2 lg:gap-6">
+            <article className="flex flex-col border border-white/10 bg-white/[0.025] p-6 backdrop-blur-[2px] md:p-7">
               <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/45">Reformer</p>
-              <p className="mt-8 font-sans text-3xl font-semibold tabular-nums tracking-tight text-white md:text-[2.35rem]">
+              <p className="mt-5 font-sans text-2xl font-semibold tabular-nums tracking-tight text-white md:text-3xl">
                 £65
-                <span className="text-lg font-medium text-white/55 md:text-xl">/month</span>
+                <span className="text-base font-medium text-white/55 md:text-lg">/month</span>
               </p>
-              <p className="mt-4 font-sans text-sm font-normal leading-relaxed text-white/65">
+              <p className="mt-3 font-sans text-sm font-normal leading-relaxed text-white/65">
                 4 classes per month
               </p>
               <Link
                 href="/pricing"
-                className="mt-10 inline-flex w-full min-h-[44px] items-center justify-center bg-white px-6 py-3.5 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal transition hover:bg-white/92"
+                className="mt-6 inline-flex w-full min-h-[44px] items-center justify-center bg-white px-5 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal transition hover:bg-white/92 md:mt-7"
               >
                 Secure your spot
               </Link>
             </article>
 
-            <article className="flex flex-col border border-white/10 bg-white/[0.025] p-9 backdrop-blur-[2px] md:p-10">
+            <article className="flex flex-col border border-white/10 bg-white/[0.025] p-6 backdrop-blur-[2px] md:p-7">
               <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/45">Mat</p>
-              <p className="mt-8 font-sans text-3xl font-semibold tabular-nums tracking-tight text-white md:text-[2.35rem]">
+              <p className="mt-5 font-sans text-2xl font-semibold tabular-nums tracking-tight text-white md:text-3xl">
                 £35
-                <span className="text-lg font-medium text-white/55 md:text-xl">/month</span>
+                <span className="text-base font-medium text-white/55 md:text-lg">/month</span>
               </p>
-              <p className="mt-4 font-sans text-sm font-normal leading-relaxed text-white/65">
+              <p className="mt-3 font-sans text-sm font-normal leading-relaxed text-white/65">
                 4 classes per month
               </p>
               <Link
                 href="/pricing"
-                className="mt-10 inline-flex w-full min-h-[44px] items-center justify-center border border-white/55 bg-transparent px-6 py-3.5 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition hover:border-white hover:bg-white/[0.06]"
+                className="mt-6 inline-flex w-full min-h-[44px] items-center justify-center border border-white/55 bg-transparent px-5 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition hover:border-white hover:bg-white/[0.06] md:mt-7"
               >
                 View pricing &amp; tiers
               </Link>
             </article>
           </div>
 
-          <p className="mt-14 max-w-xl font-sans text-[15px] leading-relaxed text-white/45 md:mt-16">
+          <p className="mt-8 max-w-xl font-sans text-sm leading-relaxed text-white/45 md:mt-10 md:text-[15px]">
             Intro bundles and founding membership rates are listed on pricing — choose what suits your
             practice.
           </p>
