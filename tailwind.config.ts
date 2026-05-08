@@ -9,12 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /** Brand palette — charcoal, mid-grey, warm-grey, light-grey, cream, white */
+        /** Brand palette — charcoal, mid-grey, warm-grey, light-grey, white */
         charcoal: "#2b2b29",
         "mid-grey": "#545456",
         "warm-grey": "#8E898A",
         "light-grey": "#C6C5C4",
-        cream: "#FFFAF3",
         white: "#FFFFFF",
         /** Same as charcoal — headline ink on light surfaces */
         "editorial-ink": "#2b2b29",

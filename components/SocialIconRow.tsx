@@ -8,7 +8,7 @@ const tones = {
   dark:
     "border-white/25 bg-white/5 text-white hover:border-white/45 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60",
   light:
-    "border-light-grey bg-white text-charcoal hover:border-charcoal/35 hover:bg-cream/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal/30",
+    "border-light-grey bg-white text-charcoal hover:border-charcoal/35 hover:bg-light-grey/45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal/30",
 } as const;
 
 type Tone = keyof typeof tones;

@@ -1,14 +1,5 @@
 export const SITE_NAME = "Reset Pilates Studio";
 
-export const COLORS = {
-  charcoal: "#2b2b29",
-  midGrey: "#545456",
-  warmGrey: "#8E898A",
-  lightGrey: "#C6C5C4",
-  cream: "#FFFAF3",
-  white: "#FFFFFF",
-} as const;
-
 export const CONTACT = {
   email: "hello@resetpilatesstudio.co.uk",
   addressLine: "10A Colliers Walk, Nailsea, North Somerset, BS48 1RD",

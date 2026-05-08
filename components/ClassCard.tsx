@@ -39,13 +39,13 @@ export function ClassCard({
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
       className={cn(
-        "group flex h-full flex-col border border-charcoal bg-white p-8 shadow-sm transition-all duration-300 hover:bg-cream/60 hover:shadow-editorial",
+        "group flex h-full flex-col border border-charcoal bg-white p-8 shadow-sm transition-all duration-300 hover:bg-light-grey/40 hover:shadow-editorial",
         className
       )}
     >
       {Icon && (
         <div
-          className="mb-5 inline-flex h-11 w-11 items-center justify-center border border-charcoal/12 bg-cream/50 text-charcoal"
+          className="mb-5 inline-flex h-11 w-11 items-center justify-center border border-charcoal/12 bg-light-grey/35 text-charcoal"
           aria-hidden
         >
           <Icon className="h-5 w-5" strokeWidth={1.25} />
@@ -81,7 +81,7 @@ export function ClassDetailCard({
     <motion.article
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
-      className="flex h-full flex-col border border-charcoal bg-white p-8 shadow-sm transition-all duration-300 hover:bg-cream/60 hover:shadow-editorial"
+      className="flex h-full flex-col border border-charcoal bg-white p-8 shadow-sm transition-all duration-300 hover:bg-light-grey/40 hover:shadow-editorial"
     >
       <span className="inline-flex max-w-fit rounded-full border border-charcoal/25 px-3 py-1 font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
         {level}

@@ -42,7 +42,6 @@
   --surface-editorial-bg: #545456;
   --color-warm-grey: #8e898a;
   --color-light-grey: #c6c5c4;
-  --color-cream: #fffaf3;
   --color-white: #ffffff;
   --tracking-heading: 0.196em;
   --font-sans: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -206,11 +205,9 @@
     position: relative;
   }
 
-  /**
-   * Full-page wash for inner routes — cream → white (brand palette only).
-   */
+  /** Full-page wash for inner routes — neutral white */
   .page-bg {
-    @apply min-h-screen bg-gradient-to-b from-cream via-white to-white;
+    @apply min-h-screen bg-white;
   }
 
   /** Transparent hero bar that sits on `.page-bg` without doubling gradients */

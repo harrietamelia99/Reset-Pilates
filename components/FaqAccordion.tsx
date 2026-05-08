@@ -37,7 +37,7 @@ export function FaqAccordion({ groups }: Props) {
                   <button
                     type="button"
                     onClick={() => setOpenId(open ? null : id)}
-                    className="flex w-full items-start justify-between gap-4 px-4 py-5 text-left transition-colors hover:bg-cream/80 md:px-5"
+                    className="flex w-full items-start justify-between gap-4 px-4 py-5 text-left transition-colors hover:bg-light-grey/40 md:px-5"
                     aria-expanded={open}
                   >
                     <span className="text-base font-semibold uppercase tracking-wide text-charcoal">

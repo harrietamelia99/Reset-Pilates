@@ -31,7 +31,7 @@ export function WhyResetGrid() {
       {ITEMS.map(({ Icon, t, d }) => (
         <div
           key={t}
-          className="border-b border-r border-charcoal p-8 transition-colors duration-300 hover:bg-cream/70 md:p-10"
+          className="border-b border-r border-charcoal p-8 transition-colors duration-300 hover:bg-light-grey/35 md:p-10"
         >
           <Icon className="h-6 w-6 text-charcoal/70" strokeWidth={1.25} aria-hidden />
           <h3 className="mt-4 text-lg font-bold uppercase tracking-heading text-charcoal">{t}</h3>
