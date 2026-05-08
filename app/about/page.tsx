@@ -17,14 +17,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function AboutPage() {
   return (
     <div className="bg-white">
-      <header className="relative border-b border-light-grey bg-mid-grey text-white">
+      <header className="relative min-h-[280px] overflow-hidden border-b border-light-grey bg-mid-grey text-white md:min-h-[360px]">
         <div className="absolute inset-0">
-          <div className="aspect-video flex min-h-[280px] w-full items-center justify-center bg-light-grey text-sm text-warm-grey md:min-h-[360px]">
+          <div className="flex h-full w-full items-center justify-center bg-light-grey text-sm text-warm-grey">
             [ Photography coming soon ]
           </div>
-          <div className="absolute inset-0 bg-mid-grey/55" />
+          <div className="absolute inset-0 bg-mid-grey/55" aria-hidden />
         </div>
-        <div className="relative mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <div>
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/60">About</p>
             <h1 className="mt-4 text-4xl font-bold uppercase tracking-heading md:text-6xl">
