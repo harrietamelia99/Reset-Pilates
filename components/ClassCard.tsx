@@ -26,7 +26,7 @@ export function ClassCard({
     <motion.article
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
       className={cn(
-        "group flex h-full flex-col border border-charcoal bg-white p-8 transition-colors duration-300 hover:bg-light-grey/40",
+        "group flex h-full flex-col bg-light-grey/35 p-8 transition-colors duration-300 hover:bg-light-grey/55",
         className
       )}
     >
@@ -66,7 +66,7 @@ export function ClassDetailCard({
   return (
     <motion.article
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
-      className="flex h-full flex-col border border-charcoal bg-white p-8 transition-colors duration-300 hover:bg-light-grey/40"
+      className="flex h-full flex-col bg-light-grey/35 p-8 transition-colors duration-300 hover:bg-light-grey/55"
     >
       <span className="inline-flex max-w-fit rounded-full border border-charcoal/25 px-3 py-1 font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
         {level}

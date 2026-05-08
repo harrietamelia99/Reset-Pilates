@@ -11,6 +11,8 @@ type Props = {
   pin?: boolean;
   /** Stronger folds + pure white — recruitment flyer reference */
   poster?: boolean;
+  /** No hairline border — flat panel on editorial backgrounds */
+  flat?: boolean;
 };
 
 function PaperClipSvg() {
@@ -36,7 +38,7 @@ function PaperClipSvg() {
   );
 }
 
-export function PaperSheet({ children, className, pin = true, poster = false }: Props) {
+export function PaperSheet({ children, className, pin = true, poster = false, flat = false }: Props) {
   const [useSvgFallback, setUseSvgFallback] = useState(false);
 
   return (
@@ -44,6 +46,7 @@ export function PaperSheet({ children, className, pin = true, poster = false }: 
       className={cn(
         "paper-sheet relative bg-white text-charcoal",
         poster && "poster-paper",
+        flat && "!border-0",
         className
       )}
     >

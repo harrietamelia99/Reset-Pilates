@@ -54,16 +54,14 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="mx-auto max-w-6xl bg-white px-4 py-24 md:px-6 md:py-28">
-        <div className="border-b border-charcoal pb-6">
-          <div className="max-w-3xl border-l-4 border-charcoal pl-6">
-            <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
-              What we offer
-            </p>
-            <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
-              Movement that meets you where you are.
-            </h2>
-          </div>
+      <MotionSection className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
+        <div className="max-w-3xl">
+          <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
+            What we offer
+          </p>
+          <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
+            Movement that meets you where you are.
+          </h2>
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           <ClassCard
@@ -82,37 +80,34 @@ export default function HomePage() {
       </MotionSection>
 
       <MotionSection className="surface-editorial-dark relative text-white">
-        <div className="grain-layer opacity-25" aria-hidden />
-        <div className="vignette-layer opacity-50" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
             Pre-launch · Limited
           </p>
-          <div className="rule-editorial-light my-8" />
-          <h2 className="text-3xl font-bold uppercase tracking-heading md:text-4xl">
+          <h2 className="mt-10 text-3xl font-bold uppercase tracking-heading md:mt-12 md:text-4xl">
             Become a founding member.
           </h2>
           <p className="mt-5 max-w-2xl text-white/85">
             Be one of the first 30 members and lock in a special rate for your first 12 months. This
             offer won&apos;t last.
           </p>
-          <div className="mt-10 grid gap-6 border-t border-white/10 pt-10 md:grid-cols-2">
-            <div className="border border-white/25 bg-transparent p-8">
+          <div className="mt-14 grid gap-14 md:grid-cols-2 md:gap-x-20 lg:gap-x-28">
+            <div>
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
                 Reformer
               </p>
-              <p className="mt-4 text-2xl font-bold display-track">£65/month</p>
+              <p className="mt-5 text-3xl font-bold display-track md:text-4xl">£65/month</p>
               <p className="mt-2 text-sm text-white/75">4 classes per month</p>
             </div>
-            <div className="border border-white/25 bg-transparent p-8">
+            <div>
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">Mat</p>
-              <p className="mt-4 text-2xl font-bold display-track">£35/month</p>
+              <p className="mt-5 text-3xl font-bold display-track md:text-4xl">£35/month</p>
               <p className="mt-2 text-sm text-white/75">4 classes per month</p>
             </div>
           </div>
           <Link
             href="/pricing"
-            className="mt-10 inline-flex items-center justify-center border border-white bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-light-grey"
+            className="mt-14 inline-flex items-center justify-center bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-white/90"
           >
             Secure your spot
           </Link>
@@ -120,11 +115,11 @@ export default function HomePage() {
       </MotionSection>
 
       <MotionSection className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
-        <div className="border-b border-charcoal pb-6">
+        <div className="max-w-2xl">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
             Why Reset
           </p>
-          <h2 className="mt-3 max-w-2xl text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
             Pilates with purpose.
           </h2>
         </div>
@@ -132,16 +127,18 @@ export default function HomePage() {
       </MotionSection>
 
       <MotionSection className="surface-editorial-dark relative py-16 md:py-20">
-        <div className="grain-layer opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet pin={false} className="grid gap-12 px-8 py-14 md:grid-cols-2 md:items-center md:gap-16 md:px-14 md:py-16">
+          <PaperSheet
+            pin={false}
+            flat
+            className="grid gap-12 px-8 py-14 md:grid-cols-2 md:items-center md:gap-16 md:px-14 md:py-16"
+          >
             <PlaceholderImage aspect="portrait" className="w-full" />
             <div>
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
                 The studio
               </p>
-              <div className="rule-editorial my-6" />
-              <blockquote className="font-playfair text-balance text-xl font-normal leading-snug text-editorial-ink md:text-2xl">
+              <blockquote className="mt-8 font-playfair text-balance text-xl font-normal leading-snug text-editorial-ink md:text-2xl">
                 Reset. was created to be more than just a workout. It&apos;s a space to step away, slow
                 down, and reconnect with your body.
               </blockquote>
@@ -158,9 +155,8 @@ export default function HomePage() {
       </MotionSection>
 
       <MotionSection className="surface-editorial-dark relative py-16 md:py-20">
-        <div className="grain-layer opacity-25" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet className="flex flex-col justify-between gap-8 px-8 py-10 md:flex-row md:items-center md:px-12 md:py-12">
+          <PaperSheet flat className="flex flex-col justify-between gap-8 px-8 py-10 md:flex-row md:items-center md:px-12 md:py-12">
             <div>
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
                 Stay close to launch
