@@ -15,18 +15,20 @@ function useMegawordmarkFit(wordRef: RefObject<HTMLElement | null>, wrapRef: Ref
   const [fontPx, setFontPx] = useState<number | null>(null);
 
   useLayoutEffect(() => {
-    const wrap = wrapRef.current;
-    const word = wordRef.current;
-    if (!wrap || !word) return;
-
     let cancelled = false;
+    let ro: ResizeObserver | null = null;
+    let rafUntilRefs = 0;
 
     const fit = () => {
-      const maxW = wrap.getBoundingClientRect().width;
-      if (maxW < 8 || cancelled) return;
+      const wrap = wrapRef.current;
+      const word = wordRef.current;
+      if (!wrap || !word || cancelled) return;
 
-      let lo = 8;
-      let hi = maxW * 4;
+      const maxW = wrap.getBoundingClientRect().width;
+      if (maxW < 8) return;
+
+      let lo = 12;
+      let hi = Math.min(maxW * 4, 8000);
       for (let i = 0; i < 44; i++) {
         const mid = (lo + hi) / 2;
         word.style.fontSize = `${mid}px`;
@@ -35,28 +37,37 @@ function useMegawordmarkFit(wordRef: RefObject<HTMLElement | null>, wrapRef: Ref
         else hi = mid;
       }
       word.style.removeProperty("font-size");
-      if (!cancelled) setFontPx(lo);
+
+      const safe = Number.isFinite(lo) && lo >= 12 && lo <= 8000 ? lo : null;
+      if (!cancelled) setFontPx(safe);
     };
 
-    const run = async () => {
-      try {
-        await document.fonts.ready;
-      } catch {
-        /* ignore */
+    const scheduleFit = () => requestAnimationFrame(fit);
+
+    const attach = () => {
+      const wrap = wrapRef.current;
+      const word = wordRef.current;
+      if (!wrap || !word) {
+        rafUntilRefs += 1;
+        if (rafUntilRefs < 90 && !cancelled) requestAnimationFrame(attach);
+        return;
       }
-      requestAnimationFrame(fit);
+
+      fit();
+      void document.fonts.ready.then(() => {
+        if (!cancelled) scheduleFit();
+      });
+
+      ro = new ResizeObserver(() => scheduleFit());
+      ro.observe(wrap);
+      window.addEventListener("orientationchange", fit);
     };
 
-    void run();
+    attach();
 
-    const ro = new ResizeObserver(() => {
-      requestAnimationFrame(fit);
-    });
-    ro.observe(wrap);
-    window.addEventListener("orientationchange", fit);
     return () => {
       cancelled = true;
-      ro.disconnect();
+      ro?.disconnect();
       window.removeEventListener("orientationchange", fit);
     };
   }, [wordRef, wrapRef]);
@@ -70,6 +81,8 @@ export function HomeHero() {
   const megawordWrapRef = useRef<HTMLDivElement>(null);
   const megawordRef = useRef<HTMLElement>(null);
   const megafontPx = useMegawordmarkFit(megawordRef, megawordWrapRef);
+  const megafontApplied =
+    megafontPx != null && Number.isFinite(megafontPx) && megafontPx >= 12 && megafontPx <= 8000;
 
   const [fit, setFit] = useState({ scale: 1, naturalH: 560 });
   const [flyerStyle, setFlyerStyle] = useState<CSSProperties>({
@@ -135,10 +148,10 @@ export function HomeHero() {
       >
         <LogoWordmark
           ref={megawordRef}
-          style={megafontPx != null ? { fontSize: megafontPx } : undefined}
+          style={megafontApplied ? { fontSize: megafontPx } : undefined}
           className={cn(
             "inline-block w-max max-w-full whitespace-nowrap text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]",
-            megafontPx == null && "text-[length:clamp(3.5rem,calc(100vw/6.5),50rem)]"
+            !megafontApplied && "text-[length:clamp(3.5rem,calc(100vw/6.5),50rem)]"
           )}
         />
       </div>
