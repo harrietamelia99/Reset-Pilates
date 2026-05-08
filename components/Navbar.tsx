@@ -15,7 +15,7 @@ function NavInstagram({ className }: { className?: string }) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center text-charcoal transition hover:opacity-70",
+        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal/15 text-charcoal transition hover:border-charcoal/35 hover:bg-light-grey/60 hover:opacity-100",
         className
       )}
       aria-label={`Instagram (${CONTACT.instagram.handle})`}
@@ -84,30 +84,30 @@ export function Navbar() {
           <button
             type="button"
             className="flex h-10 w-10 items-center justify-center border border-mid-grey"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((o) => !o)}
-        >
-          <span className="sr-only">Menu</span>
-          <span className="flex flex-col gap-1.5">
-            <span
-              className={cn(
-                "block h-px w-6 bg-charcoal transition",
-                open && "translate-y-[3px] rotate-45"
-              )}
-            />
-            <span
-              className={cn("block h-px w-6 bg-charcoal transition", open && "opacity-0")}
-            />
-            <span
-              className={cn(
-                "block h-px w-6 bg-charcoal transition",
-                open && "-translate-y-[7px] -rotate-45"
-              )}
-            />
-          </span>
-        </button>
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span className="sr-only">Menu</span>
+            <span className="flex flex-col gap-1.5">
+              <span
+                className={cn(
+                  "block h-px w-6 bg-charcoal transition",
+                  open && "translate-y-[3px] rotate-45"
+                )}
+              />
+              <span
+                className={cn("block h-px w-6 bg-charcoal transition", open && "opacity-0")}
+              />
+              <span
+                className={cn(
+                  "block h-px w-6 bg-charcoal transition",
+                  open && "-translate-y-[7px] -rotate-45"
+                )}
+              />
+            </span>
+          </button>
         </div>
       </div>
 
@@ -132,6 +132,16 @@ export function Navbar() {
               {l.label}
             </Link>
           ))}
+          <a
+            href={CONTACT.instagram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 border-b border-light-grey py-4 text-lg font-medium uppercase tracking-wide text-charcoal transition hover:opacity-80"
+            onClick={() => setOpen(false)}
+          >
+            <InstagramGlyph className="h-6 w-6 shrink-0" strokeWidth={1.5} aria-hidden />
+            Instagram
+          </a>
           <NavBookNow
             className="mt-6 inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-3 text-sm font-bold uppercase tracking-wide text-white"
             onClick={() => setOpen(false)}
