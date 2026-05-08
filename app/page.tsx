@@ -89,12 +89,14 @@ export default function HomePage() {
           <ClassCard
             title="Hot Mat Pilates"
             description="Infrared-heated Pilates designed to deepen your practice and elevate results."
+            imageSrc="/images/hot-mat-pilates.png"
+            imageAlt="Hot Mat Pilates — side plank with lifted knee on a studio mat"
           />
           <ClassCard
             title="Mat Pilates"
             description="Foundation-led mat classes for all levels. Available pending final scheduling."
             imageSrc="/images/mat-pilates.png"
-            imageAlt="Mat Pilates class — side plank with lifted knee on a studio mat"
+            imageAlt="Mat Pilates class — tabletop leg extension on a studio mat"
           />
         </div>
       </MotionSection>
