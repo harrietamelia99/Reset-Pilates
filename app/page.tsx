@@ -7,7 +7,6 @@ import { HomeHero } from "@/components/HomeHero";
 import { WhyResetGrid } from "@/components/WhyResetGrid";
 import { MotionSection } from "@/components/MotionSection";
 import { ClassCard } from "@/components/ClassCard";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { PaperSheet } from "@/components/PaperSheet";
 import { HomeMapSection } from "@/components/HomeMapSection";
 import { HomeInstagramSection } from "@/components/HomeInstagramSection";
@@ -211,7 +210,15 @@ export default function HomePage() {
             flat
             className="grid gap-12 px-8 py-14 md:grid-cols-2 md:items-center md:gap-16 md:px-14 md:py-16"
           >
-            <PlaceholderImage aspect="portrait" className="w-full" />
+            <figure className="relative aspect-[3/4] w-full min-h-[260px] overflow-hidden md:min-h-0">
+              <Image
+                src="/images/the-studio.png"
+                alt="Reset Pilates studio — equipment wall with arches, timber shelving and matte black props"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 100vw, 42vw"
+              />
+            </figure>
             <div>
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
                 The studio
