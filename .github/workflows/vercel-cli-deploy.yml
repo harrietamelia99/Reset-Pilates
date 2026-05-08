@@ -1,0 +1,33 @@
+# Backup deploy when Vercel ↔ GitHub automatic deploys stop working.
+# Add these repo secrets: Settings → Secrets and variables → Actions
+#
+# VERCEL_TOKEN      → https://vercel.com/account/tokens (Create)
+# VERCEL_ORG_ID     → Vercel → Team Settings → Team ID (team_…), or run: vercel teams ls
+# VERCEL_PROJECT_ID → Project → Settings → General → Project ID (prj_…)
+#
+# Until all three are set, this job exits cleanly with a notice (does not fail the workflow).
+name: Vercel Production (CLI fallback)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy with Vercel CLI
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          set -euo pipefail
+          if [ -z "${VERCEL_TOKEN:-}" ] || [ -z "${VERCEL_ORG_ID:-}" ] || [ -z "${VERCEL_PROJECT_ID:-}" ]; then
+            echo "::notice title=Vercel CLI secrets missing::Automatic Git deploys are failing on your team. Add VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID (see workflow comments), OR fix Git: Vercel Project → Settings → Git → Disconnect and reconnect harrietamelia99/Reset-Pilates."
+            exit 0
+          fi
+          npm install -g vercel@latest
+          vercel deploy --prod --yes --token "$VERCEL_TOKEN"
