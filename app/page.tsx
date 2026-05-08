@@ -9,6 +9,8 @@ import { MotionSection } from "@/components/MotionSection";
 import { ClassCard } from "@/components/ClassCard";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { PaperSheet } from "@/components/PaperSheet";
+import { HomeMapSection } from "@/components/HomeMapSection";
+import { HomeInstagramSection } from "@/components/HomeInstagramSection";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -217,6 +219,9 @@ export default function HomePage() {
           </PaperSheet>
         </div>
       </MotionSection>
+
+      <HomeMapSection />
+      <HomeInstagramSection />
 
       <MotionSection className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-16 md:py-20">
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>

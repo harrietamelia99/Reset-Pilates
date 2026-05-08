@@ -1,5 +1,14 @@
 export const SITE_NAME = "Reset Pilates Studio";
 
+/** OpenStreetMap embed — centred on Crown Glass / Colliers Walk, Nailsea */
+export const MAP_IFRAME_SRC =
+  "https://www.openstreetmap.org/export/embed.html?bbox=-2.7615%2C51.4298%2C-2.7515%2C51.4345&layer=mapnik&marker=51.4322%2C-2.7565";
+
+/** Opens in Google Maps app / web for directions */
+export const MAP_EXTERNAL_URL =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent("10A Colliers Walk, Nailsea BS48 1RD, UK");
+
 export const CONTACT = {
   email: "hello@resetpilatesstudio.co.uk",
   addressLine: "10A Colliers Walk, Nailsea, North Somerset, BS48 1RD",
