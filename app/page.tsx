@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ChevronRight,
-  Mail,
-  Sparkles,
-  Sun,
-  Tag,
-  Waves,
-} from "lucide-react";
+import { ArrowRight, Mail, Tag } from "lucide-react";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
 import { HomeHero } from "@/components/HomeHero";
 import { WhyResetGrid } from "@/components/WhyResetGrid";
@@ -100,46 +92,32 @@ export default function HomePage() {
             Pre-launch · Limited
           </p>
           <div className="rule-editorial-light my-8" />
-          <div className="flex flex-wrap items-center gap-3">
-            <Sparkles className="h-8 w-8 text-white/40" strokeWidth={1.25} aria-hidden />
-            <h2 className="text-3xl font-bold uppercase tracking-heading md:text-4xl">
-              Become a founding member.
-            </h2>
-          </div>
+          <h2 className="text-3xl font-bold uppercase tracking-heading md:text-4xl">
+            Become a founding member.
+          </h2>
           <p className="mt-5 max-w-2xl text-white/85">
             Be one of the first 30 members and lock in a special rate for your first 12 months. This
             offer won&apos;t last.
           </p>
           <div className="mt-10 grid gap-6 border-t border-white/10 pt-10 md:grid-cols-2">
             <div className="border border-white/20 bg-white/[0.03] p-8 backdrop-blur-[2px]">
-              <div className="flex items-start gap-3">
-                <Waves className="mt-0.5 h-5 w-5 shrink-0 text-white/45" strokeWidth={1.35} aria-hidden />
-                <div>
-                  <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
-                    Reformer
-                  </p>
-                  <p className="mt-4 text-2xl font-bold display-track">£65/month</p>
-                  <p className="mt-2 text-sm text-white/75">4 classes per month</p>
-                </div>
-              </div>
+              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
+                Reformer
+              </p>
+              <p className="mt-4 text-2xl font-bold display-track">£65/month</p>
+              <p className="mt-2 text-sm text-white/75">4 classes per month</p>
             </div>
             <div className="border border-white/20 bg-white/[0.03] p-8 backdrop-blur-[2px]">
-              <div className="flex items-start gap-3">
-                <Sun className="mt-0.5 h-5 w-5 shrink-0 text-white/45" strokeWidth={1.35} aria-hidden />
-                <div>
-                  <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">Mat</p>
-                  <p className="mt-4 text-2xl font-bold display-track">£35/month</p>
-                  <p className="mt-2 text-sm text-white/75">4 classes per month</p>
-                </div>
-              </div>
+              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">Mat</p>
+              <p className="mt-4 text-2xl font-bold display-track">£35/month</p>
+              <p className="mt-2 text-sm text-white/75">4 classes per month</p>
             </div>
           </div>
           <Link
             href="/pricing"
-            className="mt-10 inline-flex items-center justify-center gap-2 border border-white bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-light-grey"
+            className="mt-10 inline-flex items-center justify-center border border-white bg-white px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-light-grey"
           >
             Secure your spot
-            <ChevronRight className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
           </Link>
         </div>
       </MotionSection>
