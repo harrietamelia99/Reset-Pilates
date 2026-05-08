@@ -1,0 +1,20 @@
+# Fires when GitHub → Vercel webhooks fail: Project Settings → Git → Deploy Hooks
+# (production hook for branch main). Add repo secret VERCEL_DEPLOY_HOOK_URL with the hook URL.
+name: Trigger Vercel deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy-hook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: POST deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK_URL not set — skipping (rely on native Git integration)"
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK"
+          echo "Deploy hook triggered OK"
