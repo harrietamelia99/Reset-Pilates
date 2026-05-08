@@ -10,8 +10,8 @@ export function Footer() {
       <div className="grain-layer opacity-20" aria-hidden />
       <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:px-6 lg:grid-cols-4 lg:gap-10">
         <div>
-          <Link href="/" className="inline-block">
-            <LogoWordmark className="text-3xl text-white" />
+          <Link href="/" className="inline-block" aria-label="Reset Pilates home">
+            <LogoWordmark variant="light" className="h-9 w-auto max-w-[min(100%,260px)] md:h-10" />
           </Link>
           <p className="mt-4 font-accent text-[11px] uppercase tracking-[0.15em] text-white/50">
             Pilates studio · Nailsea
@@ -43,7 +43,7 @@ export function Footer() {
           <ul className="mt-4 space-y-4 text-sm leading-relaxed text-white/65">
             <li className="flex gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/40" strokeWidth={1.5} aria-hidden />
-              <address className="not-italic">{CONTACT.addressLine}</address>
+              <address className="not-italic whitespace-pre-line">{CONTACT.addressLine}</address>
             </li>
             <li className="flex gap-3">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-white/40" strokeWidth={1.5} aria-hidden />

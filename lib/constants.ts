@@ -11,7 +11,7 @@ export const MAP_EXTERNAL_URL =
 
 export const CONTACT = {
   email: "hello@resetpilatesstudio.co.uk",
-  addressLine: "10A Colliers Walk, Nailsea, North Somerset, BS48 1RD",
+  addressLine: "10A Colliers Walk, Nailsea,\nNorth Somerset, BS48 1RD",
   locationNote:
     "Located in the Crown Glass Shopping Centre, between JOI Salon and Coffee Corner Café.",
   hours: "Mon–Fri 06:30–20:30 | Sat–Sun 08:30–12:30",

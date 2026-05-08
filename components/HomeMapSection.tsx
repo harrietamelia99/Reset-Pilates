@@ -28,7 +28,9 @@ export function HomeMapSection() {
                 <div className="flex gap-3">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-charcoal/55" strokeWidth={1.5} aria-hidden />
                   <div className="space-y-3">
-                    <p className="font-accent text-base font-medium leading-snug text-charcoal">{CONTACT.addressLine}</p>
+                    <p className="font-accent text-base font-medium leading-snug text-charcoal whitespace-pre-line">
+                      {CONTACT.addressLine}
+                    </p>
                     <p className="font-accent text-sm leading-relaxed text-mid-grey">{CONTACT.hours}</p>
                   </div>
                 </div>
