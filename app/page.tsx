@@ -118,7 +118,7 @@ export default function HomePage() {
               </h2>
             </header>
             <div className="flex flex-col justify-end lg:col-span-5 lg:col-start-8 xl:col-span-5 xl:col-start-8">
-              <p className="font-playfair text-[1.0625rem] leading-[1.65] text-white/[0.82] md:text-lg md:leading-relaxed">
+              <p className="font-sans text-[1.0625rem] font-normal leading-[1.65] tracking-[0.01em] text-white/[0.82] md:text-lg md:leading-relaxed">
                 Be among the first 30 members and lock in a preferential rate for your first 12 months —
                 this invitation closes once we open.
               </p>
@@ -167,7 +167,7 @@ export default function HomePage() {
             </article>
           </div>
 
-          <p className="mt-14 max-w-xl font-playfair text-[15px] italic leading-relaxed text-white/45 md:mt-16">
+          <p className="mt-14 max-w-xl font-sans text-[15px] leading-relaxed text-white/45 md:mt-16">
             Intro bundles and founding membership rates are listed on pricing — choose what suits your
             practice.
           </p>
