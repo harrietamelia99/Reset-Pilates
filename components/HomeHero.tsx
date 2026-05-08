@@ -9,7 +9,6 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { staggerContainer, fadeItem } from "@/lib/motion";
 import { BOOKING_HREF } from "@/lib/constants";
-import { LogoWordmark } from "@/components/LogoWordmark";
 import { PaperSheet } from "@/components/PaperSheet";
 
 export function HomeHero() {
@@ -70,7 +69,7 @@ export function HomeHero() {
       <div className="vignette-layer z-[1]" aria-hidden />
 
       <div className="relative z-10 mx-auto flex h-full min-h-0 max-w-6xl flex-col px-4 pb-4 pt-24 md:px-6 md:pb-6 md:pt-28 lg:pt-[7.5rem]">
-        {/* Slot fills space above wordmark; flyer scales down to fit — no inner scroll */}
+        {/* Slot centers the flyer; scales down when viewport is short */}
         <div
           ref={slotRef}
           className="relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-visible py-1 md:py-2"
@@ -160,18 +159,6 @@ export function HomeHero() {
             </div>
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-auto flex shrink-0 flex-col items-center pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-4 text-center md:pb-5 md:pt-6"
-        >
-          <LogoWordmark className="text-[1.65rem] text-white md:text-[2.25rem] lg:text-[2.5rem]" />
-          <p className="mt-3 font-accent text-[10px] uppercase tracking-[0.18em] text-white/55">
-            Pilates studio
-          </p>
-        </motion.div>
       </div>
     </section>
   );
