@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BOOKING_HREF, CONTACT, NAV_LINKS } from "@/lib/constants";
@@ -50,7 +51,10 @@ function NavBookNow({
 }
 
 export function Navbar() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  /** Hide Bethany wordmark over the home hero only; show again after scroll so deeper pages / scrolled home keep branding. */
+  const [pastHeroLogo, setPastHeroLogo] = useState(pathname !== "/");
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -59,17 +63,34 @@ export function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (pathname !== "/") {
+      setPastHeroLogo(true);
+      return;
+    }
+    const run = () => setPastHeroLogo(window.scrollY > 56);
+    run();
+    window.addEventListener("scroll", run, { passive: true });
+    return () => window.removeEventListener("scroll", run);
+  }, [pathname]);
+
+  const showNavWordmark = pathname !== "/" || pastHeroLogo;
+
   return (
     <header className="sticky top-0 z-50 border-b border-light-grey bg-white font-sans">
       {/** Toolbar must stack above `#mobile-nav` overlay or the menu button (→ X) is covered */}
       <div className="relative z-50 mx-auto flex max-w-6xl items-center justify-between gap-6 bg-white px-4 py-5 md:px-6">
         <Link
           href="/"
-          className="shrink-0"
+          className="inline-flex min-h-[44px] shrink-0 items-center"
           aria-label="Reset Pilates home"
           onClick={() => setOpen(false)}
         >
-          <LogoWordmark className="!tracking-[0.07em] text-[clamp(1.375rem,3.4vw,1.6875rem)] leading-none" />
+          {showNavWordmark ? (
+            <LogoWordmark className="!tracking-[0.07em] text-[clamp(1.375rem,3.4vw,1.6875rem)] leading-none" />
+          ) : (
+            <span className="sr-only">Reset Pilates — home</span>
+          )}
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
