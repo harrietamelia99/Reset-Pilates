@@ -3,10 +3,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
 /**
- * Full-bleed “reset.” behind the flyer — matches poster mockup:
- * glyphs span hero width (measured uniform scale),
- * tight line box, baseline flush with hero / next-section split,
- * slight transparency so texture reads through.
+ * Full-bleed “reset.” behind the flyer — viewport-wide (no side inset),
+ * baseline flush with the hero / next-section split (no bottom gap).
  */
 export function HeroBackgroundWordmark() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,12 +18,20 @@ export function HeroBackgroundWordmark() {
     if (!container || !text) return;
 
     const fit = () => {
-      text.style.transform = "scale(1)";
+      text.style.transform = "translateY(0) scale(1)";
       void text.offsetWidth;
-      const cw = container.clientWidth;
-      const tw = text.offsetWidth;
-      if (cw <= 0 || tw <= 0) return;
-      setScale(cw / tw);
+
+      /** Match full layout viewport (avoids 1–2px gutters vs `100vw` + scrollbar quirks). */
+      const targetW = document.documentElement.clientWidth;
+      const tw = text.getBoundingClientRect().width;
+      if (targetW <= 0 || tw <= 0) return;
+
+      /**
+       * Tiny horizontal overscale so anti-aliasing/subpixels still read edge-to-edge
+       * under `overflow-hidden` on the hero (fills screen with no side padding).
+       */
+      const next = (targetW / tw) * 1.006;
+      setScale(next);
       setVisible(true);
     };
 
@@ -51,24 +57,23 @@ export function HeroBackgroundWordmark() {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] flex items-end justify-center overflow-visible"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] flex w-full min-w-full max-w-none items-end justify-center overflow-visible"
       aria-hidden
     >
       <span
         ref={textRef}
-        className="inline-block max-w-none whitespace-nowrap font-normal lowercase leading-none antialiased"
+        className="block max-w-none whitespace-nowrap font-normal lowercase leading-none antialiased"
         style={{
           fontFamily: 'var(--font-logo-wordmark), Georgia, "Times New Roman", serif',
           fontWeight: 400,
           fontFeatureSettings: '"kern" 1',
-          /** Fixed design size; scale() fits container width — true edge-to-edge without stretch */
           fontSize: "256px",
           letterSpacing: "0.09em",
           lineHeight: 1,
           padding: 0,
           margin: 0,
           color: "rgba(43, 43, 41, 0.92)",
-          transform: `scale(${scale})`,
+          transform: `translateY(1px) scale(${scale})`,
           transformOrigin: "center bottom",
           opacity: visible ? 1 : 0,
           transition: visible ? "opacity 0.15s ease-out" : undefined,
