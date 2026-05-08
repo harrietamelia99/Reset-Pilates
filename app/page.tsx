@@ -122,31 +122,31 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-[#0f0f10]/55" aria-hidden />
         </div>
         <div className="grain-layer z-[1] opacity-15" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-18 lg:py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-14 text-center md:px-6 md:py-18 lg:py-20">
           <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-white/55">
             Pre-launch · Limited
           </p>
-          <div className="mt-4 h-px w-14 bg-white/30" aria-hidden />
+          <div className="mx-auto mt-4 h-px w-14 bg-white/30" aria-hidden />
 
-          <div className="mt-5 max-w-full overflow-x-auto [-webkit-overflow-scrolling:touch] pb-0.5 sm:overflow-visible">
+          <div className="mt-5 flex w-full justify-center overflow-x-auto pb-0.5 [-webkit-overflow-scrolling:touch] sm:overflow-visible">
             <h2 className="w-max max-w-none !font-accent text-[clamp(0.62rem,1.55vw,1.125rem)] font-medium uppercase leading-none tracking-[0.14em] text-white sm:text-[clamp(0.7rem,1.85vw,1.25rem)] md:text-[clamp(0.78rem,2.2vw,1.4rem)] lg:text-[clamp(0.85rem,2.6vw,1.55rem)] whitespace-nowrap">
               Become a founding member.
             </h2>
           </div>
 
-          <p className="mt-6 max-w-2xl font-accent text-[13px] font-normal leading-relaxed tracking-[0.02em] text-white/85 md:text-sm">
+          <p className="mx-auto mt-6 max-w-2xl font-accent text-[13px] font-normal leading-relaxed tracking-[0.02em] text-white/85 md:text-sm">
             Be among the first 30 members and lock in a preferential rate for your first 12 months — this
             invitation closes once we open.
           </p>
 
           <div className="mt-10 border-t border-white/[0.1] pt-6 md:mt-12 md:pt-8">
-            <p className="max-w-3xl font-accent text-[10px] uppercase leading-relaxed tracking-[0.16em] text-white/45">
+            <p className="mx-auto max-w-3xl font-accent text-[10px] uppercase leading-relaxed tracking-[0.16em] text-white/45">
               Founding cohort · 30 places · rate locked 12 months · closes at opening
             </p>
           </div>
 
-          <div className="mt-8 grid max-w-4xl gap-4 sm:mt-10 sm:gap-5 lg:mx-auto lg:mt-10 lg:grid-cols-2 lg:gap-6">
-            <article className="flex flex-col border border-charcoal/10 bg-white p-6 shadow-sm md:p-7">
+          <div className="mx-auto mt-8 grid w-full max-w-4xl gap-4 sm:mt-10 sm:gap-5 lg:mt-10 lg:grid-cols-2 lg:gap-6">
+            <article className="flex flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm md:p-7">
               <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-mid-grey">Reformer</p>
               <p className="mt-5 font-accent text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
                 £65
@@ -163,7 +163,7 @@ export default function HomePage() {
               </Link>
             </article>
 
-            <article className="flex flex-col border border-charcoal/10 bg-white p-6 shadow-sm md:p-7">
+            <article className="flex flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm md:p-7">
               <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-mid-grey">Mat</p>
               <p className="mt-5 font-accent text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
                 £35
@@ -181,7 +181,7 @@ export default function HomePage() {
             </article>
           </div>
 
-          <p className="mt-8 max-w-xl font-accent text-xs leading-relaxed tracking-[0.03em] text-white/50 md:mt-10 md:text-[13px]">
+          <p className="mx-auto mt-8 max-w-xl font-accent text-xs leading-relaxed tracking-[0.03em] text-white/50 md:mt-10 md:text-[13px]">
             Intro bundles and founding membership rates are listed on pricing — choose what suits your
             practice.
           </p>
