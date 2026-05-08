@@ -9,8 +9,8 @@ type Props = {
 
 /**
  * Full-bleed hero wordmark: binary-search `font-size` (no transform scale).
- * Width buffer + post-pass bump fix integer rounding / right-edge gap.
- * Strong translateY pulls ink to the hero bottom (font line-box gap).
+ * Uses hero section width (not `100vw`) to avoid horizontal overflow clipping fixed UI.
+ * Light translateY only — heavy values clip descenders against `overflow-hidden`.
  */
 export function HeroBackgroundWordmark({ heroRef }: Props) {
   const breakoutRef = useRef<HTMLDivElement>(null);
@@ -32,10 +32,9 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
 
       const raw = Math.max(heroW, layoutW, innerW, vw, breakout.clientWidth);
       /**
-       * Require slightly more than layout width so offsetWidth rounding / subpixels
-       * never leave a strip beside the period (hero clips overflow).
+       * Slight bleed past edges for rounding; avoid 100vw-only math that overflows layout.
        */
-      const targetNeed = Math.ceil(raw * 1.025 + 4);
+      const targetNeed = Math.ceil(raw * 1.035 + 6);
 
       if (targetNeed <= 0) return;
 
@@ -101,7 +100,7 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
   return (
     <div
       ref={breakoutRef}
-      className="pointer-events-none absolute bottom-0 left-1/2 z-[2] w-screen max-w-[100vw] -translate-x-1/2"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] w-full"
       aria-hidden
     >
       <div className="flex w-full items-end justify-center overflow-visible">
@@ -118,10 +117,10 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
             padding: 0,
             margin: 0,
             /**
-             * Push glyph raster down into the section edge (line-box space below baseline).
-             * Sized so typical Bethany metrics sit flush with hero bottom after overflow clip.
+             * Small nudge only — large translateY was pushing descenders past `overflow-hidden`
+             * (letters looked “cut off” by the section edge / next strip).
              */
-            transform: "translateY(calc(0.28em + 18px))",
+            transform: "translateY(calc(0.06em + 3px))",
             color: "var(--color-charcoal)",
             opacity: fontPx != null ? 1 : 0,
             transition: fontPx != null ? "opacity 0.12s ease-out" : undefined,

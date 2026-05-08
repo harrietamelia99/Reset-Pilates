@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { DevHostHint } from "@/components/DevHostHint";
+import { FloatingChatbot } from "@/components/FloatingChatbot";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { PreLaunchBanner } from "@/components/PreLaunchBanner";
@@ -56,6 +57,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <FloatingChatbot />
         <DevHostHint />
       </body>
     </html>
