@@ -7,8 +7,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { staggerContainer, fadeItem } from "@/lib/motion";
 import { HeroBookingSheet } from "@/components/HeroBookingSheet";
-import { LogoWordmark } from "@/components/LogoWordmark";
-import { cn } from "@/lib/cn";
+import { HeroMegaword } from "@/components/HeroMegaword";
 
 export function HomeHero() {
   const slotRef = useRef<HTMLDivElement>(null);
@@ -54,15 +53,6 @@ export function HomeHero() {
 
   const bridgeHeight = fit.naturalH * fit.scale;
 
-  /**
-   * Megawordmark — centered in the hero behind the flyer (reference: full-bleed width, vertically centered).
-   * vw-based sizing fills the viewport width; no vh cap so it stays visually dominant behind the card.
-   */
-  const megawordStyle: CSSProperties = {
-    fontSize: "clamp(4.25rem, calc((100vw - 0.5rem) / 5), min(58rem, 96vw))",
-    letterSpacing: "0.12em",
-  };
-
   return (
     <section className="surface-poster-hero relative isolate h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
@@ -79,21 +69,10 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      {/* Megawordmark — full hero plate, vertically + horizontally centered behind the flyer (z below content) */}
-      <div
-        className="pointer-events-none absolute inset-0 z-[2] flex w-full items-center justify-center px-0 py-0"
-        aria-hidden
-      >
-        <LogoWordmark
-          style={megawordStyle}
-          className={cn(
-            "inline-block w-max max-w-[min(100%,100vw)] whitespace-nowrap text-charcoal",
-            "drop-shadow-[0_2px_36px_rgba(255,255,255,0.2)] [text-shadow:0_1px_0_rgba(255,255,255,0.1)]"
-          )}
-        />
-      </div>
+      {/* Dedicated component — avoids LogoWordmark tracking/cn fighting hero font-size & ink */}
+      <HeroMegaword />
 
-      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
+      <div className="relative z-20 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         <div
           ref={slotRef}
           className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center overflow-visible"
