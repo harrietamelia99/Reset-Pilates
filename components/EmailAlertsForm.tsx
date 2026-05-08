@@ -4,6 +4,7 @@ import { Bell, Mail } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { EMAIL_ALERTS_FORMSPREE_ACTION } from "@/lib/constants";
+import { cn } from "@/lib/cn";
 
 type FormValues = {
   email: string;
@@ -11,7 +12,12 @@ type FormValues = {
   _gotcha?: string;
 };
 
-export function EmailAlertsForm() {
+type Props = {
+  /** Dark strip on homepage; default matches light sections elsewhere */
+  variant?: "light" | "dark";
+};
+
+export function EmailAlertsForm({ variant = "light" }: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const {
@@ -74,7 +80,12 @@ export function EmailAlertsForm() {
             type="text"
             autoComplete="given-name"
             placeholder="Name (optional)"
-            className="w-full border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none placeholder:text-warm-grey/80 transition focus:border-charcoal focus:ring-2 focus:ring-charcoal/10"
+            className={cn(
+              "w-full border px-4 py-3 text-sm outline-none transition",
+              variant === "dark"
+                ? "border-white/25 bg-white text-charcoal placeholder:text-mid-grey focus:border-white focus:ring-2 focus:ring-white/25"
+                : "border-light-grey bg-white text-charcoal placeholder:text-warm-grey/80 focus:border-charcoal focus:ring-2 focus:ring-charcoal/10"
+            )}
             {...register("name")}
           />
         </div>
@@ -84,7 +95,10 @@ export function EmailAlertsForm() {
           </label>
           <div className="relative">
             <Mail
-              className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-warm-grey"
+              className={cn(
+                "pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2",
+                variant === "dark" ? "text-mid-grey" : "text-warm-grey"
+              )}
               strokeWidth={1.5}
               aria-hidden
             />
@@ -93,12 +107,19 @@ export function EmailAlertsForm() {
               type="email"
               autoComplete="email"
               placeholder="Email address"
-              className="w-full border border-light-grey bg-white py-3 pl-10 pr-4 text-sm text-charcoal outline-none placeholder:text-warm-grey/80 transition focus:border-charcoal focus:ring-2 focus:ring-charcoal/10"
+              className={cn(
+                "w-full border py-3 pl-10 pr-4 text-sm outline-none transition",
+                variant === "dark"
+                  ? "border-white/25 bg-white text-charcoal placeholder:text-mid-grey focus:border-white focus:ring-2 focus:ring-white/25"
+                  : "border-light-grey bg-white text-charcoal placeholder:text-warm-grey/80 focus:border-charcoal focus:ring-2 focus:ring-charcoal/10"
+              )}
               {...register("email", { required: "Please enter your email." })}
             />
           </div>
           {errors.email && (
-            <p className="mt-1.5 text-xs text-mid-grey">{errors.email.message}</p>
+            <p className={cn("mt-1.5 text-xs", variant === "dark" ? "text-white/70" : "text-mid-grey")}>
+              {errors.email.message}
+            </p>
           )}
         </div>
       </div>
@@ -107,7 +128,12 @@ export function EmailAlertsForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-charcoal/90 disabled:opacity-60 sm:shrink-0"
+          className={cn(
+            "inline-flex min-h-[44px] items-center justify-center gap-2 border px-8 py-3 text-xs font-bold uppercase tracking-wide transition disabled:opacity-60 sm:shrink-0",
+            variant === "dark"
+              ? "border-white bg-white text-charcoal hover:bg-white/90"
+              : "border-charcoal bg-charcoal text-white hover:bg-charcoal/90"
+          )}
         >
           {status === "sending" ? (
             "Signing up…"
@@ -118,18 +144,23 @@ export function EmailAlertsForm() {
             </>
           )}
         </button>
-        <p className="font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em] text-warm-grey">
+        <p
+          className={cn(
+            "font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em]",
+            variant === "dark" ? "text-white/55" : "text-warm-grey"
+          )}
+        >
           Opening dates, offers &amp; timetable drops — no spam.
         </p>
       </div>
 
       {status === "success" && (
-        <p className="text-sm text-mid-grey" role="status">
+        <p className={cn("text-sm", variant === "dark" ? "text-white/80" : "text-mid-grey")} role="status">
           You&apos;re on the list — look out for news from Reset.
         </p>
       )}
       {status === "error" && (
-        <p className="text-sm text-mid-grey" role="alert">
+        <p className={cn("text-sm", variant === "dark" ? "text-white/80" : "text-mid-grey")} role="alert">
           That didn&apos;t go through. Please try again or email hello@resetpilatesstudio.co.uk.
         </p>
       )}

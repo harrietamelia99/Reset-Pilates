@@ -62,7 +62,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-light-grey bg-white font-sans">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-5 md:px-6">
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
-          <LogoWordmark className="text-3xl leading-none text-charcoal md:text-4xl" />
+          <LogoWordmark className="text-[clamp(1.375rem,3.4vw,1.6875rem)] leading-none tracking-[-0.02em] text-charcoal" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">

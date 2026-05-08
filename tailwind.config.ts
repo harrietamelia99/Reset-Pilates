@@ -20,6 +20,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+        /** Brand wordmark “reset.” — Bodoni Moda (loaded in layout) */
+        logo: ["var(--font-logo-serif)", "var(--font-playfair)", "Georgia", "serif"],
         playfair: ["var(--font-playfair)", "Georgia", "serif"],
         accent: [
           "var(--font-accent)",

@@ -20,30 +20,35 @@ export function HomeMapSection() {
         </div>
         <div className="rule-section mt-10 max-w-xs" aria-hidden />
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-stretch lg:gap-14">
-          <address className="not-italic lg:pt-1">
-            <div className="flex gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-charcoal/55" strokeWidth={1.5} aria-hidden />
-              <div className="space-y-3">
-                <p className="font-sans text-base font-medium leading-snug text-charcoal">{CONTACT.addressLine}</p>
-                <p className="font-accent text-sm text-mid-grey">{CONTACT.hours}</p>
-                <Link
-                  href={MAP_EXTERNAL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 transition hover:underline"
-                >
-                  Open in Google Maps
-                </Link>
+        {/* Equal-width columns; square tiles so text panel matches map footprint */}
+        <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
+          <address className="not-italic">
+            <div className="flex aspect-[4/3] w-full flex-col justify-between border border-charcoal/10 bg-white p-6 md:p-8 lg:aspect-square lg:p-10">
+              <div className="flex min-h-0 flex-1 flex-col justify-center gap-6">
+                <div className="flex gap-3">
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-charcoal/55" strokeWidth={1.5} aria-hidden />
+                  <div className="space-y-3">
+                    <p className="font-accent text-base font-medium leading-snug text-charcoal">{CONTACT.addressLine}</p>
+                    <p className="font-accent text-sm leading-relaxed text-mid-grey">{CONTACT.hours}</p>
+                  </div>
+                </div>
               </div>
+              <Link
+                href={MAP_EXTERNAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 pt-4 font-accent text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 transition hover:underline lg:pt-6"
+              >
+                Open in Google Maps
+              </Link>
             </div>
           </address>
 
-          <div className="relative min-h-[260px] w-full overflow-hidden border border-charcoal/10 bg-light-grey/25 md:min-h-[300px] lg:min-h-[320px]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden border border-charcoal/10 bg-light-grey/30 lg:aspect-square">
             <iframe
               title="Map of Reset Pilates Studio, Nailsea"
               src={MAP_IFRAME_SRC}
-              className="absolute inset-0 h-full w-full border-0"
+              className="absolute inset-0 h-full w-full border-0 grayscale contrast-[1.06] brightness-[1.02]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

@@ -128,11 +128,9 @@ export default function HomePage() {
           </p>
           <div className="mx-auto mt-4 h-px w-14 bg-white/30" aria-hidden />
 
-          <div className="mt-5 flex w-full justify-center overflow-x-auto pb-0.5 [-webkit-overflow-scrolling:touch] sm:overflow-visible">
-            <h2 className="w-max max-w-none !font-accent text-[clamp(0.62rem,1.55vw,1.125rem)] font-medium uppercase leading-none tracking-[0.14em] text-white sm:text-[clamp(0.7rem,1.85vw,1.25rem)] md:text-[clamp(0.78rem,2.2vw,1.4rem)] lg:text-[clamp(0.85rem,2.6vw,1.55rem)] whitespace-nowrap">
-              Become a founding member.
-            </h2>
-          </div>
+          <h2 className="mt-5 text-3xl font-bold uppercase tracking-heading text-white md:text-4xl">
+            Become a founding member.
+          </h2>
 
           <p className="mx-auto mt-6 max-w-2xl font-accent text-[13px] font-normal leading-relaxed tracking-[0.02em] text-white/85 md:text-sm">
             Be among the first 30 members and lock in a preferential rate for your first 12 months — this
@@ -148,7 +146,7 @@ export default function HomePage() {
           <div className="mx-auto mt-8 grid w-full max-w-4xl gap-4 sm:mt-10 sm:gap-5 lg:mt-10 lg:grid-cols-2 lg:gap-6">
             <article className="flex flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm md:p-7">
               <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-mid-grey">Reformer</p>
-              <p className="mt-5 font-accent text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
+              <p className="mt-5 font-sans text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
                 £65
                 <span className="text-base font-medium text-mid-grey md:text-lg">/month</span>
               </p>
@@ -165,7 +163,7 @@ export default function HomePage() {
 
             <article className="flex flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm md:p-7">
               <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-mid-grey">Mat</p>
-              <p className="mt-5 font-accent text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
+              <p className="mt-5 font-sans text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
                 £35
                 <span className="text-base font-medium text-mid-grey md:text-lg">/month</span>
               </p>
@@ -220,11 +218,11 @@ export default function HomePage() {
               />
             </figure>
             <div>
-              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
+              <h2 className="text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
                 The studio
-              </p>
+              </h2>
               <div className="rule-section my-6 max-w-xs" aria-hidden />
-              <blockquote className="font-playfair text-balance text-xl font-normal leading-snug text-editorial-ink md:text-2xl">
+              <blockquote className="font-accent text-balance text-lg font-normal leading-relaxed tracking-[0.02em] text-charcoal md:text-xl">
                 Reset. was created to be more than just a workout. It&apos;s a space to step away, slow
                 down, and reconnect with your body.
               </blockquote>
@@ -232,7 +230,7 @@ export default function HomePage() {
                 href="/about"
                 className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 hover:underline"
               >
-                Meet Mari
+                Meet the founder
                 <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
               </Link>
             </div>

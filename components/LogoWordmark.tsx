@@ -6,12 +6,12 @@ type Props = {
 };
 
 /**
- * Brand wordmark — Playfair Display applied via parent layout (font-playfair class).
+ * Brand wordmark — Bodoni Moda (Didone-style serif, `--font-logo-serif`).
  * Lowercase "reset." with full stop; do not alter.
  */
 export function LogoWordmark({ className, as: Tag = "span" }: Props) {
   return (
-    <Tag className={cn("font-playfair lowercase tracking-tight", className)}>
+    <Tag className={cn("font-logo font-normal lowercase tracking-tight", className)}>
       reset.
     </Tag>
   );
