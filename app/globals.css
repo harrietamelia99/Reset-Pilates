@@ -10,6 +10,14 @@
   and uncomment. Until then, Next.js loads IBM Plex Mono as --font-accent (see layout).
 */
 
+@font-face {
+  font-family: "Bethany Elingston";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/BethanyElingston.otf") format("opentype");
+}
+
 /*
 @font-face {
   font-family: "Helvetica Now";
@@ -46,6 +54,8 @@
   --color-light-grey: #c6c5c4;
   --color-white: #ffffff;
   --tracking-heading: 0.196em;
+  /** Logo wordmark — Bethany Elingston (self-hosted OTF, see @font-face above) */
+  --font-logo-wordmark: "Bethany Elingston", Georgia, serif;
   --font-sans: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --noise-tile: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }

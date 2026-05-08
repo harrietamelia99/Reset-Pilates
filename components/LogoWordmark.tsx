@@ -8,14 +8,15 @@ type Props = {
 };
 
 /**
- * Wordmark “reset.” — Bodoni Moda via `font-logo` (crisp at any size).
- * Avoid raster “SVG” logos that embed PNGs; they blur when scaled.
+ * Wordmark “reset.” — Bethany Elingston (`--font-logo-wordmark`, self-hosted OTF).
+ * Tight tracking (~−0.19em) to match near-touching letter spacing in brand artwork.
  */
 export function LogoWordmark({ className, variant = "default", as: Tag = "span" }: Props) {
   return (
     <Tag
       className={cn(
-        "font-logo font-normal lowercase tracking-tight antialiased",
+        "font-logo font-normal lowercase leading-none antialiased",
+        "tracking-[-0.19em] [font-feature-settings:'kern'_1]",
         variant === "light" ? "text-white" : "text-charcoal",
         className
       )}

@@ -68,14 +68,12 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      {/* Megawordmark — bottom-anchored behind flyer; translate uses % of glyph box so it stays visible */}
+      {/* Megawordmark — full width, flush to section bottom, fully visible (no crop) */}
       <div
-        className="pointer-events-none absolute inset-0 z-[5] flex flex-col justify-end overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] px-3 pb-5 sm:px-5 sm:pb-8 md:px-8 md:pb-10"
         aria-hidden
       >
-        <div className="flex justify-center px-2 sm:px-4">
-          <LogoWordmark className="block w-max max-w-[min(100%,96vw)] translate-y-[30%] text-center text-[clamp(4rem,38vw,24rem)] leading-[0.66] tracking-[-0.03em] text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]" />
-        </div>
+        <LogoWordmark className="block w-full max-w-none text-center text-[clamp(4rem,min(44vw,32rem),32rem)] leading-[0.64] text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]" />
       </div>
 
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
