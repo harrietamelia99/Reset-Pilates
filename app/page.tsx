@@ -31,17 +31,20 @@ export default function HomePage() {
       <MotionSection className="surface-editorial-dark relative overflow-hidden border-t border-white/10 py-16 md:py-24">
         <div className="grain-layer opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 lg:items-center">
-            <figure className="relative mx-auto aspect-square w-full max-w-md overflow-hidden border border-white/20 bg-white/5 lg:mx-0 lg:max-w-none">
+          <PaperSheet
+            flat
+            className="mx-auto grid w-full max-w-5xl overflow-hidden p-0 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:items-stretch"
+          >
+            <figure className="relative aspect-[5/3] w-full min-h-[200px] overflow-hidden md:aspect-auto md:min-h-[280px] md:h-full md:self-stretch">
               <Image
                 src="/images/reset-studio-sign.png"
                 alt="Reset Pilates Studio exterior sign — Pilates Studio, Est. 2026"
                 fill
                 className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 45vw"
+                sizes="(max-width: 768px) 100vw, 42vw"
               />
             </figure>
-            <PaperSheet className="flex flex-col gap-8 px-8 py-12 md:flex-row md:items-center md:justify-between md:px-14 md:py-14">
+            <div className="flex flex-col gap-8 border-t border-charcoal/10 px-8 py-12 md:flex-row md:items-center md:justify-between md:border-l md:border-t-0 md:px-14 md:py-14">
               <div className="relative flex-1">
                 <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
                   Intro offer
@@ -63,8 +66,8 @@ export default function HomePage() {
                 <Tag className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
                 Claim your intro deal
               </Link>
-            </PaperSheet>
-          </div>
+            </div>
+          </PaperSheet>
         </div>
       </MotionSection>
 
