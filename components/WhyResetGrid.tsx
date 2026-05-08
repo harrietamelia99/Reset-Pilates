@@ -37,7 +37,7 @@ export function WhyResetGrid() {
 
       <div className="col-span-full rule-section min-w-0" aria-hidden />
 
-      <div className="min-w-0 pt-10 md:pt-12">
+      <div className="min-w-0 pb-10 pt-10 md:pb-12 md:pt-12">
         <h3 className={itemTitleClass}>{ITEMS[2].t}</h3>
         <p className={itemBodyClass}>{ITEMS[2].d}</p>
       </div>
