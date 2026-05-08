@@ -21,22 +21,26 @@ const ITEMS = [
 
 export function WhyResetGrid() {
   return (
-    <div className="mt-12 grid gap-0 md:grid-cols-2 md:gap-x-16 md:gap-y-0">
-      {ITEMS.map(({ t, d }, i) => (
-        <div
-          key={t}
-          className={
-            i === 0
-              ? "pb-10 md:pb-12"
-              : i === 1
-                ? "border-t border-charcoal pt-10 md:border-t-0 md:pt-0 md:pb-12"
-                : "border-t border-charcoal pt-10 md:pt-12"
-          }
-        >
-          <h3 className="text-lg font-bold uppercase tracking-heading text-charcoal">{t}</h3>
-          <p className="mt-4 text-sm leading-relaxed text-mid-grey">{d}</p>
-        </div>
-      ))}
+    <div className="mt-12 grid grid-cols-1 md:grid-cols-2 md:gap-x-16">
+      <div className="pb-10 md:pb-12">
+        <h3 className="text-lg font-bold uppercase tracking-heading text-charcoal">{ITEMS[0].t}</h3>
+        <p className="mt-4 text-sm leading-relaxed text-mid-grey">{ITEMS[0].d}</p>
+      </div>
+      <div className="border-t border-charcoal pb-10 pt-10 md:border-t-0 md:pb-12 md:pt-0">
+        <h3 className="text-lg font-bold uppercase tracking-heading text-charcoal">{ITEMS[1].t}</h3>
+        <p className="mt-4 text-sm leading-relaxed text-mid-grey">{ITEMS[1].d}</p>
+      </div>
+
+      <div className="col-span-2 rule-section" aria-hidden />
+
+      <div className="pt-10 md:pt-12">
+        <h3 className="text-lg font-bold uppercase tracking-heading text-charcoal">{ITEMS[2].t}</h3>
+        <p className="mt-4 text-sm leading-relaxed text-mid-grey">{ITEMS[2].d}</p>
+      </div>
+      <div className="border-t border-charcoal pt-10 md:border-t-0 md:pt-12">
+        <h3 className="text-lg font-bold uppercase tracking-heading text-charcoal">{ITEMS[3].t}</h3>
+        <p className="mt-4 text-sm leading-relaxed text-mid-grey">{ITEMS[3].d}</p>
+      </div>
     </div>
   );
 }

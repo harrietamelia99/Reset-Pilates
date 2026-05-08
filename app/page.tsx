@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Activity, ArrowRight, LayoutGrid, Mail, Tag } from "lucide-react";
+import { ArrowRight, Mail, Tag } from "lucide-react";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
 import { HomeHero } from "@/components/HomeHero";
 import { WhyResetGrid } from "@/components/WhyResetGrid";
@@ -64,7 +64,7 @@ export default function HomePage() {
             Movement that meets you where you are.
           </h2>
         </div>
-        <div className="rule-section mt-10 max-w-xl" aria-hidden />
+        <div className="rule-section mt-10 w-full" aria-hidden />
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           <ClassCard
             title="Reformer Pilates"
@@ -82,18 +82,12 @@ export default function HomePage() {
       </MotionSection>
 
       <MotionSection className="surface-editorial-dark relative overflow-hidden text-white">
-        <span
-          className="pointer-events-none absolute -right-6 top-16 select-none font-sans text-[clamp(5rem,18vw,11rem)] font-bold leading-none tracking-tighter text-white/[0.07] md:right-4 md:top-24"
-          aria-hidden
-        >
-          30
-        </span>
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
             Pre-launch · Limited
           </p>
-          <div className="rule-section-dark my-6 max-w-xs" aria-hidden />
-          <h2 className="max-w-[18ch] text-3xl font-bold uppercase tracking-heading md:text-4xl lg:text-[2.75rem] lg:leading-[1.08]">
+          <div className="rule-section-dark my-6 w-full" aria-hidden />
+          <h2 className="max-w-[20ch] text-3xl font-bold uppercase tracking-heading md:text-4xl lg:text-[2.5rem] lg:leading-[1.1]">
             Become a founding member.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
@@ -101,73 +95,56 @@ export default function HomePage() {
             offer won&apos;t last.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-y border-white/15 py-4 font-accent text-[10px] uppercase tracking-[0.18em] text-white/55 md:mt-12 md:gap-x-10 md:py-5">
-            <span className="text-white/90">Founding cohort · 30 places</span>
-            <span className="hidden text-white/25 sm:inline" aria-hidden>
-              —
-            </span>
-            <span>Rate locked 12 months</span>
-            <span className="hidden text-white/25 md:inline" aria-hidden>
-              —
-            </span>
-            <span className="text-white/70">Closes at opening</span>
+          <div className="mt-12 w-full md:mt-14">
+            <div className="rule-section-dark w-full" aria-hidden />
+            <p className="py-5 text-center font-accent text-[10px] uppercase leading-relaxed tracking-[0.16em] text-white/70 sm:tracking-[0.18em]">
+              <span className="block sm:inline">Founding cohort · 30 places</span>
+              <span className="mx-2 hidden text-white/25 sm:inline" aria-hidden>
+                ·
+              </span>
+              <span className="block sm:inline">Rate locked 12 months</span>
+              <span className="mx-2 hidden text-white/25 md:inline" aria-hidden>
+                ·
+              </span>
+              <span className="block pt-2 sm:inline sm:pt-0">Closes at opening</span>
+            </p>
+            <div className="rule-section-dark w-full" aria-hidden />
           </div>
 
-          <div className="mt-10 grid gap-6 lg:mt-12 lg:grid-cols-2 lg:gap-8">
-            <article className="relative border border-white/25 bg-white/[0.04] p-8 md:p-10">
-              <div className="absolute left-0 top-0 h-1 w-16 bg-white/50" aria-hidden />
-              <div className="flex items-start justify-between gap-6">
-                <div className="min-w-0 flex-1">
-                  <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
-                    Reformer
-                  </p>
-                  <p className="mt-5 font-sans text-4xl font-bold tabular-nums tracking-tight text-white md:text-5xl">
-                    £65
-                    <span className="text-xl font-bold text-white/65 md:text-2xl">/month</span>
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/75">4 classes per month</p>
-                </div>
-                <Activity
-                  className="mt-1 h-10 w-10 shrink-0 text-white/30"
-                  strokeWidth={1.15}
-                  aria-hidden
-                />
-              </div>
+          <div className="mt-12 grid gap-6 md:mt-14 lg:grid-cols-2 lg:gap-10">
+            <article className="flex flex-col border border-white/20 bg-white/[0.03] p-8 md:p-9">
+              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/50">Reformer</p>
+              <p className="mt-6 font-sans text-3xl font-bold tabular-nums tracking-tight text-white md:text-4xl">
+                £65
+                <span className="text-lg font-bold text-white/60 md:text-xl">/month</span>
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-white/75">4 classes per month</p>
               <Link
                 href="/pricing"
-                className="mt-8 inline-flex w-full min-h-[44px] items-center justify-center bg-white px-6 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-white/90 sm:w-auto"
+                className="mt-8 inline-flex w-full min-h-[44px] items-center justify-center bg-white px-6 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-white/90"
               >
                 Secure your spot
               </Link>
             </article>
 
-            <article className="relative border border-white/25 bg-white/[0.03] p-8 md:p-10">
-              <div className="flex items-start justify-between gap-6">
-                <div className="min-w-0 flex-1">
-                  <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">Mat</p>
-                  <p className="mt-5 font-sans text-4xl font-bold tabular-nums tracking-tight text-white md:text-5xl">
-                    £35
-                    <span className="text-xl font-bold text-white/65 md:text-2xl">/month</span>
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/75">4 classes per month</p>
-                </div>
-                <LayoutGrid
-                  className="mt-1 h-10 w-10 shrink-0 text-white/30"
-                  strokeWidth={1.15}
-                  aria-hidden
-                />
-              </div>
+            <article className="flex flex-col border border-white/20 bg-white/[0.03] p-8 md:p-9">
+              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/50">Mat</p>
+              <p className="mt-6 font-sans text-3xl font-bold tabular-nums tracking-tight text-white md:text-4xl">
+                £35
+                <span className="text-lg font-bold text-white/60 md:text-xl">/month</span>
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-white/75">4 classes per month</p>
               <Link
                 href="/pricing"
-                className="mt-8 inline-flex w-full min-h-[44px] items-center justify-center border border-white/80 bg-transparent px-6 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:bg-white/10 sm:w-auto"
+                className="mt-8 inline-flex w-full min-h-[44px] items-center justify-center border border-white/70 bg-transparent px-6 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:border-white hover:bg-white/10"
               >
                 View pricing &amp; tiers
               </Link>
             </article>
           </div>
 
-          <p className="mt-10 max-w-xl font-accent text-[11px] uppercase leading-relaxed tracking-[0.14em] text-white/45 md:mt-12">
-            Intro bundles and founding rates are detailed on the pricing page — choose what fits your practice.
+          <p className="mt-12 max-w-2xl font-accent text-[11px] uppercase leading-relaxed tracking-[0.14em] text-white/45 md:mt-14">
+            Intro bundles and founding rates are on the pricing page — choose what fits your practice.
           </p>
         </div>
       </MotionSection>
@@ -182,7 +159,7 @@ export default function HomePage() {
               Pilates with purpose.
             </h2>
           </div>
-          <div className="rule-section mt-8 max-w-xl" aria-hidden />
+          <div className="rule-section mt-8 w-full" aria-hidden />
           <WhyResetGrid />
         </div>
       </MotionSection>

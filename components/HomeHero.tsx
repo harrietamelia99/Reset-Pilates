@@ -55,7 +55,7 @@ export function HomeHero() {
   const bridgeHeight = fit.naturalH * fit.scale;
 
   return (
-    <section className="surface-poster-hero relative h-[100svh] max-h-[100svh] min-h-[100svh] overflow-hidden">
+    <section className="surface-poster-hero relative h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
         <Image
           src="/images/hero-industrial-texture.png"
