@@ -108,7 +108,21 @@ export default function HomePage() {
       </MotionSection>
 
       <MotionSection className="surface-editorial-dark-deep relative overflow-hidden text-white">
-        <div className="grain-layer opacity-20" aria-hidden />
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src="/videos/founding-member-bg.mov" type="video/quicktime" />
+          </video>
+          {/* Scrim so copy and cards stay legible over the footage */}
+          <div className="absolute inset-0 bg-[#2e2e30]/80" aria-hidden />
+        </div>
+        <div className="grain-layer z-[1] opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28 lg:py-32">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
             <header className="lg:col-span-7 xl:col-span-6">
