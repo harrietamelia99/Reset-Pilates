@@ -107,7 +107,8 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
             lineHeight: 1,
             padding: 0,
             margin: 0,
-            marginBottom: "-0.03em",
+            /** Pull raster down so ink sits on the section edge (line-box / metrics gap above grey strip). */
+            transform: "translateY(calc(0.12em + 4px))",
             color: "var(--color-charcoal)",
             opacity: fontPx != null ? 1 : 0,
             transition: fontPx != null ? "opacity 0.12s ease-out" : undefined,
