@@ -123,13 +123,11 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
             fontFeatureSettings: '"kern" 1',
             fontSize: fontPx != null ? `${fontPx}px` : "256px",
             letterSpacing: "0.09em",
-            /** Tighter than 1 to shrink empty space under baseline without huge translateY + clip */
-            lineHeight: 0.92,
+            lineHeight: 0.86,
             padding: 0,
             margin: 0,
-            /** Pull layout box slightly into bottom edge to kill grey hairline */
-            marginBottom: "-0.08em",
-            transform: "translateY(calc(0.11em + 5px))",
+            marginBottom: "-0.12em",
+            transform: "translateY(calc(0.15em + 8px))",
             color: "var(--color-charcoal)",
             opacity: fontPx != null ? 1 : 0,
             transition: fontPx != null ? "opacity 0.12s ease-out" : undefined,

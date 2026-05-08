@@ -80,7 +80,7 @@ export function FloatingChatbot() {
         onClick={() => (open ? setOpen(false) : openAndWelcome())}
         className={cn(
           "fixed z-[55] flex h-14 w-14 items-center justify-center rounded-full border border-charcoal bg-charcoal text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal",
-          "bottom-6 right-[max(1rem,env(safe-area-inset-right,0px))] md:bottom-8 md:right-[max(1.25rem,env(safe-area-inset-right,0px))]",
+          "bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] right-[max(0.75rem,env(safe-area-inset-right,0px))]",
           open && "bg-mid-grey"
         )}
         aria-expanded={open}
@@ -99,7 +99,7 @@ export function FloatingChatbot() {
           id="reset-chat-panel"
           role="dialog"
           aria-labelledby={titleId}
-          className="fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom,0px))] right-[max(1rem,env(safe-area-inset-right,0px))] z-[55] flex h-[min(72vh,560px)] w-[min(400px,calc(100vw-2rem))] flex-col overflow-hidden rounded-lg border border-charcoal/15 bg-white shadow-2xl md:bottom-[calc(7rem+env(safe-area-inset-bottom,0px))] md:right-[max(1.25rem,env(safe-area-inset-right,0px))]"
+          className="fixed bottom-[calc(4rem+max(0.75rem,env(safe-area-inset-bottom,0px)))] right-[max(0.75rem,env(safe-area-inset-right,0px))] z-[55] flex h-[min(72vh,560px)] w-[min(400px,calc(100vw-2rem))] flex-col overflow-hidden rounded-lg border border-charcoal/15 bg-white shadow-2xl"
         >
           <div className="border-b border-charcoal/10 bg-charcoal px-4 py-3 text-white">
             <p id={titleId} className="font-sans text-sm font-bold uppercase tracking-wide">
