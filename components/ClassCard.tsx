@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, Flame, LayoutGrid } from "lucide-react";
+import { Cable, StretchVertical, SunMedium } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { BOOKING_HREF } from "@/lib/constants";
 
+/** Icons tuned for Pilates: apparatus, radiant heat, lengthening on the mat */
 const CLASS_CARD_ICONS = {
-  reformer: Activity,
-  hotMat: Flame,
-  mat: LayoutGrid,
+  reformer: Cable,
+  hotMat: SunMedium,
+  mat: StretchVertical,
 } as const;
 
 export type ClassCardIconKey = keyof typeof CLASS_CARD_ICONS;
