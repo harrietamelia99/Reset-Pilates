@@ -85,6 +85,8 @@ export default function HomePage() {
           <ClassCard
             title="Reformer Pilates"
             description="Dynamic movement on the reformer machine. Strength, control and flow."
+            imageSrc="/images/reformer-pilates.png"
+            imageAlt="Reformer Pilates — kneeling exercise with straps on the Merrithew reformer"
           />
           <ClassCard
             title="Hot Mat Pilates"
