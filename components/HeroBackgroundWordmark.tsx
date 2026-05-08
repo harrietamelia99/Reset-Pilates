@@ -7,10 +7,14 @@ type Props = {
   heroRef: RefObject<HTMLElement | null>;
 };
 
+function readTextWidth(el: HTMLElement): number {
+  const r = el.getBoundingClientRect();
+  return r.width;
+}
+
 /**
- * Full-bleed hero wordmark: binary-search `font-size` (no transform scale).
- * Uses hero section width (not `100vw`) to avoid horizontal overflow clipping fixed UI.
- * Light translateY only — heavy values clip descenders against `overflow-hidden`.
+ * Full-bleed hero wordmark — binary-search font-size using subpixel width vs innerWidth,
+ * so the period reaches the right edge; vertical tuning closes the thin strip under the baseline.
  */
 export function HeroBackgroundWordmark({ heroRef }: Props) {
   const breakoutRef = useRef<HTMLDivElement>(null);
@@ -23,6 +27,10 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
     if (!text || !breakout) return;
 
     const fit = () => {
+      /** Measure without translate so metrics stay stable */
+      text.style.transform = "none";
+      void text.offsetWidth;
+
       const hero = heroRef.current;
       const vv = window.visualViewport;
       const heroW = hero?.getBoundingClientRect().width ?? 0;
@@ -30,11 +38,12 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
       const innerW = window.innerWidth;
       const vw = vv?.width ?? 0;
 
-      const raw = Math.max(heroW, layoutW, innerW, vw, breakout.clientWidth);
       /**
-       * Slight bleed past edges for rounding; avoid 100vw-only math that overflows layout.
+       * Match the visible browser width (innerWidth often ≥ clientWidth when scrollbar present).
+       * Extra % + px forces glyph box past edges so nothing reads “short” on the right.
        */
-      const targetNeed = Math.ceil(raw * 1.035 + 6);
+      const raw = Math.max(heroW, layoutW, innerW, vw, breakout.clientWidth);
+      const targetNeed = Math.max(raw * 1.065 + 14, innerW * 1.055 + 12);
 
       if (targetNeed <= 0) return;
 
@@ -42,21 +51,22 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
       let hi = 48;
       text.style.fontSize = `${hi}px`;
       void text.offsetWidth;
-      while (text.offsetWidth < targetNeed && hi < 4000) {
+      while (readTextWidth(text) < targetNeed && hi < 4000) {
         hi *= 2;
         text.style.fontSize = `${hi}px`;
         void text.offsetWidth;
       }
-      if (text.offsetWidth < targetNeed) {
+      if (readTextWidth(text) < targetNeed) {
         setFontPx(hi);
+        text.style.transform = "";
         return;
       }
 
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 42; i++) {
         const mid = (lo + hi) / 2;
         text.style.fontSize = `${mid}px`;
         void text.offsetWidth;
-        if (text.offsetWidth >= targetNeed) hi = mid;
+        if (readTextWidth(text) >= targetNeed) hi = mid;
         else lo = mid;
       }
 
@@ -64,14 +74,14 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
       text.style.fontSize = `${chosen}px`;
       void text.offsetWidth;
 
-      /** Micro-step until width clears target (handles float font sizes vs integer metrics). */
-      while (text.offsetWidth < targetNeed && chosen < 4000) {
-        chosen += 0.2;
+      while (readTextWidth(text) < targetNeed && chosen < 4000) {
+        chosen += 0.15;
         text.style.fontSize = `${chosen}px`;
         void text.offsetWidth;
       }
 
       setFontPx(chosen);
+      text.style.transform = "";
     };
 
     const scheduleFit = () => {
@@ -106,21 +116,20 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
       <div className="flex w-full items-end justify-center overflow-visible">
         <span
           ref={textRef}
-          className="block max-w-none whitespace-nowrap font-normal lowercase leading-none antialiased"
+          className="block max-w-none whitespace-nowrap font-normal lowercase antialiased"
           style={{
             fontFamily: 'var(--font-logo-wordmark), Georgia, "Times New Roman", serif',
             fontWeight: 400,
             fontFeatureSettings: '"kern" 1',
             fontSize: fontPx != null ? `${fontPx}px` : "256px",
             letterSpacing: "0.09em",
-            lineHeight: 1,
+            /** Tighter than 1 to shrink empty space under baseline without huge translateY + clip */
+            lineHeight: 0.92,
             padding: 0,
             margin: 0,
-            /**
-             * Small nudge only — large translateY was pushing descenders past `overflow-hidden`
-             * (letters looked “cut off” by the section edge / next strip).
-             */
-            transform: "translateY(calc(0.06em + 3px))",
+            /** Pull layout box slightly into bottom edge to kill grey hairline */
+            marginBottom: "-0.08em",
+            transform: "translateY(calc(0.11em + 5px))",
             color: "var(--color-charcoal)",
             opacity: fontPx != null ? 1 : 0,
             transition: fontPx != null ? "opacity 0.12s ease-out" : undefined,
