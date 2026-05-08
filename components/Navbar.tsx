@@ -97,23 +97,15 @@ export function Navbar() {
             onClick={() => setOpen((o) => !o)}
           >
             <span className="sr-only">Menu</span>
-            <span className="flex flex-col gap-1.5">
-              <span
-                className={cn(
-                  "block h-px w-6 bg-charcoal transition",
-                  open && "translate-y-[3px] rotate-45"
-                )}
-              />
-              <span
-                className={cn("block h-px w-6 bg-charcoal transition", open && "opacity-0")}
-              />
-              <span
-                className={cn(
-                  "block h-px w-6 bg-charcoal transition",
-                  open && "-translate-y-[7px] -rotate-45"
-                )}
-              />
-            </span>
+            {open ? (
+              <CloseIcon className="h-5 w-5 shrink-0" />
+            ) : (
+              <span className="flex flex-col gap-1.5">
+                <span className="block h-px w-6 bg-charcoal transition" />
+                <span className="block h-px w-6 bg-charcoal transition" />
+                <span className="block h-px w-6 bg-charcoal transition" />
+              </span>
+            )}
           </button>
         </div>
       </div>
