@@ -27,14 +27,15 @@ export default function HomePage() {
     <>
       <HomeHero />
 
-      <MotionSection className="relative border-t border-light-grey bg-white py-16 md:py-24">
+      <MotionSection className="surface-editorial-dark relative overflow-hidden border-t border-white/10 py-16 md:py-24">
+        <div className="grain-layer opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
           <PaperSheet className="flex flex-col gap-8 px-8 py-12 md:flex-row md:items-center md:justify-between md:px-14 md:py-14">
             <div className="relative flex-1">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
                 Intro offer
               </p>
-              <div className="rule-section my-6 max-w-md" aria-hidden />
+              <div className="rule-section my-6 w-full" aria-hidden />
               <h2 className="text-2xl font-bold uppercase tracking-heading text-editorial-ink md:text-3xl">
                 New to Reset?
               </h2>
@@ -42,7 +43,7 @@ export default function HomePage() {
                 Try three classes for £45 (reformer or hot mat) or three mat classes for £30. The perfect
                 way to find your flow.
               </p>
-              <div className="rule-section mt-8 max-w-md" aria-hidden />
+              <div className="rule-section mt-8 w-full" aria-hidden />
             </div>
             <Link
               href="/pricing"
