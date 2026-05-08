@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Helvetica Now: add your licensed .woff2 files to /public/fonts/ and uncomment
+  the @font-face blocks below, or rely on the stack (Helvetica Neue → Helvetica).
+
+  Anca Coder: add AncaCoder-Regular.woff2 (and weights as needed) to /public/fonts/
+  and uncomment. Until then, Next.js loads IBM Plex Mono as --font-accent (see layout).
+*/
+
+/*
+@font-face {
+  font-family: "Helvetica Now";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/HelveticaNow-Text.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Helvetica Now";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/HelveticaNow-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Anca Coder";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/AncaCoder-Regular.woff2") format("woff2");
+}
+*/
+
+:root {
+  --color-charcoal: #2b2b29;
+  --color-mid-grey: #545456;
+  /** Large dark sections (hero, footer, editorial strips) — brand grey */
+  --surface-editorial-bg: #545456;
+  --color-warm-grey: #8e898a;
+  --color-light-grey: #c6c5c4;
+  --color-cream: #fffaf3;
+  --color-white: #ffffff;
+  --tracking-heading: 0.196em;
+  --font-sans: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --noise-tile: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Body copy defaults to Anca Coder / IBM Plex Mono (--font-accent) */
+  body {
+    @apply bg-white font-accent text-charcoal antialiased;
+  }
+
+  /* Headlines stay Helvetica-style sans */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans;
+  }
+}
+
+/* Editorial / zine surfaces — grain + vignette on dark */
+@layer components {
+  .surface-editorial-dark {
+    @apply relative text-white;
+    background-color: var(--surface-editorial-bg);
+  }
+
+  .surface-editorial-dark .grain-layer {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0.42;
+    mix-blend-mode: overlay;
+    background-image: var(--noise-tile);
+    background-size: 180px 180px;
+  }
+
+  .surface-editorial-dark .vignette-layer {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  /*
+   * Home hero — full-bleed texture is rendered in `HomeHero` (next/image) for LCP;
+   * this class provides fallback fill, noise + vignette layers, and text colour.
+   */
+  .surface-poster-hero {
+    position: relative;
+    isolation: isolate;
+    background-color: var(--surface-editorial-bg);
+    color: #ffffff;
+  }
+
+  .surface-poster-hero .grain-layer {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0.38;
+    mix-blend-mode: overlay;
+    background-image: var(--noise-tile);
+    background-size: 200px 200px;
+  }
+
+  .surface-poster-hero .vignette-layer {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    box-shadow:
+      inset 0 0 140px 60px rgba(0, 0, 0, 0.42),
+      inset 0 0 36px 18px rgba(0, 0, 0, 0.22);
+  }
+
+  /* White “paper” panel — poster reference */
+  .paper-sheet {
+    box-shadow:
+      0 28px 90px rgba(43, 43, 41, 0.38),
+      0 0 0 1px rgba(43, 43, 41, 0.06);
+  }
+
+  /* Folded flyer — stronger creases (2nd screenshot) */
+  .paper-sheet.poster-paper {
+    background-color: #ffffff;
+    box-shadow:
+      0 36px 110px rgba(43, 43, 41, 0.55),
+      0 2px 0 rgba(255, 255, 255, 0.65) inset,
+      0 0 0 1px rgba(43, 43, 41, 0.14);
+  }
+
+  .paper-sheet .crease-overlay {
+    opacity: 0.07;
+    background-image: repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 22%,
+      rgba(43, 43, 41, 0.035) 22%,
+      rgba(43, 43, 41, 0.035) 23%,
+      transparent 23%,
+      transparent 47%,
+      rgba(43, 43, 41, 0.03) 47%,
+      rgba(43, 43, 41, 0.03) 48%,
+      transparent 48%,
+      transparent 72%,
+      rgba(43, 43, 41, 0.025) 72%,
+      rgba(43, 43, 41, 0.025) 73%,
+      transparent 73%
+    );
+  }
+
+  .paper-sheet.poster-paper .crease-overlay {
+    opacity: 0.14;
+    background-image:
+      linear-gradient(
+        90deg,
+        transparent 48.5%,
+        rgba(43, 43, 41, 0.04) 49%,
+        rgba(43, 43, 41, 0.04) 51%,
+        transparent 51.5%
+      ),
+      repeating-linear-gradient(
+        180deg,
+        transparent,
+        transparent 21%,
+        rgba(43, 43, 41, 0.055) 21%,
+        rgba(43, 43, 41, 0.055) 22.5%,
+        transparent 22.5%,
+        transparent 46%,
+        rgba(43, 43, 41, 0.045) 46%,
+        rgba(43, 43, 41, 0.045) 47.5%,
+        transparent 47.5%,
+        transparent 71%,
+        rgba(43, 43, 41, 0.04) 71%,
+        rgba(43, 43, 41, 0.04) 72.5%,
+        transparent 72.5%
+      );
+  }
+
+  .rule-editorial {
+    @apply h-px w-full bg-charcoal;
+  }
+
+  .rule-poster {
+    height: 1px;
+    width: 100%;
+    background-color: #2b2b29;
+  }
+
+  .rule-editorial-light {
+    @apply h-px w-full bg-white/15;
+  }
+
+  .grain-muted {
+    position: relative;
+  }
+
+  .grain-muted::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0.2;
+    mix-blend-mode: multiply;
+    background-image: var(--noise-tile);
+    background-size: 160px 160px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .label-track {
+    letter-spacing: 0.15em;
+  }
+
+  .display-track {
+    letter-spacing: -0.02em;
+  }
+}
