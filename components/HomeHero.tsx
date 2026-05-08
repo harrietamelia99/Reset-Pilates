@@ -2,16 +2,75 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import type { CSSProperties } from "react";
+import type { CSSProperties, RefObject } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { staggerContainer, fadeItem } from "@/lib/motion";
 import { HeroBookingSheet } from "@/components/HeroBookingSheet";
 import { LogoWordmark } from "@/components/LogoWordmark";
+import { cn } from "@/lib/cn";
+
+/** Fit “reset.” + 24px tracking to container width (avoids overflow clip looking centered). */
+function useMegawordmarkFit(wordRef: RefObject<HTMLElement | null>, wrapRef: RefObject<HTMLDivElement | null>) {
+  const [fontPx, setFontPx] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    const wrap = wrapRef.current;
+    const word = wordRef.current;
+    if (!wrap || !word) return;
+
+    let cancelled = false;
+
+    const fit = () => {
+      const maxW = wrap.getBoundingClientRect().width;
+      if (maxW < 8 || cancelled) return;
+
+      let lo = 8;
+      let hi = maxW * 4;
+      for (let i = 0; i < 44; i++) {
+        const mid = (lo + hi) / 2;
+        word.style.fontSize = `${mid}px`;
+        void word.offsetWidth;
+        if (word.scrollWidth <= maxW) lo = mid;
+        else hi = mid;
+      }
+      word.style.removeProperty("font-size");
+      if (!cancelled) setFontPx(lo);
+    };
+
+    const run = async () => {
+      try {
+        await document.fonts.ready;
+      } catch {
+        /* ignore */
+      }
+      requestAnimationFrame(fit);
+    };
+
+    void run();
+
+    const ro = new ResizeObserver(() => {
+      requestAnimationFrame(fit);
+    });
+    ro.observe(wrap);
+    window.addEventListener("orientationchange", fit);
+    return () => {
+      cancelled = true;
+      ro.disconnect();
+      window.removeEventListener("orientationchange", fit);
+    };
+  }, [wordRef, wrapRef]);
+
+  return fontPx;
+}
 
 export function HomeHero() {
   const slotRef = useRef<HTMLDivElement>(null);
   const flyerRef = useRef<HTMLDivElement>(null);
+  const megawordWrapRef = useRef<HTMLDivElement>(null);
+  const megawordRef = useRef<HTMLElement>(null);
+  const megafontPx = useMegawordmarkFit(megawordRef, megawordWrapRef);
+
   const [fit, setFit] = useState({ scale: 1, naturalH: 560 });
   const [flyerStyle, setFlyerStyle] = useState<CSSProperties>({
     transform: "scale(1)",
@@ -68,12 +127,20 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      {/* Megawordmark — full bleed width (fits viewport so overflow-hidden doesn’t crop sides), flush bottom */}
+      {/* Megawordmark — measured width = container so full phrase is visible edge-to-edge; z below flyer */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] px-0 pb-3 sm:pb-5 md:pb-6"
+        ref={megawordWrapRef}
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] flex w-full justify-center px-0 pb-0"
         aria-hidden
       >
-        <LogoWordmark className="block w-full max-w-none whitespace-nowrap text-center text-[length:clamp(3.5rem,calc((100vw-1.5rem)/5.75),50rem)] leading-[0.64] text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]" />
+        <LogoWordmark
+          ref={megawordRef}
+          style={megafontPx != null ? { fontSize: megafontPx } : undefined}
+          className={cn(
+            "inline-block w-max max-w-full whitespace-nowrap text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]",
+            megafontPx == null && "text-[length:clamp(3.5rem,calc(100vw/6.5),50rem)]"
+          )}
+        />
       </div>
 
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
