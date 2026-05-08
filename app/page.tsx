@@ -129,7 +129,7 @@ export default function HomePage() {
           <div className="mt-4 h-px w-14 bg-white/30" aria-hidden />
 
           <div className="mt-5 max-w-full overflow-x-auto [-webkit-overflow-scrolling:touch] pb-0.5 sm:overflow-visible">
-            <h2 className="w-max max-w-none font-accent text-[clamp(0.62rem,1.55vw,1.125rem)] font-medium uppercase leading-none tracking-[0.14em] text-white sm:text-[clamp(0.7rem,1.85vw,1.25rem)] md:text-[clamp(0.78rem,2.2vw,1.4rem)] lg:text-[clamp(0.85rem,2.6vw,1.55rem)] whitespace-nowrap">
+            <h2 className="w-max max-w-none !font-accent text-[clamp(0.62rem,1.55vw,1.125rem)] font-medium uppercase leading-none tracking-[0.14em] text-white sm:text-[clamp(0.7rem,1.85vw,1.25rem)] md:text-[clamp(0.78rem,2.2vw,1.4rem)] lg:text-[clamp(0.85rem,2.6vw,1.55rem)] whitespace-nowrap">
               Become a founding member.
             </h2>
           </div>
