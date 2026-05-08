@@ -42,5 +42,10 @@ export const BOOKING_HREF = "/pricing#book";
 export const FORMSPREE_ACTION =
   "https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID";
 
+/**
+ * Email alerts signup — can match {@link FORMSPREE_ACTION} or use a separate Formspree form ID.
+ */
+export const EMAIL_ALERTS_FORMSPREE_ACTION = FORMSPREE_ACTION;
+
 export const OPENING_DATE_LABEL =
   "Opening 1st June 2026 — Founding memberships available for the first 30 members";

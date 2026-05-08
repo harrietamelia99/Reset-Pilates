@@ -1,0 +1,28 @@
+"use client";
+
+import { MotionSection } from "@/components/MotionSection";
+import { EmailAlertsForm } from "@/components/EmailAlertsForm";
+
+export function HomeEmailAlertsSection() {
+  return (
+    <MotionSection className="relative border-t border-light-grey bg-white py-16 md:py-24">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+          <div>
+            <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Stay in the loop</p>
+            <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
+              Email alerts
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-mid-grey md:text-base">
+              Be first to hear about launch week, founding offers, and when booking goes live.
+            </p>
+            <div className="rule-section mt-8 max-w-xs" aria-hidden />
+          </div>
+          <div className="lg:pt-1">
+            <EmailAlertsForm />
+          </div>
+        </div>
+      </div>
+    </MotionSection>
+  );
+}
