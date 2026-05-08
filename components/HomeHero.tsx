@@ -106,7 +106,8 @@ export function HomeHero() {
                     </p>
 
                     <h1 className="mt-4 text-center text-2xl font-bold uppercase leading-[1.05] tracking-heading text-charcoal sm:text-3xl md:mt-8 md:text-4xl md:leading-[1] lg:mt-10 lg:text-[3.25rem]">
-                      Your new reset ritual.
+                      <span className="block">Your new</span>
+                      <span className="block">Reset ritual.</span>
                     </h1>
 
                     <div className="rule-poster my-4 md:my-6 lg:my-8" />
