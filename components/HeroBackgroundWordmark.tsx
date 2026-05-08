@@ -138,7 +138,7 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
         >
           <span
             className="inline-block"
-            style={{ transform: "translateY(0.04em)" }}
+            style={{ transform: "translateY(calc(0.04em - 2.75pt))" }}
           >
             r
           </span>
