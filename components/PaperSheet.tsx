@@ -21,7 +21,7 @@ function PaperClipSvg({ gradId, shadowId }: { gradId: string; shadowId: string }
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="-rotate-[18deg]"
+      className="-rotate-[36deg]"
       aria-hidden
     >
       <defs>
@@ -87,7 +87,7 @@ export function PaperSheet({ children, className, pin = true, poster = false }: 
     >
       {pin && (
         <span
-          className="pointer-events-none absolute -left-0.5 -top-1 z-10 h-10 w-10 drop-shadow-sm"
+          className="pointer-events-none absolute -left-0.5 -top-1 z-10 h-11 w-11 drop-shadow-sm"
           aria-hidden
         >
           {useSvgFallback ? (
@@ -96,10 +96,10 @@ export function PaperSheet({ children, className, pin = true, poster = false }: 
             <Image
               src="/images/paperclip.png"
               alt=""
-              width={160}
-              height={160}
-              className="-rotate-[18deg] h-10 w-10 object-contain object-left-top"
-              sizes="40px"
+              width={220}
+              height={220}
+              className="-rotate-[36deg] h-11 w-11 object-contain object-left-top"
+              sizes="44px"
               onError={() => setUseSvgFallback(true)}
             />
           )}
