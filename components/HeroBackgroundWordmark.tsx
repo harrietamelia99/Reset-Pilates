@@ -129,10 +129,11 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
             marginBottom: "-0.12em",
             transform: "translateY(calc(0.15em + 8px))",
             color: "var(--color-charcoal)",
-            opacity: fontPx != null ? 1 : 0,
-            transition: fontPx != null ? "opacity 0.12s ease-out" : undefined,
+            /** Watermark treatment — sits behind flyer without overpowering texture */
+            opacity: fontPx != null ? 0.42 : 0,
+            transition: fontPx != null ? "opacity 0.35s ease-out" : undefined,
             textShadow:
-              "0 1px 0 rgba(255,255,255,0.08), 0 4px 28px rgba(255,255,255,0.12)",
+              "0 1px 0 rgba(255,255,255,0.06), 0 3px 22px rgba(255,255,255,0.08)",
           }}
         >
           reset.
