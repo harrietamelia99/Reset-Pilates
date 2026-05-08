@@ -24,7 +24,7 @@ export function HeroBookingSheet({ className }: Props) {
         className
       )}
     >
-      <p className="font-accent text-[9px] uppercase tracking-[0.2em] text-charcoal md:text-[10px]">
+      <p className="text-center font-accent text-[9px] uppercase tracking-[0.2em] text-charcoal md:text-[10px]">
         Pre-launch announcement
       </p>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BOOKING_HREF, CONTACT, NAV_LINKS } from "@/lib/constants";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
@@ -60,7 +60,8 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-light-grey bg-white font-sans">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-5 md:px-6">
+      {/** Toolbar must stack above `#mobile-nav` overlay or the menu button (→ X) is covered */}
+      <div className="relative z-50 mx-auto flex max-w-6xl items-center justify-between gap-6 bg-white px-4 py-5 md:px-6">
         <Link
           href="/"
           className="shrink-0"
@@ -123,6 +124,14 @@ export function Navbar() {
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0 invisible"
         )}
       >
+        <button
+          type="button"
+          className="absolute right-4 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 text-charcoal transition hover:bg-light-grey/80"
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+        >
+          <X className="h-6 w-6" strokeWidth={1.75} aria-hidden />
+        </button>
         <nav
           className="mx-auto flex max-h-screen flex-col gap-1 overflow-y-auto px-6 pb-12 pt-24"
           aria-label="Mobile"
