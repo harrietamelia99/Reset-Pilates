@@ -3,9 +3,27 @@
 import Link from "next/link";
 import { CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
-import { BOOKING_HREF, NAV_LINKS } from "@/lib/constants";
+import { BOOKING_HREF, CONTACT, NAV_LINKS } from "@/lib/constants";
+import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
 import { LogoWordmark } from "@/components/LogoWordmark";
 import { cn } from "@/lib/cn";
+
+function NavInstagram({ className }: { className?: string }) {
+  return (
+    <a
+      href={CONTACT.instagram.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        "inline-flex h-10 w-10 items-center justify-center text-charcoal transition hover:opacity-70",
+        className
+      )}
+      aria-label={`Instagram (${CONTACT.instagram.handle})`}
+    >
+      <InstagramGlyph className="h-[22px] w-[22px] shrink-0" strokeWidth={1.5} />
+    </a>
+  );
+}
 
 function NavBookNow({
   className,
@@ -57,12 +75,15 @@ export function Navbar() {
               {l.label}
             </Link>
           ))}
+          <NavInstagram />
           <NavBookNow className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-mid-grey" />
         </nav>
 
-        <button
-          type="button"
-          className="flex h-10 w-10 items-center justify-center border border-mid-grey lg:hidden"
+        <div className="flex items-center gap-2 lg:hidden">
+          <NavInstagram />
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center border border-mid-grey"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -87,6 +108,7 @@ export function Navbar() {
             />
           </span>
         </button>
+        </div>
       </div>
 
       <div
