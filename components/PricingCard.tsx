@@ -51,7 +51,7 @@ export function PricingCard({
       )}
       <p
         className={cn(
-          "mt-6 text-3xl font-bold tracking-tight display-track",
+          "mt-6 text-2xl font-bold tracking-tight display-track md:text-3xl",
           emphasis ? "text-white" : "text-charcoal"
         )}
       >

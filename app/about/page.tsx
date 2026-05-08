@@ -26,7 +26,8 @@ export default function AboutPage() {
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <div>
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/60">About</p>
-            <h1 className="mt-4 text-4xl font-bold uppercase tracking-heading md:text-6xl">
+            <div className="rule-section-dark my-5 max-w-xs" aria-hidden />
+            <h1 className="text-3xl font-bold uppercase tracking-heading md:text-4xl">
               Meet Mari.
             </h1>
           </div>
@@ -34,8 +35,11 @@ export default function AboutPage() {
       </header>
 
       <section className="mx-auto max-w-3xl px-4 py-16 md:px-6 md:py-20">
-        <p className="text-lg font-medium text-charcoal">Hey, I&apos;m Mari — founder of Reset.</p>
-        <div className="mt-10 space-y-6 text-base leading-relaxed text-mid-grey">
+        <p className="text-base font-medium leading-relaxed text-charcoal md:text-lg">
+          Hey, I&apos;m Mari — founder of Reset.
+        </p>
+        <div className="rule-section my-10 max-w-md" aria-hidden />
+        <div className="space-y-6 text-base leading-relaxed text-mid-grey">
           <p>
             Reset. was created to be more than just a workout. It&apos;s a space to step away, slow down,
             and reconnect with your body.
@@ -62,10 +66,11 @@ export default function AboutPage() {
       <section className="border-t border-light-grey bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Studio</p>
-          <h2 className="mt-4 text-2xl font-bold uppercase tracking-heading text-charcoal">
+          <h2 className="mt-4 text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
             Find us in Nailsea.
           </h2>
-          <address className="mt-6 not-italic text-mid-grey">
+          <div className="rule-section my-6 max-w-md" aria-hidden />
+          <address className="not-italic text-mid-grey">
             {CONTACT.addressLine}
           </address>
           <p className="mt-4 max-w-2xl text-mid-grey">{CONTACT.locationNote}</p>

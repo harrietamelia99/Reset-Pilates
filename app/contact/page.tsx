@@ -25,10 +25,11 @@ export default function ContactPage() {
       <header className="page-hero">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
           <div>
-            <h1 className="text-4xl font-bold uppercase tracking-heading text-charcoal md:text-5xl">
+            <h1 className="text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
               Contact
             </h1>
-            <p className="mt-6 max-w-2xl text-lg text-mid-grey">
+            <div className="rule-section mt-8 max-w-lg" aria-hidden />
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-mid-grey md:text-[17px]">
               Questions, founding memberships, group bookings — send us a note.
             </p>
           </div>
@@ -40,8 +41,8 @@ export default function ContactPage() {
           <ContactForm />
         </MotionSection>
 
-        <aside className="space-y-10">
-          <div className="flex gap-4">
+        <aside className="divide-y divide-charcoal">
+          <div className="flex gap-4 py-10 first:pt-0">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-light-grey bg-white">
               <Mail className="h-5 w-5 text-charcoal" strokeWidth={1.35} aria-hidden />
             </span>
@@ -56,7 +57,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div>
+          <div className="py-10">
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
               Social
             </p>
@@ -72,7 +73,7 @@ export default function ContactPage() {
             </a>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 py-10">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-light-grey bg-white">
               <MapPin className="h-5 w-5 text-charcoal" strokeWidth={1.35} aria-hidden />
             </span>
@@ -86,7 +87,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 py-10">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-light-grey bg-white">
               <Clock className="h-5 w-5 text-charcoal" strokeWidth={1.35} aria-hidden />
             </span>

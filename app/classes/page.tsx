@@ -26,10 +26,11 @@ export default function ClassesPage() {
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
               Nailsea · North Somerset
             </p>
-            <h1 className="mt-4 text-4xl font-bold uppercase tracking-heading text-charcoal md:text-5xl">
+            <div className="rule-section my-5 max-w-xs" aria-hidden />
+            <h1 className="text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
               Our Classes
             </h1>
-            <p className="mt-6 max-w-2xl text-lg text-mid-grey">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-mid-grey md:text-[17px]">
               Dynamic Pilates designed to make you feel the difference.
             </p>
           </div>
@@ -39,7 +40,7 @@ export default function ClassesPage() {
       <MotionSection className="mx-auto max-w-6xl px-4 py-16 md:px-6">
         <div className="border-b border-charcoal pb-4">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Reformer</p>
-          <h2 className="mt-3 text-2xl font-bold uppercase tracking-heading text-charcoal">
+          <h2 className="mt-3 text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
             Reformer Pilates
           </h2>
         </div>
@@ -61,7 +62,7 @@ export default function ClassesPage() {
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6">
           <div className="border-b border-charcoal pb-4">
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Hot Mat</p>
-            <h2 className="mt-3 text-2xl font-bold uppercase tracking-heading text-charcoal">
+            <h2 className="mt-3 text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
               Hot Mat Pilates
             </h2>
           </div>
@@ -99,7 +100,7 @@ export default function ClassesPage() {
       <MotionSection className="mx-auto max-w-6xl px-4 py-16 md:px-6">
         <div className="border-b border-charcoal pb-4">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Mat</p>
-          <h2 className="mt-3 text-2xl font-bold uppercase tracking-heading text-charcoal">Mat Pilates</h2>
+          <h2 className="mt-3 text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">Mat Pilates</h2>
         </div>
         <div className="mt-8 flex flex-col items-center border border-dashed border-light-grey bg-white p-8 text-center md:p-10">
           <PlaceholderImage
@@ -114,7 +115,7 @@ export default function ClassesPage() {
       </MotionSection>
 
       <MotionSection className="border-t border-light-grey bg-white">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:px-6">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:px-6 md:gap-x-16">
           <div>
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
               What to bring
@@ -126,6 +127,7 @@ export default function ClassesPage() {
               <li>Grip socks available to purchase in-studio if you forget</li>
             </ul>
           </div>
+          <div className="rule-section md:hidden" aria-hidden />
           <div>
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
               First time?

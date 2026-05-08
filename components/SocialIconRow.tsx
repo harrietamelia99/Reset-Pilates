@@ -6,9 +6,9 @@ import { cn } from "@/lib/cn";
 
 const tones = {
   dark:
-    "border-white/25 bg-white/5 text-white hover:border-white/45 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60",
+    "border-white/45 bg-transparent text-white shadow-none ring-0 hover:border-white hover:bg-transparent hover:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60",
   light:
-    "border-light-grey bg-white text-charcoal hover:border-charcoal/35 hover:bg-light-grey/45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal/30",
+    "border-light-grey bg-transparent text-charcoal shadow-none ring-0 hover:border-charcoal/45 hover:bg-transparent hover:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal/30",
 } as const;
 
 type Tone = keyof typeof tones;
@@ -28,7 +28,7 @@ export function SocialIconRow({ tone = "light", className }: Props) {
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition",
+          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors",
           ring
         )}
       >
@@ -40,7 +40,7 @@ export function SocialIconRow({ tone = "light", className }: Props) {
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition",
+          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors",
           ring
         )}
       >

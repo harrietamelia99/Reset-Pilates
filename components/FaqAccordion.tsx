@@ -25,10 +25,9 @@ export function FaqAccordion({ groups }: Props) {
     <div className="space-y-16">
       {groups.map((group) => (
         <section key={group.title}>
-          <h2 className="border-l-4 border-charcoal pl-4 text-[10px] uppercase tracking-heading text-warm-grey">
-            {group.title}
-          </h2>
-          <div className="mt-6 divide-y divide-light-grey overflow-hidden rounded-sm border border-light-grey bg-white/60">
+          <h2 className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">{group.title}</h2>
+          <div className="rule-section mt-5 max-w-xs" aria-hidden />
+          <div className="mt-8 divide-y divide-light-grey overflow-hidden rounded-sm border border-light-grey bg-white/60">
             {group.items.map((item, i) => {
               const id = `${group.title}-${i}`;
               const open = openId === id;

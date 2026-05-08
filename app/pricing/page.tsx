@@ -65,10 +65,11 @@ export default function PricingPage() {
       <header className="page-hero">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
           <div>
-            <h1 className="text-4xl font-bold uppercase tracking-heading text-charcoal md:text-5xl">
+            <h1 className="text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
               Simple, honest pricing.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg text-mid-grey">
+            <div className="rule-section mt-8 max-w-lg" aria-hidden />
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-mid-grey md:text-[17px]">
               No hidden fees. Class packs, memberships and intro deals all in one place.
             </p>
           </div>
@@ -82,9 +83,11 @@ export default function PricingPage() {
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
               New to Reset? Start here.
             </p>
-            <h2 className="mt-4 text-2xl font-bold uppercase tracking-heading text-charcoal">Intro deals</h2>
+            <div className="rule-section my-5 max-w-xs" aria-hidden />
+            <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">Intro deals</h2>
           </div>
-          <ul className="mt-6 space-y-2 text-mid-grey">
+          <div className="rule-section my-6 max-w-md" aria-hidden />
+          <ul className="space-y-2 text-mid-grey">
             <li>3 reformer or hot mat classes for £45</li>
             <li>3 mat classes for £30</li>
           </ul>
@@ -103,9 +106,10 @@ export default function PricingPage() {
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
               Founding memberships
             </p>
-            <h2 className="mt-4 text-2xl font-bold uppercase tracking-heading">First 30 members only</h2>
+            <h2 className="mt-4 text-xl font-bold uppercase tracking-heading md:text-2xl">First 30 members only</h2>
           </div>
-          <p className="mt-3 max-w-2xl text-white/85">
+          <div className="rule-section-dark my-6 max-w-md" aria-hidden />
+          <p className="max-w-2xl text-white/85">
             Lock in this rate for 12 months. 3-month minimum commitment.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -128,7 +132,7 @@ export default function PricingPage() {
 
       <MotionSection className="mx-auto max-w-6xl px-4 py-16 md:px-6">
         <div className="border-b border-charcoal pb-4">
-          <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal">Class packs — Reformer</h2>
+          <h2 className="text-lg font-bold uppercase tracking-heading text-charcoal md:text-xl">Class packs — Reformer</h2>
         </div>
         <div className="mt-8 rounded-sm border border-light-grey bg-white p-8">
           <PriceTable
@@ -144,7 +148,7 @@ export default function PricingPage() {
 
       <MotionSection className="mx-auto max-w-6xl px-4 py-16 md:px-6">
         <div className="border-b border-charcoal pb-4">
-          <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal">
+          <h2 className="text-lg font-bold uppercase tracking-heading text-charcoal md:text-xl">
             Class packs — Hot Mat Pilates
           </h2>
         </div>
@@ -158,7 +162,7 @@ export default function PricingPage() {
 
       <MotionSection className="mx-auto max-w-6xl px-4 py-16 md:px-6">
         <div className="border-b border-charcoal pb-4">
-          <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal">Class packs — Mat Pilates</h2>
+          <h2 className="text-lg font-bold uppercase tracking-heading text-charcoal md:text-xl">Class packs — Mat Pilates</h2>
         </div>
         <div className="mt-8 rounded-sm border border-light-grey bg-white p-8">
           <PriceTable
@@ -174,7 +178,7 @@ export default function PricingPage() {
       <MotionSection className="border-y border-light-grey bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6">
           <div className="border-b border-charcoal pb-4">
-            <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal">Standard memberships</h2>
+            <h2 className="text-lg font-bold uppercase tracking-heading text-charcoal md:text-xl">Standard memberships</h2>
             <p className="mt-2 font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
               After founding period · 3-month minimum commitment
             </p>
@@ -200,7 +204,7 @@ export default function PricingPage() {
 
       <MotionSection className="mx-auto max-w-6xl px-4 py-16 md:px-6">
         <div className="border-b border-charcoal pb-4">
-          <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal">Drop-in prices</h2>
+          <h2 className="text-lg font-bold uppercase tracking-heading text-charcoal md:text-xl">Drop-in prices</h2>
         </div>
         <ul className="mt-6 space-y-2 text-mid-grey">
           <li>Mat: £12</li>

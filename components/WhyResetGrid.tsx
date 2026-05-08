@@ -21,9 +21,18 @@ const ITEMS = [
 
 export function WhyResetGrid() {
   return (
-    <div className="mt-16 grid gap-14 md:grid-cols-2 md:gap-x-16 md:gap-y-16">
-      {ITEMS.map(({ t, d }) => (
-        <div key={t}>
+    <div className="mt-12 grid gap-0 md:grid-cols-2 md:gap-x-16 md:gap-y-0">
+      {ITEMS.map(({ t, d }, i) => (
+        <div
+          key={t}
+          className={
+            i === 0
+              ? "pb-10 md:pb-12"
+              : i === 1
+                ? "border-t border-charcoal pt-10 md:border-t-0 md:pt-0 md:pb-12"
+                : "border-t border-charcoal pt-10 md:pt-12"
+          }
+        >
           <h3 className="text-lg font-bold uppercase tracking-heading text-charcoal">{t}</h3>
           <p className="mt-4 text-sm leading-relaxed text-mid-grey">{d}</p>
         </div>

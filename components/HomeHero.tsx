@@ -26,7 +26,8 @@ export function HomeHero() {
     if (!slot || !flyer) return;
 
     const applyFit = () => {
-      const avail = Math.max(0, slot.clientHeight - 2);
+      /** Leave a little slack so the sheet + paperclip never kiss the viewport edge */
+      const avail = Math.max(0, slot.clientHeight - 20);
       flushSync(() => {
         setFlyerStyle({ transform: "scale(1)", transformOrigin: "top center" });
       });
@@ -42,6 +43,7 @@ export function HomeHero() {
       requestAnimationFrame(applyFit);
     });
     ro.observe(slot);
+    ro.observe(flyer);
 
     window.addEventListener("resize", applyFit);
     return () => {
@@ -68,14 +70,14 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      <div className="relative z-10 mx-auto flex h-full min-h-0 max-w-6xl flex-col px-4 pb-4 pt-24 md:px-6 md:pb-6 md:pt-28 lg:pt-[7.5rem]">
+      <div className="relative z-10 mx-auto flex h-full min-h-0 max-w-6xl flex-col px-4 pb-3 pt-24 md:px-6 md:pb-5 md:pt-28 lg:pt-[7rem]">
         {/* Slot centers the flyer; scales down when viewport is short */}
         <div
           ref={slotRef}
-          className="relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-visible py-1 md:py-2"
+          className="relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-visible py-0.5 md:py-1"
         >
           <div
-            className="relative mx-auto w-full max-w-3xl overflow-visible px-2 sm:px-6"
+            className="relative mx-auto w-full max-w-[min(42rem,100%)] overflow-visible px-1 sm:px-4"
             style={{
               height: bridgeHeight,
               maxHeight: "100%",
@@ -84,42 +86,49 @@ export function HomeHero() {
             <div
               ref={flyerRef}
               style={flyerStyle}
-              className="absolute left-0 right-0 top-0 w-full max-w-3xl will-change-transform"
+              className="absolute left-0 right-0 top-0 w-full max-w-[min(42rem,100%)] will-change-transform"
             >
               <motion.div
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
-                className="w-full py-1"
+                className="w-full py-0"
               >
                 <motion.div variants={fadeItem}>
-                  <PaperSheet poster className="px-6 py-6 sm:px-8 sm:py-8 md:px-12 md:py-10 lg:px-14 lg:py-12">
+                  <PaperSheet poster className="px-5 py-5 sm:px-7 sm:py-6 md:px-9 md:py-7 lg:px-11 lg:py-8">
                     <p className="font-accent text-[9px] uppercase tracking-[0.2em] text-charcoal md:text-[10px]">
                       Pre-launch announcement
                     </p>
 
-                    <div className="rule-poster my-3 md:my-5" />
+                    <div className="rule-section my-2.5 md:my-4" />
 
                     <p className="text-center font-sans text-[10px] uppercase tracking-[0.28em] text-charcoal md:text-[11px]">
                       Nailsea · North Somerset
                     </p>
 
-                    <h1 className="mt-4 text-center text-2xl font-bold uppercase leading-[1.05] tracking-heading text-charcoal sm:text-3xl md:mt-8 md:text-4xl md:leading-[1] lg:mt-10 lg:text-[3.25rem]">
+                    <h1 className="mt-3 text-center text-2xl font-bold uppercase leading-[1.05] tracking-heading text-charcoal sm:text-3xl md:mt-6 md:text-4xl md:leading-[1] lg:mt-8 lg:text-[2.85rem]">
                       <span className="block">Your new</span>
-                      <span className="block">Reset ritual.</span>
+                      <span className="block">
+                        <span className="relative mx-auto inline-block">
+                          Reset ritual
+                          <span className="absolute bottom-[0.08em] left-full ml-[0.06em] inline-block leading-none">
+                            .
+                          </span>
+                        </span>
+                      </span>
                     </h1>
 
-                    <div className="rule-poster my-4 md:my-6 lg:my-8" />
+                    <div className="rule-section my-3 md:my-5 lg:my-6" />
 
                     <p className="text-center font-accent text-[13px] leading-snug text-charcoal md:text-sm">
                       Reformer, Hot Mat & Mat Pilates.
                     </p>
 
-                    <p className="mt-3 text-center font-accent text-[9px] uppercase tracking-[0.18em] text-charcoal md:mt-4 md:text-[10px]">
+                    <p className="mt-2.5 text-center font-accent text-[9px] uppercase tracking-[0.18em] text-charcoal md:mt-3 md:text-[10px]">
                       Opening 1st June 2026 — Founding memberships now available
                     </p>
 
-                    <div className="rule-poster my-5 md:my-7 lg:my-9" />
+                    <div className="rule-section my-4 md:my-6 lg:my-7" />
 
                     <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                       {BOOKING_HREF.startsWith("/") ? (
@@ -141,14 +150,14 @@ export function HomeHero() {
                       )}
                       <Link
                         href="/classes"
-                        className="inline-flex min-h-[44px] items-center justify-center gap-2 border-2 border-charcoal bg-white px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-light-grey"
+                        className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal/40 bg-white px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition hover:border-charcoal/65 hover:bg-light-grey"
                       >
                         <LayoutList className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
                         View Classes
                       </Link>
                     </div>
 
-                    <div className="mt-6 border-t border-charcoal pt-4 md:mt-8 md:pt-6">
+                    <div className="mt-4 border-t border-charcoal pt-3 md:mt-6 md:pt-5">
                       <p className="font-accent text-[8px] uppercase leading-relaxed tracking-[0.14em] text-charcoal md:text-[9px]">
                         Booking via Momence — link updates before launch.
                       </p>
