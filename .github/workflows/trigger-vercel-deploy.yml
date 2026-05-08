@@ -17,8 +17,17 @@ jobs:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
           if [ -z "$HOOK" ]; then
-            echo "::warning title=Vercel deploy hook missing::Add repo secret VERCEL_DEPLOY_HOOK_URL (from Vercel → Settings → Git → Deploy Hooks). Until then only reconnecting Git on Vercel or redeploying from the dashboard will pick up new commits."
+            echo "::warning title=Vercel deploy hook missing::GitHub does not see secret VERCEL_DEPLOY_HOOK_URL. Add it under repo Settings → Secrets and variables → Actions (Repository secrets, exact name). Environment-only secrets are ignored unless the workflow uses that environment."
             exit 0
           fi
-          curl -fsS -X POST "$HOOK"
-          echo "Deploy hook triggered OK"
+          echo "Hook secret is present (${#HOOK} characters)."
+          HTTP=$(curl -sS -o /tmp/hook_body -w "%{http_code}" -X POST "$HOOK")
+          echo "Response HTTP status: $HTTP"
+          head -c 500 /tmp/hook_body 2>/dev/null || true
+          echo ""
+          if [ "$HTTP" -ge 200 ] 2>/dev/null && [ "$HTTP" -lt 300 ] 2>/dev/null; then
+            echo "Deploy hook accepted."
+          else
+            echo "::error::Deploy hook did not return success (expected HTTP 2xx). Regenerate the hook in Vercel → Settings → Git → Deploy Hooks and update the secret."
+            exit 1
+          fi
