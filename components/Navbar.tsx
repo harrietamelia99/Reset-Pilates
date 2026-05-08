@@ -42,9 +42,9 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-light-grey bg-white font-sans">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 md:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-5 md:px-6">
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
-          <LogoWordmark className="text-2xl leading-none text-charcoal md:text-[1.75rem]" />
+          <LogoWordmark className="text-3xl leading-none text-charcoal md:text-4xl" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
