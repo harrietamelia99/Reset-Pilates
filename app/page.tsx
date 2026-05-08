@@ -104,7 +104,8 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="surface-editorial-dark relative overflow-hidden text-white">
+      <MotionSection className="surface-editorial-dark-deep relative overflow-hidden text-white">
+        <div className="grain-layer opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
             Pre-launch · Limited

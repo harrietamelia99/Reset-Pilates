@@ -40,6 +40,8 @@
   --color-mid-grey: #545456;
   /** Large dark sections (hero, footer, editorial strips) — brand grey */
   --surface-editorial-bg: #545456;
+  /** Deeper tone for emphasis blocks (e.g. founding membership) */
+  --surface-editorial-bg-deep: #2e2e30;
   --color-warm-grey: #8e898a;
   --color-light-grey: #c6c5c4;
   --color-white: #ffffff;
@@ -74,6 +76,21 @@
   .surface-editorial-dark {
     @apply relative text-white;
     background-color: var(--surface-editorial-bg);
+  }
+
+  .surface-editorial-dark-deep {
+    @apply relative text-white;
+    background-color: var(--surface-editorial-bg-deep);
+  }
+
+  .surface-editorial-dark-deep .grain-layer {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    opacity: 0.22;
+    mix-blend-mode: overlay;
+    background-image: var(--noise-tile);
+    background-size: 180px 180px;
   }
 
   .surface-editorial-dark .grain-layer {
