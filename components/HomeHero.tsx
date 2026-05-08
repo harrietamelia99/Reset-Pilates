@@ -78,7 +78,7 @@ export function HomeHero() {
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         <div
           ref={slotRef}
-          className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center overflow-visible"
+          className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center overflow-visible md:-translate-y-10 lg:-translate-y-12"
         >
           <div
             className="relative mx-auto flex w-full max-w-[min(42rem,100%)] items-center justify-center overflow-visible px-1 sm:px-4"
