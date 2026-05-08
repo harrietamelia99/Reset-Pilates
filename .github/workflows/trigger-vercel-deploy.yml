@@ -1,9 +1,13 @@
-# Fires when GitHub → Vercel webhooks fail: Project Settings → Git → Deploy Hooks
-# (production hook for branch main). Add repo secret VERCEL_DEPLOY_HOOK_URL with the hook URL.
+# Production builds when GitHub notifies Vercel (Settings → Git). If that breaks:
+# 1) Vercel → Project → Settings → Git → Deploy Hooks (branch main) → copy URL
+# 2) GitHub repo → Settings → Secrets → Actions → VERCEL_DEPLOY_HOOK_URL = that URL
+# Or: Actions tab → "Trigger Vercel deploy" → Run workflow (manual).
 name: Trigger Vercel deploy
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
 jobs:
   deploy-hook:
     runs-on: ubuntu-latest
@@ -13,7 +17,7 @@ jobs:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
           if [ -z "$HOOK" ]; then
-            echo "VERCEL_DEPLOY_HOOK_URL not set — skipping (rely on native Git integration)"
+            echo "::warning title=Vercel deploy hook missing::Add repo secret VERCEL_DEPLOY_HOOK_URL (from Vercel → Settings → Git → Deploy Hooks). Until then only reconnecting Git on Vercel or redeploying from the dashboard will pick up new commits."
             exit 0
           fi
           curl -fsS -X POST "$HOOK"
