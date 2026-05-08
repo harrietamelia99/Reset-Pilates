@@ -127,7 +127,7 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
             padding: 0,
             margin: 0,
             marginBottom: "-0.1em",
-            transform: "translateX(6px) translateY(calc(0.14em + 10px))",
+            transform: "translateX(6px) translateY(calc(0.14em + 14px))",
             color: "var(--color-charcoal)",
             /** Watermark treatment — sits behind flyer without overpowering texture */
             opacity: fontPx != null ? 0.42 : 0,
