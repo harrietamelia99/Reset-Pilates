@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 import { MotionSection } from "@/components/MotionSection";
 import { CONTACT, MAP_EXTERNAL_URL, MAP_IFRAME_SRC } from "@/lib/constants";
 
@@ -23,7 +24,11 @@ export function HomeMapSection() {
         {/* Equal-width columns; square tiles so text panel matches map footprint */}
         <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
           <address className="not-italic">
-            <div className="flex aspect-[4/3] w-full flex-col justify-between border border-charcoal/10 bg-white p-6 md:p-8 lg:aspect-square lg:p-10">
+            <motion.div
+              className="flex aspect-[4/3] w-full flex-col justify-between border border-charcoal/10 bg-white p-6 md:p-8 lg:aspect-square lg:p-10"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
               <div className="flex min-h-0 flex-1 flex-col justify-center gap-6">
                 <div className="flex gap-3">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-charcoal/55" strokeWidth={1.5} aria-hidden />
@@ -39,11 +44,11 @@ export function HomeMapSection() {
                 href={MAP_EXTERNAL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex shrink-0 pt-4 font-accent text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 transition hover:underline lg:pt-6"
+                className="inline-flex shrink-0 pt-4 font-accent text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 transition-all duration-300 hover:translate-x-1 hover:underline lg:pt-6"
               >
                 Open in Google Maps
               </Link>
-            </div>
+            </motion.div>
           </address>
 
           <div className="relative aspect-[4/3] w-full overflow-hidden border border-charcoal/10 bg-light-grey/30 lg:aspect-square">

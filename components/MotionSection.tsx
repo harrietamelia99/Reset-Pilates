@@ -16,7 +16,7 @@ export function MotionSection({ children, className, delay = 0 }: Props) {
       className={cn(className)}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.05, margin: "0px" }}
+      viewport={{ once: true, amount: 0.06, margin: "0px 0px -8% 0px" }}
       variants={{
         hidden: fadeUp.hidden,
         visible: {

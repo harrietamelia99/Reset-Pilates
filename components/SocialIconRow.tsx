@@ -28,7 +28,7 @@ export function SocialIconRow({ tone = "light", className }: Props) {
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors",
+          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0",
           ring
         )}
       >
@@ -40,7 +40,7 @@ export function SocialIconRow({ tone = "light", className }: Props) {
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors",
+          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0",
           ring
         )}
       >

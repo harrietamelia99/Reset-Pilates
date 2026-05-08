@@ -10,7 +10,7 @@ export function Footer() {
       <div className="grain-layer opacity-20" aria-hidden />
       <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:px-6 lg:grid-cols-4 lg:gap-10">
         <div>
-          <Link href="/" className="inline-block" aria-label="Reset Pilates home">
+          <Link href="/" className="inline-block transition-opacity duration-300 hover:opacity-90" aria-label="Reset Pilates home">
             <LogoWordmark variant="light" className="!tracking-[0.07em] text-3xl leading-none md:text-4xl" />
           </Link>
           <p className="mt-4 font-accent text-[11px] uppercase tracking-[0.15em] text-white/50">
@@ -27,7 +27,7 @@ export function Footer() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="text-sm font-medium uppercase tracking-wide text-white/85 transition hover:text-white"
+                  className="inline-block text-sm font-medium uppercase tracking-wide text-white/85 transition-all duration-300 hover:translate-x-1 hover:text-white"
                 >
                   {l.label}
                 </Link>
@@ -47,7 +47,7 @@ export function Footer() {
             </li>
             <li className="flex gap-3">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-white/40" strokeWidth={1.5} aria-hidden />
-              <a href={`mailto:${CONTACT.email}`} className="transition hover:text-white">
+              <a href={`mailto:${CONTACT.email}`} className="transition-colors duration-300 hover:text-white hover:underline underline-offset-4">
                 {CONTACT.email}
               </a>
             </li>

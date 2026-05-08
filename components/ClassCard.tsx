@@ -34,7 +34,8 @@ export function ClassCard({
 }: Props) {
   return (
     <motion.article
-      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as const }}
       className={cn(
         "group flex h-full flex-col overflow-hidden bg-light-grey/35 transition-colors duration-300 hover:bg-light-grey/55",
         className
@@ -46,7 +47,7 @@ export function ClassCard({
             src={imageSrc}
             alt={imageAlt ?? title}
             fill
-            className="object-cover object-center"
+            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
@@ -79,7 +80,7 @@ export function ClassCard({
         <p className="mt-3 flex-1 text-sm leading-relaxed text-mid-grey">{description}</p>
         <Link
           href={href}
-          className="mt-6 inline-flex items-center text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 transition group-hover:underline"
+          className="mt-6 inline-flex items-center text-xs font-bold uppercase tracking-wide text-charcoal underline-offset-4 transition-all duration-300 group-hover:translate-x-1 group-hover:underline"
         >
           {linkLabel}
         </Link>
@@ -101,7 +102,8 @@ export function ClassDetailCard({
 }) {
   return (
     <motion.article
-      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
       className="flex h-full flex-col overflow-hidden bg-light-grey/35 transition-colors duration-300 hover:bg-light-grey/55"
     >
       {imagePlaceholder && (

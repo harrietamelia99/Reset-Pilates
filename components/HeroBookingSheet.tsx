@@ -62,7 +62,7 @@ export function HeroBookingSheet({ className }: Props) {
         {BOOKING_HREF.startsWith("/") ? (
           <Link
             href={BOOKING_HREF}
-            className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0"
           >
             <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
             Book a class
@@ -70,7 +70,7 @@ export function HeroBookingSheet({ className }: Props) {
         ) : (
           <a
             href={BOOKING_HREF}
-            className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0"
           >
             <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
             Book a class
@@ -78,7 +78,7 @@ export function HeroBookingSheet({ className }: Props) {
         )}
         <Link
           href="/classes"
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal/40 bg-white px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition hover:border-charcoal/65 hover:bg-light-grey"
+          className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal/40 bg-white px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:border-charcoal/65 hover:bg-light-grey hover:shadow-md active:translate-y-0"
         >
           <LayoutList className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
           View classes

@@ -129,7 +129,7 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
           type="submit"
           disabled={status === "sending"}
           className={cn(
-            "inline-flex min-h-[44px] items-center justify-center gap-2 border px-8 py-3 text-xs font-bold uppercase tracking-wide transition disabled:opacity-60 sm:shrink-0",
+            "inline-flex min-h-[44px] items-center justify-center gap-2 border px-8 py-3 text-xs font-bold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none sm:shrink-0",
             variant === "dark"
               ? "border-white bg-white text-charcoal hover:bg-white/90"
               : "border-charcoal bg-charcoal text-white hover:bg-charcoal/90"

@@ -16,7 +16,7 @@ function NavInstagram({ className }: { className?: string }) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal/15 text-charcoal transition hover:border-charcoal/35 hover:bg-light-grey/60 hover:opacity-100",
+        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal/15 text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:border-charcoal/35 hover:bg-light-grey/60 hover:opacity-100 hover:shadow-sm active:translate-y-0",
         className
       )}
       aria-label={`Instagram (${CONTACT.instagram.handle})`}
@@ -77,13 +77,13 @@ export function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-medium uppercase tracking-wide text-charcoal transition hover:opacity-80"
+              className="text-sm font-medium uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-px hover:opacity-80"
             >
               {l.label}
             </Link>
           ))}
           <NavInstagram />
-          <NavBookNow className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-mid-grey" />
+          <NavBookNow className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-md active:translate-y-0 active:shadow-sm" />
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
@@ -119,7 +119,7 @@ export function Navbar() {
       >
         <button
           type="button"
-          className="absolute right-4 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 text-charcoal transition hover:bg-light-grey/80"
+          className="absolute right-4 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-light-grey/80 hover:shadow-sm active:translate-y-0"
           aria-label="Close menu"
           onClick={() => setOpen(false)}
         >
@@ -133,7 +133,7 @@ export function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="border-b border-light-grey py-4 text-lg font-medium uppercase tracking-wide text-charcoal"
+              className="border-b border-light-grey py-4 text-lg font-medium uppercase tracking-wide text-charcoal transition-all duration-300 hover:translate-x-1 hover:opacity-80"
               onClick={() => setOpen(false)}
             >
               {l.label}
@@ -143,14 +143,14 @@ export function Navbar() {
             href={CONTACT.instagram.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 border-b border-light-grey py-4 text-lg font-medium uppercase tracking-wide text-charcoal transition hover:opacity-80"
+            className="flex items-center gap-3 border-b border-light-grey py-4 text-lg font-medium uppercase tracking-wide text-charcoal transition-all duration-300 hover:translate-x-1 hover:opacity-80"
             onClick={() => setOpen(false)}
           >
             <InstagramGlyph className="h-6 w-6 shrink-0" strokeWidth={1.5} aria-hidden />
             Instagram
           </a>
           <NavBookNow
-            className="mt-6 inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-3 text-sm font-bold uppercase tracking-wide text-white"
+            className="mt-6 inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-md active:translate-y-0"
             onClick={() => setOpen(false)}
           />
           {/* TODO: Set BOOKING_HREF in lib/constants.ts to your live Momence URL when ready. */}
