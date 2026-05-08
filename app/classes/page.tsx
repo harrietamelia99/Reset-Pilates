@@ -18,8 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ClassesPage() {
   return (
-    <div className="bg-white">
-      <header className="border-b border-light-grey bg-white">
+    <div className="page-bg">
+      <header className="page-hero">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
           <div>
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">

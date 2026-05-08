@@ -50,14 +50,16 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+      <MotionSection className="mx-auto max-w-6xl bg-white px-4 py-24 md:px-6 md:py-28">
         <div className="border-b border-charcoal pb-6">
-          <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
-            What we offer
-          </p>
-          <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
-            Movement that meets you where you are.
-          </h2>
+          <div className="max-w-3xl border-l-4 border-charcoal pl-6">
+            <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
+              What we offer
+            </p>
+            <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
+              Movement that meets you where you are.
+            </h2>
+          </div>
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           <ClassCard
@@ -113,16 +115,16 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="mx-auto max-w-6xl px-4 py-20 md:px-6">
+      <MotionSection className="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28">
         <div className="border-b border-charcoal pb-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
             Why Reset
           </p>
-          <h2 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
             Pilates with purpose.
           </h2>
         </div>
-        <div className="mt-12 grid md:grid-cols-2 border-t border-l border-charcoal">
+        <div className="mt-14 grid md:grid-cols-2 border-t border-l border-charcoal">
           {[
             {
               t: "Dynamic, results-driven movement",
@@ -141,7 +143,10 @@ export default function HomePage() {
               d: "Intimate, considered, never crowded — room to breathe and move.",
             },
           ].map((item) => (
-            <div key={item.t} className="border-b border-r border-charcoal p-8 md:p-10">
+            <div
+              key={item.t}
+              className="border-b border-r border-charcoal p-8 transition-colors duration-300 hover:bg-cream/70 md:p-10"
+            >
               <h3 className="text-lg font-bold uppercase tracking-heading text-charcoal">{item.t}</h3>
               <p className="mt-3 text-sm leading-relaxed text-mid-grey">{item.d}</p>
             </div>
@@ -159,7 +164,7 @@ export default function HomePage() {
                 The studio
               </p>
               <div className="rule-editorial my-6" />
-              <blockquote className="text-xl font-medium leading-snug text-editorial-ink md:text-2xl">
+              <blockquote className="font-playfair text-balance text-xl font-normal leading-snug text-editorial-ink md:text-2xl">
                 Reset. was created to be more than just a workout. It&apos;s a space to step away, slow
                 down, and reconnect with your body.
               </blockquote>

@@ -206,6 +206,19 @@
     position: relative;
   }
 
+  /**
+   * Full-page wash for inner routes — cream → white (brand palette only).
+   */
+  .page-bg {
+    @apply min-h-screen bg-gradient-to-b from-cream via-white to-white;
+  }
+
+  /** Transparent hero bar that sits on `.page-bg` without doubling gradients */
+  .page-hero {
+    @apply border-b border-light-grey bg-transparent;
+  }
+
+  /** Light sections with barely-there paper grain */
   .grain-muted::before {
     content: "";
     pointer-events: none;

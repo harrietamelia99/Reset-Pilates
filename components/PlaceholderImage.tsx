@@ -11,7 +11,7 @@ export function PlaceholderImage({ aspect = "video", className }: Props) {
   return (
     <div
       className={cn(
-        "flex items-center justify-center bg-light-grey text-sm text-warm-grey",
+        "relative flex items-center justify-center overflow-hidden border border-light-grey/80 bg-gradient-to-br from-cream/70 via-light-grey to-light-grey text-sm text-warm-grey shadow-inner",
         ratio,
         className
       )}

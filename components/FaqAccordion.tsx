@@ -23,10 +23,10 @@ export function FaqAccordion({ groups }: Props) {
     <div className="space-y-16">
       {groups.map((group) => (
         <section key={group.title}>
-          <h2 className="border-b border-transparent pb-2 text-[10px] uppercase tracking-heading text-warm-grey">
+          <h2 className="border-l-4 border-charcoal pl-4 text-[10px] uppercase tracking-heading text-warm-grey">
             {group.title}
           </h2>
-          <div className="mt-6 divide-y divide-light-grey border-y border-light-grey">
+          <div className="mt-6 divide-y divide-light-grey overflow-hidden rounded-sm border border-light-grey bg-white/60">
             {group.items.map((item, i) => {
               const id = `${group.title}-${i}`;
               const open = openId === id;
@@ -35,7 +35,7 @@ export function FaqAccordion({ groups }: Props) {
                   <button
                     type="button"
                     onClick={() => setOpenId(open ? null : id)}
-                    className="flex w-full items-start justify-between gap-4 py-5 text-left transition hover:bg-white/50"
+                    className="flex w-full items-start justify-between gap-4 px-4 py-5 text-left transition-colors hover:bg-cream/80 md:px-5"
                     aria-expanded={open}
                   >
                     <span className="text-base font-semibold uppercase tracking-wide text-charcoal">
@@ -47,7 +47,7 @@ export function FaqAccordion({ groups }: Props) {
                   </button>
                   {open && (
                     <div className="overflow-hidden">
-                      <p className="pb-5 pr-8 text-sm leading-relaxed text-mid-grey">{item.a}</p>
+                      <p className="px-4 pb-5 pr-10 text-sm leading-relaxed text-mid-grey md:px-5">{item.a}</p>
                     </div>
                   )}
                 </div>

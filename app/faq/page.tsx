@@ -16,8 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function FaqPage() {
   return (
-    <div className="bg-white">
-      <header className="border-b border-light-grey bg-white">
+    <div className="page-bg">
+      <header className="page-hero">
         <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
           <div>
             <h1 className="text-4xl font-bold uppercase tracking-heading text-charcoal md:text-5xl">

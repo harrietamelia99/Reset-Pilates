@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function AboutPage() {
   return (
-    <div className="bg-white">
+    <div className="page-bg">
       <header className="relative min-h-[280px] overflow-hidden border-b border-light-grey bg-mid-grey text-white md:min-h-[360px]">
         <div className="absolute inset-0">
           <div className="flex h-full w-full items-center justify-center bg-light-grey text-sm text-warm-grey">
