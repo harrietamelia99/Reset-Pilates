@@ -114,8 +114,10 @@ export default function HomePage() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
           >
+            {/* Chrome/Firefox need MP4 (H.264); Safari can fall back to MOV */}
+            <source src="/videos/founding-member-bg.mp4" type="video/mp4" />
             <source src="/videos/founding-member-bg.mov" type="video/quicktime" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-[#141416]/90 via-[#1e1e22]/88 to-[#141416]/92" aria-hidden />
@@ -206,7 +208,7 @@ export default function HomePage() {
           <PaperSheet
             pin={false}
             flat
-            className="grid gap-12 px-8 py-14 md:grid-cols-2 md:items-center md:gap-16 md:px-14 md:py-16"
+            className="grid gap-10 px-0 py-12 md:grid-cols-2 md:items-center md:gap-16 md:px-14 md:py-16"
           >
             <figure className="relative aspect-[3/4] w-full min-h-[260px] overflow-hidden md:min-h-0">
               <Image
@@ -217,12 +219,12 @@ export default function HomePage() {
                 sizes="(max-width: 768px) 100vw, 42vw"
               />
             </figure>
-            <div>
+            <div className="flex flex-col items-start text-left">
               <h2 className="text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
                 The studio
               </h2>
               <div className="rule-section my-6 max-w-xs" aria-hidden />
-              <blockquote className="font-accent text-balance text-lg font-normal leading-relaxed tracking-[0.02em] text-charcoal md:text-xl">
+              <blockquote className="m-0 max-w-none border-0 p-0 font-accent text-lg font-normal leading-relaxed tracking-[0.02em] text-charcoal md:text-xl">
                 Reset. was created to be more than just a workout. It&apos;s a space to step away, slow
                 down, and reconnect with your body.
               </blockquote>
