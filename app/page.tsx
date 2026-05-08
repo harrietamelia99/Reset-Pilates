@@ -218,7 +218,19 @@ export default function HomePage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="relative border-t border-light-grey bg-light-grey/40 py-16 md:py-20">
+      <MotionSection className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-16 md:py-20">
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+          <Image
+            src="/images/hero-industrial-texture.png"
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-mid-grey/38" aria-hidden />
+        </div>
+        <div className="grain-layer z-[1]" aria-hidden />
+        <div className="vignette-layer z-[1]" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
           <PaperSheet flat className="flex flex-col justify-between gap-8 px-8 py-10 md:flex-row md:items-center md:px-12 md:py-12">
             <div className="min-w-0 flex-1">
