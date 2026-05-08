@@ -75,10 +75,10 @@ export function HomeHero() {
         {/* Slot fills space above wordmark; flyer scales down to fit — no inner scroll */}
         <div
           ref={slotRef}
-          className="relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden py-1 md:py-2"
+          className="relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-visible py-1 md:py-2"
         >
           <div
-            className="relative mx-auto w-full max-w-3xl overflow-hidden"
+            className="relative mx-auto w-full max-w-3xl overflow-visible px-2 sm:px-6"
             style={{
               height: bridgeHeight,
               maxHeight: "100%",
