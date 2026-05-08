@@ -116,7 +116,7 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
       <div className="flex w-full items-end justify-center overflow-visible">
         <span
           ref={textRef}
-          className="block max-w-none whitespace-nowrap font-normal lowercase antialiased"
+          className="block max-w-none whitespace-nowrap font-normal lowercase antialiased translate-x-0 translate-y-[calc(0.10em+10px)] md:translate-x-[6px] md:translate-y-[calc(0.14em+14px)]"
           style={{
             fontFamily: 'var(--font-logo-wordmark), Georgia, "Times New Roman", serif',
             fontWeight: 400,
@@ -127,7 +127,6 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
             padding: 0,
             margin: 0,
             marginBottom: "-0.1em",
-            transform: "translateX(6px) translateY(calc(0.14em + 14px))",
             color: "var(--color-charcoal)",
             /** Watermark treatment — sits behind flyer without overpowering texture */
             opacity: fontPx != null ? 0.42 : 0,
@@ -136,17 +135,11 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
               "0 1px 0 rgba(255,255,255,0.06), 0 3px 22px rgba(255,255,255,0.08)",
           }}
         >
-          <span
-            className="inline-block translate-y-[calc(0.04em_-_2.25pt)] md:translate-y-[calc(0.04em_-_6.25pt)]"
-          >
+          <span className="inline-block md:hidden">reset.</span>
+          <span className="hidden md:inline-block translate-y-[calc(0.04em_-_6.25pt)]">
             r
           </span>
-          <span
-            className="inline-block"
-            style={{ transform: "translateY(4.5pt)" }}
-          >
-            eset.
-          </span>
+          <span className="hidden md:inline-block translate-y-[4.5pt]">eset.</span>
         </span>
       </div>
     </div>
