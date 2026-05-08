@@ -44,27 +44,28 @@ export default function HomePage() {
                 sizes="(max-width: 768px) 100vw, 42vw"
               />
             </figure>
-            <div className="flex flex-col gap-8 border-t border-charcoal/10 px-8 py-12 md:flex-row md:items-center md:justify-between md:border-l md:border-t-0 md:px-14 md:py-14">
-              <div className="relative flex-1">
+            <div className="flex flex-col justify-center gap-6 border-t border-charcoal/10 px-8 py-10 md:border-l md:border-t-0 md:px-12 md:py-12 lg:px-14 lg:py-14">
+              <header className="space-y-4">
                 <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
                   Intro offer
                 </p>
-                <div className="rule-section my-6 w-full" aria-hidden />
-                <h2 className="text-2xl font-bold uppercase tracking-heading text-editorial-ink md:text-3xl">
-                  New to Reset?
+                <div className="rule-section max-w-[12rem]" aria-hidden />
+                <h2 className="text-[clamp(1.375rem,3.5vw,1.875rem)] font-bold uppercase leading-snug tracking-heading text-editorial-ink">
+                  <span className="inline-block sm:inline">New to</span>{" "}
+                  <span className="inline-block sm:inline">Reset?</span>
                 </h2>
-                <p className="mt-4 max-w-xl text-mid-grey">
-                  Try three classes for £45 (reformer or hot mat) or three mat classes for £30. The perfect
-                  way to find your flow.
+              </header>
+              <div className="space-y-4 text-mid-grey">
+                <p className="max-w-md text-[15px] leading-relaxed">
+                  Start with a three-class bundle — £45 for reformer or hot mat, or £30 for mat-only — so you can feel the space before you commit.
                 </p>
-                <div className="rule-section mt-8 w-full" aria-hidden />
               </div>
               <Link
                 href="/pricing"
-                className="inline-flex shrink-0 items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90 md:self-end"
+                className="inline-flex w-full items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3.5 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90 sm:w-auto sm:self-start"
               >
                 <Tag className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
-                Claim your intro deal
+                View intro bundles
               </Link>
             </div>
           </PaperSheet>
