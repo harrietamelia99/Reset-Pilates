@@ -6,6 +6,7 @@ import type { CSSProperties } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { staggerContainer, fadeItem } from "@/lib/motion";
+import { HeroBackgroundWordmark } from "@/components/HeroBackgroundWordmark";
 import { HeroBookingSheet } from "@/components/HeroBookingSheet";
 
 export function HomeHero() {
@@ -67,6 +68,8 @@ export function HomeHero() {
       </div>
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
+
+      <HeroBackgroundWordmark />
 
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         <div
