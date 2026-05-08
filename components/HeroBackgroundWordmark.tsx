@@ -1,12 +1,17 @@
 "use client";
 
+import type { RefObject } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 
+type Props = {
+  /** Hero `<section>` — width matches painted bleed (handles sub-pixel vs generic `innerWidth`). */
+  heroRef: RefObject<HTMLElement | null>;
+};
+
 /**
- * Full-bleed “reset.” behind the flyer — viewport-wide (no side inset),
- * baseline flush with the hero / next-section split (no bottom gap).
+ * Reference layout: “reset.” edge-to-edge at hero bottom, behind the flyer — no side or bottom gutter.
  */
-export function HeroBackgroundWordmark() {
+export function HeroBackgroundWordmark({ heroRef }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
   const [scale, setScale] = useState(1);
@@ -21,38 +26,52 @@ export function HeroBackgroundWordmark() {
       text.style.transform = "translateY(0) scale(1)";
       void text.offsetWidth;
 
-      /** Match full layout viewport (avoids 1–2px gutters vs `100vw` + scrollbar quirks). */
-      const targetW = document.documentElement.clientWidth;
-      const tw = text.getBoundingClientRect().width;
+      const hero = heroRef.current;
+      const vv = window.visualViewport;
+      const targetW = Math.max(
+        hero?.getBoundingClientRect().width ?? 0,
+        window.innerWidth,
+        document.documentElement.clientWidth,
+        vv?.width ?? 0
+      );
+
+      const tw = text.offsetWidth;
       if (targetW <= 0 || tw <= 0) return;
 
-      /**
-       * Tiny horizontal overscale so anti-aliasing/subpixels still read edge-to-edge
-       * under `overflow-hidden` on the hero (fills screen with no side padding).
-       */
-      const next = (targetW / tw) * 1.006;
+      /** Bleed past edges so hero `overflow-hidden` clips — reads flush like the mockup. */
+      const next = (targetW / tw) * 1.068;
       setScale(next);
       setVisible(true);
     };
 
     const scheduleFit = () => {
-      requestAnimationFrame(fit);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(fit);
+      });
     };
 
     void document.fonts.ready.then(scheduleFit);
     scheduleFit();
 
     const ro = new ResizeObserver(() => {
-      requestAnimationFrame(fit);
+      scheduleFit();
     });
     ro.observe(container);
+    const heroEl = heroRef.current;
+    if (heroEl) ro.observe(heroEl);
 
     window.addEventListener("resize", fit);
+    const vv = window.visualViewport;
+    vv?.addEventListener("resize", fit);
+    vv?.addEventListener("scroll", fit);
+
     return () => {
       ro.disconnect();
       window.removeEventListener("resize", fit);
+      vv?.removeEventListener("resize", fit);
+      vv?.removeEventListener("scroll", fit);
     };
-  }, []);
+  }, [heroRef]);
 
   return (
     <div
@@ -72,13 +91,13 @@ export function HeroBackgroundWordmark() {
           lineHeight: 1,
           padding: 0,
           margin: 0,
-          color: "rgba(43, 43, 41, 0.92)",
-          transform: `translateY(1px) scale(${scale})`,
+          color: "var(--color-charcoal)",
+          transform: `translateY(6px) scale(${scale})`,
           transformOrigin: "center bottom",
           opacity: visible ? 1 : 0,
           transition: visible ? "opacity 0.15s ease-out" : undefined,
           textShadow:
-            "0 1px 0 rgba(255,255,255,0.1), 0 4px 32px rgba(255,255,255,0.12)",
+            "0 1px 0 rgba(255,255,255,0.08), 0 4px 28px rgba(255,255,255,0.12)",
         }}
       >
         reset.

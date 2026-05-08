@@ -10,6 +10,7 @@ import { HeroBackgroundWordmark } from "@/components/HeroBackgroundWordmark";
 import { HeroBookingSheet } from "@/components/HeroBookingSheet";
 
 export function HomeHero() {
+  const heroRef = useRef<HTMLElement>(null);
   const slotRef = useRef<HTMLDivElement>(null);
   const flyerRef = useRef<HTMLDivElement>(null);
 
@@ -54,7 +55,10 @@ export function HomeHero() {
   const bridgeHeight = fit.naturalH * fit.scale;
 
   return (
-    <section className="surface-poster-hero relative isolate h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden">
+    <section
+      ref={heroRef}
+      className="surface-poster-hero relative isolate h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden"
+    >
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
         <Image
           src="/images/hero-industrial-texture.png"
@@ -69,7 +73,7 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      <HeroBackgroundWordmark />
+      <HeroBackgroundWordmark heroRef={heroRef} />
 
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         <div
