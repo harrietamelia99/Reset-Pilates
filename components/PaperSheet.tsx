@@ -16,12 +16,12 @@ type Props = {
 function PaperClipSvg() {
   return (
     <svg
-      width="40"
-      height="40"
+      width="56"
+      height="56"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="-rotate-[36deg]"
+      className="h-14 w-14 -rotate-[36deg]"
       aria-hidden
     >
       <path
@@ -48,17 +48,17 @@ export function PaperSheet({ children, className, pin = true, poster = false }: 
       )}
     >
       {pin && (
-        <span className="pointer-events-none absolute -left-0.5 -top-1 z-10 h-11 w-11" aria-hidden>
+        <span className="pointer-events-none absolute -left-1 -top-5 z-10 h-14 w-14" aria-hidden>
           {useSvgFallback ? (
             <PaperClipSvg />
           ) : (
             <Image
               src="/images/paperclip.png"
               alt=""
-              width={220}
-              height={220}
-              className="-rotate-[36deg] h-11 w-11 object-contain object-left-top"
-              sizes="44px"
+              width={280}
+              height={280}
+              className="-rotate-[36deg] h-14 w-14 object-contain object-left-top"
+              sizes="56px"
               onError={() => setUseSvgFallback(true)}
             />
           )}
