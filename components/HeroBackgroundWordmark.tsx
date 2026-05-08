@@ -144,7 +144,7 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
           </span>
           <span
             className="inline-block"
-            style={{ transform: "translateY(7pt)" }}
+            style={{ transform: "translateY(4.5pt)" }}
           >
             eset.
           </span>
