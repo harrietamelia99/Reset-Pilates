@@ -75,6 +75,10 @@ function useMegawordmarkFit(wordRef: RefObject<HTMLElement | null>, wrapRef: Ref
   return fontPx;
 }
 
+/** Always use explicit font-size (inline) so the megawordmark never loses sizing to purge/CSS order. */
+const MEGAWORD_FALLBACK_FONT =
+  "clamp(3.5rem, calc(100vw / 6.25), min(50rem, 42vw))";
+
 export function HomeHero() {
   const slotRef = useRef<HTMLDivElement>(null);
   const flyerRef = useRef<HTMLDivElement>(null);
@@ -125,7 +129,7 @@ export function HomeHero() {
   const bridgeHeight = fit.naturalH * fit.scale;
 
   return (
-    <section className="surface-poster-hero relative h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden">
+    <section className="surface-poster-hero relative isolate h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
         <Image
           src="/images/hero-industrial-texture.png"
@@ -140,23 +144,26 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      {/* Megawordmark — measured width = container so full phrase is visible edge-to-edge; z below flyer */}
+      {/* Megawordmark — behind flyer only (flyer has z-10); full-width layer so it sits in the hero “plate” */}
       <div
         ref={megawordWrapRef}
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] flex w-full justify-center px-0 pb-0"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[6] flex w-full justify-center px-0 pb-0"
         aria-hidden
       >
         <LogoWordmark
           ref={megawordRef}
-          style={megafontApplied ? { fontSize: megafontPx } : undefined}
+          style={{
+            fontSize: megafontApplied ? `${megafontPx}px` : MEGAWORD_FALLBACK_FONT,
+          }}
           className={cn(
-            "inline-block w-max max-w-full whitespace-nowrap text-charcoal/85 drop-shadow-[0_2px_24px_rgba(255,255,255,0.12)]",
-            !megafontApplied && "text-[length:clamp(3.5rem,calc(100vw/6.5),50rem)]"
+            "inline-block w-max max-w-full whitespace-nowrap text-charcoal drop-shadow-[0_2px_28px_rgba(255,255,255,0.14)]",
+            /** subtle wash so it reads clearly on concrete behind the card */
+            "[text-shadow:0_1px_0_rgba(255,255,255,0.06)]"
           )}
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
+      <div className="relative mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         {/* Navbar sits above this section in the document; flex-center places the sheet in the viewport band */}
         <div
           ref={slotRef}
@@ -172,7 +179,7 @@ export function HomeHero() {
             <div
               ref={flyerRef}
               style={flyerStyle}
-              className="relative w-full max-w-[min(42rem,100%)] will-change-transform"
+              className="relative z-10 w-full max-w-[min(42rem,100%)] will-change-transform"
             >
               <motion.div
                 variants={staggerContainer}
