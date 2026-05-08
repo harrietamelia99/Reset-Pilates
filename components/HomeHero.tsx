@@ -55,14 +55,12 @@ export function HomeHero() {
   const bridgeHeight = fit.naturalH * fit.scale;
 
   /**
-   * Megawordmark sizing — CSS-only (no binary-search JS).
-   * Fixed `letter-spacing: 24px` on LogoWordmark made width dominated by px gaps at small font sizes,
-   * shrinking the fitted text until it was effectively invisible. Here we use em spacing + vw clamp.
+   * Megawordmark — centered in the hero behind the flyer (reference: full-bleed width, vertically centered).
+   * vw-based sizing fills the viewport width; no vh cap so it stays visually dominant behind the card.
    */
   const megawordStyle: CSSProperties = {
-    fontSize:
-      "clamp(3.75rem, calc((100vw - 1rem) / 5.25), min(42rem, min(92vw, 55vh)))",
-    letterSpacing: "0.11em",
+    fontSize: "clamp(4.25rem, calc((100vw - 0.5rem) / 5), min(58rem, 96vw))",
+    letterSpacing: "0.12em",
   };
 
   return (
@@ -81,16 +79,16 @@ export function HomeHero() {
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
-      {/* Megawordmark: z-[2] stays below content column (z-10) so it reads as the hero plate; letterSpacing/fontSize inline override LogoWordmark defaults */}
+      {/* Megawordmark — full hero plate, vertically + horizontally centered behind the flyer (z below content) */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 left-0 right-0 z-[2] flex w-full justify-center px-0 pb-0"
+        className="pointer-events-none absolute inset-0 z-[2] flex w-full items-center justify-center px-0 py-0"
         aria-hidden
       >
         <LogoWordmark
           style={megawordStyle}
           className={cn(
             "inline-block w-max max-w-[min(100%,100vw)] whitespace-nowrap text-charcoal",
-            "drop-shadow-[0_2px_32px_rgba(255,255,255,0.18)] [text-shadow:0_1px_0_rgba(255,255,255,0.08)]"
+            "drop-shadow-[0_2px_36px_rgba(255,255,255,0.2)] [text-shadow:0_1px_0_rgba(255,255,255,0.1)]"
           )}
         />
       </div>
