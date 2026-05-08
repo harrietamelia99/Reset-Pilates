@@ -47,6 +47,15 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
 
       if (targetNeed <= 0) return;
 
+      /** Narrow viewports: width-only binary search can overscale vs hero height — cap by section height */
+      const applyMobileHeightCap = (px: number) => {
+        if (innerW >= 768 || !hero) return px;
+        const h = hero.clientHeight;
+        if (h <= 0) return px;
+        const maxPx = ((h * 0.36) / 0.87);
+        return Math.min(px, maxPx);
+      };
+
       let lo = 4;
       let hi = 48;
       text.style.fontSize = `${hi}px`;
@@ -57,7 +66,7 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
         void text.offsetWidth;
       }
       if (readTextWidth(text) < targetNeed) {
-        setFontPx(hi);
+        setFontPx(applyMobileHeightCap(hi));
         text.style.transform = "";
         return;
       }
@@ -80,7 +89,7 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
         void text.offsetWidth;
       }
 
-      setFontPx(chosen);
+      setFontPx(applyMobileHeightCap(chosen));
       text.style.transform = "";
     };
 
@@ -116,7 +125,7 @@ export function HeroBackgroundWordmark({ heroRef }: Props) {
       <div className="flex w-full items-end justify-center overflow-visible">
         <span
           ref={textRef}
-          className="block max-w-none whitespace-nowrap font-normal lowercase antialiased translate-x-0 translate-y-[calc(0.10em+10px)] md:translate-x-[6px] md:translate-y-[calc(0.14em+14px)]"
+          className="block max-w-none whitespace-nowrap font-normal lowercase antialiased translate-x-0 translate-y-[calc(0.15em+16px)] md:translate-x-[6px] md:translate-y-[calc(0.14em+14px)]"
           style={{
             fontFamily: 'var(--font-logo-wordmark), Georgia, "Times New Roman", serif',
             fontWeight: 400,
