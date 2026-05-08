@@ -106,69 +106,70 @@ export default function HomePage() {
 
       <MotionSection className="surface-editorial-dark-deep relative overflow-hidden text-white">
         <div className="grain-layer opacity-20" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
-          <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/55">
-            Pre-launch · Limited
-          </p>
-          <div className="rule-section-dark my-6 w-full" aria-hidden />
-          <h2 className="max-w-[20ch] text-3xl font-bold uppercase tracking-heading md:text-4xl lg:text-[2.5rem] lg:leading-[1.1]">
-            Become a founding member.
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
-            Be one of the first 30 members and lock in a special rate for your first 12 months. This
-            offer won&apos;t last.
-          </p>
-
-          <div className="mt-12 w-full md:mt-14">
-            <div className="rule-section-dark w-full" aria-hidden />
-            <p className="py-5 text-center font-accent text-[10px] uppercase leading-relaxed tracking-[0.16em] text-white/70 sm:tracking-[0.18em]">
-              <span className="block sm:inline">Founding cohort · 30 places</span>
-              <span className="mx-2 hidden text-white/25 sm:inline" aria-hidden>
-                ·
-              </span>
-              <span className="block sm:inline">Rate locked 12 months</span>
-              <span className="mx-2 hidden text-white/25 md:inline" aria-hidden>
-                ·
-              </span>
-              <span className="block pt-2 sm:inline sm:pt-0">Closes at opening</span>
-            </p>
-            <div className="rule-section-dark w-full" aria-hidden />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-28 lg:py-32">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
+            <header className="lg:col-span-7 xl:col-span-6">
+              <p className="font-sans text-[11px] uppercase tracking-[0.22em] text-white/50">
+                Pre-launch · Limited
+              </p>
+              <div className="mt-5 h-px w-14 bg-white/25" aria-hidden />
+              <h2 className="mt-8 max-w-[17ch] text-3xl font-bold uppercase leading-[1.12] tracking-heading text-white md:max-w-none md:text-[clamp(2rem,4vw,3rem)] md:leading-[1.08]">
+                Become a founding member.
+              </h2>
+            </header>
+            <div className="flex flex-col justify-end lg:col-span-5 lg:col-start-8 xl:col-span-5 xl:col-start-8">
+              <p className="font-playfair text-[1.0625rem] leading-[1.65] text-white/[0.82] md:text-lg md:leading-relaxed">
+                Be among the first 30 members and lock in a preferential rate for your first 12 months —
+                this invitation closes once we open.
+              </p>
+            </div>
           </div>
 
-          <div className="mt-12 grid gap-6 md:mt-14 lg:grid-cols-2 lg:gap-10">
-            <article className="flex flex-col border border-white/20 bg-white/[0.03] p-8 md:p-9">
-              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/50">Reformer</p>
-              <p className="mt-6 font-sans text-3xl font-bold tabular-nums tracking-tight text-white md:text-4xl">
+          <div className="mt-16 border-t border-white/[0.08] pt-9 md:mt-20 md:pt-11">
+            <p className="max-w-2xl font-sans text-[11px] uppercase tracking-[0.18em] text-white/40">
+              Founding cohort · 30 places · rate locked 12 months · closes at opening
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-5 sm:gap-6 lg:mt-16 lg:grid-cols-2 lg:gap-8">
+            <article className="flex flex-col border border-white/10 bg-white/[0.025] p-9 backdrop-blur-[2px] md:p-10">
+              <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/45">Reformer</p>
+              <p className="mt-8 font-sans text-3xl font-semibold tabular-nums tracking-tight text-white md:text-[2.35rem]">
                 £65
-                <span className="text-lg font-bold text-white/60 md:text-xl">/month</span>
+                <span className="text-lg font-medium text-white/55 md:text-xl">/month</span>
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/75">4 classes per month</p>
+              <p className="mt-4 font-sans text-sm font-normal leading-relaxed text-white/65">
+                4 classes per month
+              </p>
               <Link
                 href="/pricing"
-                className="mt-8 inline-flex w-full min-h-[44px] items-center justify-center bg-white px-6 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-white/90"
+                className="mt-10 inline-flex w-full min-h-[44px] items-center justify-center bg-white px-6 py-3.5 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal transition hover:bg-white/92"
               >
                 Secure your spot
               </Link>
             </article>
 
-            <article className="flex flex-col border border-white/20 bg-white/[0.03] p-8 md:p-9">
-              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-white/50">Mat</p>
-              <p className="mt-6 font-sans text-3xl font-bold tabular-nums tracking-tight text-white md:text-4xl">
+            <article className="flex flex-col border border-white/10 bg-white/[0.025] p-9 backdrop-blur-[2px] md:p-10">
+              <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/45">Mat</p>
+              <p className="mt-8 font-sans text-3xl font-semibold tabular-nums tracking-tight text-white md:text-[2.35rem]">
                 £35
-                <span className="text-lg font-bold text-white/60 md:text-xl">/month</span>
+                <span className="text-lg font-medium text-white/55 md:text-xl">/month</span>
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-white/75">4 classes per month</p>
+              <p className="mt-4 font-sans text-sm font-normal leading-relaxed text-white/65">
+                4 classes per month
+              </p>
               <Link
                 href="/pricing"
-                className="mt-8 inline-flex w-full min-h-[44px] items-center justify-center border border-white/70 bg-transparent px-6 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-white transition hover:border-white hover:bg-white/10"
+                className="mt-10 inline-flex w-full min-h-[44px] items-center justify-center border border-white/55 bg-transparent px-6 py-3.5 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition hover:border-white hover:bg-white/[0.06]"
               >
                 View pricing &amp; tiers
               </Link>
             </article>
           </div>
 
-          <p className="mt-12 max-w-2xl font-accent text-[11px] uppercase leading-relaxed tracking-[0.14em] text-white/45 md:mt-14">
-            Intro bundles and founding rates are on the pricing page — choose what fits your practice.
+          <p className="mt-14 max-w-xl font-playfair text-[15px] italic leading-relaxed text-white/45 md:mt-16">
+            Intro bundles and founding membership rates are listed on pricing — choose what suits your
+            practice.
           </p>
         </div>
       </MotionSection>
