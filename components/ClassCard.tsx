@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
@@ -15,6 +16,9 @@ type Props = {
   className?: string;
   /** Grey media block for future photography — default on */
   imagePlaceholder?: boolean;
+  /** When set, shows this photo instead of the placeholder */
+  imageSrc?: string;
+  imageAlt?: string;
 };
 
 export function ClassCard({
@@ -25,6 +29,8 @@ export function ClassCard({
   level,
   className,
   imagePlaceholder = true,
+  imageSrc,
+  imageAlt,
 }: Props) {
   return (
     <motion.article
@@ -34,7 +40,18 @@ export function ClassCard({
         className
       )}
     >
-      {imagePlaceholder && (
+      {imagePlaceholder && imageSrc && (
+        <div className="relative aspect-video w-full shrink-0 overflow-hidden border-0 border-b border-charcoal/10 bg-white">
+          <Image
+            src={imageSrc}
+            alt={imageAlt ?? title}
+            fill
+            className="object-cover object-center"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        </div>
+      )}
+      {imagePlaceholder && !imageSrc && (
         <PlaceholderImage
           aspect="video"
           className="w-full shrink-0 border-0 border-b border-charcoal/10 bg-white"

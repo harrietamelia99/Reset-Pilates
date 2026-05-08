@@ -93,6 +93,8 @@ export default function HomePage() {
           <ClassCard
             title="Mat Pilates"
             description="Foundation-led mat classes for all levels. Available pending final scheduling."
+            imageSrc="/images/mat-pilates.png"
+            imageAlt="Mat Pilates class — tabletop leg extension on a studio mat"
           />
         </div>
       </MotionSection>
