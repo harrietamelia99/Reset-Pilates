@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ClassDetailCard } from "@/components/ClassCard";
 import { MotionSection } from "@/components/MotionSection";
+import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { BOOKING_HREF } from "@/lib/constants";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -100,7 +101,12 @@ export default function ClassesPage() {
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Mat</p>
           <h2 className="mt-3 text-2xl font-bold uppercase tracking-heading text-charcoal">Mat Pilates</h2>
         </div>
-        <div className="mt-8 border border-dashed border-light-grey bg-white p-10 text-center">
+        <div className="mt-8 flex flex-col items-center border border-dashed border-light-grey bg-white p-8 text-center md:p-10">
+          <PlaceholderImage
+            aspect="video"
+            className="mb-8 w-full max-w-xl border-charcoal/10 bg-light-grey/50"
+            caption="[ Class photography coming soon ]"
+          />
           <p className="text-mid-grey">
             Mat Pilates classes coming soon — we&apos;ll update this page closer to launch.
           </p>

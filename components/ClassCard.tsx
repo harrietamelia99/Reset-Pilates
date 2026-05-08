@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { BOOKING_HREF } from "@/lib/constants";
+import { PlaceholderImage } from "@/components/PlaceholderImage";
 
 type Props = {
   title: string;
@@ -12,6 +13,8 @@ type Props = {
   linkLabel?: string;
   level?: string;
   className?: string;
+  /** Grey media block for future photography — default on */
+  imagePlaceholder?: boolean;
 };
 
 export function ClassCard({
@@ -21,6 +24,7 @@ export function ClassCard({
   linkLabel = "View classes",
   level,
   className,
+  imagePlaceholder = true,
 }: Props) {
   return (
     <motion.article
@@ -30,6 +34,9 @@ export function ClassCard({
         className
       )}
     >
+      {imagePlaceholder && (
+        <PlaceholderImage aspect="video" className="mb-6 w-full shrink-0 border-charcoal/10 bg-white" />
+      )}
       {level && (
         <span className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
           {level}
@@ -58,16 +65,21 @@ export function ClassDetailCard({
   title,
   description,
   level,
+  imagePlaceholder = true,
 }: {
   title: string;
   description: string;
   level: string;
+  imagePlaceholder?: boolean;
 }) {
   return (
     <motion.article
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }}
       className="flex h-full flex-col bg-light-grey/35 p-8 transition-colors duration-300 hover:bg-light-grey/55"
     >
+      {imagePlaceholder && (
+        <PlaceholderImage aspect="video" className="mb-6 w-full shrink-0 border-charcoal/10 bg-white" />
+      )}
       <span className="inline-flex max-w-fit rounded-full border border-charcoal/25 px-3 py-1 font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
         {level}
       </span>

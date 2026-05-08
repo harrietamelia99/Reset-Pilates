@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BookingWidget } from "@/components/BookingWidget";
 import { MotionSection } from "@/components/MotionSection";
+import { PlaceholderImage } from "@/components/PlaceholderImage";
 import { PricingCard } from "@/components/PricingCard";
 import { BOOKING_HREF } from "@/lib/constants";
 
@@ -76,6 +77,7 @@ export default function PricingPage() {
 
       <MotionSection className="mx-auto max-w-6xl px-4 py-16 md:px-6">
         <div className="border border-charcoal bg-white p-8 md:p-12">
+          <PlaceholderImage aspect="video" className="mb-8 w-full border-charcoal/10 bg-light-grey/40" />
           <div>
             <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">
               New to Reset? Start here.
