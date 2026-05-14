@@ -62,7 +62,7 @@ export default function FaqPage() {
         </div>
       </MotionSection>
 
-      <PosterCtaBand delay={0.08} breathAfterStack>
+      <PosterCtaBand delay={0.08}>
         <div className="min-w-0 flex-1 text-center md:text-left">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Still unsure?</p>
           <div className="rule-section mx-auto my-5 max-w-xs md:mx-0" aria-hidden />

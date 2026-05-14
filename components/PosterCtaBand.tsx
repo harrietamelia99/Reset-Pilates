@@ -18,26 +18,15 @@ type Props = {
   bare?: boolean;
   delay?: number;
   id?: string;
-  /** Extra top margin when this band sits directly under another poster / textured CTA */
-  breathAfterStack?: boolean;
 };
 
-export function PosterCtaBand({
-  children,
-  className,
-  sheetClassName,
-  bare,
-  delay,
-  id,
-  breathAfterStack,
-}: Props) {
+export function PosterCtaBand({ children, className, sheetClassName, bare, delay, id }: Props) {
   return (
     <MotionSection
       id={id}
       delay={delay}
       className={cn(
         "surface-poster-hero relative overflow-hidden border-t border-white/10 py-16 md:py-20",
-        breathAfterStack && "mt-12 border-t-white/25 pt-10 md:mt-20 md:pt-14",
         className
       )}
     >

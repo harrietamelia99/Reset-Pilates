@@ -249,7 +249,7 @@ export default function HomePage() {
       <HomeInstagramSection />
       <HomeEmailAlertsSection />
 
-      <PosterCtaBand breathAfterStack>
+      <PosterCtaBand>
             <div className="min-w-0 flex-1">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
                 Stay close to launch

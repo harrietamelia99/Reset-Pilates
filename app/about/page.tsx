@@ -110,7 +110,6 @@ export default function AboutPage() {
 
       <PosterCtaBand
         delay={0.1}
-        breathAfterStack
         sheetClassName="flex-col items-center justify-center py-12 text-center md:flex-col md:py-14"
       >
         <div className="mx-auto max-w-3xl">

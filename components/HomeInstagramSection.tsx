@@ -10,7 +10,7 @@ import { INSTAGRAM_HOME_GRID } from "@/lib/home-instagram";
 
 export function HomeInstagramSection() {
   return (
-    <PosterCtaBand breathAfterStack sheetClassName="flex-col gap-10 md:flex-col md:items-stretch">
+    <PosterCtaBand sheetClassName="flex-col gap-10 md:flex-col md:items-stretch">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div className="max-w-xl">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Instagram</p>
