@@ -14,13 +14,13 @@ export const CONTACT = {
   addressLine: "10A Colliers Walk, Nailsea,\nNorth Somerset, BS48 1RD",
   locationNote:
     "Located in the Crown Glass Shopping Centre, between JOI Salon and Coffee Corner Café.",
-  hours: "Mon–Fri 06:30–20:30 | Sat–Sun 08:30–12:30",
+  hours: "Mon–Fri 06:30–20:30 · Sat–Sun 08:30–12:30",
   instagram: {
     handle: "@reset_pilatesstudio",
     url: "https://www.instagram.com/reset_pilatesstudio/",
   },
   facebook: {
-    url: "https://www.facebook.com/",
+    url: "https://www.facebook.com/share/1Jg8DSXtaY/?mibextid=wwXIfr",
   },
 } as const;
 
@@ -46,6 +46,12 @@ export const FORMSPREE_ACTION =
  * Email alerts signup — can match {@link FORMSPREE_ACTION} or use a separate Formspree form ID.
  */
 export const EMAIL_ALERTS_FORMSPREE_ACTION = FORMSPREE_ACTION;
+
+/**
+ * General enquiries from `/contact`. Use a dedicated Formspree form in the dashboard if you want
+ * these separated from alerts.
+ */
+export const CONTACT_FORMSPREE_ACTION = FORMSPREE_ACTION;
 
 export const OPENING_DATE_LABEL =
   "Opening 1st June 2026 — Founding memberships available for the first 30 members";

@@ -8,11 +8,13 @@ type Props = {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  id?: string;
 };
 
-export function MotionSection({ children, className, delay = 0 }: Props) {
+export function MotionSection({ children, className, delay = 0, id }: Props) {
   return (
     <motion.section
+      id={id}
       className={cn(className)}
       initial="hidden"
       whileInView="visible"
