@@ -13,7 +13,7 @@ type Props = {
 
 /**
  * Brand wordmark — vector at `public/brand/reset-wordmark.svg` (tight viewBox; matches export spacing).
- * Default `h-*` targets nav bar; SVG is trimmed so height tracks the letters more closely.
+ * Default `h-*` targets nav bar (footer passes its own `className`).
  */
 export const LogoWordmark = forwardRef<HTMLImageElement, Props>(function LogoWordmark(
   { className, variant = "default", as: Tag = "span", style },
@@ -29,7 +29,7 @@ export const LogoWordmark = forwardRef<HTMLImageElement, Props>(function LogoWor
       unoptimized
       draggable={false}
       className={cn(
-        "h-[clamp(2.75rem,6.25vw,3.75rem)] w-auto max-w-full",
+        "h-[clamp(2rem,4.5vw,2.625rem)] w-auto max-w-full",
         variant === "light" && "brightness-0 invert",
         className
       )}

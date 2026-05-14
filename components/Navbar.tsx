@@ -16,7 +16,7 @@ function NavInstagram({ className }: { className?: string }) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal/15 text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:border-charcoal/35 hover:bg-light-grey/60 hover:opacity-100 hover:shadow-sm active:translate-y-0",
+        "inline-flex items-center justify-center p-1 text-charcoal transition-all duration-300 hover:-translate-y-px hover:opacity-70 active:translate-y-0",
         className
       )}
       aria-label={`Instagram (${CONTACT.instagram.handle})`}
