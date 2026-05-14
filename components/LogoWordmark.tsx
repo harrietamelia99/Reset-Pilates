@@ -29,7 +29,7 @@ export const LogoWordmark = forwardRef<HTMLImageElement, Props>(function LogoWor
       unoptimized
       draggable={false}
       className={cn(
-        "h-[clamp(2.25rem,5.5vw,3rem)] w-auto max-w-full",
+        "h-[clamp(2.75rem,6.25vw,3.75rem)] w-auto max-w-full",
         variant === "light" && "brightness-0 invert",
         className
       )}
