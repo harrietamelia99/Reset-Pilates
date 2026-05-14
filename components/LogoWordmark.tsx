@@ -12,8 +12,8 @@ type Props = {
 };
 
 /**
- * Brand wordmark — vector at `public/brand/reset-wordmark.svg` (spacing matches design export).
- * Default height: SVG viewBox includes vertical padding — needs a taller box than text `font-size` for a similar visual.
+ * Brand wordmark — vector at `public/brand/reset-wordmark.svg` (tight viewBox; matches export spacing).
+ * Default `h-*` targets nav bar; SVG is trimmed so height tracks the letters more closely.
  */
 export const LogoWordmark = forwardRef<HTMLImageElement, Props>(function LogoWordmark(
   { className, variant = "default", as: Tag = "span", style },
@@ -24,8 +24,8 @@ export const LogoWordmark = forwardRef<HTMLImageElement, Props>(function LogoWor
       ref={ref}
       src="/brand/reset-wordmark.svg"
       alt="reset."
-      width={705}
-      height={591}
+      width={530}
+      height={170}
       unoptimized
       draggable={false}
       className={cn(
