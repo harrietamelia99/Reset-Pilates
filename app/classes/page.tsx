@@ -62,7 +62,7 @@ export default function ClassesPage() {
 
       <MotionSection className="relative bg-white pb-6 md:pb-10" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet flat className="p-6 md:p-8">
+          <PaperSheet flat pin={false} className="p-6 md:p-8">
             <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Levels</h2>
             <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
             <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{LEVELS_OFFERED}</p>
@@ -75,7 +75,7 @@ export default function ClassesPage() {
           <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Reformer</h2>
           <div className="grid gap-8 md:grid-cols-2">
             {REFORMER_CLASSES.map((c) => (
-              <PaperSheet key={c.name} flat className="p-6 md:p-8">
+              <PaperSheet key={c.name} flat pin={false} className="p-6 md:p-8">
                 <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-warm-grey">{c.level}</p>
                 <h3 className="mt-2 text-xl font-bold uppercase tracking-heading text-charcoal">{c.name}</h3>
                 <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
@@ -86,7 +86,7 @@ export default function ClassesPage() {
 
           <div>
             <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Hot mat</h2>
-            <PaperSheet flat className="mt-6 p-6 md:p-8">
+            <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
               <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{HOT_MAT_CLASS.name}</h3>
               <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
               <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{HOT_MAT_CLASS.body}</p>
@@ -95,14 +95,14 @@ export default function ClassesPage() {
 
           <div>
             <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Mat</h2>
-            <PaperSheet flat className="mt-6 p-6 md:p-8">
+            <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
               <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{MAT_CLASS.name}</h3>
               <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
               <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{MAT_CLASS.body}</p>
             </PaperSheet>
           </div>
 
-          <PaperSheet flat className="p-6 md:p-8">
+          <PaperSheet flat pin={false} className="p-6 md:p-8">
             <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">What to bring</h2>
             <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
             <p className="font-accent text-sm font-medium text-charcoal">Hot Pilates</p>
@@ -112,7 +112,7 @@ export default function ClassesPage() {
             <p className="mt-6 font-accent text-sm leading-relaxed text-mid-grey">{GRIP_SOCKS_POLICY}</p>
           </PaperSheet>
 
-          <PaperSheet flat className="p-6 md:p-8">
+          <PaperSheet flat pin={false} className="p-6 md:p-8">
             <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Parking &amp; buses</h2>
             <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
             <p className="font-accent text-sm leading-relaxed text-mid-grey">{PARKING_INFO}</p>

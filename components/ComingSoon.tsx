@@ -48,6 +48,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
           <div className="mx-auto w-full max-w-[min(42rem,100%)]">
             <PaperSheet
               poster
+              pin={false}
               className="px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10 lg:px-11 lg:py-11"
             >
               <p className="text-center font-accent text-[9px] uppercase tracking-[0.2em] text-charcoal md:text-[10px]">
@@ -173,7 +174,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
         <div className="vignette-layer z-[1]" aria-hidden />
 
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet flat className="flex flex-col justify-between gap-6 px-6 py-8 md:flex-row md:items-center md:gap-8 md:px-10 md:py-10">
+          <PaperSheet flat pin={false} className="flex flex-col justify-between gap-6 px-6 py-8 md:flex-row md:items-center md:gap-8 md:px-10 md:py-10">
             <div className="min-w-0 flex-1 text-center md:text-left">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
                 {label}

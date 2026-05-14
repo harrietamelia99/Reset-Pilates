@@ -29,7 +29,7 @@ export function ContactView() {
       <MotionSection className="relative bg-white pb-16 md:pb-24" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:gap-14">
-            <PaperSheet flat className="p-6 md:p-8 lg:p-10">
+            <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
               <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
                 Send a message
               </h2>
@@ -41,7 +41,7 @@ export function ContactView() {
             </PaperSheet>
 
             <aside className="flex flex-col gap-6">
-              <PaperSheet flat className="p-6 md:p-8">
+              <PaperSheet flat pin={false} className="p-6 md:p-8">
                 <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Studio</h2>
                 <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
                 <div className="flex gap-3">
@@ -67,7 +67,7 @@ export function ContactView() {
                 </Link>
               </PaperSheet>
 
-              <PaperSheet flat className="p-6 md:p-8">
+              <PaperSheet flat pin={false} className="p-6 md:p-8">
                 <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Direct</h2>
                 <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
                 <ul className="space-y-5">

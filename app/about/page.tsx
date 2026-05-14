@@ -56,7 +56,7 @@ export default function AboutPage() {
 
       <MotionSection className="relative bg-white pb-16 md:pb-20" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet flat className="mx-auto max-w-3xl p-6 md:p-10 lg:p-12">
+          <PaperSheet flat pin={false} className="mx-auto max-w-3xl p-6 md:p-10 lg:p-12">
             <div className="space-y-6 text-center md:text-left">
               {ABOUT_STORY_PARAGRAPHS.map((p, i) => (
                 <p
@@ -83,12 +83,12 @@ export default function AboutPage() {
 
       <MotionSection className="relative border-t border-light-grey bg-white py-14 md:py-20" delay={0.08}>
         <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:gap-12 md:px-6">
-          <PaperSheet flat className="p-6 md:p-8">
+          <PaperSheet flat pin={false} className="p-6 md:p-8">
             <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Who Reset is for</h2>
             <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
             <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{IDEAL_CLIENT}</p>
           </PaperSheet>
-          <PaperSheet flat className="p-6 md:p-8">
+          <PaperSheet flat pin={false} className="p-6 md:p-8">
             <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">How we&apos;re different</h2>
             <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
             <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">

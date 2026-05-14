@@ -40,7 +40,7 @@ export default function FaqPage() {
         <div className="mx-auto max-w-6xl space-y-14 px-4 md:px-6">
           {FAQ_GROUPS.map((group, gi) => (
             <section key={group.title} aria-labelledby={`faq-section-${gi}`}>
-              <PaperSheet flat className="p-6 md:p-8 lg:p-10">
+              <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
                 <h2
                   id={`faq-section-${gi}`}
                   className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl"
@@ -64,7 +64,7 @@ export default function FaqPage() {
             </section>
           ))}
 
-          <PaperSheet flat className="p-6 md:p-8 lg:p-10">
+          <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
             <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
               Changing facilities
             </h2>
@@ -72,7 +72,7 @@ export default function FaqPage() {
             <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{CHANGING_INFO}</p>
           </PaperSheet>
 
-          <PaperSheet flat className="p-6 md:p-8 lg:p-10">
+          <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
             <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
               Health &amp; declarations
             </h2>
