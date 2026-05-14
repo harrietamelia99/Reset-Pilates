@@ -1,30 +1,199 @@
-import Link from "next/link";
+"use client";
 
-type Props = {
-  /** Optional label for meta / subtle context — not shown if omitted */
-  label?: string;
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { ArrowRight, CalendarDays, Home } from "lucide-react";
+import { MotionSection } from "@/components/MotionSection";
+import { PaperSheet } from "@/components/PaperSheet";
+import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
+import { BOOKING_HREF, CONTACT, OPENING_DATE_LABEL } from "@/lib/constants";
+import { cn } from "@/lib/cn";
+
+export type ComingSoonProps = {
+  /** Matches nav label — shown in the flyer eyebrow */
+  label: string;
+  /** Main headline inside the poster card */
+  headline: string;
+  /** Supporting paragraph (sentence case is fine; rendered centered) */
+  description: string;
 };
 
-export function ComingSoon({ label }: Props) {
+function BookOrPricingLink({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  if (BOOKING_HREF.startsWith("/")) {
+    return (
+      <Link href={BOOKING_HREF} className={className}>
+        {children}
+      </Link>
+    );
+  }
   return (
-    <div className="page-bg">
-      <div className="mx-auto flex min-h-[55vh] max-w-lg flex-col items-center justify-center px-4 py-24 text-center md:min-h-[60vh] md:py-32">
-        {label && (
-          <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">{label}</p>
-        )}
-        <h1 className="mt-4 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl">
-          Coming soon
-        </h1>
-        <p className="mt-5 text-mid-grey">
-          We&apos;re finishing this page — check back shortly.
-        </p>
-        <Link
-          href="/"
-          className="mt-10 inline-flex items-center justify-center border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-90"
-        >
-          Back to home
-        </Link>
-      </div>
-    </div>
+    <a href={BOOKING_HREF} className={className}>
+      {children}
+    </a>
+  );
+}
+
+export function ComingSoon({ label, headline, description }: ComingSoonProps) {
+  return (
+    <>
+      <MotionSection className="surface-editorial-dark relative overflow-hidden border-b border-white/10 py-14 md:py-20 lg:py-24">
+        <div className="grain-layer opacity-20" aria-hidden />
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6">
+          <div className="mx-auto w-full max-w-[min(42rem,100%)]">
+            <PaperSheet
+              poster
+              className="px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10 lg:px-11 lg:py-11"
+            >
+              <p className="text-center font-accent text-[9px] uppercase tracking-[0.2em] text-charcoal md:text-[10px]">
+                Pre-launch · {label}
+              </p>
+
+              <div className="rule-section my-2.5 md:my-4" />
+
+              <p className="text-center font-sans text-[10px] uppercase tracking-[0.28em] text-charcoal md:text-[11px]">
+                Nailsea · North Somerset
+              </p>
+
+              <h1 className="mt-4 text-center text-2xl font-bold uppercase leading-[1.05] tracking-heading text-charcoal sm:text-3xl md:mt-6 md:text-4xl md:leading-[1] lg:text-[2.5rem]">
+                {headline}
+              </h1>
+
+              <div className="rule-section my-4 md:my-5" />
+
+              <p className="text-center font-accent text-sm leading-relaxed tracking-[0.02em] text-charcoal md:text-[15px]">
+                {description}
+              </p>
+
+              <p className="mt-4 text-center font-accent text-[9px] uppercase leading-relaxed tracking-[0.18em] text-charcoal md:text-[10px]">
+                {OPENING_DATE_LABEL}
+              </p>
+
+              <div className="rule-section my-5 md:my-6" />
+
+              <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+                <Link
+                  href="/"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0"
+                >
+                  <Home className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+                  Back to home
+                </Link>
+                <BookOrPricingLink
+                  className={cn(
+                    "inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-white px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0"
+                  )}
+                >
+                  <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+                  Booking &amp; pricing
+                </BookOrPricingLink>
+              </div>
+
+              <p className="mt-5 text-center font-accent text-[9px] uppercase tracking-[0.16em] text-charcoal/80 md:text-[10px]">
+                Booking via Momence — link updates before launch.
+              </p>
+            </PaperSheet>
+          </div>
+        </div>
+      </MotionSection>
+
+      <MotionSection
+        delay={0.06}
+        className="relative border-t border-light-grey bg-white py-16 md:py-20"
+      >
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
+          <div className="mx-auto max-w-2xl md:mx-0 md:max-w-3xl">
+            <p className="text-center font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey md:text-left">
+              Stay in the loop
+            </p>
+            <div
+              className="rule-section mx-auto my-5 max-w-[12rem] md:mx-0"
+              aria-hidden
+            />
+            <h2 className="text-center text-2xl font-bold uppercase tracking-heading text-charcoal md:text-left md:text-3xl">
+              More on the home page
+            </h2>
+            <p className="mt-4 text-center text-[15px] leading-relaxed text-mid-grey md:text-left">
+              Founding memberships, intro bundles, studio imagery, and launch-week email signup all live on
+              the homepage while we finish this section.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 flex max-w-2xl flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:mx-0 md:mt-12 md:max-w-none md:justify-start">
+            <Link
+              href="/"
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
+            >
+              Home
+              <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+            </Link>
+            <a
+              href={CONTACT.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
+            >
+              <InstagramGlyph className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+              {CONTACT.instagram.handle}
+            </a>
+            <a
+              href={`mailto:${CONTACT.email}`}
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
+            >
+              Email the studio
+            </a>
+          </div>
+        </div>
+      </MotionSection>
+
+      <MotionSection
+        delay={0.1}
+        className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-14 md:py-18"
+      >
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/images/hero-industrial-texture.png)" }}
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-black/25"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-white/[0.04]"
+            aria-hidden
+          />
+        </div>
+        <div className="grain-layer z-[1]" aria-hidden />
+        <div className="vignette-layer z-[1]" aria-hidden />
+
+        <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
+          <PaperSheet flat className="flex flex-col justify-between gap-6 px-6 py-8 md:flex-row md:items-center md:gap-8 md:px-10 md:py-10">
+            <div className="min-w-0 flex-1 text-center md:text-left">
+              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
+                {label}
+              </p>
+              <div className="rule-section mx-auto my-4 max-w-xs md:mx-0" aria-hidden />
+              <p className="text-sm leading-relaxed text-mid-grey">
+                This URL stays live — we&apos;ll swap in the full page before opening day.
+              </p>
+            </div>
+            <div className="rule-section shrink-0 md:hidden" aria-hidden />
+            <Link
+              href="/"
+              className="inline-flex shrink-0 items-center justify-center gap-2 border border-charcoal bg-charcoal px-6 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0 md:self-center"
+            >
+              <Home className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+              Return home
+            </Link>
+          </PaperSheet>
+        </div>
+      </MotionSection>
+    </>
   );
 }
