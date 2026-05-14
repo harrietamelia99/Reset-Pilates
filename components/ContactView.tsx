@@ -29,7 +29,7 @@ export function ContactView() {
 
       <MotionSection className="relative bg-white pb-16 md:pb-24" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:gap-14">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-14">
             <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
               <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
                 Send a message
@@ -41,14 +41,17 @@ export function ContactView() {
               <ContactForm />
             </PaperSheet>
 
-            <aside className="flex flex-col gap-6">
-              <ImagePlaceholder
-                aspect="4/3"
-                caption="Reception or entrance, wayfinding / studio arrival photo."
-              />
-              <PaperSheet flat pin={false} className="p-6 md:p-8">
-                <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Studio</h2>
-                <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
+            <aside className="flex flex-col gap-8">
+              <div className="mt-8 shrink-0 md:mt-10 lg:mt-12">
+                <ImagePlaceholder
+                  aspect="4/3"
+                  caption="Reception or entrance, wayfinding / studio arrival photo."
+                />
+              </div>
+
+              <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">Studio</h2>
+                <div className="rule-section my-6 max-w-[10rem]" aria-hidden />
                 <div className="flex gap-3">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-charcoal/50" strokeWidth={1.5} aria-hidden />
                   <div className="space-y-2">
@@ -70,39 +73,39 @@ export function ContactView() {
                 >
                   Get directions
                 </Link>
-              </PaperSheet>
 
-              <PaperSheet flat pin={false} className="p-6 md:p-8">
-                <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Direct</h2>
-                <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
-                <ul className="space-y-5">
-                  <li>
-                    <a
-                      href={`mailto:${CONTACT.email}`}
-                      className="group inline-flex items-start gap-3 text-sm text-charcoal transition hover:opacity-80"
-                    >
-                      <Mail
-                        className="mt-0.5 h-5 w-5 shrink-0 text-charcoal/50 transition group-hover:text-charcoal"
-                        strokeWidth={1.5}
-                        aria-hidden
-                      />
-                      <span className="font-accent leading-snug underline-offset-4 group-hover:underline">
-                        {CONTACT.email}
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={CONTACT.instagram.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0 sm:w-auto"
-                    >
-                      <InstagramGlyph className="h-4 w-4 shrink-0 text-white" strokeWidth={1.5} />
-                      {CONTACT.instagram.handle}
-                    </a>
-                  </li>
-                </ul>
+                <div className="mt-10 border-t border-charcoal/10 pt-10">
+                  <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">Direct</h3>
+                  <div className="rule-section my-6 max-w-[10rem]" aria-hidden />
+                  <ul className="space-y-5">
+                    <li>
+                      <a
+                        href={`mailto:${CONTACT.email}`}
+                        className="group inline-flex items-start gap-3 text-sm text-charcoal transition hover:opacity-80"
+                      >
+                        <Mail
+                          className="mt-0.5 h-5 w-5 shrink-0 text-charcoal/50 transition group-hover:text-charcoal"
+                          strokeWidth={1.5}
+                          aria-hidden
+                        />
+                        <span className="font-accent leading-snug underline-offset-4 group-hover:underline">
+                          {CONTACT.email}
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={CONTACT.instagram.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0 sm:w-auto"
+                      >
+                        <InstagramGlyph className="h-4 w-4 shrink-0 text-white" strokeWidth={1.5} />
+                        {CONTACT.instagram.handle}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </PaperSheet>
             </aside>
           </div>

@@ -170,11 +170,11 @@ export function ContactForm({ className }: Props) {
         )}
       </div>
 
-      <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center">
+      <div className="grid gap-4 pt-2 sm:grid-cols-[auto,minmax(0,1fr)] sm:items-center sm:gap-x-6 sm:gap-y-2">
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none sm:shrink-0"
+          className="inline-flex min-h-[44px] w-fit items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           {status === "sending" ? (
             "Sending…"
@@ -185,7 +185,7 @@ export function ContactForm({ className }: Props) {
             </>
           )}
         </button>
-        <p className="font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em] text-warm-grey">
+        <p className="font-accent text-[11px] uppercase leading-snug tracking-[0.12em] text-warm-grey sm:max-w-sm">
           We never share your details. Prefer email?{" "}
           <a href={`mailto:${CONTACT.email}`} className="text-charcoal underline-offset-2 hover:underline">
             {CONTACT.email}
