@@ -104,7 +104,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
         </div>
       </MotionSection>
 
-      <PosterCtaBand delay={0.06}>
+      <PosterCtaBand delay={0.06} breathAfterStack>
             <div className="min-w-0 flex-1 text-center md:text-left">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Stay in the loop</p>
               <div className="rule-section mx-auto my-5 max-w-xs md:mx-0" aria-hidden />
@@ -143,7 +143,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
             </div>
       </PosterCtaBand>
 
-      <PosterCtaBand delay={0.1} sheetClassName="gap-6 px-6 py-8 md:flex-row md:items-center md:gap-8 md:px-10 md:py-10">
+      <PosterCtaBand delay={0.1} breathAfterStack sheetClassName="gap-6 px-6 py-8 md:flex-row md:items-center md:gap-8 md:px-10 md:py-10">
             <div className="min-w-0 flex-1 text-center md:text-left">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">{label}</p>
               <div className="rule-section mx-auto my-4 max-w-xs md:mx-0" aria-hidden />

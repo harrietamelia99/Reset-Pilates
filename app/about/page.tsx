@@ -108,7 +108,11 @@ export default function AboutPage() {
         </div>
       </MotionSection>
 
-      <PosterCtaBand delay={0.1} sheetClassName="flex-col items-center justify-center py-12 text-center md:flex-col md:py-14">
+      <PosterCtaBand
+        delay={0.1}
+        breathAfterStack
+        sheetClassName="flex-col items-center justify-center py-12 text-center md:flex-col md:py-14"
+      >
         <div className="mx-auto max-w-3xl">
           <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-mid-grey">Ethos</p>
           <div className="rule-section mx-auto my-5 max-w-xs" aria-hidden />

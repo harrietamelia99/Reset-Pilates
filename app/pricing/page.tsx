@@ -324,7 +324,7 @@ export default function PricingPage() {
         </div>
       </MotionSection>
 
-      <PosterCtaBand id="book" className="scroll-mt-28" delay={0.1}>
+      <PosterCtaBand id="book" className="scroll-mt-28" delay={0.1} breathAfterStack>
             <div className="min-w-0 flex-1 text-center md:text-left">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Booking</p>
               <div className="rule-section mx-auto my-5 max-w-xs md:mx-0" aria-hidden />

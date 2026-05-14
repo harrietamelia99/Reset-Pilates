@@ -113,7 +113,7 @@ export function ContactView() {
         </div>
       </MotionSection>
 
-      <PosterCtaBand delay={0.06}>
+      <PosterCtaBand delay={0.06} breathAfterStack>
         <div className="min-w-0 flex-1 text-center md:text-left">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Visit</p>
           <div className="rule-section mx-auto my-5 max-w-xs md:mx-0" aria-hidden />
