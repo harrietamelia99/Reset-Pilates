@@ -8,7 +8,6 @@ import { PosterCtaBand } from "@/components/PosterCtaBand";
 import { ContactForm } from "@/components/ContactForm";
 import { HomeMapSection } from "@/components/HomeMapSection";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BOOKING_HREF, CONTACT, MAP_EXTERNAL_URL } from "@/lib/constants";
 
 export function ContactView() {
@@ -42,14 +41,7 @@ export function ContactView() {
               <ContactForm balanceWithColumn className="min-h-0 flex-1" />
             </PaperSheet>
 
-            <aside className="flex h-full min-h-0 flex-col gap-8">
-              <div className="mt-8 shrink-0 md:mt-10 lg:mt-0">
-                <ImagePlaceholder
-                  aspect="4/3"
-                  caption="Reception or entrance, wayfinding / studio arrival photo."
-                />
-              </div>
-
+            <aside className="flex h-full min-h-0 flex-col">
               <PaperSheet flat pin={false} className="flex flex-1 flex-col p-6 md:p-8 lg:p-10">
                 <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">Studio</h2>
                 <div className="rule-section my-6 max-w-[10rem]" aria-hidden />
