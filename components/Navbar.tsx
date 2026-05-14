@@ -60,7 +60,13 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-light-grey bg-white font-sans">
+    <header
+      className={cn(
+        "sticky top-0 border-b border-light-grey bg-white font-sans",
+        /** Menu open: stack above `PreLaunchBanner` (z-60) so overlay isn’t clipped under it */
+        open ? "z-[70]" : "z-50"
+      )}
+    >
       {/** Toolbar must stack above `#mobile-nav` overlay or the menu button (→ X) is covered */}
       <div className="relative z-50 mx-auto flex max-w-6xl items-center justify-between gap-6 bg-white px-4 py-5 md:px-6">
         <Link
@@ -119,14 +125,14 @@ export function Navbar() {
       >
         <button
           type="button"
-          className="absolute right-4 top-5 flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-light-grey/80 hover:shadow-sm active:translate-y-0"
+          className="absolute right-4 top-[max(1.25rem,env(safe-area-inset-top,0px))] flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-light-grey/80 hover:shadow-sm active:translate-y-0"
           aria-label="Close menu"
           onClick={() => setOpen(false)}
         >
           <CloseIcon className="h-6 w-6 shrink-0" />
         </button>
         <nav
-          className="mx-auto flex max-h-screen flex-col gap-1 overflow-y-auto px-6 pb-12 pt-24"
+          className="mx-auto flex max-h-screen flex-col gap-1 overflow-y-auto px-6 pb-12 pt-[max(7.5rem,calc(5.5rem+env(safe-area-inset-top,0px)))]"
           aria-label="Mobile"
         >
           {NAV_LINKS.map((l) => (

@@ -121,7 +121,7 @@
   }
 
   /*
-   * Home hero — grey wash + gradients in `HomeHero` (no bitmap hero texture);
+   * Home hero — `hero-industrial-texture.png` under gradients in `HomeHero`;
    * this class provides fallback fill, noise + vignette layers, and text colour.
    */
   .surface-poster-hero {

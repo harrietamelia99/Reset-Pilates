@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
@@ -56,9 +57,24 @@ export function HomeHero() {
       className="surface-poster-hero relative isolate h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-        <div className="absolute inset-0 bg-[#535355]" aria-hidden />
-        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.09] via-transparent to-black/22" aria-hidden />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-white/[0.05]" aria-hidden />
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-industrial-texture.png"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        </div>
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-black/25"
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-white/[0.04]"
+          aria-hidden
+        />
       </div>
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
@@ -66,7 +82,7 @@ export function HomeHero() {
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         <div
           ref={slotRef}
-          className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center overflow-visible md:-translate-y-10 lg:-translate-y-12"
+          className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center overflow-visible"
         >
           <div
             className="relative mx-auto flex w-full max-w-[min(42rem,100%)] items-center justify-center overflow-visible px-1 sm:px-4"
