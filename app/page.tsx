@@ -12,7 +12,7 @@ import { PaperSheet } from "@/components/PaperSheet";
 import { HomeMapSection } from "@/components/HomeMapSection";
 import { HomeInstagramSection } from "@/components/HomeInstagramSection";
 import { HomeEmailAlertsSection } from "@/components/HomeEmailAlertsSection";
-import { PosterHeroBackdrop } from "@/components/PosterHeroBackdrop";
+import { PosterCtaBand } from "@/components/PosterCtaBand";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -249,12 +249,7 @@ export default function HomePage() {
       <HomeInstagramSection />
       <HomeEmailAlertsSection />
 
-      <MotionSection className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-16 md:py-20">
-        <PosterHeroBackdrop />
-        <div className="grain-layer z-[1]" aria-hidden />
-        <div className="vignette-layer z-[1]" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet flat className="flex flex-col justify-between gap-8 px-8 py-10 md:flex-row md:items-center md:px-12 md:py-12">
+      <PosterCtaBand>
             <div className="min-w-0 flex-1">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
                 Stay close to launch
@@ -286,9 +281,7 @@ export default function HomePage() {
                 Email the studio
               </Link>
             </div>
-          </PaperSheet>
-        </div>
-      </MotionSection>
+      </PosterCtaBand>
     </>
   );
 }

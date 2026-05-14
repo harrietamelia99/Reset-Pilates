@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
+import { PosterCtaBand } from "@/components/PosterCtaBand";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BOOKING_HREF } from "@/lib/constants";
 import {
@@ -107,16 +108,15 @@ export default function AboutPage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="surface-editorial-dark relative overflow-hidden py-14 md:py-20" delay={0.1}>
-        <div className="grain-layer opacity-20" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-3xl px-4 text-center md:px-6">
-          <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-white/60">Ethos</p>
-          <div className="mx-auto mt-4 h-px w-14 bg-white/30" aria-hidden />
-          <p className="mt-6 font-accent text-sm leading-relaxed text-white/85 md:text-base">
+      <PosterCtaBand delay={0.1} sheetClassName="flex-col items-center justify-center py-12 text-center md:flex-col md:py-14">
+        <div className="mx-auto max-w-3xl">
+          <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-mid-grey">Ethos</p>
+          <div className="rule-section mx-auto my-5 max-w-xs" aria-hidden />
+          <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-base">
             {STUDIO_ETHOS_WELCOME}
           </p>
         </div>
-      </MotionSection>
+      </PosterCtaBand>
     </>
   );
 }

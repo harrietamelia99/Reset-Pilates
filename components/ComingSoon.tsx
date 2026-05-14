@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { ArrowRight, CalendarDays, Home } from "lucide-react";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
-import { PosterHeroBackdrop } from "@/components/PosterHeroBackdrop";
+import { PosterCtaBand } from "@/components/PosterCtaBand";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
 import { BOOKING_HREF, CONTACT, OPENING_DATE_LABEL } from "@/lib/constants";
 import { cn } from "@/lib/cn";
@@ -104,69 +104,48 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
         </div>
       </MotionSection>
 
-      <MotionSection
-        delay={0.06}
-        className="relative border-t border-light-grey bg-white py-16 md:py-20"
-      >
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <div className="mx-auto max-w-2xl md:mx-0 md:max-w-3xl">
-            <p className="text-center font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey md:text-left">
-              Stay in the loop
-            </p>
-            <div
-              className="rule-section mx-auto my-5 max-w-[12rem] md:mx-0"
-              aria-hidden
-            />
-            <h2 className="text-center text-2xl font-bold uppercase tracking-heading text-charcoal md:text-left md:text-3xl">
-              More on the home page
-            </h2>
-            <p className="mt-4 text-center text-[15px] leading-relaxed text-mid-grey md:text-left">
-              Founding memberships, intro bundles, studio imagery, and launch-week email signup all live on
-              the homepage while we finish this section.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-10 flex max-w-2xl flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:mx-0 md:mt-12 md:max-w-none md:justify-start">
-            <Link
-              href="/"
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
-            >
-              Home
-              <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
-            </Link>
-            <a
-              href={CONTACT.instagram.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
-            >
-              <InstagramGlyph className="h-4 w-4 shrink-0" strokeWidth={1.5} />
-              {CONTACT.instagram.handle}
-            </a>
-            <a
-              href={`mailto:${CONTACT.email}`}
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
-            >
-              Email the studio
-            </a>
-          </div>
-        </div>
-      </MotionSection>
-
-      <MotionSection
-        delay={0.1}
-        className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-14 md:py-20"
-      >
-        <PosterHeroBackdrop />
-        <div className="grain-layer z-[1]" aria-hidden />
-        <div className="vignette-layer z-[1]" aria-hidden />
-
-        <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet flat pin={false} className="flex flex-col justify-between gap-6 px-6 py-8 md:flex-row md:items-center md:gap-8 md:px-10 md:py-10">
+      <PosterCtaBand delay={0.06}>
             <div className="min-w-0 flex-1 text-center md:text-left">
-              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
-                {label}
+              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Stay in the loop</p>
+              <div className="rule-section mx-auto my-5 max-w-xs md:mx-0" aria-hidden />
+              <h2 className="text-xl font-bold uppercase tracking-heading text-editorial-ink md:text-2xl">
+                More on the home page
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-mid-grey md:text-[15px]">
+                Founding memberships, intro bundles, studio imagery, and launch-week email signup all live on the
+                homepage while we finish this section.
               </p>
+            </div>
+            <div className="rule-section shrink-0 md:hidden" aria-hidden />
+            <div className="flex w-full min-w-0 flex-col flex-wrap gap-3 sm:flex-row sm:items-center md:w-auto md:justify-end">
+              <Link
+                href="/"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
+              >
+                Home
+                <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+              </Link>
+              <a
+                href={CONTACT.instagram.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
+              >
+                <InstagramGlyph className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+                {CONTACT.instagram.handle}
+              </a>
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-charcoal bg-transparent px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 sm:min-w-[11rem]"
+              >
+                Email the studio
+              </a>
+            </div>
+      </PosterCtaBand>
+
+      <PosterCtaBand delay={0.1} sheetClassName="gap-6 px-6 py-8 md:flex-row md:items-center md:gap-8 md:px-10 md:py-10">
+            <div className="min-w-0 flex-1 text-center md:text-left">
+              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">{label}</p>
               <div className="rule-section mx-auto my-4 max-w-xs md:mx-0" aria-hidden />
               <p className="text-sm leading-relaxed text-mid-grey">
                 This URL stays live, we&apos;ll swap in the full page before opening day.
@@ -180,9 +159,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
               <Home className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
               Return home
             </Link>
-          </PaperSheet>
-        </div>
-      </MotionSection>
+      </PosterCtaBand>
     </>
   );
 }

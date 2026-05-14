@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
+import { PosterCtaBand } from "@/components/PosterCtaBand";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BOOKING_HREF } from "@/lib/constants";
 import {
@@ -143,18 +144,31 @@ export default function ClassesPage() {
               </Link>
             </p>
           </PaperSheet>
-
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <BookLink className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0" />
-            <Link
-              href="/pricing"
-              className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-transparent px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0"
-            >
-              View pricing
-            </Link>
-          </div>
         </div>
       </MotionSection>
+
+      <PosterCtaBand delay={0.07}>
+        <div className="min-w-0 flex-1 text-center md:text-left">
+          <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Classes</p>
+          <div className="rule-section mx-auto my-5 max-w-xs md:mx-0" aria-hidden />
+          <h2 className="text-xl font-bold uppercase tracking-heading text-editorial-ink md:text-2xl">
+            Book when Momence opens
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-mid-grey md:text-[15px]">
+            Pricing and intro bundles are on our pricing page. Use Book a class when your link is live.
+          </p>
+        </div>
+        <div className="rule-section shrink-0 md:hidden" aria-hidden />
+        <div className="flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center md:w-auto md:shrink-0">
+          <BookLink className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0" />
+          <Link
+            href="/pricing"
+            className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-transparent px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0"
+          >
+            View pricing
+          </Link>
+        </div>
+      </PosterCtaBand>
     </>
   );
 }

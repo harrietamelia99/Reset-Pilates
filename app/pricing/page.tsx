@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { MotionStaggerGrid } from "@/components/MotionStaggerGrid";
+import { PosterCtaBand } from "@/components/PosterCtaBand";
 import { BOOKING_HREF } from "@/lib/constants";
 import {
   INFRARED_BENEFITS,
@@ -323,32 +324,29 @@ export default function PricingPage() {
         </div>
       </MotionSection>
 
-      <MotionSection
-        id="book"
-        className="surface-editorial-dark-deep relative overflow-hidden scroll-mt-28 text-white"
-        delay={0.1}
-      >
-        <DarkBandBg />
-        <div className="relative z-10 mx-auto max-w-3xl px-4 py-14 text-center md:px-6 md:py-20">
-          <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-white/60">Booking</p>
-          <h2 className="mt-4 text-2xl font-bold uppercase tracking-heading text-white md:text-3xl">
-            Book through Momence
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl font-accent text-sm leading-relaxed text-white/80 md:text-[15px]">
-            We&apos;re finishing the live timetable in Momence. Use Book a class when your link is active, until
-            then, everything above is your reference for rates and bundles.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <BookLink className="inline-flex min-h-[44px] items-center justify-center border border-white bg-white px-8 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-md active:translate-y-0" />
-            <Link
-              href="/contact"
-              className="inline-flex min-h-[44px] items-center justify-center border border-white/40 bg-transparent px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 active:translate-y-0"
-            >
-              Contact the studio
-            </Link>
-          </div>
-        </div>
-      </MotionSection>
+      <PosterCtaBand id="book" className="scroll-mt-28" delay={0.1}>
+            <div className="min-w-0 flex-1 text-center md:text-left">
+              <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Booking</p>
+              <div className="rule-section mx-auto my-5 max-w-xs md:mx-0" aria-hidden />
+              <h2 className="text-xl font-bold uppercase tracking-heading text-editorial-ink md:text-2xl">
+                Book through Momence
+              </h2>
+              <p className="mt-3 font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">
+                We&apos;re finishing the live timetable in Momence. Use Book a class when your link is active, until
+                then, everything above is your reference for rates and bundles.
+              </p>
+            </div>
+            <div className="rule-section shrink-0 md:hidden" aria-hidden />
+            <div className="flex w-full min-w-0 flex-col gap-3 sm:flex-row sm:items-center md:w-auto md:shrink-0">
+              <BookLink className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0" />
+              <Link
+                href="/contact"
+                className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-transparent px-8 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0"
+              >
+                Contact the studio
+              </Link>
+            </div>
+      </PosterCtaBand>
     </>
   );
 }
