@@ -7,6 +7,7 @@ import { PaperSheet } from "@/components/PaperSheet";
 import { ContactForm } from "@/components/ContactForm";
 import { HomeMapSection } from "@/components/HomeMapSection";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { CONTACT, MAP_EXTERNAL_URL } from "@/lib/constants";
 
 export function ContactView() {
@@ -41,6 +42,10 @@ export function ContactView() {
             </PaperSheet>
 
             <aside className="flex flex-col gap-6">
+              <ImagePlaceholder
+                aspect="4/3"
+                caption="Reception or entrance — wayfinding / studio arrival photo."
+              />
               <PaperSheet flat pin={false} className="p-6 md:p-8">
                 <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Studio</h2>
                 <div className="rule-section my-4 max-w-[8rem]" aria-hidden />

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { MotionStaggerGrid } from "@/components/MotionStaggerGrid";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BOOKING_HREF } from "@/lib/constants";
 import {
   INFRARED_BENEFITS,
@@ -29,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const tierArticle =
-  "flex flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7";
+  "flex h-full min-h-0 flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7";
 
 const packArticle =
   "flex h-full flex-col border border-charcoal/10 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-6";
@@ -84,8 +85,8 @@ function WhiteTierCard({
           <span className="text-base font-medium text-mid-grey md:text-lg">{priceSuffix}</span>
         ) : null}
       </p>
-      <p className="mt-3 font-accent text-sm font-normal leading-relaxed text-mid-grey">{body}</p>
-      <div className="mt-6 w-full md:mt-7">{cta}</div>
+      <p className="mt-3 flex-1 font-accent text-sm font-normal leading-relaxed text-mid-grey">{body}</p>
+      <div className="mt-6 w-full shrink-0 md:mt-7">{cta}</div>
     </article>
   );
 }
@@ -111,6 +112,15 @@ export default function PricingPage() {
             {OFFERS_SUMMARY} Final checkout will be in Momence when booking opens.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
+        </div>
+      </MotionSection>
+
+      <MotionSection className="border-b border-light-grey bg-white pb-10 md:pb-12" delay={0.03}>
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
+          <ImagePlaceholder
+            aspect="wide"
+            caption="Campaign or lifestyle imagery — optional strip above tiers (replace when art-directed)."
+          />
         </div>
       </MotionSection>
 

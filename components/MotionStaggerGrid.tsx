@@ -28,7 +28,7 @@ export function MotionStaggerGrid({ children, className, soft }: Props) {
       viewport={scrollViewport}
     >
       {arr.map((child, i) => (
-        <motion.div key={i} variants={itemVariants} className="min-w-0">
+        <motion.div key={i} variants={itemVariants} className="min-w-0 h-full">
           {child}
         </motion.div>
       ))}

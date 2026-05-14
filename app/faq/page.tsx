@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { CHANGING_INFO, FAQ_GROUPS, HEALTH_BOOKING_NOTE } from "@/lib/studio-content";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -36,7 +37,16 @@ export default function FaqPage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="relative bg-white pb-16 md:pb-24" delay={0.05}>
+      <MotionSection className="relative border-b border-light-grey bg-white pb-10 md:pb-12" delay={0.04}>
+        <div className="mx-auto max-w-4xl px-4 md:px-6">
+          <ImagePlaceholder
+            aspect="5/3"
+            caption="Studio or class context — optional hero for the FAQ page."
+          />
+        </div>
+      </MotionSection>
+
+      <MotionSection className="relative bg-white pb-16 md:pb-24" delay={0.06}>
         <div className="mx-auto max-w-6xl space-y-14 px-4 md:px-6">
           {FAQ_GROUPS.map((group, gi) => (
             <section key={group.title} aria-labelledby={`faq-section-${gi}`}>

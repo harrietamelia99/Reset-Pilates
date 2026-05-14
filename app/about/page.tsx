@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BOOKING_HREF } from "@/lib/constants";
 import {
   ABOUT_STORY_PARAGRAPHS,
@@ -51,6 +52,25 @@ export default function AboutPage() {
             Reset. is a Nailsea studio for reformer, hot mat, and mat Pilates — opening June 2026.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
+          <div className="mt-10 max-w-4xl">
+            <ImagePlaceholder
+              aspect="5/3"
+              caption="Studio interior or class in session — photography to be added before launch."
+            />
+          </div>
+        </div>
+      </MotionSection>
+
+      <MotionSection className="relative border-t border-light-grey bg-white py-12 md:py-16" delay={0.04}>
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 md:grid-cols-2 md:gap-8 md:px-6">
+          <ImagePlaceholder
+            aspect="3/4"
+            caption="Founder portrait — professional headshot when scheduled."
+          />
+          <ImagePlaceholder
+            aspect="3/4"
+            caption="Equipment or detail shot — reformer, props, or architectural moment."
+          />
         </div>
       </MotionSection>
 
