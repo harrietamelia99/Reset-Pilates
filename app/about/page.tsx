@@ -52,52 +52,41 @@ export default function AboutPage() {
             Reset. is a Nailsea studio for reformer, hot mat, and mat Pilates — opening June 2026.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
-          <div className="mt-10 max-w-4xl">
-            <ImagePlaceholder
-              aspect="5/3"
-              caption="Studio interior or class in session — photography to be added before launch."
-            />
-          </div>
-        </div>
-      </MotionSection>
-
-      <MotionSection className="relative border-t border-light-grey bg-white py-12 md:py-16" delay={0.04}>
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 md:grid-cols-2 md:gap-8 md:px-6">
-          <ImagePlaceholder
-            aspect="3/4"
-            caption="Founder portrait — professional headshot when scheduled."
-          />
-          <ImagePlaceholder
-            aspect="3/4"
-            caption="Equipment or detail shot — reformer, props, or architectural moment."
-          />
         </div>
       </MotionSection>
 
       <MotionSection className="relative bg-white pb-16 md:pb-20" delay={0.05}>
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <PaperSheet flat pin={false} className="mx-auto max-w-3xl p-6 md:p-10 lg:p-12">
-            <div className="space-y-6 text-center md:text-left">
-              {ABOUT_STORY_PARAGRAPHS.map((p, i) => (
-                <p
-                  key={i}
-                  className="font-accent text-[15px] leading-relaxed tracking-[0.02em] text-charcoal md:text-base"
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-12 md:items-start md:gap-10 md:px-6 lg:gap-12">
+          <div className="md:col-span-5 lg:col-span-4">
+            <ImagePlaceholder
+              aspect="3/4"
+              caption="Founder portrait or studio photography — replace when assets are ready."
+            />
+          </div>
+          <div className="md:col-span-7 lg:col-span-8">
+            <PaperSheet flat pin={false} className="h-full w-full p-6 md:p-8 lg:p-10">
+              <div className="space-y-6 text-center md:text-left">
+                {ABOUT_STORY_PARAGRAPHS.map((p, i) => (
+                  <p
+                    key={i}
+                    className="font-accent text-[15px] leading-relaxed tracking-[0.02em] text-charcoal md:text-base"
+                  >
+                    {p}
+                  </p>
+                ))}
+              </div>
+              <div className="rule-section my-10 max-w-[12rem] md:mx-0" aria-hidden />
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <BookLink className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0" />
+                <Link
+                  href="/classes"
+                  className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-transparent px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0"
                 >
-                  {p}
-                </p>
-              ))}
-            </div>
-            <div className="rule-section my-10 max-w-[12rem] md:mx-0" aria-hidden />
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <BookLink className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0" />
-              <Link
-                href="/classes"
-                className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-transparent px-6 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0"
-              >
-                View classes
-              </Link>
-            </div>
-          </PaperSheet>
+                  View classes
+                </Link>
+              </div>
+            </PaperSheet>
+          </div>
         </div>
       </MotionSection>
 
@@ -122,7 +111,7 @@ export default function AboutPage() {
         <div className="grain-layer opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto max-w-3xl px-4 text-center md:px-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-white/60">Ethos</p>
-          <div className="mx-auto mt-4 h-px w-14 bg-white/30 md:mx-0" aria-hidden />
+          <div className="mx-auto mt-4 h-px w-14 bg-white/30" aria-hidden />
           <p className="mt-6 font-accent text-sm leading-relaxed text-white/85 md:text-base">
             {STUDIO_ETHOS_WELCOME}
           </p>

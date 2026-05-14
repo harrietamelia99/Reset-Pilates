@@ -32,8 +32,45 @@ export async function generateMetadata(): Promise<Metadata> {
 const tierArticle =
   "flex h-full min-h-0 flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7";
 
-const packArticle =
-  "flex h-full flex-col border border-charcoal/10 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-6";
+const packCardBase =
+  "group relative flex h-full flex-col overflow-hidden rounded-sm border border-charcoal/[0.11] bg-white p-6 text-left shadow-[0_14px_42px_-28px_rgba(43,43,41,0.35)] ring-1 ring-black/[0.02] transition-all duration-300 hover:-translate-y-1 hover:border-charcoal/18 hover:shadow-[0_22px_50px_-22px_rgba(43,43,41,0.28)] md:p-7";
+
+function ClassPackCard({ row }: { row: (typeof PRICING_CLASS_PACKS)[number] }) {
+  const detail = "detail" in row ? row.detail : undefined;
+  return (
+    <article className={packCardBase}>
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-charcoal/35 to-transparent"
+        aria-hidden
+      />
+      <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-warm-grey">Class pack</p>
+      <p className="mt-5 font-sans text-3xl font-semibold tabular-nums tracking-tight text-charcoal md:text-4xl">
+        {row.price}
+      </p>
+      {detail ? (
+        <p className="mt-2 max-w-prose font-accent text-xs leading-relaxed text-mid-grey md:text-[13px]">{detail}</p>
+      ) : null}
+      <div className="rule-section my-5 max-w-[2.75rem] opacity-70" aria-hidden />
+      <p className="flex-1 font-accent text-sm font-normal leading-relaxed text-mid-grey md:text-[15px]">{row.label}</p>
+    </article>
+  );
+}
+
+function DropInCard({ row }: { row: (typeof PRICING_DROP_INS)[number] }) {
+  return (
+    <article className={packCardBase}>
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-charcoal/30 to-transparent"
+        aria-hidden
+      />
+      <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-warm-grey">{row.label}</p>
+      <p className="mt-6 font-sans text-3xl font-semibold tabular-nums tracking-tight text-charcoal md:text-[2.35rem]">
+        {row.price}
+      </p>
+      <p className="mt-4 font-accent text-[11px] uppercase tracking-[0.14em] text-mid-grey">Single class</p>
+    </article>
+  );
+}
 
 function BookLink({ className }: { className: string }) {
   if (BOOKING_HREF.startsWith("/")) {
@@ -237,31 +274,42 @@ export default function PricingPage() {
           </div>
           <div className="rule-section mt-8 max-w-xs" aria-hidden />
 
-          <MotionStaggerGrid className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+          <MotionStaggerGrid className="mt-10 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {PRICING_CLASS_PACKS.map((row) => (
-              <article key={row.label} className={packArticle}>
-                <p className="font-accent text-[10px] uppercase tracking-[0.16em] text-warm-grey">Class pack</p>
-                <p className="mt-2 font-sans text-lg font-semibold text-charcoal">{row.price}</p>
-                <p className="mt-2 font-accent text-sm leading-relaxed text-mid-grey">{row.label}</p>
-              </article>
+              <ClassPackCard key={row.label} row={row} />
             ))}
           </MotionStaggerGrid>
 
-          <p className="mt-8 max-w-3xl border-t border-charcoal/10 pt-8 font-accent text-sm leading-relaxed text-mid-grey">
-            {PRICING_HOT_MAT_PROMO_PACK}
-          </p>
+          <div className="mt-10 max-w-3xl border-l-[3px] border-charcoal bg-charcoal/[0.03] px-5 py-5 md:mt-12 md:px-7 md:py-6">
+            <p className="font-accent text-[10px] uppercase tracking-[0.16em] text-warm-grey">Hot mat promo</p>
+            <p className="mt-2 font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">
+              {PRICING_HOT_MAT_PROMO_PACK}
+            </p>
+          </div>
 
-          <h3 className="mt-12 text-xs font-bold uppercase tracking-wide text-charcoal">Drop-in</h3>
-          <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
-          <MotionStaggerGrid className="grid gap-4 sm:grid-cols-3 sm:gap-5">
+          <div className="mt-12 max-w-3xl md:mt-14">
+            <h3 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Drop-in</h3>
+            <p className="mt-2 font-accent text-xs uppercase leading-relaxed tracking-[0.12em] text-warm-grey">
+              Pay as you go — one session at a time
+            </p>
+            <div className="rule-section mt-5 max-w-[10rem]" aria-hidden />
+          </div>
+
+          <MotionStaggerGrid className="mt-8 grid gap-5 sm:grid-cols-3 sm:gap-6">
             {PRICING_DROP_INS.map((row) => (
-              <article key={row.label} className={packArticle}>
-                <p className="font-accent text-[10px] uppercase tracking-[0.16em] text-warm-grey">{row.label}</p>
-                <p className="mt-3 font-sans text-xl font-semibold tabular-nums text-charcoal">{row.price}</p>
-                <p className="mt-2 font-accent text-xs text-mid-grey">Single class</p>
-              </article>
+              <DropInCard key={row.label} row={row} />
             ))}
           </MotionStaggerGrid>
+
+          <div className="mt-12 flex flex-col items-stretch gap-3 border-t border-charcoal/10 pt-10 sm:flex-row sm:items-center sm:justify-center sm:gap-4 md:mt-14">
+            <BookLink className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0" />
+            <Link
+              href="/contact"
+              className="inline-flex min-h-[44px] items-center justify-center border border-charcoal/20 bg-transparent px-8 py-3 text-center text-xs font-bold uppercase tracking-wide text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:border-charcoal/40 hover:bg-charcoal/[0.04] active:translate-y-0"
+            >
+              Ask about packs
+            </Link>
+          </div>
         </div>
       </MotionSection>
 

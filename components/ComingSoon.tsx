@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { ArrowRight, CalendarDays, Home } from "lucide-react";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
+import { PosterHeroBackdrop } from "@/components/PosterHeroBackdrop";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
 import { BOOKING_HREF, CONTACT, OPENING_DATE_LABEL } from "@/lib/constants";
 import { cn } from "@/lib/cn";
@@ -154,22 +155,9 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
 
       <MotionSection
         delay={0.1}
-        className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-14 md:py-18"
+        className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-14 md:py-20"
       >
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url(/images/hero-industrial-texture.png)" }}
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-black/25"
-            aria-hidden
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-white/[0.04]"
-            aria-hidden
-          />
-        </div>
+        <PosterHeroBackdrop />
         <div className="grain-layer z-[1]" aria-hidden />
         <div className="vignette-layer z-[1]" aria-hidden />
 

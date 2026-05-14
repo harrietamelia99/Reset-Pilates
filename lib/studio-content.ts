@@ -77,7 +77,11 @@ export const PRICING_CLASS_PACKS_NOTE =
   "Class pack bundles are to be used within three months of purchase unless otherwise stated.";
 
 export const PRICING_CLASS_PACKS = [
-  { label: "Hot mat Pilates — 4-class pack", price: "£50 (£12.50 per class — saving £14 vs drop-in)" },
+  {
+    label: "Hot mat Pilates — 4-class pack",
+    price: "£50",
+    detail: "£12.50 per class — saving £14 vs drop-in",
+  },
   { label: "Mat Pilates — 5-class pack", price: "£55" },
   { label: "Mat Pilates — 10-class pack", price: "£95" },
   { label: "Reformer — 3-class pack", price: "£58" },

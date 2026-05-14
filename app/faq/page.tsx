@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
-import { PaperSheet } from "@/components/PaperSheet";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { FaqExperience } from "@/components/FaqExperience";
 import { CHANGING_INFO, FAQ_GROUPS, HEALTH_BOOKING_NOTE } from "@/lib/studio-content";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,9 +26,9 @@ export default function FaqPage() {
             Questions &amp; answers
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-mid-grey md:text-base">
-            Straight answers from your onboarding brief — if something isn&apos;t covered,{" "}
+            Jump to a topic with the index below, or expand a question to read the answer. Something missing?{" "}
             <Link href="/contact" className="text-charcoal underline-offset-2 hover:underline">
-              contact us
+              Contact us
             </Link>
             .
           </p>
@@ -37,58 +36,27 @@ export default function FaqPage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="relative border-b border-light-grey bg-white pb-10 md:pb-12" delay={0.04}>
-        <div className="mx-auto max-w-4xl px-4 md:px-6">
-          <ImagePlaceholder
-            aspect="5/3"
-            caption="Studio or class context — optional hero for the FAQ page."
+      <MotionSection
+        className="relative border-b border-light-grey bg-[linear-gradient(180deg,#fafafa_0%,#ffffff_45%)] pb-20 md:pb-28"
+        delay={0.05}
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.35]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(43,43,41,0.04) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(43,43,41,0.04) 1px, transparent 1px)`,
+            backgroundSize: "48px 48px",
+          }}
+          aria-hidden
+        />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
+          <FaqExperience
+            groups={FAQ_GROUPS}
+            extras={[
+              { title: "Changing facilities", body: CHANGING_INFO },
+              { title: "Health & declarations", body: HEALTH_BOOKING_NOTE },
+            ]}
           />
-        </div>
-      </MotionSection>
-
-      <MotionSection className="relative bg-white pb-16 md:pb-24" delay={0.06}>
-        <div className="mx-auto max-w-6xl space-y-14 px-4 md:px-6">
-          {FAQ_GROUPS.map((group, gi) => (
-            <section key={group.title} aria-labelledby={`faq-section-${gi}`}>
-              <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
-                <h2
-                  id={`faq-section-${gi}`}
-                  className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl"
-                >
-                  {group.title}
-                </h2>
-                <div className="rule-section my-6 w-full max-w-[12rem]" aria-hidden />
-                <dl className="divide-y divide-charcoal/10">
-                  {group.items.map((item) => (
-                    <div key={item.q} className="py-6 first:pt-0">
-                      <dt className="font-sans text-sm font-bold uppercase tracking-wide text-charcoal md:text-[15px]">
-                        {item.q}
-                      </dt>
-                      <dd className="mt-3 font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">
-                        {item.a}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </PaperSheet>
-            </section>
-          ))}
-
-          <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
-            <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
-              Changing facilities
-            </h2>
-            <div className="rule-section my-5 max-w-[10rem]" aria-hidden />
-            <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{CHANGING_INFO}</p>
-          </PaperSheet>
-
-          <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
-            <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
-              Health &amp; declarations
-            </h2>
-            <div className="rule-section my-5 max-w-[10rem]" aria-hidden />
-            <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{HEALTH_BOOKING_NOTE}</p>
-          </PaperSheet>
         </div>
       </MotionSection>
     </>

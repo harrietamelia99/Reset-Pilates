@@ -12,6 +12,7 @@ import { PaperSheet } from "@/components/PaperSheet";
 import { HomeMapSection } from "@/components/HomeMapSection";
 import { HomeInstagramSection } from "@/components/HomeInstagramSection";
 import { HomeEmailAlertsSection } from "@/components/HomeEmailAlertsSection";
+import { PosterHeroBackdrop } from "@/components/PosterHeroBackdrop";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -249,11 +250,7 @@ export default function HomePage() {
       <HomeEmailAlertsSection />
 
       <MotionSection className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-16 md:py-20">
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-          <div className="absolute inset-0 bg-[#535355]" aria-hidden />
-          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.09] via-transparent to-black/22" aria-hidden />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-white/[0.05]" aria-hidden />
-        </div>
+        <PosterHeroBackdrop />
         <div className="grain-layer z-[1]" aria-hidden />
         <div className="vignette-layer z-[1]" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">

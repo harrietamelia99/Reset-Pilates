@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import type { CSSProperties } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { staggerContainer, fadeItem } from "@/lib/motion";
 import { HeroBookingSheet } from "@/components/HeroBookingSheet";
+import { PosterHeroBackdrop } from "@/components/PosterHeroBackdrop";
 
 export function HomeHero() {
   const slotRef = useRef<HTMLDivElement>(null);
@@ -56,26 +56,7 @@ export function HomeHero() {
     <section
       className="surface-poster-hero relative isolate h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero-industrial-texture.png"
-            alt=""
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-white/[0.06] via-transparent to-black/25"
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-white/[0.04]"
-          aria-hidden
-        />
-      </div>
+      <PosterHeroBackdrop priority />
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
 
