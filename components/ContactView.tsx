@@ -30,8 +30,8 @@ export function ContactView() {
 
       <MotionSection className="relative bg-white pb-16 md:pb-24" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-start lg:gap-14">
-            <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch lg:gap-14">
+            <PaperSheet flat pin={false} className="flex h-full min-h-0 flex-col p-6 md:p-8 lg:p-10">
               <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
                 Send a message
               </h2>
@@ -39,18 +39,18 @@ export function ContactView() {
                 We read every enquiry, you&apos;ll usually hear back within a few working days.
               </p>
               <div className="rule-section my-8 max-w-[10rem]" aria-hidden />
-              <ContactForm />
+              <ContactForm balanceWithColumn className="min-h-0 flex-1" />
             </PaperSheet>
 
-            <aside className="flex flex-col gap-8">
-              <div className="mt-8 shrink-0 md:mt-10 lg:mt-12">
+            <aside className="flex h-full min-h-0 flex-col gap-8">
+              <div className="mt-8 shrink-0 md:mt-10 lg:mt-0">
                 <ImagePlaceholder
                   aspect="4/3"
                   caption="Reception or entrance, wayfinding / studio arrival photo."
                 />
               </div>
 
-              <PaperSheet flat pin={false} className="p-6 md:p-8 lg:p-10">
+              <PaperSheet flat pin={false} className="flex flex-1 flex-col p-6 md:p-8 lg:p-10">
                 <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">Studio</h2>
                 <div className="rule-section my-6 max-w-[10rem]" aria-hidden />
                 <div className="flex gap-3">
@@ -75,7 +75,7 @@ export function ContactView() {
                   Get directions
                 </Link>
 
-                <div className="mt-10 border-t border-charcoal/10 pt-10">
+                <div className="mt-auto border-t border-charcoal/10 pt-10">
                   <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">Direct</h3>
                   <div className="rule-section my-6 max-w-[10rem]" aria-hidden />
                   <ul className="space-y-5">
@@ -99,7 +99,7 @@ export function ContactView() {
                         href={CONTACT.instagram.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0 sm:w-auto"
+                        className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0 sm:w-auto sm:min-w-[12rem]"
                       >
                         <InstagramGlyph className="h-4 w-4 shrink-0 text-white" strokeWidth={1.5} />
                         {CONTACT.instagram.handle}

@@ -16,9 +16,11 @@ type FormValues = {
 
 type Props = {
   className?: string;
+  /** Stretch the message area and pin the submit row to the bottom (e.g. contact two-column layout) */
+  balanceWithColumn?: boolean;
 };
 
-export function ContactForm({ className }: Props) {
+export function ContactForm({ className, balanceWithColumn }: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const {
@@ -64,25 +66,50 @@ export function ContactForm({ className }: Props) {
   const labelClass =
     "mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey";
 
-  return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={cn("relative space-y-5", className)}
-      noValidate
-    >
-      <label htmlFor="contact-website" className="sr-only">
-        Leave this field empty
-      </label>
-      <input
-        id="contact-website"
-        type="text"
-        tabIndex={-1}
-        autoComplete="off"
-        className="absolute h-0 w-0 overflow-hidden opacity-0"
-        aria-hidden
-        {...register("_gotcha")}
-      />
+  const footer = (
+    <>
+      <div className="grid gap-4 pt-2 sm:grid-cols-[auto,minmax(0,1fr)] sm:items-center sm:gap-x-6 sm:gap-y-2">
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="inline-flex min-h-[44px] w-fit items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+        >
+          {status === "sending" ? (
+            "Sending…"
+          ) : (
+            <>
+              <Send className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+              Send message
+            </>
+          )}
+        </button>
+        <p className="font-accent text-[11px] uppercase leading-snug tracking-[0.12em] text-warm-grey sm:max-w-sm">
+          We never share your details. Prefer email?{" "}
+          <a href={`mailto:${CONTACT.email}`} className="text-charcoal underline-offset-2 hover:underline">
+            {CONTACT.email}
+          </a>
+        </p>
+      </div>
 
+      {status === "success" && (
+        <p className="text-sm text-mid-grey" role="status">
+          Thank you, your message is on its way. We&apos;ll get back to you as soon as we can.
+        </p>
+      )}
+      {status === "error" && (
+        <p className="text-sm text-mid-grey" role="alert">
+          Something went wrong. Please try again or email us directly at{" "}
+          <a href={`mailto:${CONTACT.email}`} className="font-medium text-charcoal underline-offset-2 hover:underline">
+            {CONTACT.email}
+          </a>
+          .
+        </p>
+      )}
+    </>
+  );
+
+  const fields = (
+    <>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="contact-name" className={labelClass}>
@@ -147,14 +174,18 @@ export function ContactForm({ className }: Props) {
         />
       </div>
 
-      <div>
+      <div className={cn(balanceWithColumn && "flex min-h-0 flex-1 flex-col")}>
         <label htmlFor="contact-message" className={labelClass}>
           Message
         </label>
         <textarea
           id="contact-message"
           rows={6}
-          className={cn(inputClass, "min-h-[140px] resize-y")}
+          className={cn(
+            inputClass,
+            "min-h-[140px] resize-y",
+            balanceWithColumn && "min-h-0 flex-1"
+          )}
           placeholder="Classes, memberships, partnerships, press, ask us anything."
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "contact-message-error" : undefined}
@@ -169,43 +200,42 @@ export function ContactForm({ className }: Props) {
           </p>
         )}
       </div>
+    </>
+  );
 
-      <div className="grid gap-4 pt-2 sm:grid-cols-[auto,minmax(0,1fr)] sm:items-center sm:gap-x-6 sm:gap-y-2">
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          className="inline-flex min-h-[44px] w-fit items-center justify-center gap-2 border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
-        >
-          {status === "sending" ? (
-            "Sending…"
-          ) : (
-            <>
-              <Send className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
-              Send message
-            </>
-          )}
-        </button>
-        <p className="font-accent text-[11px] uppercase leading-snug tracking-[0.12em] text-warm-grey sm:max-w-sm">
-          We never share your details. Prefer email?{" "}
-          <a href={`mailto:${CONTACT.email}`} className="text-charcoal underline-offset-2 hover:underline">
-            {CONTACT.email}
-          </a>
-        </p>
-      </div>
-
-      {status === "success" && (
-        <p className="text-sm text-mid-grey" role="status">
-          Thank you, your message is on its way. We&apos;ll get back to you as soon as we can.
-        </p>
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={cn(
+        "relative",
+        balanceWithColumn ? "flex min-h-0 flex-1 flex-col" : "space-y-5",
+        className
       )}
-      {status === "error" && (
-        <p className="text-sm text-mid-grey" role="alert">
-          Something went wrong. Please try again or email us directly at{" "}
-          <a href={`mailto:${CONTACT.email}`} className="font-medium text-charcoal underline-offset-2 hover:underline">
-            {CONTACT.email}
-          </a>
-          .
-        </p>
+      noValidate
+    >
+      <label htmlFor="contact-website" className="sr-only">
+        Leave this field empty
+      </label>
+      <input
+        id="contact-website"
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        className="absolute h-0 w-0 overflow-hidden opacity-0"
+        aria-hidden
+        {...register("_gotcha")}
+      />
+
+      {balanceWithColumn ? (
+        <>
+          <div className="flex min-h-0 flex-1 flex-col gap-5">{fields}</div>
+          <div className="mt-auto shrink-0 space-y-3 border-t border-charcoal/10 pt-6">{footer}</div>
+        </>
+      ) : (
+        <>
+          {fields}
+          {footer}
+        </>
       )}
     </form>
   );

@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="surface-editorial-dark-deep relative border-t border-white/10">
       <div className="grain-layer opacity-20" aria-hidden />
-      <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:px-6 lg:grid-cols-4 lg:gap-10">
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:gap-x-14 md:gap-y-12 md:px-6 lg:grid-cols-4 lg:gap-x-16 lg:gap-y-10 xl:gap-x-20">
         <div>
           <Link href="/" className="inline-block transition-opacity duration-300 hover:opacity-90" aria-label="Reset Pilates home">
             <LogoWordmark variant="light" className="h-14 w-auto md:h-16" />
