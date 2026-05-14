@@ -7,11 +7,11 @@ import { cn } from "@/lib/cn";
 type Props = {
   children: React.ReactNode;
   className?: string;
-  /** Decorative paper clip — PNG at `/public/images/paperclip.png`, else inline SVG fallback */
+  /** Decorative paper clip, PNG at `/public/images/paperclip.png`, else inline SVG fallback */
   pin?: boolean;
-  /** Stronger folds + pure white — recruitment flyer reference */
+  /** Stronger folds + pure white, recruitment flyer reference */
   poster?: boolean;
-  /** No hairline border — flat panel on editorial backgrounds */
+  /** No hairline border, flat panel on editorial backgrounds */
   flat?: boolean;
 };
 

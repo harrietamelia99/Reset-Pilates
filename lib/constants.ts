@@ -1,6 +1,6 @@
 export const SITE_NAME = "Reset Pilates Studio";
 
-/** OpenStreetMap embed — centred on Crown Glass / Colliers Walk, Nailsea */
+/** OpenStreetMap embed, centred on Crown Glass / Colliers Walk, Nailsea */
 export const MAP_IFRAME_SRC =
   "https://www.openstreetmap.org/export/embed.html?bbox=-2.7615%2C51.4298%2C-2.7515%2C51.4345&layer=mapnik&marker=51.4322%2C-2.7565";
 
@@ -43,7 +43,7 @@ export const FORMSPREE_ACTION =
   "https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID";
 
 /**
- * Email alerts signup — can match {@link FORMSPREE_ACTION} or use a separate Formspree form ID.
+ * Email alerts signup, can match {@link FORMSPREE_ACTION} or use a separate Formspree form ID.
  */
 export const EMAIL_ALERTS_FORMSPREE_ACTION = FORMSPREE_ACTION;
 
@@ -54,4 +54,4 @@ export const EMAIL_ALERTS_FORMSPREE_ACTION = FORMSPREE_ACTION;
 export const CONTACT_FORMSPREE_ACTION = FORMSPREE_ACTION;
 
 export const OPENING_DATE_LABEL =
-  "Opening 1st June 2026 — Founding memberships available for the first 30 members";
+  "Opening 1st June 2026, Founding memberships available for the first 30 members";

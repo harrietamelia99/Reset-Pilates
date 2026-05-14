@@ -19,7 +19,7 @@ export function HomeInstagramSection() {
               Studio snapshots
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-mid-grey md:text-base">
-              A glimpse of life at Reset — follow for opening news, timetables, and behind the scenes.
+              A glimpse of life at Reset, follow for opening news, timetables, and behind the scenes.
             </p>
           </div>
           <Link
@@ -61,7 +61,7 @@ export function HomeInstagramSection() {
         </ul>
 
         <p className="mt-6 font-accent text-[11px] uppercase tracking-[0.12em] text-warm-grey">
-          Images are curated for the site — follow Instagram for the latest posts.
+          Images are curated for the site, follow Instagram for the latest posts.
         </p>
       </div>
     </MotionSection>

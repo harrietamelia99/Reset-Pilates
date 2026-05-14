@@ -46,7 +46,7 @@
 :root {
   --color-charcoal: #2b2b29;
   --color-mid-grey: #545456;
-  /** Large dark sections (hero, footer, editorial strips) — brand grey */
+  /** Large dark sections (hero, footer, editorial strips), brand grey */
   --surface-editorial-bg: #545456;
   /** Deeper tone for emphasis blocks (e.g. founding membership) */
   --surface-editorial-bg-deep: #2e2e30;
@@ -54,7 +54,7 @@
   --color-light-grey: #c6c5c4;
   --color-white: #ffffff;
   --tracking-heading: 0.196em;
-  /** Logo wordmark — Bethany Elingston (self-hosted OTF, see @font-face above) */
+  /** Logo wordmark, Bethany Elingston (self-hosted OTF, see @font-face above) */
   --font-logo-wordmark: "Bethany Elingston", Georgia, serif;
   --font-sans: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --noise-tile: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
@@ -81,7 +81,7 @@
   }
 }
 
-/* Editorial / zine surfaces — grain + vignette on dark */
+/* Editorial / zine surfaces, grain + vignette on dark */
 @layer components {
   .surface-editorial-dark {
     @apply relative text-white;
@@ -121,7 +121,7 @@
   }
 
   /*
-   * Home hero — `hero-industrial-texture.png` under gradients in `HomeHero`;
+   * Home hero, `hero-industrial-texture.png` under gradients in `HomeHero`;
    * this class provides fallback fill, noise + vignette layers, and text colour.
    */
   .surface-poster-hero {
@@ -148,7 +148,7 @@
     box-shadow: none;
   }
 
-  /* White paper panels — flat outline, no depth shadows */
+  /* White paper panels, flat outline, no depth shadows */
   .paper-sheet {
     box-shadow: none;
     border: 1px solid rgba(43, 43, 41, 0.12);
@@ -182,7 +182,7 @@
     @apply h-px w-full bg-white/15;
   }
 
-  /** Poster-style hairlines — use everywhere you want “hero sheet” dividers */
+  /** Poster-style hairlines, use everywhere you want “hero sheet” dividers */
   .rule-section {
     height: 1px;
     width: 100%;
@@ -199,7 +199,7 @@
     position: relative;
   }
 
-  /** Full-page wash for inner routes — neutral white */
+  /** Full-page wash for inner routes, neutral white */
   .page-bg {
     @apply min-h-screen bg-white;
   }

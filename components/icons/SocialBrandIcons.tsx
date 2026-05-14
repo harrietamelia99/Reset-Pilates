@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-/** Stroke-style glyphs — Lucide dropped brand icons; these match site scale (18–24px). */
+/** Stroke-style glyphs, Lucide dropped brand icons; these match site scale (18–24px). */
 
 export function InstagramGlyph(props: SVGProps<SVGSVGElement>) {
   return (

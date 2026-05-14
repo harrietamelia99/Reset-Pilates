@@ -15,11 +15,11 @@ import {
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "About | Reset Pilates Studio",
-    description: `Meet ${FOUNDER_NAME}, founder of Reset Pilates in Nailsea — reformer, hot mat & mat Pilates opening June 2026.`,
+    description: `Meet ${FOUNDER_NAME}, founder of Reset Pilates in Nailsea, reformer, hot mat & mat Pilates opening June 2026.`,
     openGraph: {
       title: "About | Reset Pilates Studio",
       description:
-        "The story behind Reset — boutique Pilates in Crown Glass, Nailsea, North Somerset.",
+        "The story behind Reset, boutique Pilates in Crown Glass, Nailsea, North Somerset.",
     },
   };
 }
@@ -49,7 +49,7 @@ export default function AboutPage() {
             Who we are
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-mid-grey md:text-base">
-            Reset. is a Nailsea studio for reformer, hot mat, and mat Pilates — opening June 2026.
+            Reset. is a Nailsea studio for reformer, hot mat, and mat Pilates, opening June 2026.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
         </div>
@@ -60,7 +60,7 @@ export default function AboutPage() {
           <div className="md:col-span-5 lg:col-span-4">
             <ImagePlaceholder
               aspect="3/4"
-              caption="Founder portrait or studio photography — replace when assets are ready."
+              caption="Founder portrait or studio photography, replace when assets are ready."
             />
           </div>
           <div className="md:col-span-7 lg:col-span-8">

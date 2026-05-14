@@ -6,11 +6,11 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "How do I book a class?",
-        a: "All bookings are made via Momence — use the Book Now button in the navigation when scheduling goes live.",
+        a: "All bookings are made via Momence, use the Book Now button in the navigation when scheduling goes live.",
       },
       {
         q: "Do I need previous experience?",
-        a: "No. We offer beginner and intermediate classes — start where you are.",
+        a: "No. We offer beginner and intermediate classes, start where you are.",
       },
       {
         q: "How long are classes?",
@@ -18,7 +18,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "What should I wear?",
-        a: "Comfortable activewear and grip socks — they’re mandatory for safety.",
+        a: "Comfortable activewear and grip socks, they’re mandatory for safety.",
       },
       {
         q: "When should I arrive?",
@@ -30,7 +30,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "Do you offer group / event / corporate bookings?",
-        a: "Yes — private sessions for birthdays, hen dos, corporate events and more.",
+        a: "Yes, private sessions for birthdays, hen dos, corporate events and more.",
       },
     ],
   },
@@ -39,7 +39,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "Are grip socks mandatory?",
-        a: "Yes — it’s a health and safety requirement.",
+        a: "Yes, it’s a health and safety requirement.",
       },
       {
         q: "Do I need to bring a grip towel?",
@@ -55,7 +55,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "Do I need to bring a mat or equipment?",
-        a: "No — everything is provided. Bring yourself, a water bottle and grip socks.",
+        a: "No, everything is provided. Bring yourself, a water bottle and grip socks.",
       },
     ],
   },
@@ -64,11 +64,11 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "Is it hard?",
-        a: "It can be challenging — and it’s adjustable. We work at your pace.",
+        a: "It can be challenging, and it’s adjustable. We work at your pace.",
       },
       {
         q: "Do I need to be fit or flexible?",
-        a: "No — Pilates is how you become both.",
+        a: "No, Pilates is how you become both.",
       },
       {
         q: "It's my first class and I'm nervous!",
@@ -93,7 +93,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "Do you offer intro deals or memberships?",
-        a: "Yes — see our Pricing page.",
+        a: "Yes, see our Pricing page.",
       },
     ],
   },
@@ -102,19 +102,19 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "Is there parking nearby?",
-        a: "Yes — Crown Glass Car Park (£1/hr, free evenings and Sundays) and Station Road Car Park (50p/hr, same hours).",
+        a: "Yes, Crown Glass Car Park (£1/hr, free evenings and Sundays) and Station Road Car Park (50p/hr, same hours).",
       },
       {
         q: "Is the studio accessible by public transport?",
-        a: "Yes — buses A2, X9 and X11.",
+        a: "Yes, buses A2, X9 and X11.",
       },
       {
         q: "Are there changing facilities?",
-        a: "There is a WC, but no changing room — please arrive dressed for your session.",
+        a: "There is a WC, but no changing room, please arrive dressed for your session.",
       },
       {
         q: "Do I need to bring grip socks?",
-        a: "Yes — and we sell them in-studio if you forget.",
+        a: "Yes, and we sell them in-studio if you forget.",
       },
     ],
   },

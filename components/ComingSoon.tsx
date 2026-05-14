@@ -11,7 +11,7 @@ import { BOOKING_HREF, CONTACT, OPENING_DATE_LABEL } from "@/lib/constants";
 import { cn } from "@/lib/cn";
 
 export type ComingSoonProps = {
-  /** Matches nav label — shown in the flyer eyebrow */
+  /** Matches nav label, shown in the flyer eyebrow */
   label: string;
   /** Main headline inside the poster card */
   headline: string;
@@ -97,7 +97,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
               </div>
 
               <p className="mt-5 text-center font-accent text-[9px] uppercase tracking-[0.16em] text-charcoal/80 md:text-[10px]">
-                Booking via Momence — link updates before launch.
+                Booking via Momence, link updates before launch.
               </p>
             </PaperSheet>
           </div>
@@ -169,7 +169,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
               </p>
               <div className="rule-section mx-auto my-4 max-w-xs md:mx-0" aria-hidden />
               <p className="text-sm leading-relaxed text-mid-grey">
-                This URL stays live — we&apos;ll swap in the full page before opening day.
+                This URL stays live, we&apos;ll swap in the full page before opening day.
               </p>
             </div>
             <div className="rule-section shrink-0 md:hidden" aria-hidden />

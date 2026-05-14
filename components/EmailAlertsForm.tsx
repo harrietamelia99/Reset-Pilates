@@ -150,13 +150,13 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
             variant === "dark" ? "text-white/55" : "text-warm-grey"
           )}
         >
-          Opening dates, offers &amp; timetable drops — no spam.
+          Opening dates, offers &amp; timetable drops, no spam.
         </p>
       </div>
 
       {status === "success" && (
         <p className={cn("text-sm", variant === "dark" ? "text-white/80" : "text-mid-grey")} role="status">
-          You&apos;re on the list — look out for news from Reset.
+          You&apos;re on the list, look out for news from Reset.
         </p>
       )}
       {status === "error" && (

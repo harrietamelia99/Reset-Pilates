@@ -35,7 +35,7 @@ export function ContactView() {
                 Send a message
               </h2>
               <p className="mt-3 max-w-md font-accent text-sm leading-relaxed text-mid-grey">
-                We read every enquiry — you&apos;ll usually hear back within a few working days.
+                We read every enquiry, you&apos;ll usually hear back within a few working days.
               </p>
               <div className="rule-section my-8 max-w-[10rem]" aria-hidden />
               <ContactForm />
@@ -44,7 +44,7 @@ export function ContactView() {
             <aside className="flex flex-col gap-6">
               <ImagePlaceholder
                 aspect="4/3"
-                caption="Reception or entrance — wayfinding / studio arrival photo."
+                caption="Reception or entrance, wayfinding / studio arrival photo."
               />
               <PaperSheet flat pin={false} className="p-6 md:p-8">
                 <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Studio</h2>

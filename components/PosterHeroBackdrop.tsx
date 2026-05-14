@@ -7,7 +7,7 @@ type Props = {
   priority?: boolean;
 };
 
-/** Same texture + gradient stack as {@link HomeHero} — reuse on poster strips site-wide */
+/** Same texture + gradient stack as {@link HomeHero}, reuse on poster strips site-wide */
 export function PosterHeroBackdrop({ priority = false }: Props) {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>

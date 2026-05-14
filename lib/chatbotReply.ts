@@ -87,13 +87,13 @@ export function getChatbotReply(raw: string): ChatbotReply {
 
   if (!q) {
     return {
-      text: "Hey! 👋 Ask me anything about classes, booking, or the studio — or I can point you to our contact page if it’s something specific. Pick a quick question below or type your own!",
+      text: "Hey! 👋 Ask me anything about classes, booking, or the studio, or I can point you to our contact page if it’s something specific. Pick a quick question below or type your own!",
     };
   }
 
   if (/^(hi|hey|hello|hiya|yo)\b|^good (morning|afternoon|evening)\b/.test(q)) {
     return {
-      text: `Hey there! ✨ Thanks for stopping by ${SITE_NAME}. I can answer common questions or send you to the right place — what’s on your mind?`,
+      text: `Hey there! ✨ Thanks for stopping by ${SITE_NAME}. I can answer common questions or send you to the right place, what’s on your mind?`,
     };
   }
 
@@ -109,7 +109,7 @@ export function getChatbotReply(raw: string): ChatbotReply {
     };
   }
 
-  /** Explicit “talk to a human” — offer contact */
+  /** Explicit “talk to a human”, offer contact */
   if (
     /\b(contact|email us|speak to someone|talk to someone|human|call me|phone number)\b/.test(q)
   ) {
@@ -138,14 +138,14 @@ export function getChatbotReply(raw: string): ChatbotReply {
     (/\bwhen\b/.test(q) && /\b(open|launch|start)\b/.test(q))
   ) {
     return {
-      text: `🗓️ ${OPENING_DATE_LABEL}. Founding memberships are limited — it’s worth checking out our pricing page for the details.`,
+      text: `🗓️ ${OPENING_DATE_LABEL}. Founding memberships are limited, it’s worth checking out our pricing page for the details.`,
       cta: { href: "/pricing", label: "View pricing" },
     };
   }
 
   if (/\b(hours|open times|what time|opening hours)\b/.test(q)) {
     return {
-      text: `🕐 We’re planning to be open ${CONTACT.hours} — final times may be confirmed closer to launch.`,
+      text: `🕐 We’re planning to be open ${CONTACT.hours}, final times may be confirmed closer to launch.`,
     };
   }
 
@@ -159,7 +159,7 @@ export function getChatbotReply(raw: string): ChatbotReply {
   if (/\b(price|pricing|cost|how much|£|membership|memberships|founding)\b/.test(q)) {
     return {
       text:
-        "💷 We have intro bundles and founding membership tiers — the Pricing page has the latest numbers. If something isn’t listed yet, we’re happy to chat!",
+        "💷 We have intro bundles and founding membership tiers, the Pricing page has the latest numbers. If something isn’t listed yet, we’re happy to chat!",
       cta: { href: "/pricing", label: "Go to pricing" },
     };
   }
@@ -167,7 +167,7 @@ export function getChatbotReply(raw: string): ChatbotReply {
   if (/\b(book|booking|momence|schedule|class times)\b/.test(q) || /\bhow do i book\b/.test(q)) {
     return {
       text:
-        "🗓️ Bookings will run through Momence — use Book Now in the nav when scheduling goes live. Until then, stay tuned for the link update!",
+        "🗓️ Bookings will run through Momence, use Book Now in the nav when scheduling goes live. Until then, stay tuned for the link update!",
       cta:
         BOOKING_HREF.startsWith("http")
           ? { href: BOOKING_HREF, label: "Book", external: true }
@@ -178,26 +178,26 @@ export function getChatbotReply(raw: string): ChatbotReply {
   if (/\b(parking|park|car park)\b/.test(q)) {
     return {
       text:
-        "🅿️ Yes — Crown Glass Car Park (£1/hr, free evenings and Sundays) and Station Road Car Park (50p/hr, same hours) are both handy.",
+        "🅿️ Yes, Crown Glass Car Park (£1/hr, free evenings and Sundays) and Station Road Car Park (50p/hr, same hours) are both handy.",
     };
   }
 
   if (/\b(grip sock|socks|grip socks)\b/.test(q)) {
     return {
-      text: "🧦 Grip socks are mandatory for safety — and we sell them in-studio if you forget to pack a pair!",
+      text: "🧦 Grip socks are mandatory for safety, and we sell them in-studio if you forget to pack a pair!",
     };
   }
 
   if (/\b(cancel|cancellation)\b/.test(q)) {
     return {
-      text: "⏰ Cancel at least 24 hours before class to get your credit back. Late cancellations may be charged — we keep it fair for everyone on the waitlist.",
+      text: "⏰ Cancel at least 24 hours before class to get your credit back. Late cancellations may be charged, we keep it fair for everyone on the waitlist.",
     };
   }
 
   if (/\b(reformer|hot mat|mat pilates|classes offered|what classes)\b/.test(q)) {
     return {
       text:
-        "✨ We offer Reformer, Hot Mat, and Mat Pilates — something for different moods and levels. Beginners are welcome!",
+        "✨ We offer Reformer, Hot Mat, and Mat Pilates, something for different moods and levels. Beginners are welcome!",
     };
   }
 
@@ -217,7 +217,7 @@ export function getChatbotReply(raw: string): ChatbotReply {
 
   return {
     text:
-      "That’s a great question — I want to make sure you get the right answer! 🙌 Our team can help with anything personal or detailed. Send us an email and we’ll get back to you.",
+      "That’s a great question, I want to make sure you get the right answer! 🙌 Our team can help with anything personal or detailed. Send us an email and we’ll get back to you.",
     cta: { href: `mailto:${CONTACT.email}`, label: `Email ${CONTACT.email}`, external: true },
   };
 }

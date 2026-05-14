@@ -14,7 +14,7 @@ type Props = {
   linkLabel?: string;
   level?: string;
   className?: string;
-  /** Grey media block for future photography — default on */
+  /** Grey media block for future photography, default on */
   imagePlaceholder?: boolean;
   /** When set, shows this photo instead of the placeholder */
   imageSrc?: string;

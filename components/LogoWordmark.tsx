@@ -12,7 +12,7 @@ type Props = {
 };
 
 /**
- * Brand wordmark — vector at `public/brand/reset-wordmark.svg` (tight viewBox; matches export spacing).
+ * Brand wordmark, vector at `public/brand/reset-wordmark.svg` (tight viewBox; matches export spacing).
  * Default `h-*` targets nav bar (footer passes its own `className`).
  */
 export const LogoWordmark = forwardRef<HTMLImageElement, Props>(function LogoWordmark(

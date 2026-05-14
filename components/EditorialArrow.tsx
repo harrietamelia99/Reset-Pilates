@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 const sizes = {
   /** Eyebrows, links */
   sm: "h-5 w-5",
-  /** Default — section labels, cards */
+  /** Default, section labels, cards */
   md: "h-9 w-9",
   /** Hero flyer, major bands */
   lg: "h-14 w-14",
@@ -17,11 +17,11 @@ type Props = {
   light?: boolean;
   /** Up-right (↗) or down-right (↘) */
   direction?: "ne" | "sw";
-  /** Visual weight — default `md` is much larger than the old text glyph */
+  /** Visual weight, default `md` is much larger than the old text glyph */
   size?: EditorialArrowSize;
 };
 
-/** Minimal diagonal arrow — thin strokes, inspired by editorial / poster marks */
+/** Minimal diagonal arrow, thin strokes, inspired by editorial / poster marks */
 function ArrowGlyph({ direction }: { direction: "ne" | "sw" }) {
   // viewBox 40×40: shaft + corner ticks at tip (line-art, not filled head)
   const sw = (

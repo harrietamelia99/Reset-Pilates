@@ -14,7 +14,7 @@ type Msg = {
 };
 
 const WELCOME =
-  "Hi, I'm your Reset helper — lovely to meet you! 💚 Ask about booking, classes, opening day, or where to find us. If it's personal or tricky, I'll nudge you toward our team ✉️";
+  "Hi, I'm your Reset helper, lovely to meet you! 💚 Ask about booking, classes, opening day, or where to find us. If it's personal or tricky, I'll nudge you toward our team ✉️";
 
 const QUICK_PROMPTS: { label: string; send: string }[] = [
   { label: "When do you open? 📅", send: "When do you open" },
@@ -106,7 +106,7 @@ export function FloatingChatbot() {
               Need a hand? 💬
             </p>
             <p className="mt-1 font-accent text-[11px] leading-snug text-white/75">
-              FAQs & friendly pointers — we&apos;ll connect you with the team when it&apos;s better over email.
+              FAQs & friendly pointers, we&apos;ll connect you with the team when it&apos;s better over email.
             </p>
           </div>
 

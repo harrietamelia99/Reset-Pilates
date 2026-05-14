@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /** Brand palette — charcoal, mid-grey, warm-grey, light-grey, white */
+        /** Brand palette, charcoal, mid-grey, warm-grey, light-grey, white */
         charcoal: "#2b2b29",
         "mid-grey": "#545456",
         "warm-grey": "#8E898A",
         "light-grey": "#C6C5C4",
         white: "#FFFFFF",
-        /** Same as charcoal — headline ink on light surfaces */
+        /** Same as charcoal, headline ink on light surfaces */
         "editorial-ink": "#2b2b29",
       },
       fontFamily: {
@@ -31,7 +31,7 @@ const config: Config = {
         ],
       },
       letterSpacing: {
-        /** Brand heading tracking — 0.196em */
+        /** Brand heading tracking, 0.196em */
         heading: "0.196em",
       },
     },

@@ -6,11 +6,11 @@ import { fadeItem, staggerContainer, scrollViewport } from "@/lib/motion";
 const ITEMS = [
   {
     t: "Dynamic, results-driven movement",
-    d: "Not your average stretch session — sessions are built to challenge, refine, and reset.",
+    d: "Not your average stretch session, sessions are built to challenge, refine, and reset.",
   },
   {
     t: "Infrared-heated classes",
-    d: "Muscles warm faster, recovery comes sooner — heat with intention.",
+    d: "Muscles warm faster, recovery comes sooner, heat with intention.",
   },
   {
     t: "Beginners welcome",
@@ -18,7 +18,7 @@ const ITEMS = [
   },
   {
     t: "A space that's yours",
-    d: "Intimate, considered, never crowded — room to breathe and move.",
+    d: "Intimate, considered, never crowded, room to breathe and move.",
   },
 ] as const;
 

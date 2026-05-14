@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "FAQs | Reset Pilates Studio",
     description:
-      "Booking, classes, grip socks, parking, cancellations, and first visits — Reset Pilates, Nailsea.",
+      "Booking, classes, grip socks, parking, cancellations, and first visits, Reset Pilates, Nailsea.",
     openGraph: {
       title: "FAQs | Reset Pilates Studio",
       description: "Answers about reformer, hot mat, and mat Pilates at Reset.",

@@ -155,7 +155,7 @@ export function ContactForm({ className }: Props) {
           id="contact-message"
           rows={6}
           className={cn(inputClass, "min-h-[140px] resize-y")}
-          placeholder="Classes, memberships, partnerships, press — ask us anything."
+          placeholder="Classes, memberships, partnerships, press, ask us anything."
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "contact-message-error" : undefined}
           {...register("message", {
@@ -195,7 +195,7 @@ export function ContactForm({ className }: Props) {
 
       {status === "success" && (
         <p className="text-sm text-mid-grey" role="status">
-          Thank you — your message is on its way. We&apos;ll get back to you as soon as we can.
+          Thank you, your message is on its way. We&apos;ll get back to you as soon as we can.
         </p>
       )}
       {status === "error" && (

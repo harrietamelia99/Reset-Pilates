@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * In development, Safari often shows “localhost” with no port — that is port 80, not `next dev`
+ * In development, Safari often shows “localhost” with no port; that is port 80, not `next dev`
  * (default 3000). CSS and routes then fail to match this app.
  */
 export function DevHostHint() {
@@ -25,7 +25,9 @@ export function DevHostHint() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[100] border-t border-charcoal/25 bg-amber-100 px-4 py-3 text-center font-accent text-xs text-charcoal">
       <strong className="font-sans uppercase tracking-wide">Dev server URL</strong>
-      {" — "}
+      <span className="mx-1.5 text-mid-grey" aria-hidden>
+        :
+      </span>
       <span className="text-mid-grey">
         Bare <code className="rounded bg-white/80 px-1 py-0.5">localhost</code> uses{" "}
         <strong>port 80</strong>, not Next.js. Use{" "}

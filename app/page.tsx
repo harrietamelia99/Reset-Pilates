@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Reset Pilates Studio | Reformer & Hot Mat Pilates in Nailsea",
     description:
-      "Premium boutique Pilates in Nailsea. Reformer, hot mat and mat classes — opening June 2026. Founding memberships available.",
+      "Premium boutique Pilates in Nailsea. Reformer, hot mat and mat classes, opening June 2026. Founding memberships available.",
     openGraph: {
       title: "Reset Pilates Studio | Reformer & Hot Mat Pilates in Nailsea",
       description:
@@ -43,7 +43,7 @@ export default function HomePage() {
             <figure className="group relative aspect-[5/3] w-full min-h-[200px] overflow-hidden md:aspect-auto md:min-h-[280px] md:h-full md:self-stretch">
               <Image
                 src="/images/reset-studio-sign.png"
-                alt="Reset Pilates Studio exterior sign — Pilates Studio, Est. 2026"
+                alt="Reset Pilates Studio exterior sign, Pilates Studio, Est. 2026"
                 fill
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 768px) 100vw, 42vw"
@@ -62,7 +62,7 @@ export default function HomePage() {
               </header>
               <div className="space-y-4 text-mid-grey">
                 <p className="max-w-md text-[15px] leading-relaxed">
-                  Start with a three-class bundle — £45 for reformer or hot mat, or £30 for mat-only — so you can feel the space before you commit.
+                  Start with a three-class bundle, £45 for reformer or hot mat, or £30 for mat-only, so you can feel the space before you commit.
                 </p>
               </div>
               <Link
@@ -93,19 +93,19 @@ export default function HomePage() {
             title="Reformer Pilates"
             description="Dynamic movement on the reformer machine. Strength, control and flow."
             imageSrc="/images/reformer-pilates.png"
-            imageAlt="Reformer Pilates — kneeling exercise with straps on the Merrithew reformer"
+            imageAlt="Reformer Pilates, kneeling exercise with straps on the Merrithew reformer"
           />
           <ClassCard
             title="Hot Mat Pilates"
             description="Infrared-heated Pilates designed to deepen your practice and elevate results."
             imageSrc="/images/hot-mat-pilates.png"
-            imageAlt="Hot Mat Pilates — side plank with lifted knee on a studio mat"
+            imageAlt="Hot Mat Pilates, side plank with lifted knee on a studio mat"
           />
           <ClassCard
             title="Mat Pilates"
             description="Foundation-led mat classes for all levels. Available pending final scheduling."
             imageSrc="/images/mat-pilates.png"
-            imageAlt="Mat Pilates class — tabletop leg extension on a studio mat"
+            imageAlt="Mat Pilates class, tabletop leg extension on a studio mat"
           />
         </MotionStaggerGrid>
       </MotionSection>
@@ -139,7 +139,7 @@ export default function HomePage() {
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl font-accent text-[13px] font-normal leading-relaxed tracking-[0.02em] text-white/85 md:text-sm">
-            Be among the first 30 members and lock in a preferential rate for your first 12 months — this
+            Be among the first 30 members and lock in a preferential rate for your first 12 months, this
             invitation closes once we open.
           </p>
 
@@ -186,7 +186,7 @@ export default function HomePage() {
           </MotionStaggerGrid>
 
           <p className="mx-auto mt-8 max-w-xl font-accent text-xs leading-relaxed tracking-[0.03em] text-white/50 md:mt-10 md:text-[13px]">
-            Intro bundles and founding membership rates are listed on pricing — choose what suits your
+            Intro bundles and founding membership rates are listed on pricing, choose what suits your
             practice.
           </p>
         </div>
@@ -217,7 +217,7 @@ export default function HomePage() {
             <figure className="group relative aspect-[3/4] w-full min-h-[260px] overflow-hidden md:min-h-0">
               <Image
                 src="/images/the-studio.png"
-                alt="Reset Pilates studio — equipment wall with arches, timber shelving and matte black props"
+                alt="Reset Pilates studio, equipment wall with arches, timber shelving and matte black props"
                 fill
                 className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 sizes="(max-width: 768px) 100vw, 42vw"

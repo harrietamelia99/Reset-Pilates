@@ -20,11 +20,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Our Classes | Reset Pilates Studio",
     description:
-      "Renew and Rebuild reformer, Reignite hot mat, and Reformat mat Pilates in Nailsea — levels, what to bring, and practical info.",
+      "Renew and Rebuild reformer, Reignite hot mat, and Reformat mat Pilates in Nailsea, levels, what to bring, and practical info.",
     openGraph: {
       title: "Our Classes | Reset Pilates Studio",
       description:
-        "Class types and levels at Reset Pilates — Crown Glass, Nailsea.",
+        "Class types and levels at Reset Pilates, Crown Glass, Nailsea.",
     },
   };
 }
@@ -54,14 +54,14 @@ export default function ClassesPage() {
             What we teach
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-mid-grey md:text-base">
-            Reformer, hot mat, and mat Pilates — dynamic, strength-informed movement for visible results. Timetables
+            Reformer, hot mat, and mat Pilates, dynamic, strength-informed movement for visible results. Timetables
             go live in Momence ahead of opening.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
           <div className="mt-10 max-w-5xl">
             <ImagePlaceholder
               aspect="5/3"
-              caption="Reformer or studio floor — replace with class photography."
+              caption="Reformer or studio floor, replace with class photography."
             />
           </div>
         </div>
@@ -81,8 +81,8 @@ export default function ClassesPage() {
         <div className="mx-auto max-w-6xl space-y-10 px-4 md:px-6">
           <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Reformer</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <ImagePlaceholder aspect="4/3" caption="Renew — beginner reformer class imagery." />
-            <ImagePlaceholder aspect="4/3" caption="Rebuild — intermediate reformer class imagery." />
+            <ImagePlaceholder aspect="4/3" caption="Renew, beginner reformer class imagery." />
+            <ImagePlaceholder aspect="4/3" caption="Rebuild, intermediate reformer class imagery." />
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {REFORMER_CLASSES.map((c) => (
@@ -100,7 +100,7 @@ export default function ClassesPage() {
             <div className="mt-6 max-w-3xl">
               <ImagePlaceholder
                 aspect="video"
-                caption="Hot mat / Reignite — infrared studio or class moment."
+                caption="Hot mat / Reignite, infrared studio or class moment."
               />
             </div>
             <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
@@ -113,7 +113,7 @@ export default function ClassesPage() {
           <div>
             <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Mat</h2>
             <div className="mt-6 max-w-2xl">
-              <ImagePlaceholder aspect="4/3" caption="Mat Pilates / Reformat — class or studio shot." />
+              <ImagePlaceholder aspect="4/3" caption="Mat Pilates / Reformat, class or studio shot." />
             </div>
             <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
               <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{MAT_CLASS.name}</h3>

@@ -12,7 +12,7 @@ type Props = {
 };
 
 /**
- * Pre-launch flyer card for the home hero — announcement, location, headline,
+ * Pre-launch flyer card for the home hero, announcement, location, headline,
  * class types, opening line, booking CTAs, and Momence note (matches studio poster layout).
  */
 export function HeroBookingSheet({ className }: Props) {
@@ -53,7 +53,7 @@ export function HeroBookingSheet({ className }: Props) {
       </p>
 
       <p className="mt-2.5 text-center font-accent text-[9px] uppercase tracking-[0.18em] text-charcoal md:mt-3 md:text-[10px]">
-        Opening 1st June 2026 — founding memberships now available
+        Opening 1st June 2026, founding memberships now available
       </p>
 
       <div className="rule-section my-4 md:my-6 lg:my-7" />
@@ -87,7 +87,7 @@ export function HeroBookingSheet({ className }: Props) {
 
       <div className="mt-4 border-t border-charcoal pt-3 md:mt-6 md:pt-5">
         <p className="font-accent text-[8px] uppercase leading-relaxed tracking-[0.14em] text-charcoal md:text-[9px]">
-          Booking via Momence — link updates before launch.
+          Booking via Momence, link updates before launch.
         </p>
       </div>
     </PaperSheet>

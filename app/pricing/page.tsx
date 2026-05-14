@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Pricing | Reset Pilates Studio",
     description:
-      "Intro bundles, class packs, memberships, founding rates, and drop-ins — Reset Pilates, Nailsea. Opening June 2026.",
+      "Intro bundles, class packs, memberships, founding rates, and drop-ins, Reset Pilates, Nailsea. Opening June 2026.",
     openGraph: {
       title: "Pricing | Reset Pilates Studio",
       description: "Reformer, hot mat, and mat Pilates pricing at Reset Pilates.",
@@ -129,11 +129,15 @@ function WhiteTierCard({
 }
 
 function splitMembershipLabel(label: string): { eyebrow: string; body: string } {
-  const parts = label.split("\u2014").map((s) => s.trim());
-  if (parts.length >= 2) {
-    return { eyebrow: parts[0] ?? label, body: parts.slice(1).join(" \u2014 ") };
+  const sep = ", ";
+  const idx = label.indexOf(sep);
+  if (idx === -1) {
+    return { eyebrow: "Membership", body: label };
   }
-  return { eyebrow: "Membership", body: label };
+  return {
+    eyebrow: label.slice(0, idx).trim(),
+    body: label.slice(idx + sep.length).trim(),
+  };
 }
 
 export default function PricingPage() {
@@ -156,7 +160,7 @@ export default function PricingPage() {
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <ImagePlaceholder
             aspect="wide"
-            caption="Campaign or lifestyle imagery — optional strip above tiers (replace when art-directed)."
+            caption="Campaign or lifestyle imagery, optional strip above tiers (replace when art-directed)."
           />
         </div>
       </MotionSection>
@@ -181,7 +185,7 @@ export default function PricingPage() {
             <WhiteTierCard
               eyebrow="Reformer or hot mat"
               price="£45"
-              body="Three reformer or hot mat Pilates classes — ideal if you want to feel the kit and the heat."
+              body="Three reformer or hot mat Pilates classes, ideal if you want to feel the kit and the heat."
               cta={
                 <BookLink className="inline-flex w-full min-h-[44px] items-center justify-center bg-charcoal px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0" />
               }
@@ -189,7 +193,7 @@ export default function PricingPage() {
             <WhiteTierCard
               eyebrow="Mat"
               price="£30"
-              body="Three mat-only classes — a gentle way into the studio."
+              body="Three mat-only classes, a gentle way into the studio."
               cta={
                 <BookLink className="inline-flex w-full min-h-[44px] items-center justify-center border border-charcoal bg-white px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0" />
               }
@@ -206,7 +210,7 @@ export default function PricingPage() {
             Monthly memberships
           </h2>
           <p className="mx-auto mt-4 max-w-2xl font-accent text-[13px] leading-relaxed text-white/80 md:text-sm">
-            Four or eight classes per month on reformer or mat — upgrade path as your practice grows.
+            Four or eight classes per month on reformer or mat, upgrade path as your practice grows.
           </p>
 
           <MotionStaggerGrid className="mx-auto mt-8 grid w-full max-w-4xl gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:gap-6">
@@ -230,7 +234,7 @@ export default function PricingPage() {
             Founding memberships
           </h2>
           <p className="mx-auto mt-4 max-w-2xl font-accent text-[13px] leading-relaxed text-white/80 md:text-sm">
-            First 30 members — preferential rate locked for your first 12 months. Same structure as on the home
+            First 30 members, preferential rate locked for your first 12 months. Same structure as on the home
             page.
           </p>
 
@@ -239,7 +243,7 @@ export default function PricingPage() {
               eyebrow="Founding · Reformer"
               price="£65"
               priceSuffix="/month"
-              body="4 reformer sessions per month — founding cohort pricing."
+              body="4 reformer sessions per month, founding cohort pricing."
               cta={
                 <BookLink className="inline-flex w-full min-h-[44px] items-center justify-center bg-charcoal px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0" />
               }
@@ -248,7 +252,7 @@ export default function PricingPage() {
               eyebrow="Founding · Mat"
               price="£35"
               priceSuffix="/month"
-              body="4 mat sessions per month — founding cohort pricing."
+              body="4 mat sessions per month, founding cohort pricing."
               cta={
                 <BookLink className="inline-flex w-full min-h-[44px] items-center justify-center border border-charcoal bg-white px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0" />
               }
@@ -290,7 +294,7 @@ export default function PricingPage() {
           <div className="mt-12 max-w-3xl md:mt-14">
             <h3 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Drop-in</h3>
             <p className="mt-2 font-accent text-xs uppercase leading-relaxed tracking-[0.12em] text-warm-grey">
-              Pay as you go — one session at a time
+              Pay as you go, one session at a time
             </p>
             <div className="rule-section mt-5 max-w-[10rem]" aria-hidden />
           </div>
@@ -341,7 +345,7 @@ export default function PricingPage() {
             Book through Momence
           </h2>
           <p className="mx-auto mt-5 max-w-xl font-accent text-sm leading-relaxed text-white/80 md:text-[15px]">
-            We&apos;re finishing the live timetable in Momence. Use Book a class when your link is active — until
+            We&apos;re finishing the live timetable in Momence. Use Book a class when your link is active, until
             then, everything above is your reference for rates and bundles.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
