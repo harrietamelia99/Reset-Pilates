@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { MotionStaggerGrid } from "@/components/MotionStaggerGrid";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BOOKING_HREF } from "@/lib/constants";
 import {
   INFRARED_BENEFITS,
@@ -153,15 +152,6 @@ export default function PricingPage() {
             {OFFERS_SUMMARY} Final checkout will be in Momence when booking opens.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
-        </div>
-      </MotionSection>
-
-      <MotionSection className="border-b border-light-grey bg-white pb-10 md:pb-12" delay={0.03}>
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <ImagePlaceholder
-            aspect="wide"
-            caption="Campaign or lifestyle imagery, optional strip above tiers (replace when art-directed)."
-          />
         </div>
       </MotionSection>
 

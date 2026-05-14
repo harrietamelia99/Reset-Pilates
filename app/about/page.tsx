@@ -57,7 +57,7 @@ export default function AboutPage() {
 
       <MotionSection className="relative bg-white pb-16 md:pb-20" delay={0.05}>
         <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-12 md:items-start md:gap-10 md:px-6 lg:gap-12">
-          <div className="md:col-span-5 lg:col-span-4">
+          <div className="mt-8 md:col-span-5 md:mt-10 lg:col-span-4 lg:mt-12">
             <ImagePlaceholder
               aspect="3/4"
               caption="Founder portrait or studio photography, replace when assets are ready."
