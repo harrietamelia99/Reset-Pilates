@@ -1,16 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { staggerContainer, fadeItem } from "@/lib/motion";
-import { HeroBackgroundWordmark } from "@/components/HeroBackgroundWordmark";
 import { HeroBookingSheet } from "@/components/HeroBookingSheet";
 
 export function HomeHero() {
-  const heroRef = useRef<HTMLElement>(null);
   const slotRef = useRef<HTMLDivElement>(null);
   const flyerRef = useRef<HTMLDivElement>(null);
 
@@ -56,24 +53,15 @@ export function HomeHero() {
 
   return (
     <section
-      ref={heroRef}
       className="surface-poster-hero relative isolate h-[calc(100svh-8rem)] max-h-[calc(100svh-8rem)] min-h-0 overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
-        <Image
-          src="/images/hero-industrial-texture.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-mid-grey/38" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+        <div className="absolute inset-0 bg-[#535355]" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.09] via-transparent to-black/22" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-white/[0.05]" aria-hidden />
       </div>
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
-
-      <HeroBackgroundWordmark heroRef={heroRef} />
 
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-6xl flex-col px-4 py-3 md:px-6 md:py-4">
         <div

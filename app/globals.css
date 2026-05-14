@@ -121,7 +121,7 @@
   }
 
   /*
-   * Home hero — full-bleed texture is rendered in `HomeHero` (next/image) for LCP;
+   * Home hero — grey wash + gradients in `HomeHero` (no bitmap hero texture);
    * this class provides fallback fill, noise + vignette layers, and text colour.
    */
   .surface-poster-hero {

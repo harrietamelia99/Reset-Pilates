@@ -249,15 +249,10 @@ export default function HomePage() {
       <HomeEmailAlertsSection />
 
       <MotionSection className="surface-poster-hero relative overflow-hidden border-t border-white/10 py-16 md:py-20">
-        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
-          <Image
-            src="/images/hero-industrial-texture.png"
-            alt=""
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-mid-grey/38" aria-hidden />
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+          <div className="absolute inset-0 bg-[#535355]" aria-hidden />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.09] via-transparent to-black/22" aria-hidden />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-white/[0.05]" aria-hidden />
         </div>
         <div className="grain-layer z-[1]" aria-hidden />
         <div className="vignette-layer z-[1]" aria-hidden />
