@@ -120,7 +120,12 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
             />
           </div>
           {errors.email && (
-            <p className={cn("mt-1.5 text-xs", variant === "dark" ? "text-white/70" : "text-mid-grey")}>
+            <p
+              className={cn(
+                "mt-1.5 text-xs [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]",
+                variant === "dark" ? "text-white/85" : "text-mid-grey"
+              )}
+            >
               {errors.email.message}
             </p>
           )}
@@ -149,8 +154,8 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
         </button>
         <p
           className={cn(
-            "font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em]",
-            variant === "dark" ? "text-white/55" : "text-warm-grey"
+            "font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em] [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]",
+            variant === "dark" ? "text-white/85" : "text-warm-grey"
           )}
         >
           Opening dates, offers &amp; timetable drops, no spam.
@@ -158,12 +163,24 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
       </div>
 
       {status === "success" && (
-        <p className={cn("text-sm", variant === "dark" ? "text-white/80" : "text-mid-grey")} role="status">
+        <p
+          className={cn(
+            "text-sm [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]",
+            variant === "dark" ? "text-white/95" : "text-mid-grey"
+          )}
+          role="status"
+        >
           You&apos;re on the list, look out for news from Reset.
         </p>
       )}
       {status === "error" && (
-        <p className={cn("text-sm", variant === "dark" ? "text-white/80" : "text-mid-grey")} role="alert">
+        <p
+          className={cn(
+            "text-sm [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]",
+            variant === "dark" ? "text-white/95" : "text-mid-grey"
+          )}
+          role="alert"
+        >
           That didn&apos;t go through. Please try again or email hello@resetpilatesstudio.co.uk.
         </p>
       )}

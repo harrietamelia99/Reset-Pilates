@@ -93,7 +93,7 @@ export function PromoSignupModal() {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-10 w-full max-w-md overflow-hidden rounded-sm border border-charcoal/15 shadow-2xl"
+        className="relative z-10 w-full max-w-md overflow-hidden rounded-sm border border-white/15 shadow-2xl"
       >
         <div className="pointer-events-none absolute inset-0 z-0">
           <Image
@@ -104,33 +104,38 @@ export function PromoSignupModal() {
             sizes="(max-width: 640px) 100vw, 448px"
           />
         </div>
-        <div className="absolute inset-0 z-[1] bg-white/78 backdrop-blur-[1px]" aria-hidden />
+        <div className="absolute inset-0 z-[1] bg-black/58 backdrop-blur-[2px]" aria-hidden />
         <div className="relative z-[2] p-6 sm:p-8">
           <button
             type="button"
             onClick={close}
-            className="absolute right-3 top-3 rounded p-2 text-mid-grey transition hover:bg-light-grey/50 hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal"
+            className="absolute right-3 top-3 rounded p-2 text-white/90 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             aria-label="Close"
           >
-            <X className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+            <X className="h-5 w-5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]" strokeWidth={1.75} aria-hidden />
           </button>
 
-          <p className="font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey">Stay in the loop</p>
-          <h2 id={titleId} className="mt-2 text-xl font-bold uppercase tracking-heading text-charcoal sm:text-2xl">
+          <p className="font-accent text-[10px] uppercase tracking-[0.14em] text-white/90 [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
+            Stay in the loop
+          </p>
+          <h2
+            id={titleId}
+            className="mt-2 text-xl font-bold uppercase tracking-heading text-white sm:text-2xl [text-shadow:0_1px_3px_rgba(0,0,0,0.4),0_0_24px_rgba(0,0,0,0.2)]"
+          >
             Get opening updates
           </h2>
-          <p className="mt-3 font-accent text-sm leading-relaxed text-mid-grey">
+          <p className="mt-3 font-accent text-sm leading-relaxed text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
             Timetable drops, founding offers, and studio news. No spam, just what you need to be first on the list.
           </p>
 
           <div className="mt-6">
-            <EmailAlertsForm variant="light" idPrefix="promo" onSuccess={onSignupSuccess} />
+            <EmailAlertsForm variant="dark" idPrefix="promo" onSuccess={onSignupSuccess} />
           </div>
 
           <button
             type="button"
             onClick={close}
-            className="mt-4 w-full text-center font-accent text-[11px] uppercase tracking-wide text-warm-grey underline-offset-4 hover:text-charcoal hover:underline"
+            className="mt-4 w-full text-center font-accent text-[11px] uppercase tracking-wide text-white/80 underline-offset-4 [text-shadow:0_1px_2px_rgba(0,0,0,0.35)] hover:text-white hover:underline"
           >
             Maybe later
           </button>
