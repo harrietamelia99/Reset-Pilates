@@ -6,6 +6,7 @@ import { FloatingChatbot } from "@/components/FloatingChatbot";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { PreLaunchBanner } from "@/components/PreLaunchBanner";
+import { PromoSignupModal } from "@/components/PromoSignupModal";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingChatbot />
+        <PromoSignupModal />
         <DevHostHint />
       </body>
     </html>

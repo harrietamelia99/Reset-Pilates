@@ -15,9 +15,13 @@ type FormValues = {
 type Props = {
   /** Dark strip on homepage; default matches light sections elsewhere */
   variant?: "light" | "dark";
+  /** Prefix for input ids (avoids duplicates when two forms are on the page, e.g. promo modal). */
+  idPrefix?: string;
+  /** Called after a successful signup (e.g. close modal, analytics). */
+  onSuccess?: () => void;
 };
 
-export function EmailAlertsForm({ variant = "light" }: Props) {
+export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSuccess }: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const {
@@ -45,6 +49,7 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
       if (res.ok) {
         reset({ email: "", name: "", _gotcha: "" });
         setStatus("success");
+        onSuccess?.();
       } else {
         setStatus("error");
       }
@@ -55,11 +60,11 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-5" noValidate>
-      <label htmlFor="alerts-website" className="sr-only">
+      <label htmlFor={`${idPrefix}-website`} className="sr-only">
         Leave this field empty
       </label>
       <input
-        id="alerts-website"
+        id={`${idPrefix}-website`}
         type="text"
         tabIndex={-1}
         autoComplete="off"
@@ -70,11 +75,11 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
 
       <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] sm:gap-3">
         <div>
-          <label htmlFor="alerts-name" className="sr-only">
+          <label htmlFor={`${idPrefix}-name`} className="sr-only">
             Name
           </label>
           <input
-            id="alerts-name"
+            id={`${idPrefix}-name`}
             type="text"
             autoComplete="given-name"
             placeholder="Name"
@@ -88,7 +93,7 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
           />
         </div>
         <div>
-          <label htmlFor="alerts-email" className="sr-only">
+          <label htmlFor={`${idPrefix}-email`} className="sr-only">
             Email address
           </label>
           <div className="relative">
@@ -101,7 +106,7 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
               aria-hidden
             />
             <input
-              id="alerts-email"
+              id={`${idPrefix}-email`}
               type="email"
               autoComplete="email"
               placeholder="Email address"
