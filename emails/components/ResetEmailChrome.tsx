@@ -1,5 +1,6 @@
 import { Hr, Img, Link, Section, Text } from "@react-email/components";
 import * as React from "react";
+import { getEmailAssetBaseUrl } from "../../lib/emails/email-asset-base-url";
 import { getSiteUrl } from "../../lib/emails/site-url";
 import { CONTACT } from "../../lib/constants";
 
@@ -8,19 +9,13 @@ const midGrey = "#545456";
 const warmGrey = "#8E898A";
 const lightGrey = "#C6C5C4";
 
-/**
- * Panoramic header art for all mailers (`public/brand/reset-email-header.png`).
- * Hosted PNG + absolute URL: works in Gmail, Apple Mail, etc. Outlook needs explicit width/height (no CSS-only hero).
- * ~60KB is fine; images blocked by the user still show alt text.
- */
-function emailHeaderSrc(site: string): string {
-  const base = site.replace(/\/+$/, "");
-  return `${base}/brand/reset-email-header.png`;
+/** Panoramic header (`public/brand/reset-email-header.png`) — must be reachable at this HTTPS URL when sent (see EMAIL_ASSET_BASE_URL). */
+function emailHeaderSrc(assetBase: string): string {
+  return `${assetBase}/brand/reset-email-header.png`;
 }
 
-function instagramIconSrc(site: string): string {
-  const base = site.replace(/\/+$/, "");
-  return `${base}/brand/instagram-email.png`;
+function instagramIconSrc(assetBase: string): string {
+  return `${assetBase}/brand/instagram-email.png`;
 }
 
 type Props = {
@@ -33,10 +28,11 @@ type Props = {
  */
 export function ResetEmailChrome({ children }: Props) {
   const site = getSiteUrl();
-  const headerUrl = emailHeaderSrc(site);
-  const instagramIconUrl = instagramIconSrc(site);
+  const assetBase = getEmailAssetBaseUrl();
+  const headerUrl = emailHeaderSrc(assetBase);
+  const instagramIconUrl = instagramIconSrc(assetBase);
 
-  /** Native 1024×341; display at 600-wide max to match container (Outlook-friendly ratio). */
+  /** Native 1024×341; match 600px mail container (explicit px for consistent letterboxing). */
   const headerW = 600;
   const headerH = Math.round((341 / 1024) * headerW);
 
@@ -50,13 +46,13 @@ export function ResetEmailChrome({ children }: Props) {
           height={headerH}
           style={{
             display: "block",
-            width: "100%",
-            maxWidth: `${headerW}px`,
-            height: "auto",
-            margin: 0,
+            margin: "0 auto",
             border: 0,
             outline: "none",
             textDecoration: "none",
+            width: `${headerW}px`,
+            height: `${headerH}px`,
+            maxWidth: "100%",
           }}
         />
       </Section>

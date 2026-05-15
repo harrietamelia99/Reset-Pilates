@@ -4,6 +4,7 @@
  * Open: email-previews/index.html in a browser (file:// or static server).
  */
 import * as React from "react";
+import { existsSync, readFileSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { render } from "@react-email/render";
@@ -15,6 +16,26 @@ import { getExampleOpeningNewsletterContent } from "../lib/emails/example-newsle
 import { getSiteUrl } from "../lib/emails/site-url";
 
 const OUT = join(process.cwd(), "email-previews");
+const BRAND_DIR = join(process.cwd(), "public/brand");
+
+/**
+ * Static preview HTML is often opened without a server; remote /brand URLs may 404 until deploy.
+ * Gmail blocks data URIs in real sends; embedding here is preview-only.
+ */
+function inlineBrandImagesForLocalPreview(html: string): string {
+  const pairs: { file: string; pattern: RegExp }[] = [
+    { file: "reset-email-header.png", pattern: /src="[^"]*\/brand\/reset-email-header\.png"/gi },
+    { file: "instagram-email.png", pattern: /src="[^"]*\/brand\/instagram-email\.png"/gi },
+  ];
+  let out = html;
+  for (const { file, pattern } of pairs) {
+    const fp = join(BRAND_DIR, file);
+    if (!existsSync(fp)) continue;
+    const dataUri = `src="data:image/png;base64,${readFileSync(fp).toString("base64")}"`;
+    out = out.replace(pattern, dataUri);
+  }
+  return out;
+}
 
 const sampleNewsletter = getExampleOpeningNewsletterContent(getSiteUrl());
 
@@ -55,7 +76,7 @@ async function main() {
   });
 
   for (const p of pages) {
-    await writeFile(join(OUT, p.file), p.html, "utf8");
+    await writeFile(join(OUT, p.file), inlineBrandImagesForLocalPreview(p.html), "utf8");
   }
 
   const indexHtml = `<!DOCTYPE html>
@@ -78,7 +99,7 @@ async function main() {
   <ul>
 ${pages.map((p) => `    <li><a href="./${p.file}">${p.title}</a></li>`).join("\n")}
   </ul>
-  <p class="note">Regenerate with <code>npm run email:preview</code>. This folder is gitignored.</p>
+  <p class="note">Regenerate with <code>npm run email:preview</code>. Images are inlined here so file:// works. For <code>npm run email:dev</code>, set <code>EMAIL_ASSET_BASE_URL=http://localhost:3000</code> and run <code>next dev</code> so /public assets load, or deploy so your live domain serves <code>/brand/*.png</code>.</p>
 </body>
 </html>`;
 
