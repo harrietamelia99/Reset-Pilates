@@ -8,10 +8,13 @@ const midGrey = "#545456";
 const warmGrey = "#8E898A";
 const lightGrey = "#C6C5C4";
 
-/** Same asset as the site nav (`public/brand/reset-wordmark.svg`), absolute URL for email clients. */
+/**
+ * PNG wordmark for email (`public/brand/reset-wordmark-email.png`). Many clients do not render SVG in `<img>`,
+ * which shows a broken icon and the alt text instead. The site nav still uses the SVG.
+ */
 function wordmarkSrc(site: string): string {
   const base = site.replace(/\/+$/, "");
-  return `${base}/brand/reset-wordmark.svg`;
+  return `${base}/brand/reset-wordmark-email.png`;
 }
 
 type Props = {
@@ -31,7 +34,7 @@ export function ResetEmailChrome({ children }: Props) {
       <Section style={{ padding: "32px 24px 8px", backgroundColor: "#ffffff" }}>
         <Img
           src={logoUrl}
-          alt="reset."
+          alt="Reset Pilates"
           width={200}
           height={64}
           style={{
