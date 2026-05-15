@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Clock, Mail, MapPin } from "lucide-react";
 import { MotionSection } from "@/components/MotionSection";
@@ -29,6 +30,15 @@ export function ContactView() {
 
       <MotionSection className="relative bg-white pb-16 md:pb-24" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
+          <div className="relative mb-12 aspect-[16/9] w-full overflow-hidden border border-light-grey bg-light-grey/20 md:mb-14">
+            <Image
+              src="/images/contact-reset-ball.png"
+              alt="Large pale exercise ball printed with reset. in a bright minimalist space with soft shadow."
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 1152px) 100vw, 1152px"
+            />
+          </div>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch lg:gap-14">
             <PaperSheet flat pin={false} className="flex h-full min-h-0 flex-col p-6 md:p-8 lg:p-10">
               <h2 className="text-xl font-bold uppercase tracking-heading text-charcoal md:text-2xl">
