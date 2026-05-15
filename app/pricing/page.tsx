@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { EditorialVideoBackdrop } from "@/components/EditorialVideoBackdrop";
 import { MotionSection } from "@/components/MotionSection";
 import { MotionStaggerGrid } from "@/components/MotionStaggerGrid";
 import { PosterCtaBand } from "@/components/PosterCtaBand";
@@ -90,11 +91,7 @@ function BookLink({ className }: { className: string }) {
 function DarkBandBg() {
   return (
     <>
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
-        <div className="absolute inset-0 bg-[#1f1f22]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#141416]/92 via-[#1e1e22]/88 to-[#141416]/92" />
-        <div className="absolute inset-0 bg-[#0f0f10]/55" />
-      </div>
+      <EditorialVideoBackdrop variant="deep" preload="metadata" />
       <div className="grain-layer z-[1] opacity-15" aria-hidden />
     </>
   );
