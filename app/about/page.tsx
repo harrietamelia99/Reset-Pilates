@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
 import { PosterCtaBand } from "@/components/PosterCtaBand";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BOOKING_HREF } from "@/lib/constants";
 import {
   ABOUT_STORY_PARAGRAPHS,
@@ -58,12 +58,21 @@ export default function AboutPage() {
 
       <MotionSection className="relative bg-white pb-16 md:pb-20" delay={0.05}>
         <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-12 md:items-start md:gap-10 md:px-6 lg:gap-12">
-          <div className="mt-8 md:col-span-5 md:mt-10 lg:col-span-4 lg:mt-12">
-            <ImagePlaceholder
-              aspect="3/4"
-              caption="Founder portrait or studio photography, replace when assets are ready."
-            />
-          </div>
+          <figure className="mt-8 md:col-span-5 md:mt-10 lg:col-span-4 lg:mt-12">
+            <div className="relative aspect-[3/4] w-full overflow-hidden border border-charcoal/10 bg-charcoal/5">
+              <Image
+                src="/about/marianne.png"
+                alt="Black and white portrait of Marianne, founder of Reset Pilates, smiling in front of a brick wall."
+                fill
+                sizes="(max-width: 768px) 100vw, 36vw"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+            <figcaption className="mt-3 font-accent text-xs uppercase tracking-[0.12em] text-mid-grey">
+              Marianne · Founder
+            </figcaption>
+          </figure>
           <div className="md:col-span-7 lg:col-span-8">
             <PaperSheet flat pin={false} className="h-full w-full p-6 md:p-8 lg:p-10">
               <div className="space-y-6 text-center md:text-left">
