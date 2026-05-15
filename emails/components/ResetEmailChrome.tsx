@@ -1,7 +1,7 @@
 import { Hr, Link, Section, Text } from "@react-email/components";
 import * as React from "react";
-import { getSiteUrl } from "@/lib/emails/site-url";
-import { CONTACT } from "@/lib/constants";
+import { getSiteUrl } from "../../lib/emails/site-url";
+import { CONTACT } from "../../lib/constants";
 
 const charcoal = "#2b2b29";
 const midGrey = "#545456";

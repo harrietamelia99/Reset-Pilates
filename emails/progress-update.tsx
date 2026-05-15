@@ -1,7 +1,7 @@
 import { Button, Heading, Hr, Text } from "@react-email/components";
 import * as React from "react";
 import { ResetDocument } from "./components/ResetDocument";
-import { getSiteUrl } from "@/lib/emails/site-url";
+import { getSiteUrl } from "../lib/emails/site-url";
 
 export type ProgressSection = { title: string; body: string };
 

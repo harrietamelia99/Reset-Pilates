@@ -1,7 +1,7 @@
 import { Button, Heading, Hr, Text } from "@react-email/components";
 import * as React from "react";
 import { ResetDocument } from "./components/ResetDocument";
-import type { NewsletterContent } from "@/lib/emails/newsletter-types";
+import type { NewsletterContent } from "../lib/emails/newsletter-types";
 
 export type NewsletterEmailProps = {
   content: NewsletterContent;
