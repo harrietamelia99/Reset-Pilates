@@ -35,5 +35,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# generated local email HTML previews (npm run email:preview)
+/email-previews/
+
 # local onboarding CSV extracts
 .onboarding-import/
