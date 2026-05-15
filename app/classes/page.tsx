@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { LevelsVisualGrid } from "@/components/LevelsVisualGrid";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
@@ -79,8 +79,24 @@ export default function ClassesPage() {
         <div className="mx-auto max-w-6xl space-y-10 px-4 md:px-6">
           <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Reformer</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <ImagePlaceholder aspect="4/3" caption="Renew, beginner reformer class imagery." />
-            <ImagePlaceholder aspect="4/3" caption="Rebuild, intermediate reformer class imagery." />
+            <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
+              <Image
+                src="/images/classes-renew-reformer.png"
+                alt="A woman on a Pilates reformer, legs in straps, in a bright studio."
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 640px) 100vw, (max-width: 1152px) 50vw, 576px"
+              />
+            </div>
+            <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
+              <Image
+                src="/images/classes-rebuild-reformer.png"
+                alt="A woman kneeling on a Pilates reformer, pulling straps overhead, in a bright studio."
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 640px) 100vw, (max-width: 1152px) 50vw, 576px"
+              />
+            </div>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
             {REFORMER_CLASSES.map((c) => (
@@ -96,10 +112,15 @@ export default function ClassesPage() {
           <div>
             <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Hot mat</h2>
             <div className="mt-6 max-w-3xl">
-              <ImagePlaceholder
-                aspect="video"
-                caption="Hot mat / Reignite, infrared studio or class moment."
-              />
+              <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
+                <Image
+                  src="/images/classes-hot-mat.png"
+                  alt="A woman in black athletic wear performing a Pilates mat exercise with a silver ball under her back, one leg extended vertically, in a sunlit studio with a large mirror."
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
+              </div>
             </div>
             <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
               <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{HOT_MAT_CLASS.name}</h3>
@@ -111,7 +132,15 @@ export default function ClassesPage() {
           <div>
             <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Mat</h2>
             <div className="mt-6 max-w-2xl">
-              <ImagePlaceholder aspect="4/3" caption="Mat Pilates / Reformat, class or studio shot." />
+              <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
+                <Image
+                  src="/images/classes-mat.png"
+                  alt="A group of women in a bright, minimalist studio performing mat Pilates exercises using small white balls for back support."
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 672px) 100vw, 672px"
+                />
+              </div>
             </div>
             <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
               <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{MAT_CLASS.name}</h3>

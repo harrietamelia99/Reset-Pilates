@@ -1,14 +1,4 @@
-import type { LucideIcon } from "lucide-react";
-import { Blend, Flame, LineChart, Sparkles, UserPlus } from "lucide-react";
 import type { LEVELS_TILES } from "@/lib/studio-content";
-
-const ICONS: Record<(typeof LEVELS_TILES)[number]["id"], LucideIcon> = {
-  beginners: UserPlus,
-  mixed: Blend,
-  intermediate: LineChart,
-  renew: Sparkles,
-  rebuild: Flame,
-};
 
 type Tile = (typeof LEVELS_TILES)[number];
 
@@ -16,21 +6,20 @@ export function LevelsVisualGrid({ tiles }: { tiles: readonly Tile[] }) {
   return (
     <div className="mt-6 space-y-4">
       <div className="grid gap-3 sm:grid-cols-3">
-        {tiles.slice(0, 3).map((t) => (
-          <LevelCard key={t.id} tile={t} variant="soft" />
+        {tiles.slice(0, 3).map((t, i) => (
+          <LevelCard key={t.id} tile={t} variant="soft" number={i + 1} />
         ))}
       </div>
       <div className="grid gap-3 md:grid-cols-2">
-        {tiles.slice(3).map((t) => (
-          <LevelCard key={t.id} tile={t} variant="accent" />
+        {tiles.slice(3).map((t, i) => (
+          <LevelCard key={t.id} tile={t} variant="accent" number={i + 4} />
         ))}
       </div>
     </div>
   );
 }
 
-function LevelCard({ tile, variant }: { tile: Tile; variant: "soft" | "accent" }) {
-  const Icon = ICONS[tile.id];
+function LevelCard({ tile, variant, number }: { tile: Tile; variant: "soft" | "accent"; number: number }) {
   const isAccent = variant === "accent";
 
   return (
@@ -49,7 +38,7 @@ function LevelCard({ tile, variant }: { tile: Tile; variant: "soft" | "accent" }
         }
         aria-hidden
       >
-        <Icon className="h-5 w-5" strokeWidth={1.5} />
+        <span className="font-accent text-lg font-bold tabular-nums leading-none tracking-tight">{number}</span>
       </div>
       <div className="min-w-0">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
