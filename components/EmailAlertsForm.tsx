@@ -71,13 +71,13 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
       <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] sm:gap-3">
         <div>
           <label htmlFor="alerts-name" className="sr-only">
-            Name (optional)
+            Name
           </label>
           <input
             id="alerts-name"
             type="text"
             autoComplete="given-name"
-            placeholder="Name (optional)"
+            placeholder="Name"
             className={cn(
               "w-full border px-4 py-3 text-sm outline-none transition",
               variant === "dark"
