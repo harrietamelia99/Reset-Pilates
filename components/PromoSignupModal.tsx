@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { X } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -92,36 +93,48 @@ export function PromoSignupModal() {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-10 w-full max-w-md rounded-sm border border-charcoal/15 bg-white p-6 shadow-2xl sm:p-8"
+        className="relative z-10 w-full max-w-md overflow-hidden rounded-sm border border-charcoal/15 shadow-2xl"
       >
-        <button
-          type="button"
-          onClick={close}
-          className="absolute right-3 top-3 rounded p-2 text-mid-grey transition hover:bg-light-grey/50 hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal"
-          aria-label="Close"
-        >
-          <X className="h-5 w-5" strokeWidth={1.75} aria-hidden />
-        </button>
-
-        <p className="font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey">Stay in the loop</p>
-        <h2 id={titleId} className="mt-2 text-xl font-bold uppercase tracking-heading text-charcoal sm:text-2xl">
-          Get opening updates
-        </h2>
-        <p className="mt-3 font-accent text-sm leading-relaxed text-mid-grey">
-          Timetable drops, founding offers, and studio news. No spam, just what you need to be first on the list.
-        </p>
-
-        <div className="mt-6">
-          <EmailAlertsForm variant="light" idPrefix="promo" onSuccess={onSignupSuccess} />
+        <div className="pointer-events-none absolute inset-0 z-0">
+          <Image
+            src="/images/promo-modal-background.png"
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="(max-width: 640px) 100vw, 448px"
+          />
         </div>
+        <div className="absolute inset-0 z-[1] bg-white/78 backdrop-blur-[1px]" aria-hidden />
+        <div className="relative z-[2] p-6 sm:p-8">
+          <button
+            type="button"
+            onClick={close}
+            className="absolute right-3 top-3 rounded p-2 text-mid-grey transition hover:bg-light-grey/50 hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal"
+            aria-label="Close"
+          >
+            <X className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+          </button>
 
-        <button
-          type="button"
-          onClick={close}
-          className="mt-4 w-full text-center font-accent text-[11px] uppercase tracking-wide text-warm-grey underline-offset-4 hover:text-charcoal hover:underline"
-        >
-          Maybe later
-        </button>
+          <p className="font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey">Stay in the loop</p>
+          <h2 id={titleId} className="mt-2 text-xl font-bold uppercase tracking-heading text-charcoal sm:text-2xl">
+            Get opening updates
+          </h2>
+          <p className="mt-3 font-accent text-sm leading-relaxed text-mid-grey">
+            Timetable drops, founding offers, and studio news. No spam, just what you need to be first on the list.
+          </p>
+
+          <div className="mt-6">
+            <EmailAlertsForm variant="light" idPrefix="promo" onSuccess={onSignupSuccess} />
+          </div>
+
+          <button
+            type="button"
+            onClick={close}
+            className="mt-4 w-full text-center font-accent text-[11px] uppercase tracking-wide text-warm-grey underline-offset-4 hover:text-charcoal hover:underline"
+          >
+            Maybe later
+          </button>
+        </div>
       </div>
     </div>
   );

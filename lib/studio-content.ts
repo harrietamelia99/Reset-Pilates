@@ -46,18 +46,6 @@ export const LEVELS_TILES = [
     title: "Intermediate",
     line: "More load, tempo, and coordination when you're ready to progress.",
   },
-  {
-    id: "renew",
-    title: "Renew",
-    subtitle: "Beginner reformer",
-    line: "Our beginner-friendly reformer track: alignment, breath, and control.",
-  },
-  {
-    id: "rebuild",
-    title: "Rebuild",
-    subtitle: "Intermediate reformer",
-    line: "Stronger flows and progression for confident reformer movers.",
-  },
 ] as const;
 
 export const REFORMER_CLASSES = [
