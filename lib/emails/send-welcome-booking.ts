@@ -21,7 +21,7 @@ export async function sendWelcomeBookingEmail(
   const { error } = await resend.emails.send({
     from: config.from,
     to,
-    subject: "You're booked — Reset Pilates",
+    subject: "You're in at Reset",
     html,
   });
 

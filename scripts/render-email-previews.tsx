@@ -16,21 +16,21 @@ import type { NewsletterContent } from "../lib/emails/newsletter-types";
 const OUT = join(process.cwd(), "email-previews");
 
 const sampleNewsletter: NewsletterContent = {
-  headline: "June at Reset — fit-out, timetable, and a hello from the mat",
+  headline: "June at Reset: fit-out, timetable, and a hello from the mat",
   intro:
-    "We are in the final stretch before opening week. Here is what changed since last time, and what to watch for in your inbox next.",
+    "We're in the final push before opening week. Here's what shifted since I last wrote, and what might land in your inbox next.",
   sections: [
     {
       heading: "Studio progress",
-      body: "Flooring and mirrors are in; kit is being staged for your first reformer block. We are testing heating for hot mat so the room feels right, not stifling.",
+      body: "Flooring and mirrors are in. Kit is being staged for your first reformer block. We're dialling in heating for hot mat so the room feels cosy, not stuffy.",
     },
     {
       heading: "Founding memberships",
-      body: "A few founding spots remain. If you have been waiting to lock your rate for twelve months, this is the window before we switch to standard pricing at opening.",
+      body: "A handful of founding spots are still open. If you've been meaning to lock your rate for twelve months, this is the window before we go to standard pricing at opening.",
     },
   ],
-  closing: "Thank you for being early believers. We cannot wait to move with you.",
-  ctaLabel: "View pricing",
+  closing: "Thank you for believing in this before the doors were even open. Can't wait to move with you. Lots of love, Mari x",
+  ctaLabel: "Peek at pricing",
   ctaUrl: "https://resetpilatesstudio.co.uk/pricing",
 };
 
@@ -53,7 +53,7 @@ async function main() {
     html: await render(
       <PreLaunchWaitlistEmail
         firstName="Sam"
-        personalNote="We have just confirmed the creche slots for Pilates-and-play on Thursday mornings — more soon."
+        personalNote="We've just confirmed the crèche slots for Pilates-and-play on Thursday mornings. More soon, I promise."
       />
     ),
   });
@@ -63,13 +63,13 @@ async function main() {
     title: "Progress update",
     html: await render(
       <ProgressUpdateEmail
-        issueTitle="Build update — late spring"
-        lead="Quick read on Crown Glass, memberships, and what happens in the next fortnight."
+        issueTitle="Build update, late spring"
+        lead="Quick one on Crown Glass, memberships, and what's cooking in the next fortnight."
         sections={[
-          { title: "On site", body: "Sign-off on lighting; acoustic treatment in the hot mat room next week." },
-          { title: "Booking", body: "Momence is being populated with your founding tiers first, then drop-ins." },
+          { title: "On site", body: "Lighting sign-off is done. Acoustic treatment in the hot mat room lands next week." },
+          { title: "Booking", body: "We're loading Momence with founding tiers first, then drop-ins. You'll hear when it's your turn to book." },
         ]}
-        ctaLabel="Read more on the site"
+        ctaLabel="See what's new on the site"
       />
     ),
   });

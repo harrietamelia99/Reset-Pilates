@@ -40,19 +40,20 @@ export async function POST(request: Request) {
 
   const resend = new Resend(config.apiKey);
   const safeEmail = escapeHtml(email);
-  const safeName = name ? escapeHtml(name) : "—";
+  const safeName = name ? escapeHtml(name) : "Not given";
 
   const html = `
+    <p>Hi, someone&apos;s signed up for email alerts from the homepage.</p>
     <p><strong>Email</strong><br/><a href="mailto:${escapeHtml(email)}">${safeEmail}</a></p>
     <p><strong>Name</strong><br/>${safeName}</p>
-    <p style="margin-top:2rem;font-size:12px;color:#666;">Source: homepage-email-alerts</p>
+    <p style="margin-top:2rem;font-size:12px;color:#666;">Source: homepage email alerts</p>
   `;
 
   const { error } = await resend.emails.send({
     from: config.from,
     to: config.notifyTo,
     replyTo: email,
-    subject: "[Reset Pilates] Email alerts signup",
+    subject: "Reset · new email alerts signup",
     html,
   });
 

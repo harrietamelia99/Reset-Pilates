@@ -19,7 +19,7 @@ type Props = {
 };
 
 /**
- * Shared header / footer for transactional mail — matches Reset palette
+ * Shared header / footer for transactional mail - matches Reset palette
  * (charcoal, mid-grey, light rules; web-safe stacks).
  */
 export function ResetEmailChrome({ children }: Props) {
@@ -67,7 +67,7 @@ export function ResetEmailChrome({ children }: Props) {
             color: midGrey,
           }}
         >
-          Reset Pilates Studio · Crown Glass, Nailsea
+          Reset Pilates · Crown Glass, Nailsea
         </Text>
         <Text style={{ margin: "0 0 12px", fontSize: "12px", fontFamily: "IBM Plex Mono, ui-monospace, monospace" }}>
           <Link href={`mailto:${CONTACT.email}`} style={{ color: charcoal }}>
@@ -83,7 +83,8 @@ export function ResetEmailChrome({ children }: Props) {
           </Link>
         </Text>
         <Text style={{ margin: 0, fontSize: "11px", color: warmGrey, fontFamily: "IBM Plex Mono, ui-monospace, monospace" }}>
-          You received this email because you interacted with Reset Pilates.
+          You&apos;re getting this because you&apos;ve been in touch with us online, joined the waitlist, or booked a
+          class. Just drop me a message if anything looks off.
         </Text>
       </Section>
     </>

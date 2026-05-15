@@ -5,13 +5,13 @@ import { getSiteUrl } from "../lib/emails/site-url";
 
 export type WelcomeBookingEmailProps = {
   firstName: string;
-  /** e.g. "Reformer — Tuesday 10:00" */
+  /** e.g. "Reformer, Tuesday 10:00" */
   bookingSummary?: string;
 };
 
 export default function WelcomeBookingEmail({ firstName, bookingSummary }: WelcomeBookingEmailProps) {
   const site = getSiteUrl();
-  const preview = `You’re booked — see you at Reset, ${firstName}.`;
+  const preview = `You're in, ${firstName}. See you at Reset soon.`;
 
   return (
     <ResetDocument preview={preview}>
@@ -38,7 +38,7 @@ export default function WelcomeBookingEmail({ firstName, bookingSummary }: Welco
           margin: "0 0 16px",
         }}
       >
-        Hi {firstName}, thanks for booking with Reset. We can&apos;t wait to see you in the studio.
+        Hi {firstName}. Thanks for booking with us. Honestly can&apos;t wait to see you in the studio.
       </Text>
       {bookingSummary ? (
         <Text
@@ -54,7 +54,7 @@ export default function WelcomeBookingEmail({ firstName, bookingSummary }: Welco
           }}
         >
           <strong style={{ display: "block", marginBottom: "6px", fontSize: "11px", letterSpacing: "0.14em", color: "#8E898A" }}>
-            YOUR CLASS
+            Your class
           </strong>
           {bookingSummary}
         </Text>
@@ -65,11 +65,33 @@ export default function WelcomeBookingEmail({ firstName, bookingSummary }: Welco
           fontSize: "14px",
           lineHeight: 1.65,
           color: "#545456",
+          margin: "0 0 16px",
+        }}
+      >
+        Come a few minutes early if you can. Wear layers you can move in. Grip socks if you have them (no stress if
+        not, we&apos;ve got you).
+      </Text>
+      <Text
+        style={{
+          fontFamily: "IBM Plex Mono, ui-monospace, monospace",
+          fontSize: "14px",
+          lineHeight: 1.65,
+          color: "#545456",
           margin: "0 0 24px",
         }}
       >
-        Arrive a few minutes early, wear layers you can move in, and bring grip socks if you have them. If anything
-        changes, you can manage your booking from the link in your confirmation.
+        If plans shift, just use the link in your confirmation email to sort it. ✨
+      </Text>
+      <Text
+        style={{
+          fontFamily: "IBM Plex Mono, ui-monospace, monospace",
+          fontSize: "14px",
+          lineHeight: 1.65,
+          color: "#545456",
+          margin: "0 0 24px",
+        }}
+      >
+        Speak soon, Mari x
       </Text>
       <Button
         href={`${site}/classes`}
@@ -86,7 +108,7 @@ export default function WelcomeBookingEmail({ firstName, bookingSummary }: Welco
           textDecoration: "none",
         }}
       >
-        Class info
+        Have a look at classes
       </Button>
     </ResetDocument>
   );

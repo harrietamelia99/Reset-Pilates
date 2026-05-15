@@ -53,23 +53,24 @@ export async function POST(request: Request) {
   const safe = {
     name: escapeHtml(name),
     email: escapeHtml(email),
-    phone: escapeHtml(phone || "—"),
+    phone: escapeHtml(phone || "Not given"),
     message: escapeHtml(message).replace(/\n/g, "<br/>"),
   };
 
   const html = `
+    <p>Hi, someone&apos;s just sent a message through the contact page.</p>
     <p><strong>Name</strong><br/>${safe.name}</p>
     <p><strong>Email</strong><br/><a href="mailto:${escapeHtml(email)}">${safe.email}</a></p>
     <p><strong>Phone</strong><br/>${safe.phone}</p>
     <p><strong>Message</strong><br/>${safe.message}</p>
-    <p style="margin-top:2rem;font-size:12px;color:#666;">Source: contact-page</p>
+    <p style="margin-top:2rem;font-size:12px;color:#666;">Source: contact page</p>
   `;
 
   const { error } = await resend.emails.send({
     from: config.from,
     to: config.notifyTo,
     replyTo: email,
-    subject: "[Reset Pilates] Website enquiry",
+    subject: "Reset · new message from the website",
     html,
   });
 

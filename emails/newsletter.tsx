@@ -10,10 +10,10 @@ export type NewsletterEmailProps = {
 
 const previewContent = (site: string): NewsletterContent => ({
   headline: "Newsletter preview",
-  intro: "Intro paragraph appears here when you send.",
+  intro: "Your intro lands here when you send. Two or three short sentences works a treat.",
   sections: [],
-  closing: "Sign-off from Reset Pilates.",
-  ctaLabel: "Visit website",
+  closing: "Can't wait to see you on the mat. Lots of love, Mari x",
+  ctaLabel: "Come say hi on the site",
   ctaUrl: site,
 });
 
@@ -47,7 +47,7 @@ export default function NewsletterEmail({ content }: NewsletterEmailProps) {
           color: "#8E898A",
         }}
       >
-        From the studio
+        From Mari at Reset
       </Text>
       <Heading
         as="h1"

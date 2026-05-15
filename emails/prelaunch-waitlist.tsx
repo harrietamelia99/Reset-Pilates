@@ -11,7 +11,7 @@ export type PreLaunchWaitlistEmailProps = {
 
 export default function PreLaunchWaitlistEmail({ firstName, personalNote }: PreLaunchWaitlistEmailProps) {
   const site = getSiteUrl();
-  const preview = `Reset opens soon — a thank-you for being early, ${firstName}.`;
+  const preview = `Reset is almost here. Thanks for being early, ${firstName}.`;
 
   return (
     <ResetDocument preview={preview}>
@@ -27,7 +27,7 @@ export default function PreLaunchWaitlistEmail({ firstName, personalNote }: PreL
           margin: "0 0 16px",
         }}
       >
-        You helped us build the list
+        So glad you&apos;re here early
       </Heading>
       <Text
         style={{
@@ -38,9 +38,19 @@ export default function PreLaunchWaitlistEmail({ firstName, personalNote }: PreL
           margin: "0 0 16px",
         }}
       >
-        Hi {firstName}, you&apos;re one of the people who raised their hand before we even opened the doors — thank
-        you. Reset is almost here: reformer, hot mat, and mat Pilates in Crown Glass, Nailsea, with founding memberships
-        and timetable drops landing first to this list.
+        Hi {firstName}. You raised your hand before we&apos;d even opened the doors. That means a lot.
+      </Text>
+      <Text
+        style={{
+          fontFamily: "IBM Plex Mono, ui-monospace, Courier New, monospace",
+          fontSize: "15px",
+          lineHeight: 1.65,
+          color: "#545456",
+          margin: "0 0 16px",
+        }}
+      >
+        Reset is nearly here. Reformer, hot mat, and mat Pilates at Crown Glass in Nailsea. Founding memberships and
+        timetable news will hit this list first.
       </Text>
       {personalNote ? (
         <Text
@@ -67,8 +77,19 @@ export default function PreLaunchWaitlistEmail({ firstName, personalNote }: PreL
           margin: "0 0 24px",
         }}
       >
-        Watch this space for opening-week offers and how to grab your first classes. No spam — only what you need to
-        get on the mat with us.
+        I&apos;ll only ping you when there&apos;s something worth your time. Opening-week bits, first-class details,
+        that sort of thing. 🤍
+      </Text>
+      <Text
+        style={{
+          fontFamily: "IBM Plex Mono, ui-monospace, monospace",
+          fontSize: "14px",
+          lineHeight: 1.65,
+          color: "#545456",
+          margin: "0 0 24px",
+        }}
+      >
+        Speak soon, Mari x
       </Text>
       <Button
         href={site}
@@ -85,7 +106,7 @@ export default function PreLaunchWaitlistEmail({ firstName, personalNote }: PreL
           textDecoration: "none",
         }}
       >
-        Visit the site
+        Have a nosey at the site
       </Button>
     </ResetDocument>
   );

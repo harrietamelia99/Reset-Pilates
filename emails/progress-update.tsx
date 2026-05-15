@@ -6,7 +6,7 @@ import { getSiteUrl } from "../lib/emails/site-url";
 export type ProgressSection = { title: string; body: string };
 
 export type ProgressUpdateEmailProps = {
-  /** e.g. "Build update — March" */
+  /** e.g. "Build update, March" */
   issueTitle?: string;
   /** Short intro paragraph */
   lead?: string;
@@ -15,14 +15,14 @@ export type ProgressUpdateEmailProps = {
 };
 
 export default function ProgressUpdateEmail({
-  issueTitle = "Progress update",
-  lead = "Short intro for this issue — replace when sending.",
+  issueTitle = "Quick studio update",
+  lead = "Swap this for a short intro when you send. A couple of sentences is plenty.",
   sections,
-  ctaLabel = "Read more on the site",
+  ctaLabel = "See what's new on the site",
 }: ProgressUpdateEmailProps) {
   const site = getSiteUrl();
   const sectionList = Array.isArray(sections) ? sections : [];
-  const preview = `${issueTitle ?? "Update"} — what's happening at Reset.`;
+  const preview = `${issueTitle ?? "Update"}: what's happening at Reset.`;
 
   return (
     <ResetDocument preview={preview}>
@@ -36,7 +36,7 @@ export default function ProgressUpdateEmail({
           color: "#8E898A",
         }}
       >
-        Studio update
+        From the build
       </Text>
       <Heading
         as="h1"
