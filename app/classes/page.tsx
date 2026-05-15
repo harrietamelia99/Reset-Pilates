@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { LevelsVisualGrid } from "@/components/LevelsVisualGrid";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
 import { PosterCtaBand } from "@/components/PosterCtaBand";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { BOOKING_HREF } from "@/lib/constants";
 import {
   GRIP_SOCKS_POLICY,
   HOT_MAT_CLASS,
   LEVELS_OFFERED,
+  LEVELS_TILES,
   MAT_CLASS,
   PARKING_INFO,
   REFORMER_CLASSES,
@@ -67,7 +69,8 @@ export default function ClassesPage() {
           <PaperSheet flat pin={false} className="p-6 md:p-8">
             <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Levels</h2>
             <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
-            <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{LEVELS_OFFERED}</p>
+            <p className="sr-only">{LEVELS_OFFERED}</p>
+            <LevelsVisualGrid tiles={LEVELS_TILES} />
           </PaperSheet>
         </div>
       </MotionSection>

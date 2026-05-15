@@ -29,6 +29,37 @@ export const STUDIO_ETHOS_WELCOME =
 export const LEVELS_OFFERED =
   "Complete beginners, mixed ability, and intermediate, beginner-friendly and intermediate reformer classes are both available.";
 
+/** Visual grid on /classes — keep meaning aligned with {@link LEVELS_OFFERED}. */
+export const LEVELS_TILES = [
+  {
+    id: "beginners",
+    title: "Complete beginners",
+    line: "Foundations-first coaching if you're new to Pilates or easing back in.",
+  },
+  {
+    id: "mixed",
+    title: "Mixed ability",
+    line: "Layers and options in one room so everyone meets the work at their edge.",
+  },
+  {
+    id: "intermediate",
+    title: "Intermediate",
+    line: "More load, tempo, and coordination when you're ready to progress.",
+  },
+  {
+    id: "renew",
+    title: "Renew",
+    subtitle: "Beginner reformer",
+    line: "Our beginner-friendly reformer track: alignment, breath, and control.",
+  },
+  {
+    id: "rebuild",
+    title: "Rebuild",
+    subtitle: "Intermediate reformer",
+    line: "Stronger flows and progression for confident reformer movers.",
+  },
+] as const;
+
 export const REFORMER_CLASSES = [
   {
     name: "Renew",
