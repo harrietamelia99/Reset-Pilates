@@ -38,10 +38,10 @@ export function ResetEmailChrome({ children }: Props) {
 
   return (
     <>
-      <Section style={{ padding: 0, margin: 0, lineHeight: 0, backgroundColor: "#2b2b29", textAlign: "center" as const }}>
+      <Section style={{ padding: 0, margin: 0, lineHeight: 0, backgroundColor: "#e8e6e4", textAlign: "center" as const }}>
         <Img
           src={headerUrl}
-          alt="Reset Pilates. A calm movement moment in the studio, with the reset wordmark."
+          alt="reset. wordmark on a light textured background."
           width={headerW}
           height={headerH}
           style={{
