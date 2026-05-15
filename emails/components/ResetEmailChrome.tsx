@@ -9,12 +9,13 @@ const warmGrey = "#8E898A";
 const lightGrey = "#C6C5C4";
 
 /**
- * Mari Pilates lockup for email (`public/brand/mari-pilates-email-logo.png`).
- * White artwork on black: shown on a black header strip so it matches the asset.
+ * Panoramic header art for all mailers (`public/brand/reset-email-header.png`).
+ * Hosted PNG + absolute URL: works in Gmail, Apple Mail, etc. Outlook needs explicit width/height (no CSS-only hero).
+ * ~60KB is fine; images blocked by the user still show alt text.
  */
-function emailLogoSrc(site: string): string {
+function emailHeaderSrc(site: string): string {
   const base = site.replace(/\/+$/, "");
-  return `${base}/brand/mari-pilates-email-logo.png`;
+  return `${base}/brand/reset-email-header.png`;
 }
 
 function instagramIconSrc(site: string): string {
@@ -32,24 +33,30 @@ type Props = {
  */
 export function ResetEmailChrome({ children }: Props) {
   const site = getSiteUrl();
-  const logoUrl = emailLogoSrc(site);
+  const headerUrl = emailHeaderSrc(site);
   const instagramIconUrl = instagramIconSrc(site);
+
+  /** Native 1024×341; display at 600-wide max to match container (Outlook-friendly ratio). */
+  const headerW = 600;
+  const headerH = Math.round((341 / 1024) * headerW);
 
   return (
     <>
-      <Section style={{ padding: "28px 24px 24px", backgroundColor: "#000000", textAlign: "center" }}>
+      <Section style={{ padding: 0, margin: 0, lineHeight: 0, backgroundColor: "#2b2b29", textAlign: "center" as const }}>
         <Img
-          src={logoUrl}
-          alt="Mari Pilates"
-          width={200}
-          height={168}
+          src={headerUrl}
+          alt="Reset Pilates. A calm movement moment in the studio, with the reset wordmark."
+          width={headerW}
+          height={headerH}
           style={{
-            display: "inline-block",
-            margin: "0 auto 0",
+            display: "block",
+            width: "100%",
+            maxWidth: `${headerW}px`,
+            height: "auto",
+            margin: 0,
             border: 0,
             outline: "none",
             textDecoration: "none",
-            maxWidth: "200px",
           }}
         />
       </Section>
