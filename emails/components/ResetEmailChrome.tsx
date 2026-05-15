@@ -1,6 +1,7 @@
 import { Hr, Img, Link, Section, Text } from "@react-email/components";
 import * as React from "react";
 import { getEmailAssetBaseUrl } from "../../lib/emails/email-asset-base-url";
+import { EMAIL_CANVAS_BG } from "../../lib/emails/email-canvas-bg";
 import { getSiteUrl } from "../../lib/emails/site-url";
 import { CONTACT } from "../../lib/constants";
 
@@ -9,8 +10,8 @@ const midGrey = "#545456";
 const warmGrey = "#8E898A";
 const lightGrey = "#C6C5C4";
 
-/** Brand mid-grey — outer canvas only (copy stays on white below). */
-const emailCanvas = midGrey;
+/** Same as outer Body/Section so header image letterboxing matches gutters. */
+const emailCanvas = EMAIL_CANVAS_BG;
 
 /** Panoramic header (`public/brand/reset-email-header.png`) — must be reachable at this HTTPS URL when sent (see EMAIL_ASSET_BASE_URL). */
 function emailHeaderSrc(assetBase: string): string {
