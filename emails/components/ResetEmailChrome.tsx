@@ -1,4 +1,4 @@
-import { Hr, Link, Section, Text } from "@react-email/components";
+import { Hr, Img, Link, Section, Text } from "@react-email/components";
 import * as React from "react";
 import { getSiteUrl } from "../../lib/emails/site-url";
 import { CONTACT } from "../../lib/constants";
@@ -7,6 +7,12 @@ const charcoal = "#2b2b29";
 const midGrey = "#545456";
 const warmGrey = "#8E898A";
 const lightGrey = "#C6C5C4";
+
+/** Same asset as the site nav (`public/brand/reset-wordmark.svg`), absolute URL for email clients. */
+function wordmarkSrc(site: string): string {
+  const base = site.replace(/\/+$/, "");
+  return `${base}/brand/reset-wordmark.svg`;
+}
 
 type Props = {
   children: React.ReactNode;
@@ -18,34 +24,35 @@ type Props = {
  */
 export function ResetEmailChrome({ children }: Props) {
   const site = getSiteUrl();
+  const logoUrl = wordmarkSrc(site);
 
   return (
     <>
       <Section style={{ padding: "32px 24px 8px", backgroundColor: "#ffffff" }}>
-        <Text
+        <Img
+          src={logoUrl}
+          alt="reset."
+          width={200}
+          height={64}
           style={{
-            margin: "0 0 8px",
-            fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
-            fontSize: "11px",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase" as const,
-            color: warmGrey,
+            display: "block",
+            margin: "0 0 10px",
+            border: 0,
+            outline: "none",
+            textDecoration: "none",
           }}
-        >
-          Reset Pilates
-        </Text>
+        />
         <Text
           style={{
             margin: 0,
             fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
-            fontSize: "22px",
-            fontWeight: 700,
-            letterSpacing: "0.12em",
+            fontSize: "11px",
+            letterSpacing: "0.18em",
             textTransform: "uppercase" as const,
-            color: charcoal,
+            color: warmGrey,
           }}
         >
-          Nailsea
+          Pilates studio · Nailsea
         </Text>
         <Hr style={{ border: "none", borderTop: `1px solid ${lightGrey}`, margin: "20px 0 0" }} />
       </Section>
