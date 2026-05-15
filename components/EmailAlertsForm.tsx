@@ -155,7 +155,7 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
         <p
           className={cn(
             "font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em] [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]",
-            variant === "dark" ? "text-white/95" : "text-warm-grey"
+            variant === "dark" ? "text-white" : "text-warm-grey"
           )}
         >
           Opening dates, offers &amp; timetable drops, no spam.

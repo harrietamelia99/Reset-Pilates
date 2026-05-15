@@ -96,21 +96,22 @@ export function PromoSignupModal() {
         className="relative z-10 w-full max-w-md overflow-hidden rounded-sm border border-white/10 bg-charcoal shadow-2xl"
       >
         <div className="pointer-events-none absolute inset-0 z-0 bg-charcoal" aria-hidden />
-        <div className="pointer-events-none absolute inset-0 z-[1] opacity-[0.38]">
+        <div className="pointer-events-none absolute inset-0 z-[1] opacity-[0.12]">
           <Image
             src="/images/promo-modal-background.png"
             alt=""
             fill
-            className="object-cover object-center"
+            className="object-cover object-center brightness-[0.38] saturate-[0.7]"
             sizes="(max-width: 640px) 100vw, 448px"
           />
         </div>
-        <div className="absolute inset-0 z-[2] bg-charcoal/70 backdrop-blur-[1px]" aria-hidden />
-        <div className="relative z-[3] p-6 sm:p-8">
+        <div className="absolute inset-0 z-[2] bg-charcoal/96 backdrop-blur-[2px]" aria-hidden />
+        <div className="relative z-[3] p-4 sm:p-5">
+          <div className="relative rounded-sm border border-white/10 bg-[#1c1c1a]/90 py-6 pl-5 pr-12 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-sm sm:py-7 sm:pl-6 sm:pr-14">
           <button
             type="button"
             onClick={close}
-            className="absolute right-3 top-3 rounded p-2 text-white/90 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="absolute right-2.5 top-2.5 rounded p-2 text-white/90 transition hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-3 sm:top-3"
             aria-label="Close"
           >
             <X className="h-5 w-5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]" strokeWidth={1.75} aria-hidden />
@@ -140,6 +141,7 @@ export function PromoSignupModal() {
           >
             Maybe later
           </button>
+          </div>
         </div>
       </div>
     </div>
