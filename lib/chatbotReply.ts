@@ -87,25 +87,25 @@ export function getChatbotReply(raw: string): ChatbotReply {
 
   if (!q) {
     return {
-      text: "Hey! 👋 Ask me anything about classes, booking, or the studio, or I can point you to our contact page if it’s something specific. Pick a quick question below or type your own!",
+      text: "Ask about classes, booking, or the studio. I can point you to a page, or to email if it needs a human.",
     };
   }
 
   if (/^(hi|hey|hello|hiya|yo)\b|^good (morning|afternoon|evening)\b/.test(q)) {
     return {
-      text: `Hey there! ✨ Thanks for stopping by ${SITE_NAME}. I can answer common questions or send you to the right place, what’s on your mind?`,
+      text: `Hi! I’m here for quick answers about ${SITE_NAME}. What would you like to know?`,
     };
   }
 
   if (/\b(thanks|thank you|cheers|ty)\b/.test(q)) {
     return {
-      text: "You’re so welcome! 🙌 Anything else I can help with?",
+      text: "You’re welcome. Anything else?",
     };
   }
 
   if (/\b(bye|goodbye|see you)\b/.test(q)) {
     return {
-      text: "Take care! 💚 Hope to see you on the mat soon.",
+      text: "Take care. Hope to see you on the mat soon.",
     };
   }
 
@@ -114,7 +114,7 @@ export function getChatbotReply(raw: string): ChatbotReply {
     /\b(contact|email us|speak to someone|talk to someone|human|call me|phone number)\b/.test(q)
   ) {
     return {
-      text: `We’d love to hear from you! 💌 Drop us a note and we’ll get back as soon as we can.`,
+      text: `Drop us a line and we’ll get back as soon as we can.`,
       cta: {
         href: `mailto:${CONTACT.email}`,
         label: `Email ${CONTACT.email}`,
@@ -125,49 +125,55 @@ export function getChatbotReply(raw: string): ChatbotReply {
 
   if (/\b(where|address|location|find you|directions|map|nailsea|based)\b/.test(q)) {
     return {
-      text: `📍 You’ll find us at ${CONTACT.addressLine.replace(/\n/g, ", ")}. ${CONTACT.locationNote}`,
+      text: `We’re at ${CONTACT.addressLine.replace(/\n/g, ", ")}. ${CONTACT.locationNote}`,
       cta: { href: MAP_EXTERNAL_URL, label: "Open in Google Maps", external: true },
     };
   }
 
+  /** Day-to-day hours (must run before “opening” launch heuristics so “opening times” isn’t misread as launch). */
   if (
-    /\bwhen do you open\b/.test(q) ||
-    /\b(opening|launch|pre-?launch)\b/.test(q) ||
-    /\b(june|2026)\b/.test(q) ||
-    /\bfounding\b/.test(q) ||
-    (/\bwhen\b/.test(q) && /\b(open|launch|start)\b/.test(q))
+    /\b(opening times|opening hours|open times|studio hours|business hours)\b/.test(q) ||
+    (/\bhours\b/.test(q) && /\b(open|close|studio|you)\b/.test(q)) ||
+    /\b(what time|what hours)\b.*\b(open|close|studio)\b/.test(q)
   ) {
     return {
-      text: `🗓️ ${OPENING_DATE_LABEL}. Founding memberships are limited, it’s worth checking out our pricing page for the details.`,
-      cta: { href: "/pricing", label: "View pricing" },
+      text: `Planned hours: ${CONTACT.hours}. We’ll confirm nearer to opening.`,
     };
   }
 
-  if (/\b(hours|open times|what time|opening hours)\b/.test(q)) {
+  /** First day / memberships (single line; founding detail is already in OPENING_DATE_LABEL) */
+  if (
+    /\bwhen do you open\b/.test(q) ||
+    /\b(opening date|launch day|opening day|grand opening)\b/.test(q) ||
+    /\b(pre-?launch|launch)\b/.test(q) ||
+    /\bfounding\b/.test(q) ||
+    /\b(june\s*1|1st june|june 2026)\b/.test(q) ||
+    (/\b(june|2026)\b/.test(q) && /\b(open|launch|start)\b/.test(q)) ||
+    (/\bwhen\b/.test(q) && /\b(open|launch|start)\b/.test(q) && !/\b(times|hours)\b/.test(q))
+  ) {
     return {
-      text: `🕐 We’re planning to be open ${CONTACT.hours}, final times may be confirmed closer to launch.`,
+      text: `${OPENING_DATE_LABEL}.`,
+      cta: { href: "/pricing", label: "View pricing" },
     };
   }
 
   if (/\b(instagram|social|follow)\b/.test(q)) {
     return {
-      text: `Follow us on Instagram for studio vibes & updates! 📸 ${CONTACT.instagram.handle}`,
+      text: `We’re on Instagram: ${CONTACT.instagram.handle}.`,
       cta: { href: CONTACT.instagram.url, label: "Instagram", external: true },
     };
   }
 
   if (/\b(price|pricing|cost|how much|£|membership|memberships|founding)\b/.test(q)) {
     return {
-      text:
-        "💷 We have intro bundles and founding membership tiers, the Pricing page has the latest numbers. If something isn’t listed yet, we’re happy to chat!",
+      text: "Intro bundles and founding tiers are on our Pricing page. Email us if something isn’t there yet.",
       cta: { href: "/pricing", label: "Go to pricing" },
     };
   }
 
   if (/\b(book|booking|momence|schedule|class times)\b/.test(q) || /\bhow do i book\b/.test(q)) {
     return {
-      text:
-        "🗓️ Bookings will run through Momence, use Book Now in the nav when scheduling goes live. Until then, stay tuned for the link update!",
+      text: "Booking will be through Momence. Use Book in the nav when it’s live.",
       cta:
         BOOKING_HREF.startsWith("http")
           ? { href: BOOKING_HREF, label: "Book", external: true }
@@ -178,46 +184,44 @@ export function getChatbotReply(raw: string): ChatbotReply {
   if (/\b(parking|park|car park)\b/.test(q)) {
     return {
       text:
-        "🅿️ Yes, Crown Glass Car Park (£1/hr, free evenings and Sundays) and Station Road Car Park (50p/hr, same hours) are both handy.",
+        "Crown Glass Car Park (£1/hr, free evenings and Sundays) and Station Road Car Park (50p/hr, same hours) are both close by.",
     };
   }
 
   if (/\b(grip sock|socks|grip socks)\b/.test(q)) {
     return {
-      text: "🧦 Grip socks are mandatory for safety, and we sell them in-studio if you forget to pack a pair!",
+      text: "Grip socks are required for safety. We sell them in the studio if you forget yours.",
     };
   }
 
   if (/\b(cancel|cancellation)\b/.test(q)) {
     return {
-      text: "⏰ Cancel at least 24 hours before class to get your credit back. Late cancellations may be charged, we keep it fair for everyone on the waitlist.",
+      text: "Cancel at least 24 hours before class to get your credit back. Late cancels may be charged so we can be fair to the waitlist.",
     };
   }
 
   if (/\b(reformer|hot mat|mat pilates|classes offered|what classes)\b/.test(q)) {
     return {
-      text:
-        "✨ We offer Reformer, Hot Mat, and Mat Pilates, something for different moods and levels. Beginners are welcome!",
+      text: "We teach Reformer, Hot Mat, and Mat Pilates, different levels welcome.",
     };
   }
 
   const faqHit = bestFaqAnswer(q);
   if (faqHit && faqHit.score >= 4) {
     return {
-      text: `${faqHit.answer} ✨`,
+      text: faqHit.answer,
     };
   }
 
   if (faqHit && faqHit.score >= 2) {
     return {
-      text: `Here’s what I know: ${faqHit.answer} 💬 If you need something more personal, our team is happy to help.`,
+      text: `${faqHit.answer} For something more personal, our team can help.`,
       cta: { href: "/contact", label: "Contact us" },
     };
   }
 
   return {
-    text:
-      "That’s a great question, I want to make sure you get the right answer! 🙌 Our team can help with anything personal or detailed. Send us an email and we’ll get back to you.",
+    text: "I’m not sure on that one. Email us and we’ll get you a proper answer.",
     cta: { href: `mailto:${CONTACT.email}`, label: `Email ${CONTACT.email}`, external: true },
   };
 }
