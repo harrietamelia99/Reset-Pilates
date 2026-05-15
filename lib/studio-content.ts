@@ -14,9 +14,9 @@ export const ABOUT_STORY_PARAGRAPHS = [
   "Reset. is your time to switch off, reset, and leave feeling stronger, every time.",
 ] as const;
 
-/** Who you serve, onboarding “ideal client” */
+/** Inclusive on-site copy for “who we’re for” (about page). */
 export const IDEAL_CLIENT =
-  "18–40 years old, mostly female, young professionals and mums (including Pilates-and-play creche for toddlers). Fitness-minded people who want visible change in their bodies.";
+  "Anyone who wants a calm, well-taught hour of movement — first-timers, people finding their way back into fitness, and regular movers. You don't need to look or move a certain way; classes meet you where you are. On select sessions we offer Pilates-and-play with creche so parents with little ones have one less barrier — it's there if you need it, not a box you have to tick to belong here.";
 
 /** What makes Reset different, onboarding USP */
 export const STUDIO_DIFFERENTIATOR =

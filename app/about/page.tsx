@@ -103,7 +103,7 @@ export default function AboutPage() {
       <MotionSection className="relative border-t border-light-grey bg-white py-14 md:py-20" delay={0.08}>
         <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:gap-12 md:px-6">
           <PaperSheet flat pin={false} className="p-6 md:p-8">
-            <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Who Reset is for</h2>
+            <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Who belongs here</h2>
             <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
             <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{IDEAL_CLIENT}</p>
           </PaperSheet>
