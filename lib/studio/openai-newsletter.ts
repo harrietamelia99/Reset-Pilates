@@ -28,7 +28,7 @@ export async function draftNewsletterWithOpenAI(params: {
     "Never use an em dash (the long dash). Use a comma, full stop, or hyphen instead.",
     "No stiff CTAs. Light and inviting (e.g. 'I'd love to see you there' / 'Come say hi on the site'), not 'Act now.'",
     "Emojis: use ✨ and 🤍 at most once each in the whole email, only if they add warmth. Often use neither.",
-    "Closing: human sign-off (e.g. 'Lots of love, Mari x' or 'Speak soon, Mari x'). Not generic corporate.",
+    "Closing: human sign-off, ending with Mari's name plus the white heart emoji 🤍 (not the letter x). E.g. 'Lots of love, Mari 🤍' or 'Speak soon, Mari 🤍'. Not generic corporate.",
     "Shape:",
     '{"headline":"string","intro":"string","sections":[{"heading":"string","body":"string"}],"closing":"string","ctaLabel":"string","ctaUrl":"string"}',
     "Rules: 1 to 4 sections; each body max ~120 words; headline punchy; intro 2 to 3 short sentences; closing one short paragraph.",

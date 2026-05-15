@@ -36,7 +36,7 @@ export function getExampleOpeningNewsletterContent(site: string): NewsletterCont
     ],
     closing:
       "I'll write again before go-live with anything you need for your first visit. " +
-      "If something's on your mind, just hit reply. Can't wait to see you on the mat. Lots of love, Mari x",
+      "If something's on your mind, just hit reply. Can't wait to see you on the mat. Lots of love, Mari 🤍",
     ctaLabel: "Have a look at classes & pricing",
     ctaUrl: `${base}/pricing`,
   };

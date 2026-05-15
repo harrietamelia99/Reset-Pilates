@@ -91,7 +91,7 @@ export default function WelcomeBookingEmail({ firstName, bookingSummary }: Welco
           margin: "0 0 24px",
         }}
       >
-        Speak soon, Mari x
+        Speak soon, Mari 🤍
       </Text>
       <Button
         href={`${site}/classes`}
