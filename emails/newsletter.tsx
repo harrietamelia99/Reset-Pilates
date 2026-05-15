@@ -2,20 +2,14 @@ import { Button, Heading, Hr, Text } from "@react-email/components";
 import * as React from "react";
 import { ResetDocument } from "./components/ResetDocument";
 import type { NewsletterContent } from "../lib/emails/newsletter-types";
+import { getExampleOpeningNewsletterContent } from "../lib/emails/example-newsletter";
 import { getSiteUrl } from "../lib/emails/site-url";
 
 export type NewsletterEmailProps = {
   content?: NewsletterContent;
 };
 
-const previewContent = (site: string): NewsletterContent => ({
-  headline: "Newsletter preview",
-  intro: "Your intro lands here when you send. Two or three short sentences works a treat.",
-  sections: [],
-  closing: "Can't wait to see you on the mat. Lots of love, Mari x",
-  ctaLabel: "Come say hi on the site",
-  ctaUrl: site,
-});
+const previewContent = (site: string): NewsletterContent => getExampleOpeningNewsletterContent(site);
 
 function mergeNewsletterContent(site: string, raw?: NewsletterContent): NewsletterContent {
   const d = previewContent(site);

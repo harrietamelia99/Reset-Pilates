@@ -11,28 +11,12 @@ import WelcomeBookingEmail from "../emails/welcome-booking";
 import PreLaunchWaitlistEmail from "../emails/prelaunch-waitlist";
 import ProgressUpdateEmail from "../emails/progress-update";
 import NewsletterEmail from "../emails/newsletter";
-import type { NewsletterContent } from "../lib/emails/newsletter-types";
+import { getExampleOpeningNewsletterContent } from "../lib/emails/example-newsletter";
+import { getSiteUrl } from "../lib/emails/site-url";
 
 const OUT = join(process.cwd(), "email-previews");
 
-const sampleNewsletter: NewsletterContent = {
-  headline: "June at Reset: fit-out, timetable, and a hello from the mat",
-  intro:
-    "We're in the final push before opening week. Here's what shifted since I last wrote, and what might land in your inbox next.",
-  sections: [
-    {
-      heading: "Studio progress",
-      body: "Flooring and mirrors are in. Kit is being staged for your first reformer block. We're dialling in heating for hot mat so the room feels cosy, not stuffy.",
-    },
-    {
-      heading: "Founding memberships",
-      body: "A handful of founding spots are still open. If you've been meaning to lock your rate for twelve months, this is the window before we go to standard pricing at opening.",
-    },
-  ],
-  closing: "Thank you for believing in this before the doors were even open. Can't wait to move with you. Lots of love, Mari x",
-  ctaLabel: "Peek at pricing",
-  ctaUrl: "https://resetpilatesstudio.co.uk/pricing",
-};
+const sampleNewsletter = getExampleOpeningNewsletterContent(getSiteUrl());
 
 async function main() {
   await mkdir(OUT, { recursive: true });
@@ -43,7 +27,7 @@ async function main() {
     file: "welcome-booking.html",
     title: "Welcome — booking",
     html: await render(
-      <WelcomeBookingEmail firstName="Alex" bookingSummary="Reformer — Tuesday 10:15, with Jamie" />
+      <WelcomeBookingEmail firstName="Alex" bookingSummary="Reformer, Tuesday 10:15, with Jamie" />
     ),
   });
 
