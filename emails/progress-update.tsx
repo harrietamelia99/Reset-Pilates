@@ -7,21 +7,22 @@ export type ProgressSection = { title: string; body: string };
 
 export type ProgressUpdateEmailProps = {
   /** e.g. "Build update — March" */
-  issueTitle: string;
+  issueTitle?: string;
   /** Short intro paragraph */
-  lead: string;
-  sections: ProgressSection[];
+  lead?: string;
+  sections?: ProgressSection[];
   ctaLabel?: string;
 };
 
 export default function ProgressUpdateEmail({
-  issueTitle,
-  lead,
+  issueTitle = "Progress update",
+  lead = "Short intro for this issue — replace when sending.",
   sections,
   ctaLabel = "Read more on the site",
 }: ProgressUpdateEmailProps) {
   const site = getSiteUrl();
-  const preview = `${issueTitle} — what’s happening at Reset.`;
+  const sectionList = Array.isArray(sections) ? sections : [];
+  const preview = `${issueTitle ?? "Update"} — what's happening at Reset.`;
 
   return (
     <ResetDocument preview={preview}>
@@ -62,7 +63,7 @@ export default function ProgressUpdateEmail({
       >
         {lead}
       </Text>
-      {sections.map((s, i) => (
+      {sectionList.map((s, i) => (
         <div key={i}>
           {i > 0 ? <Hr style={{ border: "none", borderTop: "1px solid #C6C5C4", margin: "20px 0" }} /> : null}
           <Text

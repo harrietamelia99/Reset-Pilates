@@ -2,13 +2,25 @@ import { Button, Heading, Hr, Text } from "@react-email/components";
 import * as React from "react";
 import { ResetDocument } from "./components/ResetDocument";
 import type { NewsletterContent } from "../lib/emails/newsletter-types";
+import { getSiteUrl } from "../lib/emails/site-url";
 
 export type NewsletterEmailProps = {
-  content: NewsletterContent;
+  content?: NewsletterContent;
 };
 
+const previewContent = (site: string): NewsletterContent => ({
+  headline: "Newsletter preview",
+  intro: "Intro paragraph appears here when you send.",
+  sections: [],
+  closing: "Sign-off from Reset Pilates.",
+  ctaLabel: "Visit website",
+  ctaUrl: site,
+});
+
 export default function NewsletterEmail({ content }: NewsletterEmailProps) {
-  const preview = content.headline.slice(0, 110);
+  const site = getSiteUrl();
+  const c = content ?? previewContent(site);
+  const preview = (c.headline || "Newsletter").slice(0, 110);
 
   return (
     <ResetDocument preview={preview}>
@@ -36,7 +48,7 @@ export default function NewsletterEmail({ content }: NewsletterEmailProps) {
           margin: "0 0 16px",
         }}
       >
-        {content.headline}
+        {c.headline}
       </Heading>
       <Text
         style={{
@@ -47,9 +59,9 @@ export default function NewsletterEmail({ content }: NewsletterEmailProps) {
           margin: "0 0 20px",
         }}
       >
-        {content.intro}
+        {c.intro}
       </Text>
-      {content.sections.map((s, i) => (
+      {(Array.isArray(c.sections) ? c.sections : []).map((s, i) => (
         <div key={i}>
           {i > 0 ? <Hr style={{ border: "none", borderTop: "1px solid #C6C5C4", margin: "20px 0" }} /> : null}
           <Text
@@ -88,10 +100,10 @@ export default function NewsletterEmail({ content }: NewsletterEmailProps) {
           margin: "0 0 24px",
         }}
       >
-        {content.closing}
+        {c.closing}
       </Text>
       <Button
-        href={content.ctaUrl}
+        href={c.ctaUrl}
         style={{
           display: "inline-block",
           fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
@@ -105,7 +117,7 @@ export default function NewsletterEmail({ content }: NewsletterEmailProps) {
           textDecoration: "none",
         }}
       >
-        {content.ctaLabel}
+        {c.ctaLabel}
       </Button>
     </ResetDocument>
   );
