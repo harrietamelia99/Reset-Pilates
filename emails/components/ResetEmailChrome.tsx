@@ -9,6 +9,9 @@ const midGrey = "#545456";
 const warmGrey = "#8E898A";
 const lightGrey = "#C6C5C4";
 
+/** Brand light-grey — outer canvas only (copy stays on white below). */
+const emailCanvas = lightGrey;
+
 /** Panoramic header (`public/brand/reset-email-header.png`) — must be reachable at this HTTPS URL when sent (see EMAIL_ASSET_BASE_URL). */
 function emailHeaderSrc(assetBase: string): string {
   return `${assetBase}/brand/reset-email-header.png`;
@@ -38,7 +41,7 @@ export function ResetEmailChrome({ children }: Props) {
 
   return (
     <>
-      <Section style={{ padding: 0, margin: 0, lineHeight: 0, backgroundColor: "#e8e6e4", textAlign: "center" as const }}>
+      <Section style={{ padding: 0, margin: 0, lineHeight: 0, backgroundColor: emailCanvas, textAlign: "center" as const }}>
         <Img
           src={headerUrl}
           alt="reset. wordmark on a light textured background."
