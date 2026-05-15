@@ -35,23 +35,11 @@ export const NAV_LINKS = [
 /** In-app booking section anchor; replace with full Momence URL when live. */
 export const BOOKING_HREF = "/pricing#book";
 
-/**
- * TODO: Replace with your Formspree form endpoint after creating a form at https://formspree.io
- * Example: https://formspree.io/f/yourFormId
- */
-export const FORMSPREE_ACTION =
-  "https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID";
+/** Contact form posts to this API route (Resend on the server). */
+export const CONTACT_API_PATH = "/api/contact";
 
-/**
- * Email alerts signup, can match {@link FORMSPREE_ACTION} or use a separate Formspree form ID.
- */
-export const EMAIL_ALERTS_FORMSPREE_ACTION = FORMSPREE_ACTION;
-
-/**
- * General enquiries from `/contact`. Use a dedicated Formspree form in the dashboard if you want
- * these separated from alerts.
- */
-export const CONTACT_FORMSPREE_ACTION = FORMSPREE_ACTION;
+/** Homepage email alerts form posts here (Resend on the server). */
+export const EMAIL_ALERTS_API_PATH = "/api/email-alerts";
 
 export const OPENING_DATE_LABEL =
   "Opening 1st June 2026, Founding memberships available for the first 30 members";

@@ -3,7 +3,7 @@
 import { Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { CONTACT, CONTACT_FORMSPREE_ACTION } from "@/lib/constants";
+import { CONTACT, CONTACT_API_PATH } from "@/lib/constants";
 import { cn } from "@/lib/cn";
 
 type FormValues = {
@@ -34,20 +34,18 @@ export function ContactForm({ className, balanceWithColumn }: Props) {
 
   const onSubmit = async (data: FormValues) => {
     setStatus("sending");
-    const body = new FormData();
-    body.append("name", data.name.trim());
-    body.append("email", data.email.trim());
-    body.append("phone", data.phone?.trim() ?? "");
-    body.append("message", data.message.trim());
-    body.append("_subject", "[Reset Pilates] Website enquiry");
-    body.append("source", "contact-page");
-    if (data._gotcha) body.append("_gotcha", data._gotcha);
 
     try {
-      const res = await fetch(CONTACT_FORMSPREE_ACTION, {
+      const res = await fetch(CONTACT_API_PATH, {
         method: "POST",
-        body,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: data.name.trim(),
+          email: data.email.trim(),
+          phone: data.phone?.trim() ?? "",
+          message: data.message.trim(),
+          _gotcha: data._gotcha ?? "",
+        }),
       });
       if (res.ok) {
         reset({ name: "", email: "", phone: "", message: "", _gotcha: "" });

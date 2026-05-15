@@ -3,7 +3,7 @@
 import { Bell, Mail } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { EMAIL_ALERTS_FORMSPREE_ACTION } from "@/lib/constants";
+import { EMAIL_ALERTS_API_PATH } from "@/lib/constants";
 import { cn } from "@/lib/cn";
 
 type FormValues = {
@@ -31,18 +31,16 @@ export function EmailAlertsForm({ variant = "light" }: Props) {
 
   const onSubmit = async (data: FormValues) => {
     setStatus("sending");
-    const body = new FormData();
-    body.append("email", data.email);
-    body.append("name", data.name?.trim() ?? "");
-    body.append("_subject", "[Reset Pilates] Email alerts signup");
-    body.append("source", "homepage-email-alerts");
-    if (data._gotcha) body.append("_gotcha", data._gotcha);
 
     try {
-      const res = await fetch(EMAIL_ALERTS_FORMSPREE_ACTION, {
+      const res = await fetch(EMAIL_ALERTS_API_PATH, {
         method: "POST",
-        body,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          email: data.email.trim(),
+          name: data.name?.trim() ?? "",
+          _gotcha: data._gotcha ?? "",
+        }),
       });
       if (res.ok) {
         reset({ email: "", name: "", _gotcha: "" });
