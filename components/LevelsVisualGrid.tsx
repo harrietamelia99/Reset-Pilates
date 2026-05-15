@@ -11,15 +11,15 @@ export function LevelsVisualGrid({ tiles }: { tiles: readonly Tile[] }) {
         ))}
       </div>
       <div className="grid gap-3 md:grid-cols-2">
-        {tiles.slice(3).map((t, i) => (
-          <LevelCard key={t.id} tile={t} variant="accent" number={i + 4} />
+        {tiles.slice(3).map((t) => (
+          <LevelCard key={t.id} tile={t} variant="accent" />
         ))}
       </div>
     </div>
   );
 }
 
-function LevelCard({ tile, variant, number }: { tile: Tile; variant: "soft" | "accent"; number: number }) {
+function LevelCard({ tile, variant, number }: { tile: Tile; variant: "soft" | "accent"; number?: number }) {
   const isAccent = variant === "accent";
 
   return (
@@ -38,7 +38,9 @@ function LevelCard({ tile, variant, number }: { tile: Tile; variant: "soft" | "a
         }
         aria-hidden
       >
-        <span className="font-accent text-lg font-bold tabular-nums leading-none tracking-tight">{number}</span>
+        {number != null ? (
+          <span className="font-accent text-lg font-bold tabular-nums leading-none tracking-tight">{number}</span>
+        ) : null}
       </div>
       <div className="min-w-0">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">

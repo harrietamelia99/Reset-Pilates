@@ -109,44 +109,45 @@ export default function ClassesPage() {
             ))}
           </div>
 
-          <div>
-            <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Hot mat</h2>
-            <div className="mt-6 max-w-3xl">
-              <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
-                <Image
-                  src="/images/classes-hot-mat.png"
-                  alt="A woman in black athletic wear performing a Pilates mat exercise with a silver ball under her back, one leg extended vertically, in a sunlit studio with a large mirror."
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 100vw, 768px"
-                />
+          <div className="grid gap-8 sm:grid-cols-2 sm:gap-4">
+            <div>
+              <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Hot mat</h2>
+              <div className="mt-6">
+                <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
+                  <Image
+                    src="/images/classes-hot-mat.png"
+                    alt="A woman in black athletic wear performing a Pilates mat exercise with a silver ball under her back, one leg extended vertically, in a sunlit studio with a large mirror."
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1152px) 50vw, 576px"
+                  />
+                </div>
               </div>
+              <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
+                <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{HOT_MAT_CLASS.name}</h3>
+                <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
+                <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{HOT_MAT_CLASS.body}</p>
+              </PaperSheet>
             </div>
-            <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
-              <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{HOT_MAT_CLASS.name}</h3>
-              <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
-              <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{HOT_MAT_CLASS.body}</p>
-            </PaperSheet>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Mat</h2>
-            <div className="mt-6 max-w-2xl">
-              <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
-                <Image
-                  src="/images/classes-mat.png"
-                  alt="A group of women in a bright, minimalist studio performing mat Pilates exercises using small white balls for back support."
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 672px) 100vw, 672px"
-                />
+            <div>
+              <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Mat</h2>
+              <div className="mt-6">
+                <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
+                  <Image
+                    src="/images/classes-mat.png"
+                    alt="A group of women in a bright, minimalist studio performing mat Pilates exercises using small white balls for back support."
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1152px) 50vw, 576px"
+                  />
+                </div>
               </div>
+              <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
+                <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{MAT_CLASS.name}</h3>
+                <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
+                <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{MAT_CLASS.body}</p>
+              </PaperSheet>
             </div>
-            <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
-              <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{MAT_CLASS.name}</h3>
-              <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
-              <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{MAT_CLASS.body}</p>
-            </PaperSheet>
           </div>
 
           <PaperSheet flat pin={false} className="p-6 md:p-8">
