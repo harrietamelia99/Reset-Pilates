@@ -17,9 +17,22 @@ const previewContent = (site: string): NewsletterContent => ({
   ctaUrl: site,
 });
 
+function mergeNewsletterContent(site: string, raw?: NewsletterContent): NewsletterContent {
+  const d = previewContent(site);
+  if (!raw || typeof raw !== "object") return d;
+  return {
+    headline: typeof raw.headline === "string" && raw.headline.trim() ? raw.headline : d.headline,
+    intro: typeof raw.intro === "string" && raw.intro.trim() ? raw.intro : d.intro,
+    sections: Array.isArray(raw.sections) ? raw.sections : d.sections,
+    closing: typeof raw.closing === "string" && raw.closing.trim() ? raw.closing : d.closing,
+    ctaLabel: typeof raw.ctaLabel === "string" && raw.ctaLabel.trim() ? raw.ctaLabel : d.ctaLabel,
+    ctaUrl: typeof raw.ctaUrl === "string" && raw.ctaUrl.trim() ? raw.ctaUrl : d.ctaUrl,
+  };
+}
+
 export default function NewsletterEmail({ content }: NewsletterEmailProps) {
   const site = getSiteUrl();
-  const c = content ?? previewContent(site);
+  const c = mergeNewsletterContent(site, content);
   const preview = (c.headline || "Newsletter").slice(0, 110);
 
   return (
