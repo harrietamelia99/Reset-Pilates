@@ -122,8 +122,8 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
           {errors.email && (
             <p
               className={cn(
-                "mt-1.5 text-xs [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]",
-                variant === "dark" ? "text-white/85" : "text-mid-grey"
+                "mt-1.5 text-xs [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]",
+                variant === "dark" ? "text-white/90" : "text-mid-grey"
               )}
             >
               {errors.email.message}
@@ -154,8 +154,8 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
         </button>
         <p
           className={cn(
-            "font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em] [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]",
-            variant === "dark" ? "text-white/85" : "text-warm-grey"
+            "font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em] [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]",
+            variant === "dark" ? "text-white/95" : "text-warm-grey"
           )}
         >
           Opening dates, offers &amp; timetable drops, no spam.
@@ -165,8 +165,8 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
       {status === "success" && (
         <p
           className={cn(
-            "text-sm [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]",
-            variant === "dark" ? "text-white/95" : "text-mid-grey"
+            "text-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.45)]",
+            variant === "dark" ? "text-white" : "text-mid-grey"
           )}
           role="status"
         >
@@ -176,8 +176,8 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
       {status === "error" && (
         <p
           className={cn(
-            "text-sm [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]",
-            variant === "dark" ? "text-white/95" : "text-mid-grey"
+            "text-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.45)]",
+            variant === "dark" ? "text-white" : "text-mid-grey"
           )}
           role="alert"
         >

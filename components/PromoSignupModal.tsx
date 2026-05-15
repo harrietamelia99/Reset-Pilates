@@ -93,9 +93,10 @@ export function PromoSignupModal() {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-10 w-full max-w-md overflow-hidden rounded-sm border border-white/15 shadow-2xl"
+        className="relative z-10 w-full max-w-md overflow-hidden rounded-sm border border-white/10 bg-charcoal shadow-2xl"
       >
-        <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="pointer-events-none absolute inset-0 z-0 bg-charcoal" aria-hidden />
+        <div className="pointer-events-none absolute inset-0 z-[1] opacity-[0.38]">
           <Image
             src="/images/promo-modal-background.png"
             alt=""
@@ -104,8 +105,8 @@ export function PromoSignupModal() {
             sizes="(max-width: 640px) 100vw, 448px"
           />
         </div>
-        <div className="absolute inset-0 z-[1] bg-black/58 backdrop-blur-[2px]" aria-hidden />
-        <div className="relative z-[2] p-6 sm:p-8">
+        <div className="absolute inset-0 z-[2] bg-charcoal/70 backdrop-blur-[1px]" aria-hidden />
+        <div className="relative z-[3] p-6 sm:p-8">
           <button
             type="button"
             onClick={close}
@@ -115,16 +116,16 @@ export function PromoSignupModal() {
             <X className="h-5 w-5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]" strokeWidth={1.75} aria-hidden />
           </button>
 
-          <p className="font-accent text-[10px] uppercase tracking-[0.14em] text-white/90 [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
+          <p className="font-accent text-[10px] uppercase tracking-[0.14em] text-white/95 [text-shadow:0_1px_3px_rgba(0,0,0,0.55)]">
             Stay in the loop
           </p>
           <h2
             id={titleId}
-            className="mt-2 text-xl font-bold uppercase tracking-heading text-white sm:text-2xl [text-shadow:0_1px_3px_rgba(0,0,0,0.4),0_0_24px_rgba(0,0,0,0.2)]"
+            className="mt-2 text-xl font-bold uppercase tracking-heading text-white sm:text-2xl [text-shadow:0_1px_4px_rgba(0,0,0,0.55),0_0_28px_rgba(0,0,0,0.35)]"
           >
             Get opening updates
           </h2>
-          <p className="mt-3 font-accent text-sm leading-relaxed text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
+          <p className="mt-3 font-accent text-sm leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
             Timetable drops, founding offers, and studio news. No spam, just what you need to be first on the list.
           </p>
 
@@ -135,7 +136,7 @@ export function PromoSignupModal() {
           <button
             type="button"
             onClick={close}
-            className="mt-4 w-full text-center font-accent text-[11px] uppercase tracking-wide text-white/80 underline-offset-4 [text-shadow:0_1px_2px_rgba(0,0,0,0.35)] hover:text-white hover:underline"
+            className="mt-4 w-full text-center font-accent text-[11px] uppercase tracking-wide text-white/90 underline-offset-4 [text-shadow:0_1px_3px_rgba(0,0,0,0.5)] hover:text-white hover:underline"
           >
             Maybe later
           </button>
