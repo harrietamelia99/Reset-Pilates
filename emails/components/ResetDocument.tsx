@@ -2,8 +2,8 @@ import { Body, Container, Head, Html, Preview } from "@react-email/components";
 import * as React from "react";
 import { ResetEmailChrome } from "./ResetEmailChrome";
 
-/** Brand light-grey — full-bleed canvas behind the 600px card (same as tailwind `light-grey`). */
-const EMAIL_CANVAS_BG = "#C6C5C4";
+/** Brand mid-grey — full-bleed canvas behind the 600px card (same as tailwind `mid-grey`). */
+const EMAIL_CANVAS_BG = "#545456";
 
 type Props = {
   preview: string;

@@ -9,8 +9,8 @@ const midGrey = "#545456";
 const warmGrey = "#8E898A";
 const lightGrey = "#C6C5C4";
 
-/** Brand light-grey — outer canvas only (copy stays on white below). */
-const emailCanvas = lightGrey;
+/** Brand mid-grey — outer canvas only (copy stays on white below). */
+const emailCanvas = midGrey;
 
 /** Panoramic header (`public/brand/reset-email-header.png`) — must be reachable at this HTTPS URL when sent (see EMAIL_ASSET_BASE_URL). */
 function emailHeaderSrc(assetBase: string): string {
