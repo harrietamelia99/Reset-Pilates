@@ -17,6 +17,11 @@ function emailLogoSrc(site: string): string {
   return `${base}/brand/mari-pilates-email-logo.png`;
 }
 
+function instagramIconSrc(site: string): string {
+  const base = site.replace(/\/+$/, "");
+  return `${base}/brand/instagram-email.png`;
+}
+
 type Props = {
   children: React.ReactNode;
 };
@@ -28,6 +33,7 @@ type Props = {
 export function ResetEmailChrome({ children }: Props) {
   const site = getSiteUrl();
   const logoUrl = emailLogoSrc(site);
+  const instagramIconUrl = instagramIconSrc(site);
 
   return (
     <>
@@ -81,7 +87,20 @@ export function ResetEmailChrome({ children }: Props) {
             {CONTACT.email}
           </Link>
           {" · "}
-          <Link href={CONTACT.instagram.url} style={{ color: charcoal }}>
+          <Link href={CONTACT.instagram.url} style={{ color: charcoal, textDecoration: "none" }}>
+            <Img
+              src={instagramIconUrl}
+              width={16}
+              height={16}
+              alt=""
+              style={{
+                display: "inline-block",
+                verticalAlign: "middle",
+                marginRight: "6px",
+                border: 0,
+                outline: "none",
+              }}
+            />
             Instagram
           </Link>
           {" · "}
