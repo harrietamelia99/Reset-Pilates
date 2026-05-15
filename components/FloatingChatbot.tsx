@@ -14,15 +14,13 @@ type Msg = {
 };
 
 const WELCOME =
-  "Hi, I'm your Reset helper, lovely to meet you! 💚 Ask about booking, classes, opening day, or where to find us. If it's personal or tricky, I'll nudge you toward our team ✉️";
+  "Hi! Ask about opening, where we are, classes, or booking. For anything personal or detailed, I’ll send you to the right page or email.";
 
 const QUICK_PROMPTS: { label: string; send: string }[] = [
-  { label: "When do you open? 📅", send: "When do you open" },
-  { label: "Where is the studio? 📍", send: "Where is the studio" },
-  { label: "How do I book? 🗓️", send: "How do I book a class" },
-  { label: "What classes? ✨", send: "What classes do you offer" },
-  { label: "Grip socks? 🧦", send: "Do I need grip socks" },
-  { label: "Email the team ✉️", send: "I want to contact you" },
+  { label: "When do you open?", send: "When do you open" },
+  { label: "Where is the studio?", send: "Where is the studio" },
+  { label: "How do I book?", send: "How do I book a class" },
+  { label: "Email the team", send: "I want to contact you" },
 ];
 
 function uid() {
@@ -103,10 +101,10 @@ export function FloatingChatbot() {
         >
           <div className="border-b border-charcoal/10 bg-charcoal px-4 py-3 text-white">
             <p id={titleId} className="font-sans text-sm font-bold uppercase tracking-wide">
-              Need a hand? 💬
+              Need a hand?
             </p>
             <p className="mt-1 font-accent text-[11px] leading-snug text-white/75">
-              FAQs & friendly pointers, we&apos;ll connect you with the team when it&apos;s better over email.
+              Quick answers here. We&apos;ll link you to the site or email when that&apos;s easier.
             </p>
           </div>
 
@@ -154,7 +152,7 @@ export function FloatingChatbot() {
             {typing ? (
               <div className="flex justify-start">
                 <div className="rounded-lg border border-charcoal/12 bg-light-grey/30 px-3 py-2 font-accent text-xs text-mid-grey">
-                  Typing… ✨
+                  Typing…
                 </div>
               </div>
             ) : null}
@@ -163,7 +161,7 @@ export function FloatingChatbot() {
           {messages.filter((m) => m.role === "user").length === 0 ? (
             <div className="border-t border-charcoal/10 px-3 pb-2 pt-1">
               <p className="mb-2 font-accent text-[10px] uppercase tracking-[0.12em] text-mid-grey">
-                Quick questions
+                Quick picks
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {QUICK_PROMPTS.map((p) => (
@@ -195,7 +193,7 @@ export function FloatingChatbot() {
                 id={inputId}
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
-                placeholder="Ask anything… 🙌"
+                placeholder="Type your question…"
                 className="min-h-[44px] flex-1 rounded border border-charcoal/20 bg-white px-3 py-2 font-accent text-sm text-charcoal placeholder:text-warm-grey focus:border-charcoal focus:outline-none focus:ring-1 focus:ring-charcoal"
                 autoComplete="off"
               />
