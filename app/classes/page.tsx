@@ -59,12 +59,6 @@ export default function ClassesPage() {
             go live in Momence ahead of opening.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
-          <div className="mt-10 max-w-5xl">
-            <ImagePlaceholder
-              aspect="5/3"
-              caption="Reformer or studio floor, replace with class photography."
-            />
-          </div>
         </div>
       </MotionSection>
 
