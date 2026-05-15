@@ -12,6 +12,7 @@ import { PaperSheet } from "@/components/PaperSheet";
 import { HomeMapSection } from "@/components/HomeMapSection";
 import { HomeInstagramSection } from "@/components/HomeInstagramSection";
 import { HomeEmailAlertsSection } from "@/components/HomeEmailAlertsSection";
+import { EditorialVideoBackdrop } from "@/components/EditorialVideoBackdrop";
 import { PosterCtaBand } from "@/components/PosterCtaBand";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -33,7 +34,8 @@ export default function HomePage() {
       <HomeHero />
 
       <MotionSection className="surface-editorial-dark relative overflow-hidden border-t border-white/10 py-16 md:py-24">
-        <div className="grain-layer opacity-20" aria-hidden />
+        <EditorialVideoBackdrop variant="mid" preload="metadata" />
+        <div className="grain-layer z-[1] opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
           <PaperSheet flat className="mx-auto overflow-hidden p-0">
             <MotionStaggerGrid
@@ -111,22 +113,7 @@ export default function HomePage() {
       </MotionSection>
 
       <MotionSection className="surface-editorial-dark-deep relative overflow-hidden text-white">
-        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
-          <video
-            className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.42] saturate-[0.35] contrast-[1.05]"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          >
-            {/* Chrome/Firefox need MP4 (H.264); Safari can fall back to MOV */}
-            <source src="/videos/founding-member-bg.mp4" type="video/mp4" />
-            <source src="/videos/founding-member-bg.mov" type="video/quicktime" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#141416]/90 via-[#1e1e22]/88 to-[#141416]/92" aria-hidden />
-          <div className="absolute inset-0 bg-[#0f0f10]/55" aria-hidden />
-        </div>
+        <EditorialVideoBackdrop variant="deep" preload="auto" />
         <div className="grain-layer z-[1] opacity-15" aria-hidden />
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-14 text-center md:px-6 md:py-18 lg:py-20">
           <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-white/55">

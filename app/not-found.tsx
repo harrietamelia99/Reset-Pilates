@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { EditorialVideoBackdrop } from "@/components/EditorialVideoBackdrop";
 
 export default function NotFound() {
   return (
-    <div className="surface-editorial-dark relative flex min-h-[60vh] flex-col items-center justify-center px-6 py-24 text-center text-white">
-      <div className="grain-layer opacity-25" aria-hidden />
+    <div className="surface-editorial-dark relative flex min-h-[60vh] flex-col items-center justify-center overflow-hidden px-6 py-24 text-center text-white">
+      <EditorialVideoBackdrop variant="mid" preload="metadata" />
+      <div className="grain-layer z-[1] opacity-25" aria-hidden />
       <div className="relative z-10 max-w-md">
         <p className="font-accent text-[10px] uppercase tracking-[0.2em] text-white/55">404</p>
         <h1 className="mt-4 font-sans text-2xl font-bold uppercase tracking-heading md:text-3xl">

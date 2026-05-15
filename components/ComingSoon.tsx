@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ArrowRight, CalendarDays, Home } from "lucide-react";
+import { EditorialVideoBackdrop } from "@/components/EditorialVideoBackdrop";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
 import { PosterCtaBand } from "@/components/PosterCtaBand";
@@ -44,7 +45,8 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
   return (
     <>
       <MotionSection className="surface-editorial-dark relative overflow-hidden border-b border-white/10 py-14 md:py-20 lg:py-24">
-        <div className="grain-layer opacity-20" aria-hidden />
+        <EditorialVideoBackdrop variant="mid" preload="metadata" />
+        <div className="grain-layer z-[1] opacity-20" aria-hidden />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6">
           <div className="mx-auto w-full max-w-[min(42rem,100%)]">
             <PaperSheet

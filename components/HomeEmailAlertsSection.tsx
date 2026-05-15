@@ -1,11 +1,13 @@
 "use client";
 
+import { EditorialVideoBackdrop } from "@/components/EditorialVideoBackdrop";
 import { MotionSection } from "@/components/MotionSection";
 import { EmailAlertsForm } from "@/components/EmailAlertsForm";
 
 export function HomeEmailAlertsSection() {
   return (
     <MotionSection className="surface-editorial-dark-deep relative overflow-hidden border-t border-white/10 py-16 text-white md:py-24">
+      <EditorialVideoBackdrop variant="deep" preload="metadata" />
       <div className="grain-layer z-[1] opacity-15" aria-hidden />
       <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
