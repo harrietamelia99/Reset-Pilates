@@ -1,6 +1,7 @@
 import { Button, Heading, Hr, Text } from "@react-email/components";
 import * as React from "react";
 import { ResetDocument } from "./components/ResetDocument";
+import { getExampleStudioUpdateEmailContent } from "../lib/emails/example-studio-update";
 import { getSiteUrl } from "../lib/emails/site-url";
 
 export type ProgressSection = { title: string; body: string };
@@ -14,14 +15,15 @@ export type ProgressUpdateEmailProps = {
   ctaLabel?: string;
 };
 
-export default function ProgressUpdateEmail({
-  issueTitle = "Quick studio update",
-  lead = "Swap this for a short intro when you send. A couple of sentences is plenty.",
-  sections,
-  ctaLabel = "See what's new on the site",
-}: ProgressUpdateEmailProps) {
+export default function ProgressUpdateEmail(props: ProgressUpdateEmailProps) {
+  const ex = getExampleStudioUpdateEmailContent();
+  const issueTitle = props.issueTitle?.trim() || ex.issueTitle;
+  const lead = props.lead?.trim() || ex.lead;
+  const sections =
+    Array.isArray(props.sections) && props.sections.length > 0 ? props.sections : ex.sections ?? [];
+  const ctaLabel = props.ctaLabel?.trim() || ex.ctaLabel;
   const site = getSiteUrl();
-  const sectionList = Array.isArray(sections) ? sections : [];
+  const sectionList = sections;
   const preview = `${issueTitle ?? "Update"}: what's happening at Reset.`;
 
   return (

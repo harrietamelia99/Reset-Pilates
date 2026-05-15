@@ -44,18 +44,8 @@ async function main() {
 
   pages.push({
     file: "progress-update.html",
-    title: "Progress update",
-    html: await render(
-      <ProgressUpdateEmail
-        issueTitle="Build update, late spring"
-        lead="Quick one on Crown Glass, memberships, and what's cooking in the next fortnight."
-        sections={[
-          { title: "On site", body: "Lighting sign-off is done. Acoustic treatment in the hot mat room lands next week." },
-          { title: "Booking", body: "We're loading Momence with founding tiers first, then drop-ins. You'll hear when it's your turn to book." },
-        ]}
-        ctaLabel="See what's new on the site"
-      />
-    ),
+    title: "Studio update",
+    html: await render(<ProgressUpdateEmail />),
   });
 
   pages.push({
