@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { EditorialVideoBackdrop } from "@/components/EditorialVideoBackdrop";
 import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
+import { PosterHeroBackdrop } from "@/components/PosterHeroBackdrop";
 import { cn } from "@/lib/cn";
 
 /** Default inner layout: matches home “Join the conversation” strip */
@@ -30,7 +30,7 @@ export function PosterCtaBand({ children, className, sheetClassName, bare, delay
         className
       )}
     >
-      <EditorialVideoBackdrop variant="deep" preload="metadata" />
+      <PosterHeroBackdrop />
       <div className="grain-layer z-[1]" aria-hidden />
       <div className="vignette-layer z-[1]" aria-hidden />
       <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
