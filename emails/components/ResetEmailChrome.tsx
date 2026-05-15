@@ -9,12 +9,12 @@ const warmGrey = "#8E898A";
 const lightGrey = "#C6C5C4";
 
 /**
- * PNG wordmark for email (`public/brand/reset-wordmark-email.png`). Many clients do not render SVG in `<img>`,
- * which shows a broken icon and the alt text instead. The site nav still uses the SVG.
+ * Mari Pilates lockup for email (`public/brand/mari-pilates-email-logo.png`).
+ * White artwork on black: shown on a black header strip so it matches the asset.
  */
-function wordmarkSrc(site: string): string {
+function emailLogoSrc(site: string): string {
   const base = site.replace(/\/+$/, "");
-  return `${base}/brand/reset-wordmark-email.png`;
+  return `${base}/brand/mari-pilates-email-logo.png`;
 }
 
 type Props = {
@@ -27,24 +27,27 @@ type Props = {
  */
 export function ResetEmailChrome({ children }: Props) {
   const site = getSiteUrl();
-  const logoUrl = wordmarkSrc(site);
+  const logoUrl = emailLogoSrc(site);
 
   return (
     <>
-      <Section style={{ padding: "32px 24px 8px", backgroundColor: "#ffffff" }}>
+      <Section style={{ padding: "28px 24px 24px", backgroundColor: "#000000", textAlign: "center" }}>
         <Img
           src={logoUrl}
-          alt="Reset Pilates"
+          alt="Mari Pilates"
           width={200}
-          height={64}
+          height={168}
           style={{
-            display: "block",
-            margin: "0 0 10px",
+            display: "inline-block",
+            margin: "0 auto 0",
             border: 0,
             outline: "none",
             textDecoration: "none",
+            maxWidth: "200px",
           }}
         />
+      </Section>
+      <Section style={{ padding: "16px 24px 8px", backgroundColor: "#ffffff" }}>
         <Text
           style={{
             margin: 0,
@@ -53,6 +56,7 @@ export function ResetEmailChrome({ children }: Props) {
             letterSpacing: "0.18em",
             textTransform: "uppercase" as const,
             color: warmGrey,
+            textAlign: "center" as const,
           }}
         >
           Pilates studio · Nailsea
