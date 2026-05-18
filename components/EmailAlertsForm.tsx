@@ -19,10 +19,20 @@ type Props = {
   idPrefix?: string;
   /** Called after a successful signup (e.g. close modal, analytics). */
   onSuccess?: () => void;
+  /** Place the disclaimer under the button instead of beside it (use in narrow modals). */
+  stackFooterNote?: boolean;
 };
 
-export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSuccess }: Props) {
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function EmailAlertsForm({
+  variant = "light",
+  idPrefix = "alerts",
+  onSuccess,
+  stackFooterNote = false,
+}: Props) {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorHint, setErrorHint] = useState<string | null>(null);
 
   const {
     register,
@@ -35,6 +45,7 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
 
   const onSubmit = async (data: FormValues) => {
     setStatus("sending");
+    setErrorHint(null);
 
     try {
       const res = await fetch(EMAIL_ALERTS_API_PATH, {
@@ -50,16 +61,48 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
         reset({ email: "", name: "", _gotcha: "" });
         setStatus("success");
         onSuccess?.();
+        return;
+      }
+
+      let payload: { error?: string } = {};
+      try {
+        payload = (await res.json()) as { error?: string };
+      } catch {
+        /* ignore */
+      }
+
+      setStatus("error");
+      if (payload.error === "validation") {
+        setErrorHint(
+          "Check your email address is complete (for example name@gmail.com), then try again."
+        );
+      } else if (payload.error === "not_configured") {
+        setErrorHint(
+          "Sign-up isn't available from the server yet. Please email hello@resetpilatesstudio.co.uk and we'll add you."
+        );
+      } else if (payload.error === "send_failed") {
+        setErrorHint(
+          "Your details look fine, but we couldn't notify the studio just now. Please email hello@resetpilatesstudio.co.uk to join the list, or try again in a little while."
+        );
+      } else if (payload.error === "subscriber_send_failed") {
+        setErrorHint(
+          "We saved your sign-up for the studio, but the confirmation email to you didn't send. Check spam, or email hello@resetpilatesstudio.co.uk."
+        );
       } else {
-        setStatus("error");
+        setErrorHint(
+          "Something went wrong on our side. Your email may still be fine; please try again in a few minutes or email hello@resetpilatesstudio.co.uk."
+        );
       }
     } catch {
       setStatus("error");
+      setErrorHint(
+        "We couldn't reach the server. Check your connection, then try again, or email hello@resetpilatesstudio.co.uk."
+      );
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-5" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-5">
       <label htmlFor={`${idPrefix}-website`} className="sr-only">
         Leave this field empty
       </label>
@@ -116,7 +159,13 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
                   ? "border-white/25 bg-white text-charcoal placeholder:text-mid-grey focus:border-white focus:ring-2 focus:ring-white/25"
                   : "border-light-grey bg-white text-charcoal placeholder:text-warm-grey/80 focus:border-charcoal focus:ring-2 focus:ring-charcoal/10"
               )}
-              {...register("email", { required: "Please enter your email." })}
+              {...register("email", {
+                required: "Please enter your email.",
+                pattern: {
+                  value: EMAIL_PATTERN,
+                  message: "Enter a complete email address (e.g. name@gmail.com).",
+                },
+              })}
             />
           </div>
           {errors.email && (
@@ -132,12 +181,17 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div
+        className={cn(
+          "flex gap-3",
+          stackFooterNote ? "flex-col items-stretch" : "flex-col sm:flex-row sm:items-center"
+        )}
+      >
         <button
           type="submit"
           disabled={status === "sending"}
           className={cn(
-            "inline-flex min-h-[44px] items-center justify-center gap-2 border px-8 py-3 text-xs font-bold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none sm:shrink-0",
+            "inline-flex min-h-[48px] items-center justify-center gap-2.5 border px-9 py-3.5 text-xs font-bold uppercase leading-snug tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none sm:shrink-0",
             variant === "dark"
               ? "border-white bg-white text-charcoal hover:bg-white/90"
               : "border-charcoal bg-charcoal text-white hover:bg-charcoal/90"
@@ -154,7 +208,8 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
         </button>
         <p
           className={cn(
-            "font-accent text-[11px] uppercase leading-relaxed tracking-[0.12em] [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]",
+            "max-w-prose font-accent text-[11px] uppercase leading-snug tracking-[0.12em] [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]",
+            stackFooterNote ? "" : "sm:min-w-0 sm:flex-1",
             variant === "dark" ? "text-white" : "text-warm-grey"
           )}
         >
@@ -170,7 +225,7 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
           )}
           role="status"
         >
-          You&apos;re on the list, look out for news from Reset.
+          You&apos;re on the list. Look out for a confirmation email from us (check spam), and news from Reset soon.
         </p>
       )}
       {status === "error" && (
@@ -181,7 +236,8 @@ export function EmailAlertsForm({ variant = "light", idPrefix = "alerts", onSucc
           )}
           role="alert"
         >
-          That didn&apos;t go through. Please try again or email hello@resetpilatesstudio.co.uk.
+          {errorHint ||
+            "That didn&apos;t go through. Please try again or email hello@resetpilatesstudio.co.uk."}
         </p>
       )}
     </form>

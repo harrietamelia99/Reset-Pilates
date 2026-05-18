@@ -1,9 +1,18 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { escapeHtml } from "@/lib/server/email-html";
+import { renderPreLaunchWaitlistHtml } from "@/lib/emails/render-templates";
 import { getResendEmailConfig } from "@/lib/server/resend-config";
 
 const MAX_FIELD = 500;
+
+function firstNameFromSignup(name: string): string {
+  const t = name.trim();
+  if (!t) return "there";
+  const first = t.split(/\s+/)[0] ?? "";
+  if (!first || first.length > 80) return "there";
+  return first;
+}
 
 type Body = {
   email?: string;
@@ -49,17 +58,61 @@ export async function POST(request: Request) {
     <p style="margin-top:2rem;font-size:12px;color:#666;">Source: homepage email alerts</p>
   `;
 
-  const { error } = await resend.emails.send({
-    from: config.from,
-    to: config.notifyTo,
-    replyTo: email,
-    subject: "Reset · new email alerts signup",
-    html,
-  });
-
-  if (error) {
-    console.error("[email-alerts] Resend error:", error);
+  let sendResult: { error?: unknown };
+  try {
+    sendResult = await resend.emails.send({
+      from: config.from,
+      to: config.notifyTo,
+      replyTo: email,
+      subject: "Reset · new email alerts signup",
+      html,
+    });
+  } catch (e) {
+    console.error("[email-alerts] Resend threw (staff notify):", e);
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
+  }
+
+  const { error: staffError } = sendResult;
+  if (staffError) {
+    const errMsg =
+      staffError && typeof staffError === "object" && "message" in staffError
+        ? String((staffError as { message: unknown }).message)
+        : String(staffError);
+    console.error("[email-alerts] Resend error (staff notify):", errMsg, JSON.stringify(staffError));
+    return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
+  }
+
+  let subscriberHtml: string;
+  try {
+    subscriberHtml = await renderPreLaunchWaitlistHtml({
+      firstName: firstNameFromSignup(name),
+    });
+  } catch (e) {
+    console.error("[email-alerts] render subscriber template:", e);
+    return NextResponse.json({ ok: false, error: "subscriber_send_failed" }, { status: 502 });
+  }
+
+  let subscriberResult: { error?: unknown };
+  try {
+    subscriberResult = await resend.emails.send({
+      from: config.from,
+      to: email,
+      subject: "You're on the Reset list",
+      html: subscriberHtml,
+    });
+  } catch (e) {
+    console.error("[email-alerts] Resend threw (subscriber):", e);
+    return NextResponse.json({ ok: false, error: "subscriber_send_failed" }, { status: 502 });
+  }
+
+  const subErr = subscriberResult.error;
+  if (subErr) {
+    const errMsg =
+      subErr && typeof subErr === "object" && "message" in subErr
+        ? String((subErr as { message: unknown }).message)
+        : String(subErr);
+    console.error("[email-alerts] Resend error (subscriber):", errMsg, JSON.stringify(subErr));
+    return NextResponse.json({ ok: false, error: "subscriber_send_failed" }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true }, { status: 200 });

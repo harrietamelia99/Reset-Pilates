@@ -36,9 +36,8 @@ export function ResetEmailChrome({ children }: Props) {
   const headerUrl = emailHeaderSrc(assetBase);
   const instagramIconUrl = instagramIconSrc(assetBase);
 
-  /** Native 1024×341; match 600px mail container (explicit px for consistent letterboxing). */
-  const headerW = 600;
-  const headerH = Math.round((341 / 1024) * headerW);
+  /** Design width for max layout; actual PNG is 1024×341. Fluid width + height:auto keeps aspect ratio on mobile. */
+  const headerMaxW = 600;
 
   return (
     <>
@@ -46,17 +45,16 @@ export function ResetEmailChrome({ children }: Props) {
         <Img
           src={headerUrl}
           alt="reset. wordmark on a light textured background."
-          width={headerW}
-          height={headerH}
+          width={headerMaxW}
           style={{
             display: "block",
             margin: "0 auto",
             border: 0,
             outline: "none",
             textDecoration: "none",
-            width: `${headerW}px`,
-            height: `${headerH}px`,
-            maxWidth: "100%",
+            width: "100%",
+            maxWidth: `${headerMaxW}px`,
+            height: "auto",
           }}
         />
       </Section>

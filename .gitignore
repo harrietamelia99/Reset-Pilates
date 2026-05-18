@@ -40,3 +40,6 @@ next-env.d.ts
 
 # local onboarding CSV extracts
 .onboarding-import/
+
+# studio newsletter uploads (local dev only; production uses Vercel Blob)
+/public/newsletter-media/

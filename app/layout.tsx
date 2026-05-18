@@ -41,9 +41,6 @@ export const metadata: Metadata = {
     description:
       "Premium boutique Pilates in Nailsea, reformer, hot mat & mat Pilates.",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({

@@ -18,10 +18,10 @@ export default function StudioHomePage() {
       <ul className="mt-10 space-y-4 font-accent text-sm text-charcoal">
         <li>
           <Link href="/studio/newsletter" className="font-bold uppercase tracking-wide underline-offset-4 hover:underline">
-            Newsletter from notes (AI)
+            Monthly newsletter (notes + photos, AI)
           </Link>
           <span className="mt-1 block text-mid-grey normal-case tracking-normal">
-            Mari writes bullets → model fills the branded template → preview here.
+            Mari adds bullets and images in a private form → OpenAI drafts in her voice → branded preview.
           </span>
         </li>
         <li className="text-mid-grey">

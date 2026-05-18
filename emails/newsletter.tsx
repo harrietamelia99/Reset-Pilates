@@ -1,4 +1,4 @@
-import { Button, Heading, Hr, Text } from "@react-email/components";
+import { Button, Heading, Hr, Img, Text } from "@react-email/components";
 import * as React from "react";
 import { ResetDocument } from "./components/ResetDocument";
 import type { NewsletterContent } from "../lib/emails/newsletter-types";
@@ -17,6 +17,8 @@ function mergeNewsletterContent(site: string, raw?: NewsletterContent): Newslett
   return {
     headline: typeof raw.headline === "string" && raw.headline.trim() ? raw.headline : d.headline,
     intro: typeof raw.intro === "string" && raw.intro.trim() ? raw.intro : d.intro,
+    heroImageUrl: typeof raw.heroImageUrl === "string" && raw.heroImageUrl.trim() ? raw.heroImageUrl.trim() : undefined,
+    heroImageAlt: typeof raw.heroImageAlt === "string" && raw.heroImageAlt.trim() ? raw.heroImageAlt.trim() : undefined,
     sections: Array.isArray(raw.sections) ? raw.sections : d.sections,
     closing: typeof raw.closing === "string" && raw.closing.trim() ? raw.closing : d.closing,
     ctaLabel: typeof raw.ctaLabel === "string" && raw.ctaLabel.trim() ? raw.ctaLabel : d.ctaLabel,
@@ -68,6 +70,22 @@ export default function NewsletterEmail({ content }: NewsletterEmailProps) {
       >
         {c.intro}
       </Text>
+      {c.heroImageUrl ? (
+        <Img
+          src={c.heroImageUrl}
+          alt={c.heroImageAlt || "Newsletter image"}
+          width={600}
+          style={{
+            display: "block",
+            margin: "0 auto 20px",
+            border: 0,
+            outline: "none",
+            width: "100%",
+            maxWidth: "600px",
+            height: "auto",
+          }}
+        />
+      ) : null}
       {(Array.isArray(c.sections) ? c.sections : []).map((s, i) => (
         <div key={i}>
           {i > 0 ? <Hr style={{ border: "none", borderTop: "1px solid #C6C5C4", margin: "20px 0" }} /> : null}
@@ -84,6 +102,22 @@ export default function NewsletterEmail({ content }: NewsletterEmailProps) {
           >
             {s.heading}
           </Text>
+          {s.imageUrl ? (
+            <Img
+              src={s.imageUrl}
+              alt={(s.imageAlt || s.heading).slice(0, 200)}
+              width={600}
+              style={{
+                display: "block",
+                margin: "0 auto 12px",
+                border: 0,
+                outline: "none",
+                width: "100%",
+                maxWidth: "600px",
+                height: "auto",
+              }}
+            />
+          ) : null}
           <Text
             style={{
               fontFamily: "IBM Plex Mono, ui-monospace, monospace",

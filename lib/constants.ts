@@ -35,6 +35,12 @@ export const NAV_LINKS = [
 /** In-app booking section anchor; replace with full Momence URL when live. */
 export const BOOKING_HREF = "/pricing#book";
 
+/**
+ * When true, navbar "Book Now" opens a dialog instead of navigating.
+ * Set false when BOOKING_HREF points to your live Momence scheduling URL.
+ */
+export const BOOKING_NAV_SHOW_COMING_SOON_DIALOG = true;
+
 /** Contact form posts to this API route (Resend on the server). */
 export const CONTACT_API_PATH = "/api/contact";
 

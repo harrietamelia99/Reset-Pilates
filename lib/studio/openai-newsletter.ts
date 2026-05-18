@@ -14,6 +14,8 @@ export async function draftNewsletterWithOpenAI(params: {
   issueTitle: string;
   notes: string;
   audience?: string;
+  /** Uploaded image URLs Mari controls; model must only reference these. */
+  imageAssets?: { url: string; note?: string }[];
 }): Promise<NewsletterContent> {
   const key = process.env.OPENAI_API_KEY?.trim();
   if (!key) {
@@ -30,18 +32,31 @@ export async function draftNewsletterWithOpenAI(params: {
     "Emojis: use ✨ and 🤍 at most once each in the whole email, only if they add warmth. Often use neither.",
     "Closing: human sign-off, ending with Mari's name plus the white heart emoji 🤍 (not the letter x). E.g. 'Lots of love, Mari 🤍' or 'Speak soon, Mari 🤍'. Not generic corporate.",
     "Shape:",
-    '{"headline":"string","intro":"string","sections":[{"heading":"string","body":"string"}],"closing":"string","ctaLabel":"string","ctaUrl":"string"}',
+    '{"headline":"string","intro":"string","heroImageUrl":"optional string","heroImageAlt":"optional string","sections":[{"heading":"string","body":"string","imageUrl":"optional string","imageAlt":"optional string"}],"closing":"string","ctaLabel":"string","ctaUrl":"string"}',
+    "Images: If IMAGE ASSETS are listed in the user message, you MAY set heroImageUrl and/or sections[].imageUrl ONLY to URLs copied exactly from that list (same string). Never invent or guess URLs. If an asset does not fit any section, leave image fields out. Use at most one image per section when helpful. imageAlt should be a short plain description (max ~100 chars).",
+    "If there are no IMAGE ASSETS, omit heroImageUrl, heroImageAlt, and all section imageUrl/imageAlt fields.",
     "Rules: 1 to 4 sections; each body max ~120 words; headline punchy; intro 2 to 3 short sentences; closing one short paragraph.",
     `Default ctaUrl to "${site}" unless Mari notes imply a different absolute https URL.`,
   ].join(" ");
+
+  const assetLines =
+    params.imageAssets?.filter((a) => a.url?.trim()).map((a, i) => {
+      const note = a.note?.trim() ? ` — Mari note: ${a.note.trim()}` : "";
+      return `${i + 1}. ${a.url.trim()}${note}`;
+    }) ?? [];
 
   const user = [
     `Issue / working title: ${params.issueTitle}`,
     params.audience ? `Audience: ${params.audience}` : "Audience: waitlist and early members.",
     "",
+    assetLines.length
+      ? ["IMAGE ASSETS (use only these exact URLs for heroImageUrl or sections[].imageUrl):", ...assetLines, ""].join("\n")
+      : "",
     "Mari's notes (bullets, rough ideas, dates - use only what fits):",
     params.notes.slice(0, 12000),
-  ].join("\n");
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",

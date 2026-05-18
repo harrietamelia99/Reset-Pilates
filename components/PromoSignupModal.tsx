@@ -131,7 +131,7 @@ export function PromoSignupModal() {
           </p>
 
           <div className="mt-6">
-            <EmailAlertsForm variant="dark" idPrefix="promo" onSuccess={onSignupSuccess} />
+            <EmailAlertsForm variant="dark" idPrefix="promo" stackFooterNote onSuccess={onSignupSuccess} />
           </div>
 
           <button

@@ -2,13 +2,30 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { renderNewsletterHtml } from "@/lib/emails/render-templates";
 import { draftNewsletterWithOpenAI } from "@/lib/studio/openai-newsletter";
+import { sanitizeNewsletterImages } from "@/lib/studio/newsletter-sanitize-images";
 import { STUDIO_COOKIE_NAME, verifyStudioSessionValue } from "@/lib/studio/session";
 
 type Body = {
   issueTitle?: string;
   notes?: string;
   audience?: string;
+  imageAssets?: { url?: string; note?: string }[];
 };
+
+function parseImageAssets(raw: unknown): { url: string; note?: string }[] {
+  if (!Array.isArray(raw)) return [];
+  const out: { url: string; note?: string }[] = [];
+  for (const item of raw) {
+    if (!item || typeof item !== "object") continue;
+    const o = item as Record<string, unknown>;
+    const url = typeof o.url === "string" ? o.url.trim() : "";
+    if (!url.startsWith("https://") && !url.startsWith("http://")) continue;
+    const note = typeof o.note === "string" ? o.note.trim() : undefined;
+    out.push({ url, note: note || undefined });
+    if (out.length >= 8) break;
+  }
+  return out;
+}
 
 export async function POST(request: Request) {
   const jar = cookies();
@@ -27,13 +44,23 @@ export async function POST(request: Request) {
   const issueTitle = typeof body.issueTitle === "string" ? body.issueTitle.trim() : "";
   const notes = typeof body.notes === "string" ? body.notes.trim() : "";
   const audience = typeof body.audience === "string" ? body.audience.trim() : undefined;
+  const imageAssets = parseImageAssets(body.imageAssets);
+  const hasImages = imageAssets.length > 0;
 
-  if (issueTitle.length < 2 || notes.length < 10) {
+  if (issueTitle.length < 2) {
+    return NextResponse.json({ ok: false, error: "validation" }, { status: 400 });
+  }
+  if (!hasImages && notes.length < 10) {
+    return NextResponse.json({ ok: false, error: "validation" }, { status: 400 });
+  }
+  if (hasImages && notes.length < 3) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 400 });
   }
 
   try {
-    const content = await draftNewsletterWithOpenAI({ issueTitle, notes, audience });
+    const draft = await draftNewsletterWithOpenAI({ issueTitle, notes, audience, imageAssets });
+    const allowedUrls = imageAssets.map((a) => a.url);
+    const content = sanitizeNewsletterImages(draft, allowedUrls);
     const html = await renderNewsletterHtml(content);
     return NextResponse.json({ ok: true, content, html }, { status: 200 });
   } catch (e) {

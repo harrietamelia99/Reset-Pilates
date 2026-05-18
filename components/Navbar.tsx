@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { CalendarDays } from "lucide-react";
-import { useEffect, useState } from "react";
-import { BOOKING_HREF, CONTACT, NAV_LINKS } from "@/lib/constants";
+import { CalendarDays, X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
+import { BOOKING_HREF, BOOKING_NAV_SHOW_COMING_SOON_DIALOG, CONTACT, NAV_LINKS } from "@/lib/constants";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
 import { CloseIcon } from "@/components/icons/CloseIcon";
 import { LogoWordmark } from "@/components/LogoWordmark";
@@ -51,6 +51,10 @@ function NavBookNow({
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [bookingSoonOpen, setBookingSoonOpen] = useState(false);
+  const bookingTitleId = useId();
+  const bookingPanelRef = useRef<HTMLDivElement>(null);
+  const bookingPrevFocus = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -59,7 +63,24 @@ export function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!bookingSoonOpen) return;
+    bookingPrevFocus.current = document.activeElement as HTMLElement | null;
+    window.setTimeout(() => {
+      bookingPanelRef.current?.querySelector<HTMLButtonElement>("[data-booking-dialog-close]")?.focus();
+    }, 0);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setBookingSoonOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      bookingPrevFocus.current?.focus?.();
+    };
+  }, [bookingSoonOpen]);
+
   return (
+    <>
     <header
       className={cn(
         "sticky top-0 border-b border-light-grey bg-white font-sans",
@@ -89,7 +110,18 @@ export function Navbar() {
             </Link>
           ))}
           <NavInstagram />
-          <NavBookNow className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-md active:translate-y-0 active:shadow-sm" />
+          {BOOKING_NAV_SHOW_COMING_SOON_DIALOG ? (
+            <button
+              type="button"
+              className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-md active:translate-y-0 active:shadow-sm"
+              onClick={() => setBookingSoonOpen(true)}
+            >
+              <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+              Book Now
+            </button>
+          ) : (
+            <NavBookNow className="inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-md active:translate-y-0 active:shadow-sm" />
+          )}
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
@@ -155,13 +187,78 @@ export function Navbar() {
             <InstagramGlyph className="h-6 w-6 shrink-0" strokeWidth={1.5} aria-hidden />
             Instagram
           </a>
-          <NavBookNow
-            className="mt-6 inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-md active:translate-y-0"
-            onClick={() => setOpen(false)}
-          />
-          {/* TODO: Set BOOKING_HREF in lib/constants.ts to your live Momence URL when ready. */}
+          {BOOKING_NAV_SHOW_COMING_SOON_DIALOG ? (
+            <button
+              type="button"
+              className="mt-6 inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-md active:translate-y-0"
+              onClick={() => {
+                setBookingSoonOpen(true);
+                setOpen(false);
+              }}
+            >
+              <CalendarDays className="h-4 w-4 shrink-0" strokeWidth={1.5} aria-hidden />
+              Book Now
+            </button>
+          ) : (
+            <NavBookNow
+              className="mt-6 inline-flex items-center justify-center gap-2 border border-charcoal bg-charcoal px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-mid-grey hover:shadow-md active:translate-y-0"
+              onClick={() => setOpen(false)}
+            />
+          )}
         </nav>
       </div>
     </header>
+
+    {BOOKING_NAV_SHOW_COMING_SOON_DIALOG && bookingSoonOpen ? (
+      <div
+        className="fixed inset-0 z-[80] flex items-end justify-center p-4 sm:items-center"
+        role="presentation"
+      >
+        <button
+          type="button"
+          className="absolute inset-0 bg-charcoal/55 backdrop-blur-[2px]"
+          aria-label="Close dialog"
+          onClick={() => setBookingSoonOpen(false)}
+        />
+        <div
+          ref={bookingPanelRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={bookingTitleId}
+          className="relative z-10 w-full max-w-md border border-charcoal/15 bg-white p-6 shadow-2xl sm:p-8"
+        >
+          <button
+            type="button"
+            data-booking-dialog-close
+            className="absolute right-3 top-3 rounded p-2 text-mid-grey transition hover:bg-light-grey/60 hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-charcoal"
+            aria-label="Close"
+            onClick={() => setBookingSoonOpen(false)}
+          >
+            <X className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+          </button>
+          <p className="font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey">Booking</p>
+          <h2 id={bookingTitleId} className="mt-2 text-xl font-bold uppercase tracking-heading text-charcoal sm:text-2xl">
+            Coming soon
+          </h2>
+          <p className="mt-4 font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">
+            You&apos;ll soon be able to schedule your classes in{" "}
+            <span className="font-medium text-charcoal">Momence</span>. We&apos;re finishing the live timetable and
+            booking link; in the meantime, pricing and FAQs are on the site, or email us at{" "}
+            <a href={`mailto:${CONTACT.email}`} className="text-charcoal underline underline-offset-2 hover:opacity-80">
+              {CONTACT.email}
+            </a>
+            .
+          </p>
+          <button
+            type="button"
+            className="mt-8 w-full border border-charcoal bg-charcoal py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:opacity-95 hover:shadow-md active:translate-y-0 sm:w-auto sm:px-10"
+            onClick={() => setBookingSoonOpen(false)}
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    ) : null}
+    </>
   );
 }
