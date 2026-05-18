@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { escapeHtml } from "@/lib/server/email-html";
-import { renderPreLaunchWaitlistHtml } from "@/lib/emails/render-templates";
+import { renderPreLaunchWaitlistHtml, renderPreLaunchWaitlistPlainText } from "@/lib/emails/render-templates";
 import { getResendEmailConfig } from "@/lib/server/resend-config";
 
 const MAX_FIELD = 500;
@@ -83,10 +83,11 @@ export async function POST(request: Request) {
   }
 
   let subscriberHtml: string;
+  let subscriberText: string;
   try {
-    subscriberHtml = await renderPreLaunchWaitlistHtml({
-      firstName: firstNameFromSignup(name),
-    });
+    const props = { firstName: firstNameFromSignup(name) };
+    subscriberHtml = await renderPreLaunchWaitlistHtml(props);
+    subscriberText = await renderPreLaunchWaitlistPlainText(props);
   } catch (e) {
     console.error("[email-alerts] render subscriber template:", e);
     return NextResponse.json({ ok: false, error: "subscriber_send_failed" }, { status: 502 });
@@ -97,8 +98,9 @@ export async function POST(request: Request) {
     subscriberResult = await resend.emails.send({
       from: config.from,
       to: email,
-      subject: "You're on the Reset list",
+      subject: "Pre-launch waitlist confirmation",
       html: subscriberHtml,
+      text: subscriberText,
     });
   } catch (e) {
     console.error("[email-alerts] Resend threw (subscriber):", e);

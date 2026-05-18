@@ -10,6 +10,7 @@
     "lint": "next lint",
     "email:dev": "npx react-email dev --dir emails -p 3010",
     "email:preview": "tsx --tsconfig tsconfig.json scripts/render-email-previews.tsx",
+    "email:waitlist-export-prelaunch-preview": "tsx --tsconfig tsconfig.json scripts/preview-waitlist-thank-you-csv.tsx",
     "email:waitlist-thankyou-preview": "tsx --tsconfig tsconfig.json scripts/preview-waitlist-thank-you-csv.tsx",
     "email:send-previews-for-approval": "tsx --tsconfig tsconfig.json scripts/send-template-previews-for-approval.tsx",
     "email:check-resend": "tsx --tsconfig tsconfig.json scripts/resend-list-domains.ts",

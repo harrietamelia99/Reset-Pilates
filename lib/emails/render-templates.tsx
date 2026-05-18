@@ -4,12 +4,10 @@ import NewsletterEmail from "@/emails/newsletter";
 import PreLaunchWaitlistEmail from "@/emails/prelaunch-waitlist";
 import ProgressUpdateEmail from "@/emails/progress-update";
 import WelcomeBookingEmail from "@/emails/welcome-booking";
-import WaitlistBulkThankYouEmail from "@/emails/waitlist-bulk-thank-you";
 import type { NewsletterContent } from "@/lib/emails/newsletter-types";
 import type { ProgressUpdateEmailProps } from "@/emails/progress-update";
 import type { PreLaunchWaitlistEmailProps } from "@/emails/prelaunch-waitlist";
 import type { WelcomeBookingEmailProps } from "@/emails/welcome-booking";
-import type { WaitlistBulkThankYouEmailProps } from "@/emails/waitlist-bulk-thank-you";
 
 export async function renderWelcomeBookingHtml(props: WelcomeBookingEmailProps): Promise<string> {
   return render(<WelcomeBookingEmail {...props} />);
@@ -19,8 +17,8 @@ export async function renderPreLaunchWaitlistHtml(props: PreLaunchWaitlistEmailP
   return render(<PreLaunchWaitlistEmail {...props} />);
 }
 
-export async function renderWaitlistBulkThankYouHtml(props: WaitlistBulkThankYouEmailProps): Promise<string> {
-  return render(<WaitlistBulkThankYouEmail {...props} />);
+export async function renderPreLaunchWaitlistPlainText(props: PreLaunchWaitlistEmailProps): Promise<string> {
+  return render(<PreLaunchWaitlistEmail {...props} />, { plainText: true });
 }
 
 export async function renderProgressUpdateHtml(props: ProgressUpdateEmailProps): Promise<string> {

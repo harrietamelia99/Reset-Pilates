@@ -1,22 +1,27 @@
 /**
  * Reads a Typeform/Google-style export CSV (Submitted At, First Name, Email Address),
- * dedupes by email, and writes HTML/text previews for the waitlist thank-you email.
- * Does NOT call Resend — same React Email HTML you would pass to resend.emails.send().
+ * dedupes by email, and writes HTML/text previews for the SAME email as the website
+ * waitlist: PreLaunchWaitlistEmail (not a separate “bulk thank-you” template).
+ * Use after sign-off for people who signed up on a previous form — do not send until approved.
+ *
+ * Does NOT call Resend.
  *
  * Usage:
  *   npx tsx --tsconfig tsconfig.json scripts/preview-waitlist-thank-you-csv.tsx "/path/to/export.csv"
  *
- * Or: npm run email:waitlist-thankyou-preview -- "/path/to/export.csv"
+ *   npm run email:waitlist-export-prelaunch-preview -- "/path/to/export.csv"
+ *   npm run email:waitlist-thankyou-preview -- "/path/to/export.csv"  (alias)
  *
- * Output (gitignored): email-previews/waitlist-bulk-thank-you*
+ * Output (gitignored): email-previews/waitlist-export-prelaunch-*
  */
 import * as React from "react";
 import { existsSync, readFileSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { render } from "@react-email/render";
-import WaitlistBulkThankYouEmail from "../emails/waitlist-bulk-thank-you";
+import PreLaunchWaitlistEmail from "../emails/prelaunch-waitlist";
 
+const OUT_PREFIX = "waitlist-export-prelaunch";
 const OUT_DIR = join(process.cwd(), "email-previews");
 const BRAND_DIR = join(process.cwd(), "public/brand");
 
@@ -86,7 +91,8 @@ function inlineBrandImagesForLocalPreview(html: string): string {
   return out;
 }
 
-const SUGGESTED_SUBJECT = "Thank you for your interest in Reset Pilates";
+/** Same subject as automatic /api/email-alerts subscriber send */
+const SUGGESTED_SUBJECT = "Pre-launch waitlist confirmation";
 
 async function main() {
   const csvPath = process.argv[2];
@@ -132,46 +138,44 @@ async function main() {
 
   await mkdir(OUT_DIR, { recursive: true });
 
-  const sampleFirst = recipients[0]?.firstName ?? "Sam";
-  const sampleHtmlRaw = await render(<WaitlistBulkThankYouEmail firstName={sampleFirst} />);
+  const sampleProps = { firstName: recipients[0]?.firstName ?? "Sam" };
+  const sampleHtmlRaw = await render(<PreLaunchWaitlistEmail {...sampleProps} />);
   const sampleHtml = inlineBrandImagesForLocalPreview(sampleHtmlRaw);
-  const sampleText = await render(<WaitlistBulkThankYouEmail firstName={sampleFirst} />, { plainText: true });
+  const sampleText = await render(<PreLaunchWaitlistEmail {...sampleProps} />, { plainText: true });
 
-  await writeFile(join(OUT_DIR, "waitlist-bulk-thank-you.html"), sampleHtml, "utf8");
-  await writeFile(join(OUT_DIR, "waitlist-bulk-thank-you.txt"), sampleText, "utf8");
-  await writeFile(join(OUT_DIR, "waitlist-bulk-thank-you-subject.txt"), `${SUGGESTED_SUBJECT}\n`, "utf8");
+  await writeFile(join(OUT_DIR, `${OUT_PREFIX}.html`), sampleHtml, "utf8");
+  await writeFile(join(OUT_DIR, `${OUT_PREFIX}.txt`), sampleText, "utf8");
+  await writeFile(join(OUT_DIR, `${OUT_PREFIX}-subject.txt`), `${SUGGESTED_SUBJECT}\n`, "utf8");
 
   const tsv = ["email\tfirst_name_display"].concat(recipients.map((x) => `${x.email}\t${x.firstName}`)).join("\n");
-  await writeFile(join(OUT_DIR, "waitlist-bulk-thank-you-recipients.tsv"), tsv, "utf8");
+  await writeFile(join(OUT_DIR, `${OUT_PREFIX}-recipients.tsv`), tsv, "utf8");
 
-  const note = `Waitlist bulk thank-you — preview bundle (not sent)
+  const note = `Pre-launch waitlist (${OUT_PREFIX}) — preview only, not sent
 
-Suggested subject line (edit in waitlist-bulk-thank-you-subject.txt):
+Same branded email as when someone joins the waitlist on the live site (PreLaunchWaitlistEmail).
+Use for people who signed up on an older contact form / export — wait for sign-off before sending.
+
+Suggested subject (matches live signup): see ${OUT_PREFIX}-subject.txt
   ${SUGGESTED_SUBJECT}
 
 Files:
-  - waitlist-bulk-thank-you.html — open in a browser (images inlined for file://)
-  - waitlist-bulk-thank-you.txt — plain-text version for Resend \`text\` field
-  - waitlist-bulk-thank-you-recipients.tsv — ${recipients.length} unique emails (deduped)
+  - ${OUT_PREFIX}.html — open in a browser (images inlined for file://)
+  - ${OUT_PREFIX}.txt — plain-text for Resend \`text\` field
+  - ${OUT_PREFIX}-recipients.tsv — ${recipients.length} unique emails (deduped)
 
-Sending later with Resend (example):
-  import { renderWaitlistBulkThankYouHtml } from "@/lib/emails/render-templates";
-  const html = await renderWaitlistBulkThankYouHtml({ firstName: "..." });
-  await resend.emails.send({
-    from: config.from,
-    to: email,
-    subject: "...",
-    html,
-    text: await render(<WaitlistBulkThankYouEmail firstName={...} />, { plainText: true }),
-  });
+Sending later with Resend (example per row):
+  import { renderPreLaunchWaitlistHtml, renderPreLaunchWaitlistPlainText } from "@/lib/emails/render-templates";
+  const html = await renderPreLaunchWaitlistHtml({ firstName });
+  const text = await renderPreLaunchWaitlistPlainText({ firstName });
+  await resend.emails.send({ from, to: email, subject: "${SUGGESTED_SUBJECT}", html, text });
 
-Or use Resend Broadcasts / batch with the HTML body and your recipient list.
+Or Resend Broadcasts / batch with merged firstName.
 `;
-  await writeFile(join(OUT_DIR, "waitlist-bulk-thank-you-README.txt"), note, "utf8");
+  await writeFile(join(OUT_DIR, `${OUT_PREFIX}-README.txt`), note, "utf8");
 
   console.log(`Unique recipients (deduped): ${recipients.length}`);
   console.log(`Wrote previews to ${OUT_DIR}/`);
-  console.log(`Open email-previews/waitlist-bulk-thank-you.html to review.`);
+  console.log(`Open email-previews/${OUT_PREFIX}.html to review.`);
 }
 
 main().catch((e) => {

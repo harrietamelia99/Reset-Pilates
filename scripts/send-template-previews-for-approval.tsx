@@ -14,7 +14,6 @@ import WelcomeBookingEmail from "../emails/welcome-booking";
 import PreLaunchWaitlistEmail from "../emails/prelaunch-waitlist";
 import ProgressUpdateEmail from "../emails/progress-update";
 import NewsletterEmail from "../emails/newsletter";
-import WaitlistBulkThankYouEmail from "../emails/waitlist-bulk-thank-you";
 import { getExampleOpeningNewsletterContent } from "../lib/emails/example-newsletter";
 import { getResendEmailConfig } from "../lib/server/resend-config";
 import { getSiteUrl } from "../lib/emails/site-url";
@@ -66,8 +65,9 @@ async function main() {
       jsx: <NewsletterEmail content={sampleNewsletter} />,
     },
     {
-      subject: "[Reset Pilates – client preview] Bulk thank-you (waitlist)",
-      jsx: <WaitlistBulkThankYouEmail firstName="Sam" />,
+      subject:
+        "[Reset Pilates – client preview] Pre-launch waitlist — historic export (same email as site, no extra note)",
+      jsx: <PreLaunchWaitlistEmail firstName="Sam" />,
     },
   ];
 
