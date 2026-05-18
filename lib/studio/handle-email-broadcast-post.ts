@@ -7,7 +7,6 @@ import { isNewsletterContent } from "@/lib/emails/newsletter-types";
 import { STUDIO_COOKIE_NAME, verifyStudioSessionValue } from "@/lib/studio/session";
 import type { StudioEmailDraftKind } from "@/lib/studio/email-draft-kind";
 import { studioEmailEyebrow } from "@/lib/studio/email-draft-kind";
-import { appendResendBroadcastFooter } from "@/lib/studio/append-resend-broadcast-footer";
 
 type Body = {
   content?: unknown;
@@ -76,7 +75,6 @@ export async function handleEmailBroadcastPost(request: Request, kind: StudioEma
     return NextResponse.json({ ok: false, error: "render_failed" }, { status: 500 });
   }
 
-  const withFooter = appendResendBroadcastFooter(html, text);
   const previewText = content.intro.replace(/\s+/g, " ").trim().slice(0, 120);
   const broadcastName = `${kind === "alert" ? "Alert" : "Newsletter"} ${new Date().toISOString().slice(0, 10)} ${subjectRaw.slice(0, 40)}`;
 
@@ -88,8 +86,8 @@ export async function handleEmailBroadcastPost(request: Request, kind: StudioEma
       from: config.from,
       subject: subjectRaw,
       replyTo: config.notifyTo,
-      html: withFooter.html,
-      text: withFooter.text,
+      html,
+      text,
       previewText: previewText || undefined,
       name: broadcastName,
     });

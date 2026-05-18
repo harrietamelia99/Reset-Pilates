@@ -1,4 +1,4 @@
-import { Button, Heading, Hr, Img, Text } from "@react-email/components";
+import { Button, Heading, Hr, Img, Link, Text } from "@react-email/components";
 import * as React from "react";
 import { ResetDocument } from "./components/ResetDocument";
 import type { NewsletterContent } from "../lib/emails/newsletter-types";
@@ -162,6 +162,21 @@ export default function NewsletterEmail({ content, eyebrow = "From Mari at Reset
       >
         {c.ctaLabel}
       </Button>
+      <Hr style={{ border: "none", borderTop: "1px solid #C6C5C4", margin: "28px 0 16px" }} />
+      <Text
+        style={{
+          margin: 0,
+          fontFamily: "IBM Plex Mono, ui-monospace, monospace",
+          fontSize: "11px",
+          lineHeight: 1.55,
+          color: "#8E898A",
+        }}
+      >
+        You&apos;re receiving this because you&apos;re on the Reset Pilates mailing list.{" "}
+        <Link href="{{{RESEND_UNSUBSCRIBE_URL}}}" style={{ color: "#2b2b29", textDecoration: "underline" }}>
+          Unsubscribe
+        </Link>
+      </Text>
     </ResetDocument>
   );
 }
