@@ -6,11 +6,14 @@ import type { NewsletterContent } from "@/lib/emails/newsletter-types";
 export type StudioEmailDraftVariant = "newsletter" | "alert";
 
 const PREVIEW_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+/** Must match server default in `handle-email-broadcast-post` (or STUDIO_BROADCAST_CONFIRM_PHRASE on Vercel). */
+const BROADCAST_CONFIRM_WORD = "SEND";
 
 type BuilderConfig = {
   previewEmailStorageKey: string;
   draftUrl: string;
   previewUrl: string;
+  broadcastUrl: string;
   pageHeading: string;
   intro: string;
   titleLabel: string;
@@ -25,9 +28,10 @@ const BUILDER_CONFIG: Record<StudioEmailDraftVariant, BuilderConfig> = {
     previewEmailStorageKey: "reset-studio-newsletter-preview-email",
     draftUrl: "/api/studio/newsletter-draft",
     previewUrl: "/api/studio/newsletter-preview-email",
+    broadcastUrl: "/api/studio/newsletter-broadcast",
     pageHeading: "Monthly newsletter",
     intro:
-      "Add a title, your rough notes, and optional photos. The tool turns that into draft wording in the Reset email layout. If something’s nearly right but not quite, use “Changes to make” below. When you like it, send yourself a test email to see it in your inbox — your full mailing list is never emailed from here.",
+      "Add a title, your rough notes, and optional photos. The tool turns that into draft wording in the Reset email layout — or use “Changes to make” to tweak a draft. Send yourself a test, then when you’re happy you can email your full list from the last step below.",
     titleLabel: "Newsletter title",
     titlePlaceholder: "e.g. May — timetable refresh & hot mat",
     defaultAudience: "Waitlist and members",
@@ -39,9 +43,10 @@ const BUILDER_CONFIG: Record<StudioEmailDraftVariant, BuilderConfig> = {
     previewEmailStorageKey: "reset-studio-alert-preview-email",
     draftUrl: "/api/studio/alert-draft",
     previewUrl: "/api/studio/alert-preview-email",
+    broadcastUrl: "/api/studio/alert-broadcast",
     pageHeading: "Updates & alerts",
     intro:
-      "For quick emails that aren’t your full monthly round-up — timetable changes, last-minute news, a closure, a reminder, or anything else people need to know. Add what happened and optional photos; you’ll get a shorter draft in the same Reset style. Tweak it, preview it, then send a test to your inbox. Your whole list is never emailed from here.",
+      "For quick one-off emails — timetable changes, last-minute news, closures, reminders. Add notes and optional photos, tweak with “Changes to make” if you use the drafting helper, send yourself a test, then use the last step to email your full list when you’re ready.",
     titleLabel: "What this is about",
     titlePlaceholder: "e.g. Storm day — evening classes cancelled",
     defaultAudience: "Waitlist and members",
@@ -78,7 +83,20 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
   const [previewSendState, setPreviewSendState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [previewSendMessage, setPreviewSendMessage] = useState("");
   const [aiFeedback, setAiFeedback] = useState("");
+  const [listSubject, setListSubject] = useState("");
+  const [broadcastReadyChecked, setBroadcastReadyChecked] = useState(false);
+  const [broadcastConfirm, setBroadcastConfirm] = useState("");
+  const [broadcastSendState, setBroadcastSendState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [broadcastSendMessage, setBroadcastSendMessage] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!content) {
+      setListSubject("");
+      return;
+    }
+    setListSubject((prev) => prev.trim() || issueTitle.trim() || content.headline);
+  }, [content, issueTitle]);
 
   useEffect(() => {
     try {
@@ -184,6 +202,10 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
     setHtml(null);
     setPreviewSendState("idle");
     setPreviewSendMessage("");
+    setBroadcastSendState("idle");
+    setBroadcastSendMessage("");
+    setBroadcastReadyChecked(false);
+    setBroadcastConfirm("");
     try {
       const res = await fetch(c.draftUrl, {
         method: "POST",
@@ -233,6 +255,10 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
     setPreviewSendState("idle");
     setPreviewSendMessage("");
     setAiFeedback("");
+    setBroadcastSendState("idle");
+    setBroadcastSendMessage("");
+    setBroadcastReadyChecked(false);
+    setBroadcastConfirm("");
     try {
       const res = await fetch(c.draftUrl, {
         method: "POST",
@@ -270,6 +296,65 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
   }
 
   const previewEmailOk = PREVIEW_EMAIL_RE.test(previewEmail.trim());
+
+  const canSendToList =
+    Boolean(content) &&
+    previewSendState === "success" &&
+    listSubject.trim().length >= 2 &&
+    broadcastReadyChecked &&
+    broadcastConfirm.trim().toUpperCase() === BROADCAST_CONFIRM_WORD &&
+    !loading &&
+    !anyUploading &&
+    broadcastSendState !== "sending";
+
+  async function sendBroadcastToList() {
+    if (!content || !canSendToList) return;
+    setBroadcastSendState("sending");
+    setBroadcastSendMessage("");
+    try {
+      const res = await fetch(c.broadcastUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content,
+          subject: listSubject.trim(),
+          confirmPhrase: broadcastConfirm.trim(),
+        }),
+      });
+      const data = (await res.json()) as { ok?: boolean; error?: string };
+      if (!res.ok) {
+        if (data.error === "unauthorized") {
+          setBroadcastSendState("error");
+          setBroadcastSendMessage("You’ve been signed out. Please sign in again.");
+        } else if (data.error === "broadcast_not_configured") {
+          setBroadcastSendState("error");
+          setBroadcastSendMessage(
+            "Sending to your full list isn’t set up on the website yet. Ask whoever looks after Resend / the mailing list."
+          );
+        } else if (data.error === "confirm_mismatch") {
+          setBroadcastSendState("error");
+          setBroadcastSendMessage(`Type ${BROADCAST_CONFIRM_WORD} exactly to confirm.`);
+        } else if (data.error === "not_configured") {
+          setBroadcastSendState("error");
+          setBroadcastSendMessage("Email isn’t fully configured on the server yet.");
+        } else if (data.error === "validation") {
+          setBroadcastSendState("error");
+          setBroadcastSendMessage("Check the inbox subject line (at least a couple of characters).");
+        } else {
+          setBroadcastSendState("error");
+          setBroadcastSendMessage("Could not send to your list. Try again or check the Resend dashboard.");
+        }
+        return;
+      }
+      setBroadcastSendState("success");
+      setBroadcastSendMessage(
+        "Sending started. It can take a few minutes for everyone to receive it. Check your Resend dashboard for status."
+      );
+    } catch {
+      setBroadcastSendState("error");
+      setBroadcastSendMessage("Network error.");
+    }
+  }
 
   async function sendPreviewToInbox() {
     if (!content || !previewEmailOk) return;
@@ -534,6 +619,9 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
                       setPreviewSendState("idle");
                       setPreviewSendMessage("");
                     }
+                    setBroadcastSendState("idle");
+                    setBroadcastSendMessage("");
+                    setBroadcastReadyChecked(false);
                   }}
                   placeholder="you@example.com"
                   className="w-full border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-charcoal"
@@ -560,6 +648,97 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
                 role="status"
               >
                 {previewSendMessage}
+              </p>
+            ) : null}
+          </div>
+
+          <div className="rounded-sm border border-charcoal/20 bg-white p-4 md:p-5">
+            <p className="font-accent text-xs font-bold uppercase tracking-wide text-charcoal">
+              Last step: send to your mailing list
+            </p>
+            <p className="mt-2 max-w-xl font-accent text-xs leading-relaxed text-mid-grey">
+              Only do this after you&apos;ve sent yourself a test above and checked it. This emails{" "}
+              <strong className="font-medium text-charcoal">everyone in your main Resend list</strong> — the same
+              audience your developer linked for you. An unsubscribe line is added automatically.
+            </p>
+            <div className="mt-4">
+              <label
+                htmlFor={`${idPrefix}-list-subject`}
+                className="mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey"
+              >
+                Inbox subject line
+              </label>
+              <input
+                id={`${idPrefix}-list-subject`}
+                value={listSubject}
+                onChange={(e) => setListSubject(e.target.value)}
+                disabled={!content || broadcastSendState === "sending"}
+                placeholder="What people see in their inbox"
+                className="w-full border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-charcoal disabled:opacity-50"
+              />
+            </div>
+            <label className="mt-4 flex cursor-pointer items-start gap-3 font-accent text-sm text-mid-grey">
+              <input
+                type="checkbox"
+                className="mt-1 h-4 w-4 shrink-0 border-light-grey text-charcoal"
+                checked={broadcastReadyChecked}
+                onChange={(e) => {
+                  setBroadcastReadyChecked(e.target.checked);
+                  setBroadcastSendState("idle");
+                  setBroadcastSendMessage("");
+                }}
+                disabled={!content || previewSendState !== "success" || broadcastSendState === "sending"}
+              />
+              <span>
+                I&apos;ve reviewed my test email and I&apos;m ready to send this version to the full list.
+              </span>
+            </label>
+            <div className="mt-4">
+              <label
+                htmlFor={`${idPrefix}-broadcast-confirm`}
+                className="mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey"
+              >
+                Type {BROADCAST_CONFIRM_WORD} to confirm
+              </label>
+              <input
+                id={`${idPrefix}-broadcast-confirm`}
+                value={broadcastConfirm}
+                onChange={(e) => {
+                  setBroadcastConfirm(e.target.value);
+                  setBroadcastSendState("idle");
+                  setBroadcastSendMessage("");
+                }}
+                autoComplete="off"
+                disabled={!content || broadcastSendState === "sending"}
+                placeholder={BROADCAST_CONFIRM_WORD}
+                className="w-full max-w-xs border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-charcoal uppercase disabled:opacity-50"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => void sendBroadcastToList()}
+              disabled={!canSendToList}
+              className="mt-4 inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-95 disabled:opacity-40"
+            >
+              {broadcastSendState === "sending" ? "Sending to list…" : "Send to everyone on the list"}
+            </button>
+            {previewSendState !== "success" ? (
+              <p className="mt-3 font-accent text-xs text-warm-grey">
+                Send a test email first — then you can use this button.
+              </p>
+            ) : null}
+            {broadcastSendMessage ? (
+              <p
+                className={`mt-3 font-accent text-sm ${
+                  broadcastSendState === "success"
+                    ? "text-charcoal"
+                    : broadcastSendState === "error"
+                      ? "text-red-800"
+                      : "text-mid-grey"
+                }`}
+                role="status"
+              >
+                {broadcastSendMessage}
               </p>
             ) : null}
           </div>
