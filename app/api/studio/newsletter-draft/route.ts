@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { renderNewsletterHtml } from "@/lib/emails/render-templates";
 import { draftNewsletterWithOpenAI } from "@/lib/studio/openai-newsletter";
 import { sanitizeNewsletterImages } from "@/lib/studio/newsletter-sanitize-images";
+import { isNewsletterContent, type NewsletterContent } from "@/lib/emails/newsletter-types";
 import { STUDIO_COOKIE_NAME, verifyStudioSessionValue } from "@/lib/studio/session";
 
 type Body = {
@@ -10,6 +11,10 @@ type Body = {
   notes?: string;
   audience?: string;
   imageAssets?: { url?: string; note?: string }[];
+  /** Current draft when asking for a revision */
+  previousContent?: unknown;
+  /** What to change */
+  feedback?: string;
 };
 
 function parseImageAssets(raw: unknown): { url: string; note?: string }[] {
@@ -46,6 +51,17 @@ export async function POST(request: Request) {
   const audience = typeof body.audience === "string" ? body.audience.trim() : undefined;
   const imageAssets = parseImageAssets(body.imageAssets);
   const hasImages = imageAssets.length > 0;
+  const feedback = typeof body.feedback === "string" ? body.feedback.trim() : "";
+  let previousContent: NewsletterContent | undefined;
+  if (feedback.length > 0) {
+    if (feedback.length < 8) {
+      return NextResponse.json({ ok: false, error: "validation" }, { status: 400 });
+    }
+    if (!isNewsletterContent(body.previousContent)) {
+      return NextResponse.json({ ok: false, error: "invalid_previous" }, { status: 400 });
+    }
+    previousContent = body.previousContent;
+  }
 
   if (issueTitle.length < 2) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 400 });
@@ -58,7 +74,14 @@ export async function POST(request: Request) {
   }
 
   try {
-    const draft = await draftNewsletterWithOpenAI({ issueTitle, notes, audience, imageAssets });
+    const draft = await draftNewsletterWithOpenAI({
+      issueTitle,
+      notes,
+      audience,
+      imageAssets,
+      previousContent,
+      feedback: feedback.length > 0 ? feedback : undefined,
+    });
     const allowedUrls = imageAssets.map((a) => a.url);
     const content = sanitizeNewsletterImages(draft, allowedUrls);
     const html = await renderNewsletterHtml(content);

@@ -16,6 +16,10 @@ export async function draftNewsletterWithOpenAI(params: {
   audience?: string;
   /** Uploaded image URLs Mari controls; model must only reference these. */
   imageAssets?: { url: string; note?: string }[];
+  /** When set with `feedback`, the model revises this draft instead of starting fresh. */
+  previousContent?: NewsletterContent;
+  /** What Mari wants changed (tone, length, sections, etc.). */
+  feedback?: string;
 }): Promise<NewsletterContent> {
   const key = process.env.OPENAI_API_KEY?.trim();
   if (!key) {
@@ -37,6 +41,7 @@ export async function draftNewsletterWithOpenAI(params: {
     "If there are no IMAGE ASSETS, omit heroImageUrl, heroImageAlt, and all section imageUrl/imageAlt fields.",
     "Rules: 1 to 4 sections; each body max ~120 words; headline punchy; intro 2 to 3 short sentences; closing one short paragraph.",
     `Default ctaUrl to "${site}" unless Mari notes imply a different absolute https URL.`,
+    "If the user message includes REVISION MODE, you are revising PREVIOUS_DRAFT_JSON according to FEEDBACK. Output a complete new JSON object (not a diff). Keep Mari's voice and all system rules. Preserve image URLs from the previous draft unless FEEDBACK asks to remove or change them; new or swapped images must use only URLs from IMAGE ASSETS.",
   ].join(" ");
 
   const assetLines =
@@ -45,7 +50,7 @@ export async function draftNewsletterWithOpenAI(params: {
       return `${i + 1}. ${a.url.trim()}${note}`;
     }) ?? [];
 
-  const user = [
+  const userParts = [
     `Issue / working title: ${params.issueTitle}`,
     params.audience ? `Audience: ${params.audience}` : "Audience: waitlist and early members.",
     "",
@@ -54,9 +59,25 @@ export async function draftNewsletterWithOpenAI(params: {
       : "",
     "Mari's notes (bullets, rough ideas, dates - use only what fits):",
     params.notes.slice(0, 12000),
-  ]
-    .filter(Boolean)
-    .join("\n");
+  ].filter(Boolean);
+
+  const fb = params.feedback?.trim() ?? "";
+  const prev = params.previousContent;
+  if (fb && prev) {
+    userParts.push(
+      "",
+      "REVISION MODE. Below is PREVIOUS_DRAFT_JSON. Revise it according to FEEDBACK.",
+      "Return a full replacement JSON object with the same schema as always.",
+      "",
+      "PREVIOUS_DRAFT_JSON:",
+      JSON.stringify(prev),
+      "",
+      "FEEDBACK:",
+      fb.slice(0, 4000)
+    );
+  }
+
+  const user = userParts.join("\n");
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -66,7 +87,7 @@ export async function draftNewsletterWithOpenAI(params: {
     },
     body: JSON.stringify({
       model: MODEL,
-      temperature: 0.65,
+      temperature: fb && prev ? 0.55 : 0.65,
       response_format: { type: "json_object" },
       messages: [
         { role: "system", content: system },

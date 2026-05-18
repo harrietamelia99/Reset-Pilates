@@ -28,3 +28,7 @@ export async function renderProgressUpdateHtml(props: ProgressUpdateEmailProps):
 export async function renderNewsletterHtml(content: NewsletterContent): Promise<string> {
   return render(<NewsletterEmail content={content} />);
 }
+
+export async function renderNewsletterPlainText(content: NewsletterContent): Promise<string> {
+  return render(<NewsletterEmail content={content} />, { plainText: true });
+}
