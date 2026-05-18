@@ -72,6 +72,14 @@ export function Footer() {
       <div className="relative z-10 border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-2 px-4 py-6 text-xs text-white/45 md:flex-row md:items-center md:px-6">
           <span>© {new Date().getFullYear()} Reset Pilates Studio</span>
+          <a
+            href="https://www.collectivstudio.uk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors duration-300 hover:text-white hover:underline underline-offset-4"
+          >
+            Website by Collectiv Studio
+          </a>
         </div>
       </div>
     </footer>
