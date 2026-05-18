@@ -25,10 +25,16 @@ export async function renderProgressUpdateHtml(props: ProgressUpdateEmailProps):
   return render(<ProgressUpdateEmail {...props} />);
 }
 
-export async function renderNewsletterHtml(content: NewsletterContent): Promise<string> {
-  return render(<NewsletterEmail content={content} />);
+export async function renderNewsletterHtml(
+  content: NewsletterContent,
+  options?: { eyebrow?: string }
+): Promise<string> {
+  return render(<NewsletterEmail content={content} eyebrow={options?.eyebrow} />);
 }
 
-export async function renderNewsletterPlainText(content: NewsletterContent): Promise<string> {
-  return render(<NewsletterEmail content={content} />, { plainText: true });
+export async function renderNewsletterPlainText(
+  content: NewsletterContent,
+  options?: { eyebrow?: string }
+): Promise<string> {
+  return render(<NewsletterEmail content={content} eyebrow={options?.eyebrow} />, { plainText: true });
 }

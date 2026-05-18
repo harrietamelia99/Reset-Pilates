@@ -1,5 +1,5 @@
 import { handleEmailDraftPost } from "@/lib/studio/handle-email-draft-post";
 
 export async function POST(request: Request) {
-  return handleEmailDraftPost(request, "newsletter");
+  return handleEmailDraftPost(request, "alert");
 }

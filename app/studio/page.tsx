@@ -6,58 +6,43 @@ export default function StudioHomePage() {
     <div className="rounded-sm border border-light-grey bg-white p-8 shadow-sm md:p-10">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="font-accent text-[10px] uppercase tracking-[0.16em] text-warm-grey">Studio</p>
-          <h1 className="mt-2 text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Email tools</h1>
+          <p className="font-accent text-[10px] uppercase tracking-[0.16em] text-warm-grey">Reset team</p>
+          <h1 className="mt-2 text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Emails</h1>
         </div>
         <StudioSignOutButton />
       </div>
       <p className="mt-4 max-w-xl font-accent text-sm leading-relaxed text-mid-grey">
-        Branded React Email templates live in the repo under <code className="text-charcoal">emails/</code>. Use the
-        newsletter builder for AI-assisted drafts; wire booking webhooks when your scheduler is ready.
+        Draft emails in Reset’s tone from your notes and photos. Send a test only to an address you choose — your full list
+        is never contacted from here.
       </p>
-      <ul className="mt-10 space-y-4 font-accent text-sm text-charcoal">
+      <div className="rule-section my-8 max-w-xs" aria-hidden />
+      <ul className="space-y-6 font-accent text-sm text-charcoal">
         <li>
-          <Link href="/studio/newsletter" className="font-bold uppercase tracking-wide underline-offset-4 hover:underline">
-            Monthly newsletter (notes + photos, AI)
+          <Link
+            href="/studio/newsletter"
+            className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-95"
+          >
+            Monthly newsletter
           </Link>
-          <span className="mt-1 block text-mid-grey normal-case tracking-normal">
-            Mari adds bullets and images in a private form → OpenAI drafts in her voice → branded preview.
-          </span>
+          <p className="mt-2 max-w-xl text-mid-grey">
+            Round-up style: what’s been happening, timetable news, offers, photos — the longer read.
+          </p>
         </li>
-        <li className="text-mid-grey">
-          <span className="font-bold uppercase tracking-wide text-charcoal">Welcome booking</span>
-          <span className="mt-1 block normal-case tracking-normal">
-            Template: <code className="text-charcoal">emails/welcome-booking.tsx</code>. Send via{" "}
-            <code className="text-charcoal">POST /api/webhooks/booking</code> when Momence (or similar) supports a
-            webhook — see header secret in <code className="text-charcoal">.env.example</code>.
-          </span>
-        </li>
-        <li className="text-mid-grey">
-          <span className="font-bold uppercase tracking-wide text-charcoal">Pre-launch waitlist (~400)</span>
-          <span className="mt-1 block normal-case tracking-normal">
-            Template: <code className="text-charcoal">emails/prelaunch-waitlist.tsx</code>. For a one-off blast, use{" "}
-            <a
-              href="https://resend.com/docs/dashboard/broadcasts/introduction"
-              className="text-charcoal underline-offset-2 hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Resend Broadcasts
-            </a>{" "}
-            or export contacts and merge — consent and unsubscribe rules still apply.
-          </span>
-        </li>
-        <li className="text-mid-grey">
-          <span className="font-bold uppercase tracking-wide text-charcoal">Progress updates</span>
-          <span className="mt-1 block normal-case tracking-normal">
-            Template: <code className="text-charcoal">emails/progress-update.tsx</code> — pass sections from your CMS or
-            a future studio form.
-          </span>
+        <li>
+          <Link
+            href="/studio/updates"
+            className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-white px-8 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-charcoal hover:text-white"
+          >
+            Updates & alerts
+          </Link>
+          <p className="mt-2 max-w-xl text-mid-grey">
+            Shorter one-off emails: closures, last-minute changes, reminders, or anything people need to know quickly.
+          </p>
         </li>
       </ul>
       <p className="mt-10 font-accent text-xs text-warm-grey">
         <Link href="/" className="text-charcoal underline-offset-2 hover:underline">
-          Public site
+          Return to the main website
         </Link>
       </p>
     </div>

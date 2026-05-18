@@ -1,0 +1,570 @@
+"use client";
+
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { NewsletterContent } from "@/lib/emails/newsletter-types";
+
+export type StudioEmailDraftVariant = "newsletter" | "alert";
+
+const PREVIEW_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type BuilderConfig = {
+  previewEmailStorageKey: string;
+  draftUrl: string;
+  previewUrl: string;
+  pageHeading: string;
+  intro: string;
+  titleLabel: string;
+  titlePlaceholder: string;
+  defaultAudience: string;
+  notesPlaceholder: string;
+  notesRows: number;
+};
+
+const BUILDER_CONFIG: Record<StudioEmailDraftVariant, BuilderConfig> = {
+  newsletter: {
+    previewEmailStorageKey: "reset-studio-newsletter-preview-email",
+    draftUrl: "/api/studio/newsletter-draft",
+    previewUrl: "/api/studio/newsletter-preview-email",
+    pageHeading: "Monthly newsletter",
+    intro:
+      "Add a title, your rough notes, and optional photos. The tool turns that into draft wording in the Reset email layout. If something’s nearly right but not quite, use “Changes to make” below. When you like it, send yourself a test email to see it in your inbox — your full mailing list is never emailed from here.",
+    titleLabel: "Newsletter title",
+    titlePlaceholder: "e.g. May — timetable refresh & hot mat",
+    defaultAudience: "Waitlist and members",
+    notesPlaceholder:
+      "Bullets: what happened this month, timetable changes, offers, personal sign-off ideas, which photo goes with what…",
+    notesRows: 12,
+  },
+  alert: {
+    previewEmailStorageKey: "reset-studio-alert-preview-email",
+    draftUrl: "/api/studio/alert-draft",
+    previewUrl: "/api/studio/alert-preview-email",
+    pageHeading: "Updates & alerts",
+    intro:
+      "For quick emails that aren’t your full monthly round-up — timetable changes, last-minute news, a closure, a reminder, or anything else people need to know. Add what happened and optional photos; you’ll get a shorter draft in the same Reset style. Tweak it, preview it, then send a test to your inbox. Your whole list is never emailed from here.",
+    titleLabel: "What this is about",
+    titlePlaceholder: "e.g. Storm day — evening classes cancelled",
+    defaultAudience: "Waitlist and members",
+    notesPlaceholder:
+      "What should people know? Dates, times, what’s cancelled or new, what to do next, booking link if it helps…",
+    notesRows: 10,
+  },
+};
+
+type AssetRow = {
+  id: string;
+  url: string;
+  note: string;
+  fileName: string;
+  uploading: boolean;
+  error?: string;
+};
+
+type Props = { variant: StudioEmailDraftVariant };
+
+export function StudioEmailDraftBuilder({ variant }: Props) {
+  const c = BUILDER_CONFIG[variant];
+  const idPrefix = variant;
+
+  const [issueTitle, setIssueTitle] = useState("");
+  const [audience, setAudience] = useState(c.defaultAudience);
+  const [notes, setNotes] = useState("");
+  const [assets, setAssets] = useState<AssetRow[]>([]);
+  const [content, setContent] = useState<NewsletterContent | null>(null);
+  const [html, setHtml] = useState<string | null>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [previewEmail, setPreviewEmail] = useState("");
+  const [previewSendState, setPreviewSendState] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [previewSendMessage, setPreviewSendMessage] = useState("");
+  const [aiFeedback, setAiFeedback] = useState("");
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem(c.previewEmailStorageKey);
+      if (saved?.trim()) setPreviewEmail(saved.trim());
+    } catch {
+      /* ignore */
+    }
+  }, [c.previewEmailStorageKey]);
+
+  useEffect(() => {
+    if (!previewEmail.trim() || !PREVIEW_EMAIL_RE.test(previewEmail.trim())) return;
+    try {
+      sessionStorage.setItem(c.previewEmailStorageKey, previewEmail.trim());
+    } catch {
+      /* ignore */
+    }
+  }, [previewEmail, c.previewEmailStorageKey]);
+
+  const hasImages = useMemo(() => assets.some((a) => a.url && !a.uploading), [assets]);
+  const anyUploading = assets.some((a) => a.uploading);
+  const notesOk = hasImages ? notes.trim().length >= 3 : notes.trim().length >= 10;
+  const canGenerate = issueTitle.trim().length >= 2 && notesOk && !anyUploading && !loading;
+
+  async function addFiles(files: FileList | null) {
+    if (!files?.length) return;
+    setError("");
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      if (!file) continue;
+      const id = crypto.randomUUID();
+      setAssets((prev) => [...prev, { id, url: "", note: "", fileName: file.name, uploading: true }]);
+
+      const fd = new FormData();
+      fd.append("file", file);
+
+      try {
+        const res = await fetch("/api/studio/newsletter-image", { method: "POST", body: fd });
+        const data = (await res.json()) as {
+          ok?: boolean;
+          url?: string;
+          error?: string;
+          message?: string;
+        };
+        if (!res.ok) {
+          const msg =
+            data.error === "blob_not_configured"
+              ? data.message ??
+                "Photos can’t be uploaded on the live site yet. Try again later or use a smaller image, or ask whoever manages the website."
+              : data.error === "invalid_type"
+                ? "Use JPG, PNG, WebP, or GIF."
+                : data.error === "file_too_large"
+                  ? "That file is too large. Try a smaller photo."
+                  : data.message ?? "Upload failed.";
+          setAssets((prev) => prev.map((a) => (a.id === id ? { ...a, uploading: false, error: msg } : a)));
+          continue;
+        }
+        if (typeof data.url === "string") {
+          setAssets((prev) =>
+            prev.map((a) => (a.id === id ? { ...a, url: data.url!, uploading: false, error: undefined } : a))
+          );
+        }
+      } catch {
+        setAssets((prev) => prev.map((a) => (a.id === id ? { ...a, uploading: false, error: "Network error." } : a)));
+      }
+    }
+    if (fileRef.current) fileRef.current.value = "";
+  }
+
+  function removeAsset(id: string) {
+    setAssets((prev) => prev.filter((a) => a.id !== id));
+  }
+
+  function setNote(id: string, note: string) {
+    setAssets((prev) => prev.map((a) => (a.id === id ? { ...a, note } : a)));
+  }
+
+  const canRefineWithFeedback =
+    Boolean(content) &&
+    aiFeedback.trim().length >= 8 &&
+    !loading &&
+    !anyUploading &&
+    issueTitle.trim().length >= 2 &&
+    notesOk;
+
+  function draftBody(extra?: { previousContent?: NewsletterContent; feedback?: string }) {
+    const imageAssets = assets
+      .filter((a) => a.url && !a.uploading)
+      .map((a) => ({ url: a.url, note: a.note.trim() || undefined }));
+    return {
+      issueTitle,
+      notes,
+      audience,
+      imageAssets,
+      ...extra,
+    };
+  }
+
+  async function regenerateWithFeedback() {
+    if (!content || !canRefineWithFeedback) return;
+    setLoading(true);
+    setError("");
+    setHtml(null);
+    setPreviewSendState("idle");
+    setPreviewSendMessage("");
+    try {
+      const res = await fetch(c.draftUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(draftBody({ previousContent: content, feedback: aiFeedback.trim() })),
+      });
+      const data = (await res.json()) as {
+        ok?: boolean;
+        content?: NewsletterContent;
+        html?: string;
+        error?: string;
+        message?: string;
+      };
+      if (!res.ok) {
+        if (data.error === "openai_not_configured") {
+          setError("The drafting assistant isn’t turned on for this site yet. Ask whoever looks after the website.");
+        } else if (data.error === "unauthorized") {
+          setError("You’ve been signed out. Please sign in again.");
+        } else if (data.error === "validation") {
+          setError(
+            "Say a bit more in your feedback (at least a few words), and check the title and notes above still look right."
+          );
+        } else if (data.error === "invalid_previous") {
+          setError("Start with “Create draft” again, then you can ask for changes.");
+        } else {
+          setError(data.message ?? "Could not apply feedback. Try again.");
+        }
+        return;
+      }
+      if (data.content && typeof data.html === "string") {
+        setContent(data.content);
+        setHtml(data.html);
+        setAiFeedback("");
+      }
+    } catch {
+      setError("Network error.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function generate() {
+    setLoading(true);
+    setError("");
+    setContent(null);
+    setHtml(null);
+    setPreviewSendState("idle");
+    setPreviewSendMessage("");
+    setAiFeedback("");
+    try {
+      const res = await fetch(c.draftUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(draftBody()),
+      });
+      const data = (await res.json()) as {
+        ok?: boolean;
+        content?: NewsletterContent;
+        html?: string;
+        error?: string;
+        message?: string;
+      };
+      if (!res.ok) {
+        if (data.error === "openai_not_configured") {
+          setError("The drafting assistant isn’t turned on for this site yet. Ask whoever looks after the website.");
+        } else if (data.error === "unauthorized") {
+          setError("You’ve been signed out. Please sign in again.");
+        } else if (data.error === "validation") {
+          setError("Please add a short title and enough in the notes (or a few words if you’ve added photos).");
+        } else {
+          setError(data.message ?? "Could not generate a draft. Try again.");
+        }
+        return;
+      }
+      if (data.content && typeof data.html === "string") {
+        setContent(data.content);
+        setHtml(data.html);
+      }
+    } catch {
+      setError("Network error.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const previewEmailOk = PREVIEW_EMAIL_RE.test(previewEmail.trim());
+
+  async function sendPreviewToInbox() {
+    if (!content || !previewEmailOk) return;
+    setPreviewSendState("sending");
+    setPreviewSendMessage("");
+    try {
+      const res = await fetch(c.previewUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to: previewEmail.trim(), content }),
+      });
+      const data = (await res.json()) as { ok?: boolean; error?: string };
+      if (!res.ok) {
+        if (data.error === "unauthorized") {
+          setPreviewSendState("error");
+          setPreviewSendMessage("You’ve been signed out. Please sign in again.");
+        } else if (data.error === "not_configured") {
+          setPreviewSendState("error");
+          setPreviewSendMessage("Test emails aren’t set up on this site yet. Ask whoever looks after the website.");
+        } else {
+          setPreviewSendState("error");
+          setPreviewSendMessage("Could not send the preview. Try again.");
+        }
+        return;
+      }
+      setPreviewSendState("success");
+      setPreviewSendMessage(
+        "Sent. Check your inbox and spam. Only you were emailed — your full list was not contacted."
+      );
+    } catch {
+      setPreviewSendState("error");
+      setPreviewSendMessage("Network error.");
+    }
+  }
+
+  const feedbackPlaceholder =
+    variant === "alert"
+      ? "e.g. Shorter, mention refunds, warmer sign-off, use the timetable photo…"
+      : "e.g. Softer headline, mention the Saturday waitlist, shorter intro, use the class photo for the top…";
+
+  return (
+    <div className="space-y-8">
+      <div className="rounded-sm border border-light-grey bg-white p-6 shadow-sm md:p-8">
+        <h2 className="text-lg font-bold uppercase tracking-heading text-charcoal">{c.pageHeading}</h2>
+        <p className="mt-3 max-w-2xl font-accent text-sm leading-relaxed text-mid-grey">{c.intro}</p>
+        <div className="rule-section my-6 max-w-xs" aria-hidden />
+        <div className="space-y-4">
+          <div>
+            <label
+              htmlFor={`${idPrefix}-issue-title`}
+              className="mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey"
+            >
+              {c.titleLabel}
+            </label>
+            <input
+              id={`${idPrefix}-issue-title`}
+              value={issueTitle}
+              onChange={(e) => setIssueTitle(e.target.value)}
+              placeholder={c.titlePlaceholder}
+              className="w-full border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-charcoal"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor={`${idPrefix}-audience`}
+              className="mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey"
+            >
+              Who it’s for (optional)
+            </label>
+            <input
+              id={`${idPrefix}-audience`}
+              value={audience}
+              onChange={(e) => setAudience(e.target.value)}
+              className="w-full border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-charcoal"
+            />
+          </div>
+
+          <div>
+            <span className="mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey">
+              Photos (optional, up to 8)
+            </span>
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              multiple
+              className="w-full max-w-md font-accent text-sm text-charcoal file:mr-4 file:border-0 file:bg-charcoal file:px-4 file:py-2 file:font-accent file:text-xs file:font-bold file:uppercase file:tracking-wide file:text-white"
+              onChange={(e) => void addFiles(e.target.files)}
+            />
+            <p className="mt-2 max-w-xl font-accent text-xs text-warm-grey">
+              JPG, PNG, or similar. Large files may take a moment or may need resizing.
+            </p>
+            {assets.length ? (
+              <ul className="mt-4 space-y-4">
+                {assets.map((a) => (
+                  <li
+                    key={a.id}
+                    className="flex flex-col gap-2 border border-light-grey bg-[#fafafa] p-3 md:flex-row md:items-start"
+                  >
+                    <div className="h-20 w-28 shrink-0 overflow-hidden bg-light-grey">
+                      {a.url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={a.url} alt="" className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="flex h-full items-center justify-center font-accent text-[10px] text-warm-grey">
+                          {a.uploading ? "Uploading…" : "—"}
+                        </div>
+                      )}
+                    </div>
+                    <div className="min-w-0 flex-1 space-y-2">
+                      <p className="truncate font-accent text-xs text-mid-grey">{a.fileName}</p>
+                      {a.error ? <p className="text-xs text-red-800">{a.error}</p> : null}
+                      <label className="sr-only" htmlFor={`${idPrefix}-cap-${a.id}`}>
+                        Note for this photo
+                      </label>
+                      <input
+                        id={`${idPrefix}-cap-${a.id}`}
+                        value={a.note}
+                        onChange={(e) => setNote(a.id, e.target.value)}
+                        disabled={!a.url || !!a.error}
+                        placeholder="Optional note (e.g. reformer room, class shot)"
+                        className="w-full border border-light-grey bg-white px-3 py-2 text-sm text-charcoal outline-none focus:border-charcoal disabled:opacity-50"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeAsset(a.id)}
+                        className="font-accent text-[10px] font-bold uppercase tracking-wide text-charcoal underline-offset-2 hover:underline"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+
+          <div>
+            <label
+              htmlFor={`${idPrefix}-notes`}
+              className="mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey"
+            >
+              Your notes
+            </label>
+            <textarea
+              id={`${idPrefix}-notes`}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              rows={c.notesRows}
+              placeholder={c.notesPlaceholder}
+              className="w-full resize-y border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-charcoal"
+            />
+            <p className="mt-1 font-accent text-xs text-warm-grey">
+              {hasImages
+                ? "With photos: add at least a few words so the draft matches what you mean."
+                : "Without photos: please write at least a sentence or two."}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => void generate()}
+            disabled={!canGenerate}
+            className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-charcoal px-8 py-3 text-xs font-bold uppercase tracking-wide text-white transition hover:opacity-95 disabled:opacity-40"
+          >
+            {loading ? (content ? "Working…" : "Creating draft…") : "Create draft"}
+          </button>
+          {error ? (
+            <p className="text-sm text-mid-grey" role="alert">
+              {error}
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+      {content ? (
+        <div className="rounded-sm border border-light-grey bg-white p-6 shadow-sm md:p-8">
+          <h3 className="text-xs font-bold uppercase tracking-wide text-charcoal">Your draft</h3>
+          <p className="mt-2 font-accent text-sm font-medium text-charcoal">{content.headline}</p>
+          <p className="mt-3 font-accent text-sm leading-relaxed text-mid-grey">{content.intro}</p>
+          {content.heroImageUrl ? (
+            <p className="mt-2 font-accent text-xs text-warm-grey">Includes a main photo at the top of the email.</p>
+          ) : null}
+          <ul className="mt-4 list-inside list-disc space-y-2 font-accent text-sm text-mid-grey">
+            {content.sections.map((s, i) => (
+              <li key={i}>
+                <span className="font-medium text-charcoal">{s.heading}:</span> {s.body}
+                {s.imageUrl ? (
+                  <span className="mt-1 block text-xs text-warm-grey">Includes a photo ({s.imageAlt ?? "image"}).</span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 font-accent text-sm text-mid-grey">{content.closing}</p>
+          <p className="mt-2 font-accent text-xs text-warm-grey">
+            Button: “{content.ctaLabel}” links to {content.ctaUrl}
+          </p>
+
+          <div className="rule-section my-6 max-w-xs" aria-hidden />
+          <div>
+            <label
+              htmlFor={`${idPrefix}-ai-feedback`}
+              className="mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey"
+            >
+              Changes to make (optional)
+            </label>
+            <textarea
+              id={`${idPrefix}-ai-feedback`}
+              value={aiFeedback}
+              onChange={(e) => setAiFeedback(e.target.value)}
+              rows={4}
+              placeholder={feedbackPlaceholder}
+              className="w-full resize-y border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-charcoal"
+              disabled={loading}
+            />
+            <p className="mt-1 font-accent text-xs text-warm-grey">
+              At least a few words. The tool uses this together with your title and notes above — change those first if
+              you want a completely different angle.
+            </p>
+            <button
+              type="button"
+              onClick={() => void regenerateWithFeedback()}
+              disabled={!canRefineWithFeedback}
+              className="mt-4 inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-white px-8 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-charcoal hover:text-white disabled:opacity-40"
+            >
+              {loading ? "Updating…" : "Update draft"}
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {html ? (
+        <div className="space-y-3">
+          <h3 className="text-xs font-bold uppercase tracking-wide text-charcoal">How it will look</h3>
+          <iframe
+            title={variant === "alert" ? "Update email preview" : "Newsletter preview"}
+            srcDoc={html}
+            sandbox="allow-same-origin"
+            className="h-[640px] w-full border border-light-grey bg-white"
+          />
+          <div className="rounded-sm border border-light-grey bg-[#fafafa] p-4 md:p-5">
+            <p className="font-accent text-xs font-bold uppercase tracking-wide text-charcoal">Send yourself a test</p>
+            <p className="mt-2 max-w-xl font-accent text-xs leading-relaxed text-mid-grey">
+              Enter your email (or someone checking the wording). We&apos;ll send this draft once. Nobody on your mailing
+              list is included.
+            </p>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+              <div className="min-w-[240px] flex-1">
+                <label
+                  htmlFor={`${idPrefix}-preview-email`}
+                  className="mb-1.5 block font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey"
+                >
+                  Your email
+                </label>
+                <input
+                  id={`${idPrefix}-preview-email`}
+                  type="email"
+                  autoComplete="email"
+                  value={previewEmail}
+                  onChange={(e) => {
+                    setPreviewEmail(e.target.value);
+                    if (previewSendState !== "idle") {
+                      setPreviewSendState("idle");
+                      setPreviewSendMessage("");
+                    }
+                  }}
+                  placeholder="you@example.com"
+                  className="w-full border border-light-grey bg-white px-4 py-3 text-sm text-charcoal outline-none focus:border-charcoal"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => void sendPreviewToInbox()}
+                disabled={!content || !previewEmailOk || previewSendState === "sending"}
+                className="inline-flex min-h-[44px] shrink-0 items-center justify-center border border-charcoal bg-white px-6 py-3 text-xs font-bold uppercase tracking-wide text-charcoal transition hover:bg-charcoal hover:text-white disabled:opacity-40"
+              >
+                {previewSendState === "sending" ? "Sending…" : "Email me this preview"}
+              </button>
+            </div>
+            {previewSendMessage ? (
+              <p
+                className={`mt-3 font-accent text-sm ${
+                  previewSendState === "success"
+                    ? "text-charcoal"
+                    : previewSendState === "error"
+                      ? "text-red-800"
+                      : "text-mid-grey"
+                }`}
+                role="status"
+              >
+                {previewSendMessage}
+              </p>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}

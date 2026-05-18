@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { StudioNewsletterBuilder } from "@/components/StudioNewsletterBuilder";
+import { StudioEmailDraftBuilder } from "@/components/StudioEmailDraftBuilder";
 import { StudioSignOutButton } from "@/components/StudioSignOutButton";
 
-export default function StudioNewsletterPage() {
+export default function StudioUpdatesPage() {
   return (
     <div>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
@@ -14,7 +14,7 @@ export default function StudioNewsletterPage() {
         </Link>
         <StudioSignOutButton />
       </div>
-      <StudioNewsletterBuilder />
+      <StudioEmailDraftBuilder variant="alert" />
     </div>
   );
 }

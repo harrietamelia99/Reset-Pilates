@@ -7,6 +7,8 @@ import { getSiteUrl } from "../lib/emails/site-url";
 
 export type NewsletterEmailProps = {
   content?: NewsletterContent;
+  /** Small caps line above headline; defaults to "From Mari at Reset". */
+  eyebrow?: string;
 };
 
 const previewContent = (site: string): NewsletterContent => getExampleOpeningNewsletterContent(site);
@@ -26,7 +28,7 @@ function mergeNewsletterContent(site: string, raw?: NewsletterContent): Newslett
   };
 }
 
-export default function NewsletterEmail({ content }: NewsletterEmailProps) {
+export default function NewsletterEmail({ content, eyebrow = "From Mari at Reset" }: NewsletterEmailProps) {
   const site = getSiteUrl();
   const c = mergeNewsletterContent(site, content);
   const preview = (c.headline || "Newsletter").slice(0, 110);
@@ -43,7 +45,7 @@ export default function NewsletterEmail({ content }: NewsletterEmailProps) {
           color: "#8E898A",
         }}
       >
-        From Mari at Reset
+        {eyebrow}
       </Text>
       <Heading
         as="h1"

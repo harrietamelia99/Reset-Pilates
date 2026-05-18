@@ -14,12 +14,11 @@ export async function draftNewsletterWithOpenAI(params: {
   issueTitle: string;
   notes: string;
   audience?: string;
-  /** Uploaded image URLs Mari controls; model must only reference these. */
   imageAssets?: { url: string; note?: string }[];
-  /** When set with `feedback`, the model revises this draft instead of starting fresh. */
   previousContent?: NewsletterContent;
-  /** What Mari wants changed (tone, length, sections, etc.). */
   feedback?: string;
+  /** "alert" = shorter one-off updates; same JSON shape and Mari's voice. */
+  emailKind?: "newsletter" | "alert";
 }): Promise<NewsletterContent> {
   const key = process.env.OPENAI_API_KEY?.trim();
   if (!key) {
@@ -27,8 +26,17 @@ export async function draftNewsletterWithOpenAI(params: {
   }
 
   const site = getSiteUrl();
+  const kind = params.emailKind ?? "newsletter";
+  const shapeRules =
+    kind === "alert"
+      ? "Rules for ALERT mode: 1 to 3 sections (one section is fine for a short note); each body max ~90 words; headline may be direct or time-sensitive if notes imply it; intro 1 to 3 short sentences; closing one short paragraph."
+      : "Rules: 1 to 4 sections; each body max ~120 words; headline punchy; intro 2 to 3 short sentences; closing one short paragraph.";
+
   const system = [
     "You write as Mari, mid-twenties British woman: Reset Pilates (reformer, hot mat, mat) in Nailsea, UK. Boutique, warm, switched-on. Like a note from a friend who has great taste and gets things done.",
+    kind === "alert"
+      ? "This email is a quick alert or one-off update (timetable change, last-minute news, closure, offer reminder) — not the full monthly newsletter round-up. Keep it tight and clear; warmth without fluff."
+      : "",
     "Output a single JSON object only (no markdown fences). British English spelling always (colour, organise, realise, favourite, programme where relevant).",
     "Tone: warm and real, not corporate. No 'I hope this email finds you well.' Jump in like you're continuing a chat. Short sentences. Breathing room.",
     "Never use an em dash (the long dash). Use a comma, full stop, or hyphen instead.",
@@ -39,10 +47,12 @@ export async function draftNewsletterWithOpenAI(params: {
     '{"headline":"string","intro":"string","heroImageUrl":"optional string","heroImageAlt":"optional string","sections":[{"heading":"string","body":"string","imageUrl":"optional string","imageAlt":"optional string"}],"closing":"string","ctaLabel":"string","ctaUrl":"string"}',
     "Images: If IMAGE ASSETS are listed in the user message, you MAY set heroImageUrl and/or sections[].imageUrl ONLY to URLs copied exactly from that list (same string). Never invent or guess URLs. If an asset does not fit any section, leave image fields out. Use at most one image per section when helpful. imageAlt should be a short plain description (max ~100 chars).",
     "If there are no IMAGE ASSETS, omit heroImageUrl, heroImageAlt, and all section imageUrl/imageAlt fields.",
-    "Rules: 1 to 4 sections; each body max ~120 words; headline punchy; intro 2 to 3 short sentences; closing one short paragraph.",
+    shapeRules,
     `Default ctaUrl to "${site}" unless Mari notes imply a different absolute https URL.`,
     "If the user message includes REVISION MODE, you are revising PREVIOUS_DRAFT_JSON according to FEEDBACK. Output a complete new JSON object (not a diff). Keep Mari's voice and all system rules. Preserve image URLs from the previous draft unless FEEDBACK asks to remove or change them; new or swapped images must use only URLs from IMAGE ASSETS.",
-  ].join(" ");
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const assetLines =
     params.imageAssets?.filter((a) => a.url?.trim()).map((a, i) => {
@@ -77,7 +87,9 @@ export async function draftNewsletterWithOpenAI(params: {
     );
   }
 
-  const user = userParts.join("\n");
+  const user =
+    (kind === "alert" ? "EMAIL TYPE: Quick alert or one-off update (not the monthly newsletter).\n\n" : "") +
+    userParts.join("\n");
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -121,6 +133,6 @@ export async function draftNewsletterWithOpenAI(params: {
   return {
     ...parsed,
     ctaUrl: normalizeUrl(parsed.ctaUrl),
-    sections: parsed.sections.slice(0, 4),
+    sections: parsed.sections.slice(0, kind === "alert" ? 3 : 4),
   };
 }

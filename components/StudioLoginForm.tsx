@@ -25,7 +25,7 @@ export function StudioLoginForm({ nextPath }: Props) {
       });
       if (!res.ok) {
         if (res.status === 503) {
-          setError("Studio sign-in is not configured (missing STUDIO_PASSWORD or STUDIO_SESSION_SECRET).");
+          setError("Sign-in isn’t ready on this site yet. Ask whoever looks after the website.");
         } else {
           setError("Incorrect password.");
         }
