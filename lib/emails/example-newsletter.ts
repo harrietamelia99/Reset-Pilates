@@ -7,11 +7,11 @@ import type { NewsletterContent } from "./newsletter-types";
 export function getExampleOpeningNewsletterContent(site: string): NewsletterContent {
   const base = site.replace(/\/+$/, "");
   return {
-    headline: "We're opening 1st June. Nailsea, we're almost ready for you.",
+    headline: "We're opening 6th June. Nailsea, we're almost ready for you.",
     intro:
       "Hi from Crown Glass. We're in the thick of getting the studio ready so it feels just right when you walk in. " +
-      "Opening day is 1st June, and we're so excited to bring a proper home for Pilates to Nailsea, reformer, hot mat, and mat, somewhere calm, strong, and a little bit lovely to spend an hour. " +
-      "If you've been with us since the waitlist days, thank you. This is for you as much as it is for us. ✨",
+      "Opening day is 6th June, and we're so excited to bring a proper home for Pilates to Nailsea, reformer, hot mat, and mat, somewhere calm, strong, and a little bit lovely to spend an hour. " +
+      "We've refreshed memberships, packs, and founding rates on the site so everything matches what we've confirmed for launch. ✨ If you've been with us since the waitlist days, thank you. This is for you as much as it is for us.",
     sections: [
       {
         heading: "What we're finishing off",
@@ -23,9 +23,9 @@ export function getExampleOpeningNewsletterContent(site: string): NewsletterCont
       {
         heading: "How to be first on the list",
         body:
-          "Founding memberships are still part of the story if you want to lock things in early. " +
-          "Timetable and booking will land in your inbox once we're happy every detail is sorted. " +
-          "No stress, no spam, just the useful bits when there's something concrete to share.",
+          "Founding memberships are still part of the story if you want to lock things in early, reformer from £66 (four-class) or £126 (eight-class), mat four-class £36, all locked for your first twelve months while we have founding places left. " +
+          "Monthly rates on the website now include unlimited reformer at £230, plus four-class and eight-class tiers, drop-in reformer is £22 and pass bundles are refreshed too. " +
+          "Timetable and booking will land in your inbox once we're happy every detail is sorted, no spam, just the useful bits.",
       },
       {
         heading: "Where you'll find us",

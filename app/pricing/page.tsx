@@ -13,6 +13,7 @@ import {
   PRICING_CLASS_PACKS_NOTE,
   PRICING_DROP_INS,
   PRICING_FOUNDING,
+  PRICING_FOUNDING_TIERS,
   PRICING_HOT_MAT_PROMO_PACK,
   PRICING_MEMBERSHIPS,
   PRICING_MEMBERSHIPS_NOTE,
@@ -22,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Pricing | Reset Pilates Studio",
     description:
-      "Intro bundles, class packs, memberships, founding rates, and drop-ins, Reset Pilates, Nailsea. Opening June 2026.",
+      "Intro bundles, class packs, memberships, founding rates, and drop-ins, Reset Pilates, Nailsea. Opens 6 June 2026.",
     openGraph: {
       title: "Pricing | Reset Pilates Studio",
       description: "Reformer, hot mat, and mat Pilates pricing at Reset Pilates.",
@@ -198,10 +199,11 @@ export default function PricingPage() {
             Monthly memberships
           </h2>
           <p className="mx-auto mt-4 max-w-2xl font-accent text-[13px] leading-relaxed text-white/80 md:text-sm">
-            Four or eight classes per month on reformer or mat, upgrade path as your practice grows.
+            Reformer tiers from four or eight sessions a month through to unlimited, plus mat options when you&apos;re ready
+            to commit.
           </p>
 
-          <MotionStaggerGrid className="mx-auto mt-8 grid w-full max-w-4xl gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:gap-6">
+          <MotionStaggerGrid className="mx-auto mt-8 grid w-full max-w-4xl gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
             {PRICING_MEMBERSHIPS.map((row) => {
               const { eyebrow, body } = splitMembershipLabel(row.label);
               return (
@@ -226,25 +228,23 @@ export default function PricingPage() {
             page.
           </p>
 
-          <MotionStaggerGrid className="mx-auto mt-8 grid w-full max-w-4xl gap-4 sm:mt-10 sm:gap-5 lg:mt-10 lg:grid-cols-2 lg:gap-6">
-            <WhiteTierCard
-              eyebrow="Founding · Reformer"
-              price="£65"
-              priceSuffix="/month"
-              body="4 reformer sessions per month, founding cohort pricing."
-              cta={
-                <BookLink className="inline-flex w-full min-h-[44px] items-center justify-center bg-charcoal px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0" />
-              }
-            />
-            <WhiteTierCard
-              eyebrow="Founding · Mat"
-              price="£35"
-              priceSuffix="/month"
-              body="4 mat sessions per month, founding cohort pricing."
-              cta={
-                <BookLink className="inline-flex w-full min-h-[44px] items-center justify-center border border-charcoal bg-white px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0" />
-              }
-            />
+          <MotionStaggerGrid className="mx-auto mt-8 grid w-full max-w-4xl gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+            {PRICING_FOUNDING_TIERS.map((tier) => (
+              <WhiteTierCard
+                key={`${tier.eyebrow}-${tier.price}`}
+                eyebrow={tier.eyebrow}
+                price={tier.price}
+                priceSuffix="/month"
+                body={tier.body}
+                cta={
+                  tier.emphasis === "primary" ? (
+                    <BookLink className="inline-flex w-full min-h-[44px] items-center justify-center bg-charcoal px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0" />
+                  ) : (
+                    <BookLink className="inline-flex w-full min-h-[44px] items-center justify-center border border-charcoal bg-white px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0" />
+                  )
+                }
+              />
+            ))}
           </MotionStaggerGrid>
 
           <p className="mx-auto mt-10 max-w-3xl font-accent text-[10px] uppercase leading-relaxed tracking-[0.16em] text-white/45 md:mt-12">

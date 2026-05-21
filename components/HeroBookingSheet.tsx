@@ -53,7 +53,7 @@ export function HeroBookingSheet({ className }: Props) {
       </p>
 
       <p className="mt-2.5 text-center font-accent text-[9px] uppercase tracking-[0.18em] text-charcoal md:mt-3 md:text-[10px]">
-        Opening 1st June 2026, founding memberships now available
+        Opening 6th June 2026, founding memberships now available
       </p>
 
       <div className="rule-section my-4 md:my-6 lg:my-7" />

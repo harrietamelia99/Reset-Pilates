@@ -24,6 +24,8 @@ export const CONTACT = {
   },
 } as const;
 
+import { getBookingHref, getBookingNavShowsComingSoonDialog } from "@/lib/booking-config";
+
 export const NAV_LINKS = [
   { href: "/classes", label: "Classes" },
   { href: "/pricing", label: "Pricing" },
@@ -32,14 +34,14 @@ export const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-/** In-app booking section anchor; replace with full Momence URL when live. */
-export const BOOKING_HREF = "/pricing#book";
+/** All “Book” CTAs use `/book` (Momence iframe or redirect to pricing when embed URL missing). */
+export const BOOKING_HREF = getBookingHref();
 
 /**
- * When true, navbar "Book Now" opens a dialog instead of navigating.
- * Set false when BOOKING_HREF points to your live Momence scheduling URL.
+ * When true, navbar "Book Now" opens "coming soon" instead of navigating.
+ * Auto false when Momence iframe URL is configured (`NEXT_PUBLIC_MOMENCE_SCHEDULE_URL`).
  */
-export const BOOKING_NAV_SHOW_COMING_SOON_DIALOG = true;
+export const BOOKING_NAV_SHOW_COMING_SOON_DIALOG = getBookingNavShowsComingSoonDialog();
 
 /** Contact form posts to this API route (Resend on the server). */
 export const CONTACT_API_PATH = "/api/contact";
@@ -48,4 +50,4 @@ export const CONTACT_API_PATH = "/api/contact";
 export const EMAIL_ALERTS_API_PATH = "/api/email-alerts";
 
 export const OPENING_DATE_LABEL =
-  "Opening 1st June 2026, Founding memberships available for the first 30 members";
+  "Opening 6th June 2026, Founding memberships available for the first 30 members";

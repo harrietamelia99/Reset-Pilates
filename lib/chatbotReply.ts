@@ -1,4 +1,5 @@
 import { FAQ_GROUPS } from "@/lib/faq-data";
+import { hasMomenceScheduleEmbed } from "@/lib/booking-config";
 import {
   BOOKING_HREF,
   CONTACT,
@@ -147,7 +148,7 @@ export function getChatbotReply(raw: string): ChatbotReply {
     /\b(opening date|launch day|opening day|grand opening)\b/.test(q) ||
     /\b(pre-?launch|launch)\b/.test(q) ||
     /\bfounding\b/.test(q) ||
-    /\b(june\s*1|1st june|june 2026)\b/.test(q) ||
+    /\b(june\s*1|1st\s*june|june\s*6|6th\s*june|june\s*2026)\b/.test(q) ||
     (/\b(june|2026)\b/.test(q) && /\b(open|launch|start)\b/.test(q)) ||
     (/\bwhen\b/.test(q) && /\b(open|launch|start)\b/.test(q) && !/\b(times|hours)\b/.test(q))
   ) {
@@ -173,11 +174,15 @@ export function getChatbotReply(raw: string): ChatbotReply {
 
   if (/\b(book|booking|momence|schedule|class times)\b/.test(q) || /\bhow do i book\b/.test(q)) {
     return {
-      text: "Booking will be through Momence. Use Book in the nav when it’s live.",
+      text: hasMomenceScheduleEmbed()
+        ? "You can book through our live scheduler (Momence) on the Book page."
+        : "Booking will be through Momence. Use Book in the nav when it’s live.",
       cta:
         BOOKING_HREF.startsWith("http")
           ? { href: BOOKING_HREF, label: "Book", external: true }
-          : { href: BOOKING_HREF, label: "Booking info" },
+          : hasMomenceScheduleEmbed()
+            ? { href: BOOKING_HREF, label: "Book" }
+            : { href: BOOKING_HREF, label: "Booking info" },
     };
   }
 

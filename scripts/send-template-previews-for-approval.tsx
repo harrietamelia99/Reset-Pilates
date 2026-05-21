@@ -15,6 +15,7 @@ import PreLaunchWaitlistEmail from "../emails/prelaunch-waitlist";
 import ProgressUpdateEmail from "../emails/progress-update";
 import NewsletterEmail from "../emails/newsletter";
 import { getExampleOpeningNewsletterContent } from "../lib/emails/example-newsletter";
+import { getFoundingMembershipNewsletterTemplate } from "../lib/emails/example-newsletter-founding";
 import { getResendEmailConfig } from "../lib/server/resend-config";
 import { getSiteUrl } from "../lib/emails/site-url";
 
@@ -36,6 +37,7 @@ async function main() {
   const resend = new Resend(config.apiKey);
   const site = getSiteUrl();
   const sampleNewsletter = getExampleOpeningNewsletterContent(site);
+  const foundingNewsletter = getFoundingMembershipNewsletterTemplate(site);
 
   const jobs: {
     subject: string;
@@ -63,6 +65,10 @@ async function main() {
     {
       subject: "[Reset Pilates – client preview] Newsletter (structured)",
       jsx: <NewsletterEmail content={sampleNewsletter} />,
+    },
+    {
+      subject: "[Reset Pilates – client preview] Newsletter (founding membership template)",
+      jsx: <NewsletterEmail content={foundingNewsletter} />,
     },
     {
       subject:

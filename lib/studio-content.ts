@@ -104,8 +104,21 @@ export const PRICING_CLASS_PACKS = [
   { label: "Mat Pilates, 5-class pack", price: "£55" },
   { label: "Mat Pilates, 10-class pack", price: "£95" },
   { label: "Reformer, 3-class pack", price: "£58" },
-  { label: "Reformer, 5-class pass", price: "£95" },
-  { label: "Reformer, 10-class pass", price: "£180" },
+  {
+    label: "Reformer, 5-class pass",
+    price: "£95",
+    detail: "£19 per class, saves £15 vs five drop-ins at £22 each",
+  },
+  {
+    label: "Reformer, 10-class pass",
+    price: "£175",
+    detail: "£17.50 per class, saves £45 vs ten drop-ins at £22 each",
+  },
+  {
+    label: "Reformer, 20-class pass",
+    price: "£320",
+    detail: "£16 per class, saves £120 vs twenty drop-ins at £22 each",
+  },
 ] as const;
 
 /** Promotional bundle referenced in onboarding email section */
@@ -115,21 +128,42 @@ export const PRICING_HOT_MAT_PROMO_PACK =
 export const PRICING_MEMBERSHIPS_NOTE = "Monthly memberships require a three-month minimum commitment.";
 
 export const PRICING_MEMBERSHIPS = [
-  { label: "Reformer, 4 classes / month", price: "£73" },
-  { label: "Reformer, 8 classes / month", price: "£136" },
+  { label: "Reformer, 4 classes / month", price: "£74" },
+  { label: "Reformer, 8 classes / month", price: "£140" },
+  { label: "Reformer, unlimited / month", price: "£230" },
   { label: "Mat, 4 classes / month", price: "£40" },
   { label: "Mat, 8 classes / month", price: "£72" },
 ] as const;
 
+/** Founding member rates (shown on Pricing and homepage). Standard layout: three cards */
+export const PRICING_FOUNDING_TIERS = [
+  {
+    eyebrow: "Founding · Reformer",
+    body: "4 reformer sessions per month, founding cohort pricing.",
+    price: "£66",
+    emphasis: "primary" as const,
+  },
+  {
+    eyebrow: "Founding · Reformer",
+    body: "8 reformer sessions per month, founding cohort pricing.",
+    price: "£126",
+    emphasis: "primary" as const,
+  },
+  {
+    eyebrow: "Founding · Mat",
+    body: "4 mat sessions per month, founding cohort pricing.",
+    price: "£36",
+    emphasis: "secondary" as const,
+  },
+] as const;
+
 export const PRICING_FOUNDING = {
   headline: "Founding memberships, first 30 people, first 12 months",
-  reformer: "Reformer, £65 / month for 4 sessions per month",
-  mat: "Mat, £35 / month for 4 sessions per month",
 } as const;
 
 export const PRICING_DROP_INS = [
   { label: "Mat", price: "£12" },
-  { label: "Reformer", price: "£21" },
+  { label: "Reformer", price: "£22" },
   { label: "Hot mat", price: "£16" },
 ] as const;
 

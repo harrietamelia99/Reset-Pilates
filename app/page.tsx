@@ -14,12 +14,13 @@ import { HomeInstagramSection } from "@/components/HomeInstagramSection";
 import { EditorialVideoBackdrop } from "@/components/EditorialVideoBackdrop";
 import { HomeEmailAlertsSection } from "@/components/HomeEmailAlertsSection";
 import { PosterCtaBand } from "@/components/PosterCtaBand";
+import { PRICING_FOUNDING_TIERS } from "@/lib/studio-content";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Reset Pilates Studio | Reformer & Hot Mat Pilates in Nailsea",
     description:
-      "Premium boutique Pilates in Nailsea. Reformer, hot mat and mat classes, opening June 2026. Founding memberships available.",
+      "Premium boutique Pilates in Nailsea. Reformer, hot mat and mat classes, opens 6 June 2026. Founding memberships available.",
     openGraph: {
       title: "Reset Pilates Studio | Reformer & Hot Mat Pilates in Nailsea",
       description:
@@ -136,40 +137,30 @@ export default function HomePage() {
             </p>
           </div>
 
-          <MotionStaggerGrid className="mx-auto mt-8 grid w-full max-w-4xl gap-4 sm:mt-10 sm:gap-5 lg:mt-10 lg:grid-cols-2 lg:gap-6">
-            <article className="flex flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7">
-              <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-mid-grey">Reformer</p>
-              <p className="mt-5 font-sans text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
-                £65
-                <span className="text-base font-medium text-mid-grey md:text-lg">/month</span>
-              </p>
-              <p className="mt-3 font-accent text-sm font-normal leading-relaxed text-mid-grey">
-                4 classes per month
-              </p>
-              <Link
-                href="/pricing"
-                className="mt-6 inline-flex w-full min-h-[44px] items-center justify-center bg-charcoal px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0 md:mt-7"
+          <MotionStaggerGrid className="mx-auto mt-8 grid w-full max-w-5xl gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+            {PRICING_FOUNDING_TIERS.map((tier) => (
+              <article
+                key={`${tier.eyebrow}-${tier.price}`}
+                className="flex flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7"
               >
-                Secure your spot
-              </Link>
-            </article>
-
-            <article className="flex flex-col items-center border border-charcoal/10 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7">
-              <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-mid-grey">Mat</p>
-              <p className="mt-5 font-sans text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
-                £35
-                <span className="text-base font-medium text-mid-grey md:text-lg">/month</span>
-              </p>
-              <p className="mt-3 font-accent text-sm font-normal leading-relaxed text-mid-grey">
-                4 classes per month
-              </p>
-              <Link
-                href="/pricing"
-                className="mt-6 inline-flex w-full min-h-[44px] items-center justify-center border border-charcoal bg-white px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 md:mt-7"
-              >
-                View pricing &amp; tiers
-              </Link>
-            </article>
+                <p className="font-accent text-[10px] uppercase tracking-[0.18em] text-mid-grey">{tier.eyebrow}</p>
+                <p className="mt-5 font-sans text-2xl font-semibold tabular-nums tracking-tight text-charcoal md:text-3xl">
+                  {tier.price}
+                  <span className="text-base font-medium text-mid-grey md:text-lg">/month</span>
+                </p>
+                <p className="mt-3 font-accent text-sm font-normal leading-relaxed text-mid-grey">{tier.body}</p>
+                <Link
+                  href="/pricing"
+                  className={
+                    tier.emphasis === "primary"
+                      ? "mt-6 inline-flex w-full min-h-[44px] items-center justify-center bg-charcoal px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal/90 hover:shadow-md active:translate-y-0 md:mt-7"
+                      : "mt-6 inline-flex w-full min-h-[44px] items-center justify-center border border-charcoal bg-white px-5 py-3 text-center font-accent text-[11px] font-medium uppercase tracking-[0.14em] text-charcoal transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:text-white hover:shadow-md active:translate-y-0 md:mt-7"
+                  }
+                >
+                  {tier.emphasis === "primary" ? "Secure your spot" : "View pricing & tiers"}
+                </Link>
+              </article>
+            ))}
           </MotionStaggerGrid>
 
           <p className="mx-auto mt-8 max-w-xl font-accent text-xs leading-relaxed tracking-[0.03em] text-white/50 md:mt-10 md:text-[13px]">

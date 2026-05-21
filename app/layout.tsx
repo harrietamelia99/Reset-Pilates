@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://resetpilatesstudio.co.uk"),
   title: "Reset Pilates Studio | Reformer & Hot Mat Pilates in Nailsea",
   description:
-    "Premium boutique Pilates in Nailsea, North Somerset. Reformer, hot mat and mat Pilates, opening June 2026.",
+    "Premium boutique Pilates in Nailsea, North Somerset. Reformer, hot mat and mat Pilates, opens 6 June 2026.",
   openGraph: {
     type: "website",
     locale: "en_GB",

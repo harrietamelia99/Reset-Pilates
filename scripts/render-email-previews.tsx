@@ -13,6 +13,7 @@ import PreLaunchWaitlistEmail from "../emails/prelaunch-waitlist";
 import ProgressUpdateEmail from "../emails/progress-update";
 import NewsletterEmail from "../emails/newsletter";
 import { getExampleOpeningNewsletterContent } from "../lib/emails/example-newsletter";
+import { getFoundingMembershipNewsletterTemplate } from "../lib/emails/example-newsletter-founding";
 import { getSiteUrl } from "../lib/emails/site-url";
 
 const OUT = join(process.cwd(), "email-previews");
@@ -38,6 +39,7 @@ function inlineBrandImagesForLocalPreview(html: string): string {
 }
 
 const sampleNewsletter = getExampleOpeningNewsletterContent(getSiteUrl());
+const sampleFoundingNewsletter = getFoundingMembershipNewsletterTemplate(getSiteUrl());
 
 async function main() {
   await mkdir(OUT, { recursive: true });
@@ -71,8 +73,14 @@ async function main() {
 
   pages.push({
     file: "newsletter.html",
-    title: "Newsletter (structured)",
+    title: "Newsletter (opening example)",
     html: await render(<NewsletterEmail content={sampleNewsletter} />),
+  });
+
+  pages.push({
+    file: "newsletter-founding.html",
+    title: "Newsletter (founding membership template)",
+    html: await render(<NewsletterEmail content={sampleFoundingNewsletter} />),
   });
 
   for (const p of pages) {

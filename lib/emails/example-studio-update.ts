@@ -8,7 +8,7 @@ export function getExampleStudioUpdateEmailContent(): ProgressUpdateEmailProps {
   const content: ProgressUpdateEmailProps = {
     issueTitle: "Studio update: we're almost at the finish line",
     lead:
-      "Quick note from Crown Glass. The space is starting to feel like Reset, not a building site, and 1st June is getting real. " +
+      "Quick note from Crown Glass. The space is starting to feel like Reset, not a building site, and 6 June is getting real. " +
       "Here's what's been happening this fortnight, and what we're sorting next.",
     sections: [
       {

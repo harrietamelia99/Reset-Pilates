@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { NewsletterContent } from "@/lib/emails/newsletter-types";
+import { getFoundingMembershipNewsletterTemplate } from "@/lib/emails/example-newsletter-founding";
 
 export type StudioEmailDraftVariant = "newsletter" | "alert";
 
@@ -31,7 +32,7 @@ const BUILDER_CONFIG: Record<StudioEmailDraftVariant, BuilderConfig> = {
     broadcastUrl: "/api/studio/newsletter-broadcast",
     pageHeading: "Monthly newsletter",
     intro:
-      "Add a title, your rough notes, and optional photos. The tool turns that into draft wording in the Reset email layout — or use “Changes to make” to tweak a draft. Send yourself a test, then when you’re happy you can email your full list from the last step below.",
+      "Add a title, your rough notes, and optional photos. The tool turns that into draft wording in the Reset email layout, or load the founding-membership starter below and edit from there, or use “Changes to make” to tweak a draft. Send yourself a test, then when you’re happy you can email your full list from the last step below.",
     titleLabel: "Newsletter title",
     titlePlaceholder: "e.g. May — timetable refresh & hot mat",
     defaultAudience: "Waitlist and members",
@@ -88,6 +89,7 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
   const [broadcastConfirm, setBroadcastConfirm] = useState("");
   const [broadcastSendState, setBroadcastSendState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [broadcastSendMessage, setBroadcastSendMessage] = useState("");
+  const [templateLoading, setTemplateLoading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -181,6 +183,61 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
     !anyUploading &&
     issueTitle.trim().length >= 2 &&
     notesOk;
+
+  const resolveSiteBaseForTemplates = useCallback(() => {
+    if (typeof window !== "undefined" && window.location?.origin) {
+      return window.location.origin.replace(/\/+$/, "");
+    }
+    return (
+      process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "").trim() || "https://resetpilatesstudio.co.uk"
+    );
+  }, []);
+
+  const loadFoundingMembershipTemplate = useCallback(async () => {
+    if (variant !== "newsletter") return;
+    setTemplateLoading(true);
+    setError("");
+    setBroadcastSendState("idle");
+    setBroadcastSendMessage("");
+    setBroadcastReadyChecked(false);
+    setBroadcastConfirm("");
+    setPreviewSendState("idle");
+    setPreviewSendMessage("");
+    try {
+      const base = resolveSiteBaseForTemplates();
+      const template = getFoundingMembershipNewsletterTemplate(base);
+
+      const res = await fetch("/api/studio/newsletter-render-html", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: template }),
+      });
+
+      const data = (await res.json()) as { ok?: boolean; html?: string; error?: string };
+
+      if (!res.ok || typeof data.html !== "string") {
+        if (data.error === "unauthorized") {
+          setError("Please sign back into the studio and try again.");
+        } else {
+          setError(data.error === "render_failed" ? "Couldn't build the email preview." : "Could not load template.");
+        }
+        return;
+      }
+
+      setIssueTitle("Founding membership");
+      setNotes(
+        "Template loaded with current founding rates from the website. Edit this note or use “Changes to make”, then “Create draft” if you’d like the AI assistant to rework it."
+      );
+      setAudience("Waitlist and founding interest");
+      setAiFeedback("");
+      setContent(template);
+      setHtml(data.html);
+    } catch {
+      setError("Network error.");
+    } finally {
+      setTemplateLoading(false);
+    }
+  }, [resolveSiteBaseForTemplates, variant]);
 
   function draftBody(extra?: { previousContent?: NewsletterContent; feedback?: string }) {
     const imageAssets = assets
@@ -400,6 +457,21 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
       <div className="rounded-sm border border-light-grey bg-white p-6 shadow-sm md:p-8">
         <h2 className="text-lg font-bold uppercase tracking-heading text-charcoal">{c.pageHeading}</h2>
         <p className="mt-3 max-w-2xl font-accent text-sm leading-relaxed text-mid-grey">{c.intro}</p>
+        {variant === "newsletter" ? (
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => void loadFoundingMembershipTemplate()}
+              disabled={templateLoading || loading || anyUploading}
+              className="inline-flex min-h-[44px] items-center justify-center border border-charcoal bg-white px-5 py-2.5 font-accent text-[11px] font-bold uppercase tracking-wide text-charcoal transition hover:bg-charcoal hover:text-white disabled:opacity-40"
+            >
+              {templateLoading ? "Loading…" : "Load founding membership template"}
+            </button>
+            <span className="max-w-xl font-accent text-xs text-warm-grey">
+              Fetches live founding prices from your site settings, shows a preview, then you can send a test or run through the AI drafts as usual.
+            </span>
+          </div>
+        ) : null}
         <div className="rule-section my-6 max-w-xs" aria-hidden />
         <div className="space-y-4">
           <div>

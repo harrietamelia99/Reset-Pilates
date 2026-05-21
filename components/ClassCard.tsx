@@ -138,7 +138,6 @@ export function ClassDetailCard({
             Book this class
           </a>
         )}
-        {/* TODO: Update BOOKING_HREF (lib/constants.ts) with live Momence URL. */}
       </div>
     </motion.article>
   );
