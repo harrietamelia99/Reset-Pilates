@@ -11,19 +11,17 @@ import {
   HOT_MAT_CLASS,
   LEVELS_OFFERED,
   LEVELS_TILES,
-  MAT_CLASS,
   PARKING_INFO,
   REFORMER_CLASSES,
   TRANSPORT_INFO,
   WHAT_TO_BRING_HOT,
-  WHAT_TO_BRING_MAT,
 } from "@/lib/studio-content";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Our Classes | Reset Pilates Studio",
     description:
-      "Renew and Rebuild reformer, Reignite hot mat, and Reformat mat Pilates in Nailsea, levels, what to bring, and practical info.",
+      "Renew and Rebuild reformer and Reignite hot mat Pilates in Nailsea, levels, what to bring, and practical info.",
     openGraph: {
       title: "Our Classes | Reset Pilates Studio",
       description:
@@ -50,21 +48,21 @@ function BookLink({ className }: { className: string }) {
 export default function ClassesPage() {
   return (
     <>
-      <MotionSection className="relative border-b border-light-grey bg-white py-14 md:py-20">
+      <MotionSection className="relative border-b border-light-grey bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Classes</p>
           <h1 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl lg:text-[2.5rem]">
             What we teach
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-mid-grey md:text-base">
-            Reformer, hot mat, and mat Pilates, dynamic, strength-informed movement for visible results. Timetables
-            go live in Momence ahead of opening.
+            Reformer and hot mat Pilates, dynamic, strength-informed movement for visible results. Timetables
+            are live in Momence.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
         </div>
       </MotionSection>
 
-      <MotionSection className="relative bg-white pb-6 md:pb-10" delay={0.05}>
+      <MotionSection className="relative bg-cream pb-6 md:pb-10" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <PaperSheet flat pin={false} className="p-6 md:p-8">
             <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Levels</h2>
@@ -75,7 +73,7 @@ export default function ClassesPage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="relative bg-white pb-16 md:pb-20" delay={0.06}>
+      <MotionSection className="relative bg-cream pb-16 md:pb-20" delay={0.06}>
         <div className="mx-auto max-w-6xl space-y-10 px-4 md:px-6">
           <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Reformer</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -109,45 +107,24 @@ export default function ClassesPage() {
             ))}
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 sm:gap-4">
-            <div>
-              <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Hot mat</h2>
-              <div className="mt-6">
-                <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
-                  <Image
-                    src="/images/classes-hot-mat.png"
-                    alt="A woman in black athletic wear performing a Pilates mat exercise with a silver ball under her back, one leg extended vertically, in a sunlit studio with a large mirror."
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1152px) 50vw, 576px"
-                  />
-                </div>
+          <div>
+            <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Hot mat</h2>
+            <div className="mt-6">
+              <div className="relative aspect-[4/3] w-full max-w-2xl overflow-hidden border border-light-grey bg-light-grey/20">
+                <Image
+                  src="/images/classes-hot-mat.png"
+                  alt="A woman in black athletic wear performing a Pilates mat exercise with a silver ball under her back, one leg extended vertically, in a sunlit studio with a large mirror."
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1152px) 50vw, 576px"
+                />
               </div>
-              <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
-                <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{HOT_MAT_CLASS.name}</h3>
-                <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
-                <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{HOT_MAT_CLASS.body}</p>
-              </PaperSheet>
             </div>
-            <div>
-              <h2 className="text-2xl font-bold uppercase tracking-heading text-charcoal md:text-3xl">Mat</h2>
-              <div className="mt-6">
-                <div className="relative aspect-[4/3] w-full overflow-hidden border border-light-grey bg-light-grey/20">
-                  <Image
-                    src="/images/classes-mat.png"
-                    alt="A group of women in a bright, minimalist studio performing mat Pilates exercises using small white balls for back support."
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1152px) 50vw, 576px"
-                  />
-                </div>
-              </div>
-              <PaperSheet flat pin={false} className="mt-6 p-6 md:p-8">
-                <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{MAT_CLASS.name}</h3>
-                <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
-                <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{MAT_CLASS.body}</p>
-              </PaperSheet>
-            </div>
+            <PaperSheet flat pin={false} className="mt-6 max-w-2xl p-6 md:p-8">
+              <h3 className="text-xl font-bold uppercase tracking-heading text-charcoal">{HOT_MAT_CLASS.name}</h3>
+              <div className="rule-section my-4 max-w-[10rem]" aria-hidden />
+              <p className="font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">{HOT_MAT_CLASS.body}</p>
+            </PaperSheet>
           </div>
 
           <PaperSheet flat pin={false} className="p-6 md:p-8">
@@ -155,8 +132,6 @@ export default function ClassesPage() {
             <div className="rule-section my-4 max-w-[8rem]" aria-hidden />
             <p className="font-accent text-sm font-medium text-charcoal">Hot Pilates</p>
             <p className="mt-2 font-accent text-sm leading-relaxed text-mid-grey">{WHAT_TO_BRING_HOT}</p>
-            <p className="mt-6 font-accent text-sm font-medium text-charcoal">Mat Pilates</p>
-            <p className="mt-2 font-accent text-sm leading-relaxed text-mid-grey">{WHAT_TO_BRING_MAT}</p>
             <p className="mt-6 font-accent text-sm leading-relaxed text-mid-grey">{GRIP_SOCKS_POLICY}</p>
           </PaperSheet>
 
@@ -179,10 +154,10 @@ export default function ClassesPage() {
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">Classes</p>
           <div className="rule-section mx-auto my-5 max-w-xs md:mx-0" aria-hidden />
           <h2 className="text-xl font-bold uppercase tracking-heading text-editorial-ink md:text-2xl">
-            Book when Momence opens
+            Book your next class
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-mid-grey md:text-[15px]">
-            Pricing and intro bundles are on our pricing page. Use Book a class when your link is live.
+            Memberships and class packs are on our pricing page. Use Book a class to reserve your spot.
           </p>
         </div>
         <div className="rule-section shrink-0 md:hidden" aria-hidden />

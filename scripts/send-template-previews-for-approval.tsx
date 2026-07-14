@@ -50,7 +50,8 @@ async function main() {
       ),
     },
     {
-      subject: "[Reset Pilates – client preview] Pre-launch waitlist confirmation",
+      subject:
+        "[Reset Pilates – client preview] Waitlist signup + founding membership (matches live site)",
       jsx: (
         <PreLaunchWaitlistEmail
           firstName="Sam"
@@ -67,13 +68,9 @@ async function main() {
       jsx: <NewsletterEmail content={sampleNewsletter} />,
     },
     {
-      subject: "[Reset Pilates – client preview] Newsletter (founding membership template)",
-      jsx: <NewsletterEmail content={foundingNewsletter} />,
-    },
-    {
       subject:
-        "[Reset Pilates – client preview] Pre-launch waitlist — historic export (same email as site, no extra note)",
-      jsx: <PreLaunchWaitlistEmail firstName="Sam" />,
+        "[Reset Pilates – client preview] Newsletter (founding only, studio broadcasts)",
+      jsx: <NewsletterEmail content={foundingNewsletter} />,
     },
   ];
 

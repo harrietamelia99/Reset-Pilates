@@ -69,16 +69,8 @@ export const HOT_MAT_CLASS = {
     "Reignite is our hot Pilates class: a dynamic strength × Pilates full-body flow designed to build strength, control, and endurance. Set in gentle infrared heat, the class helps muscles warm up faster and work more deeply. You'll move through a continuous, energising sequence using light weights and accessories to challenge stability, coordination, and muscle endurance, with a strong focus on core connection and controlled, intentional movement.",
 };
 
-export const MAT_CLASS = {
-  name: "Reformat",
-  body:
-    "Reformat is our mat Pilates line, level-specific descriptions will sit alongside the timetable as schedules are finalised.",
-};
-
 export const WHAT_TO_BRING_HOT =
   "Wear comfortable activewear. Bring your own grip towel and grip socks, and a water bottle to stay hydrated.";
-
-export const WHAT_TO_BRING_MAT = "Grip socks and a water bottle.";
 
 export const INFRARED_BENEFITS = [
   "Infrared heat elevates every moment, challenging your body to work harder and engage deeper. Expect to sweat more and feel results sooner.",
@@ -87,88 +79,32 @@ export const INFRARED_BENEFITS = [
   "The warmth can also calm the mind: heat supports serotonin release to lift mood and lower stress while you move. A total-body reset.",
 ] as const;
 
-export const PRICING_INTRO = {
-  reformerOrHotMat: "£45 for three reformer or hot mat Pilates classes",
-  matOnly: "£30 for three mat classes",
-} as const;
-
 export const PRICING_CLASS_PACKS_NOTE =
   "Class pack bundles are to be used within three months of purchase unless otherwise stated.";
 
-export const PRICING_CLASS_PACKS = [
-  {
-    label: "Hot mat Pilates, 4-class pack",
-    price: "£50",
-    detail: "£12.50 per class, saving £14 vs drop-in",
-  },
-  { label: "Mat Pilates, 5-class pack", price: "£55" },
-  { label: "Mat Pilates, 10-class pack", price: "£95" },
-  { label: "Reformer, 3-class pack", price: "£58" },
-  {
-    label: "Reformer, 5-class pass",
-    price: "£95",
-    detail: "£19 per class, saves £15 vs five drop-ins at £22 each",
-  },
-  {
-    label: "Reformer, 10-class pass",
-    price: "£175",
-    detail: "£17.50 per class, saves £45 vs ten drop-ins at £22 each",
-  },
-  {
-    label: "Reformer, 20-class pass",
-    price: "£320",
-    detail: "£16 per class, saves £120 vs twenty drop-ins at £22 each",
-  },
-] as const;
-
-/** Promotional bundle referenced in onboarding email section */
-export const PRICING_HOT_MAT_PROMO_PACK =
-  "Hot mat, promotional 4-class pack £45 (£11.25 per class vs £16 drop-in), usable within three months of purchase.";
-
-export const PRICING_MEMBERSHIPS_NOTE = "Monthly memberships require a three-month minimum commitment.";
+export const PRICING_MEMBERSHIPS_NOTE =
+  "Monthly memberships require a three-month minimum commitment. Credits roll over if unused for 12 months.";
 
 export const PRICING_MEMBERSHIPS = [
   { label: "Reformer, 4 classes / month", price: "£74" },
   { label: "Reformer, 8 classes / month", price: "£140" },
-  { label: "Reformer, unlimited / month", price: "£230" },
-  { label: "Mat, 4 classes / month", price: "£40" },
-  { label: "Mat, 8 classes / month", price: "£72" },
+  { label: "Unlimited reformer + hot mat / month", price: "£199" },
+  { label: "2 reformer + 2 hot mat / month", price: "£65" },
+  { label: "4 reformer + 4 hot mat / month", price: "£122" },
+  { label: "Hot mat, 4 classes / month", price: "£50" },
 ] as const;
 
-/** Founding member rates (shown on Pricing and homepage). Standard layout: three cards */
-export const PRICING_FOUNDING_TIERS = [
-  {
-    eyebrow: "Founding · Reformer",
-    body: "4 reformer sessions per month, founding cohort pricing.",
-    price: "£66",
-    emphasis: "primary" as const,
-  },
-  {
-    eyebrow: "Founding · Reformer",
-    body: "8 reformer sessions per month, founding cohort pricing.",
-    price: "£126",
-    emphasis: "primary" as const,
-  },
-  {
-    eyebrow: "Founding · Mat",
-    body: "4 mat sessions per month, founding cohort pricing.",
-    price: "£36",
-    emphasis: "secondary" as const,
-  },
-] as const;
-
-export const PRICING_FOUNDING = {
-  headline: "Founding memberships, first 30 people, first 12 months",
-} as const;
-
-export const PRICING_DROP_INS = [
-  { label: "Mat", price: "£12" },
-  { label: "Reformer", price: "£22" },
-  { label: "Hot mat", price: "£16" },
+export const PRICING_CLASS_PACKS = [
+  { label: "Reformer, 3-class pack", price: "£58" },
+  { label: "Reformer, 5-class pack", price: "£95" },
+  { label: "Reformer, 10-class pack", price: "£175" },
+  { label: "Reformer, 20-class pack", price: "£320" },
+  { label: "Hot mat, 5-class pack", price: "£66" },
+  { label: "Hot mat, 10-class pack", price: "£120" },
 ] as const;
 
 export const OFFERS_SUMMARY =
-  "Intro deals, class pack bundles, monthly memberships, and founding options, details below. Blue Light discount: coming soon.";
+  "Monthly memberships and class pack bundles, details below. Blue Light discount: coming soon.";
 
 export const PARKING_INFO =
   "Nearby parking at Crown Glass Shopping Centre car park (typically £1/hour 9am–6pm Mon–Sat; free before 9am and after 6pm Mon–Sat; free all day Sunday) or Station Road car park (50p/hour 9am–6pm with the same before/after and Sunday rules).";

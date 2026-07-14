@@ -8,7 +8,7 @@ import { CONTACT, MAP_EXTERNAL_URL, MAP_IFRAME_SRC } from "@/lib/constants";
 
 export function HomeMapSection() {
   return (
-    <MotionSection className="relative border-t border-light-grey bg-white py-16 md:py-24">
+    <MotionSection className="relative border-t border-light-grey bg-cream py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="max-w-3xl">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Visit us</p>

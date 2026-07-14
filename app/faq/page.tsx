@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "Booking, classes, grip socks, parking, cancellations, and first visits, Reset Pilates, Nailsea.",
     openGraph: {
       title: "FAQs | Reset Pilates Studio",
-      description: "Answers about reformer, hot mat, and mat Pilates at Reset.",
+      description: "Answers about reformer and hot mat Pilates at Reset.",
     },
   };
 }
@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function FaqPage() {
   return (
     <>
-      <MotionSection className="relative border-b border-light-grey bg-white py-14 md:py-20">
+      <MotionSection className="relative border-b border-light-grey bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">FAQ</p>
           <h1 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl lg:text-[2.5rem]">

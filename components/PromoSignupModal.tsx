@@ -127,7 +127,7 @@ export function PromoSignupModal() {
             Get opening updates
           </h2>
           <p className="mt-3 font-accent text-sm leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
-            Timetable drops, founding offers, and studio news. No spam, just what you need to be first on the list.
+            Timetable drops, offers, and studio news. No spam, just what you need to be first on the list.
           </p>
 
           <div className="mt-6">

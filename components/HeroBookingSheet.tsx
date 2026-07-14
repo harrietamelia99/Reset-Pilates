@@ -49,11 +49,11 @@ export function HeroBookingSheet({ className }: Props) {
       <div className="rule-section my-3 md:my-5 lg:my-6" />
 
       <p className="text-center font-accent text-[13px] uppercase leading-snug tracking-[0.06em] text-charcoal md:text-sm">
-        Reformer, hot mat &amp; mat Pilates.
+        Reformer &amp; hot mat Pilates.
       </p>
 
       <p className="mt-2.5 text-center font-accent text-[9px] uppercase tracking-[0.18em] text-charcoal md:mt-3 md:text-[10px]">
-        Opening 6th June 2026, founding memberships now available
+        Opening 6th June 2026
       </p>
 
       <div className="rule-section my-4 md:my-6 lg:my-7" />

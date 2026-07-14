@@ -1,4 +1,14 @@
 /** Structured newsletter content: rendered into React Email (no raw HTML from AI). */
+
+/** Small tier card in a section (like founding blocks on the site). */
+export type NewsletterSectionPriceBox = {
+  eyebrow: string;
+  price: string;
+  /** Shown beside the price, e.g. " /month" */
+  priceSuffix?: string;
+  detail: string;
+};
+
 export type NewsletterSection = {
   heading: string;
   body: string;
@@ -6,6 +16,8 @@ export type NewsletterSection = {
   imageUrl?: string;
   /** Short alt text for accessibility (AI or Mari). */
   imageAlt?: string;
+  /** Optional tiers as bordered blocks (after heading, before body copy). */
+  priceBoxes?: NewsletterSectionPriceBox[];
 };
 
 export type NewsletterContent = {
@@ -44,6 +56,17 @@ export function isNewsletterContent(v: unknown): v is NewsletterContent {
     if (typeof sec.heading !== "string" || typeof sec.body !== "string") return false;
     if (sec.imageUrl != null && (typeof sec.imageUrl !== "string" || !isHttpsUrl(sec.imageUrl))) return false;
     if (sec.imageAlt != null && typeof sec.imageAlt !== "string") return false;
+    if (sec.priceBoxes != null) {
+      if (!Array.isArray(sec.priceBoxes)) return false;
+      for (const b of sec.priceBoxes) {
+        if (!b || typeof b !== "object") return false;
+        const box = b as Record<string, unknown>;
+        if (typeof box.eyebrow !== "string" || typeof box.price !== "string" || typeof box.detail !== "string") {
+          return false;
+        }
+        if (box.priceSuffix != null && typeof box.priceSuffix !== "string") return false;
+      }
+    }
   }
   return true;
 }

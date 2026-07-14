@@ -16,7 +16,7 @@ import {
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "About | Reset Pilates Studio",
-    description: `Meet ${FOUNDER_NAME}, founder of Reset Pilates in Nailsea, reformer, hot mat & mat Pilates opens 6 June 2026.`,
+    description: `Meet ${FOUNDER_NAME}, founder of Reset Pilates in Nailsea. Reformer and hot mat Pilates.`,
     openGraph: {
       title: "About | Reset Pilates Studio",
       description:
@@ -43,20 +43,20 @@ function BookLink({ className }: { className: string }) {
 export default function AboutPage() {
   return (
     <>
-      <MotionSection className="relative border-b border-light-grey bg-white py-14 md:py-20">
+      <MotionSection className="relative border-b border-light-grey bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">About</p>
           <h1 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl lg:text-[2.5rem]">
             Who we are
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-mid-grey md:text-base">
-            Reset. is a Nailsea studio for reformer, hot mat, and mat Pilates, opens 6 June 2026.
+            Reset. is a Nailsea studio for reformer and hot mat Pilates.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
         </div>
       </MotionSection>
 
-      <MotionSection className="relative bg-white pb-16 md:pb-20" delay={0.05}>
+      <MotionSection className="relative bg-cream pb-16 md:pb-20" delay={0.05}>
         <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-12 md:items-start md:gap-10 md:px-6 lg:gap-12">
           <figure className="mt-8 md:col-span-5 md:mt-10 lg:col-span-4 lg:mt-12">
             <div className="relative aspect-[3/4] w-full overflow-hidden border border-charcoal/10 bg-charcoal/5">
@@ -100,7 +100,7 @@ export default function AboutPage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="relative border-t border-light-grey bg-white py-14 md:py-20" delay={0.08}>
+      <MotionSection className="relative border-t border-light-grey bg-cream py-14 md:py-20" delay={0.08}>
         <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:gap-12 md:px-6">
           <PaperSheet flat pin={false} className="p-6 md:p-8">
             <h2 className="text-xs font-bold uppercase tracking-wide text-charcoal">Who belongs here</h2>

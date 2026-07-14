@@ -10,7 +10,7 @@ const LAST_UPDATED = "8 May 2026";
 export function PrivacyView() {
   return (
     <>
-      <MotionSection className="relative border-b border-light-grey bg-white py-14 md:py-20">
+      <MotionSection className="relative border-b border-light-grey bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Legal</p>
           <h1 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl lg:text-[2.5rem]">
@@ -26,7 +26,7 @@ export function PrivacyView() {
         </div>
       </MotionSection>
 
-      <MotionSection className="bg-white pb-16 md:pb-24" delay={0.05}>
+      <MotionSection className="bg-cream pb-16 md:pb-24" delay={0.05}>
         <div className="mx-auto max-w-3xl px-4 md:px-6">
           <PaperSheet flat pin={false} className="space-y-10 p-6 md:p-8 lg:p-10">
             <section className="space-y-3">

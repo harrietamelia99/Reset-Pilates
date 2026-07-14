@@ -112,7 +112,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
                 More on the home page
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-mid-grey md:text-[15px]">
-                Founding memberships, intro bundles, studio imagery, and launch-week email signup all live on the
+                Memberships, class packs, studio imagery, and launch-week email signup all live on the
                 homepage while we finish this section.
               </p>
             </div>

@@ -14,6 +14,7 @@ import ProgressUpdateEmail from "../emails/progress-update";
 import NewsletterEmail from "../emails/newsletter";
 import { getExampleOpeningNewsletterContent } from "../lib/emails/example-newsletter";
 import { getFoundingMembershipNewsletterTemplate } from "../lib/emails/example-newsletter-founding";
+import { getIntroOffersNewsletterTemplate } from "../lib/emails/example-newsletter-intro-offers";
 import { getSiteUrl } from "../lib/emails/site-url";
 
 const OUT = join(process.cwd(), "email-previews");
@@ -40,6 +41,7 @@ function inlineBrandImagesForLocalPreview(html: string): string {
 
 const sampleNewsletter = getExampleOpeningNewsletterContent(getSiteUrl());
 const sampleFoundingNewsletter = getFoundingMembershipNewsletterTemplate(getSiteUrl());
+const sampleIntroOffersNewsletter = getIntroOffersNewsletterTemplate(getSiteUrl(), "Sam");
 
 async function main() {
   await mkdir(OUT, { recursive: true });
@@ -56,7 +58,7 @@ async function main() {
 
   pages.push({
     file: "prelaunch-waitlist.html",
-    title: "Pre-launch — waitlist",
+    title: "Waitlist signup + founding membership (combined)",
     html: await render(
       <PreLaunchWaitlistEmail
         firstName="Sam"
@@ -81,6 +83,18 @@ async function main() {
     file: "newsletter-founding.html",
     title: "Newsletter (founding membership template)",
     html: await render(<NewsletterEmail content={sampleFoundingNewsletter} />),
+  });
+
+  pages.push({
+    file: "newsletter-intro-offers.html",
+    title: "Newsletter (intro offers live)",
+    html: await render(
+      <NewsletterEmail
+        content={sampleIntroOffersNewsletter}
+        eyebrow="From Mari at Reset"
+        preview="3-class packs from £30 — Reformer, hot mat or mat."
+      />
+    ),
   });
 
   for (const p of pages) {

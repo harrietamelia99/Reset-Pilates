@@ -32,7 +32,7 @@ export function FaqExperience({ groups, extras }: Props) {
     <div className="w-full max-w-3xl">
       <nav
         aria-label="FAQ categories"
-        className="sticky top-[calc(5.5rem+env(safe-area-inset-top,0px))] z-20 -mx-1 mb-10 flex flex-wrap items-center gap-2 border-b border-charcoal/10 bg-white/90 px-1 py-4 backdrop-blur-md supports-[backdrop-filter]:bg-white/75 md:gap-2"
+        className="sticky top-[calc(5.5rem+env(safe-area-inset-top,0px))] z-20 -mx-1 mb-10 flex flex-wrap items-center gap-2 border-b border-charcoal/10 bg-cream/90 px-1 py-4 backdrop-blur-md supports-[backdrop-filter]:bg-cream/75 md:gap-2"
       >
         {groups.map((g, gi) => (
           <button

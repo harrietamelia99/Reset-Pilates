@@ -53,6 +53,8 @@
   --color-warm-grey: #8e898a;
   --color-light-grey: #c6c5c4;
   --color-white: #ffffff;
+  /** Warm cream limewash page background (alternatives: #F4EFE6, #FAF7F2) */
+  --color-cream: #f5f0e8;
   --tracking-heading: 0.196em;
   /** Logo wordmark, Bethany Elingston (self-hosted OTF, see @font-face above) */
   --font-logo-wordmark: "Bethany Elingston", Georgia, serif;
@@ -67,7 +69,7 @@
 
   /* Body copy defaults to Anca Coder / IBM Plex Mono (--font-accent) */
   body {
-    @apply bg-white font-accent text-charcoal antialiased;
+    @apply bg-cream font-accent text-charcoal antialiased;
   }
 
   /* Headlines stay Helvetica-style sans */
@@ -199,9 +201,9 @@
     position: relative;
   }
 
-  /** Full-page wash for inner routes, neutral white */
+  /** Full-page wash for inner routes, cream limewash */
   .page-bg {
-    @apply min-h-screen bg-white;
+    @apply min-h-screen bg-cream;
   }
 
   /** Transparent hero bar that sits on `.page-bg` without doubling gradients */

@@ -17,7 +17,7 @@ export function HomeEmailAlertsSection() {
               Email alerts
             </h2>
             <p className="mt-4 max-w-md font-accent text-sm leading-relaxed text-white/75 md:text-base">
-              Be first to hear about launch week, founding offers, and when booking goes live.
+              Be first to hear about launch week, offers, and when booking goes live.
             </p>
             <div className="rule-section-dark mt-8 max-w-xs opacity-80" aria-hidden />
           </div>

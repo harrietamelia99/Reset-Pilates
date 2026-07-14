@@ -468,7 +468,8 @@ export function StudioEmailDraftBuilder({ variant }: Props) {
               {templateLoading ? "Loading…" : "Load founding membership template"}
             </button>
             <span className="max-w-xl font-accent text-xs text-warm-grey">
-              Fetches live founding prices from your site settings, shows a preview, then you can send a test or run through the AI drafts as usual.
+              Same founding body as the homepage waitlist confirmation (plus a short personalised welcome there). Fetches live
+              founding prices from your site settings for broadcasts and drafts.
             </span>
           </div>
         ) : null}

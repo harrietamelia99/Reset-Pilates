@@ -26,20 +26,20 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://resetpilatesstudio.co.uk"),
   title: "Reset Pilates Studio | Reformer & Hot Mat Pilates in Nailsea",
   description:
-    "Premium boutique Pilates in Nailsea, North Somerset. Reformer, hot mat and mat Pilates, opens 6 June 2026.",
+    "Premium boutique Pilates in Nailsea, North Somerset. Reformer and hot mat Pilates.",
   openGraph: {
     type: "website",
     locale: "en_GB",
     siteName: "Reset Pilates Studio",
     title: "Reset Pilates Studio | Reformer & Hot Mat Pilates in Nailsea",
     description:
-      "Premium boutique Pilates in Nailsea, North Somerset. Reformer, hot mat and mat Pilates.",
+      "Premium boutique Pilates in Nailsea, North Somerset. Reformer and hot mat Pilates.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Reset Pilates Studio",
     description:
-      "Premium boutique Pilates in Nailsea, reformer, hot mat & mat Pilates.",
+      "Premium boutique Pilates in Nailsea. Reformer and hot mat Pilates.",
   },
 };
 

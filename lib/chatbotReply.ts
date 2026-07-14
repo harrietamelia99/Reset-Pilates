@@ -147,7 +147,6 @@ export function getChatbotReply(raw: string): ChatbotReply {
     /\bwhen do you open\b/.test(q) ||
     /\b(opening date|launch day|opening day|grand opening)\b/.test(q) ||
     /\b(pre-?launch|launch)\b/.test(q) ||
-    /\bfounding\b/.test(q) ||
     /\b(june\s*1|1st\s*june|june\s*6|6th\s*june|june\s*2026)\b/.test(q) ||
     (/\b(june|2026)\b/.test(q) && /\b(open|launch|start)\b/.test(q)) ||
     (/\bwhen\b/.test(q) && /\b(open|launch|start)\b/.test(q) && !/\b(times|hours)\b/.test(q))
@@ -165,9 +164,9 @@ export function getChatbotReply(raw: string): ChatbotReply {
     };
   }
 
-  if (/\b(price|pricing|cost|how much|£|membership|memberships|founding)\b/.test(q)) {
+  if (/\b(price|pricing|cost|how much|£|membership|memberships)\b/.test(q)) {
     return {
-      text: "Intro bundles and founding tiers are on our Pricing page. Email us if something isn’t there yet.",
+      text: "Memberships and class packs are on our Pricing page. Email us if something isn't there yet.",
       cta: { href: "/pricing", label: "Go to pricing" },
     };
   }
@@ -205,9 +204,9 @@ export function getChatbotReply(raw: string): ChatbotReply {
     };
   }
 
-  if (/\b(reformer|hot mat|mat pilates|classes offered|what classes)\b/.test(q)) {
+  if (/\b(reformer|hot mat|classes offered|what classes)\b/.test(q)) {
     return {
-      text: "We teach Reformer, Hot Mat, and Mat Pilates, different levels welcome.",
+      text: "We teach Reformer and Hot Mat Pilates, different levels welcome.",
     };
   }
 

@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Book a class | Reset Pilates Studio",
-    description: "Reserve reformer and mat Pilates in Nailsea with Reset Pilates (Momence).",
+    description: "Reserve reformer and hot mat Pilates in Nailsea with Reset Pilates (Momence).",
     openGraph: {
       title: "Book a class | Reset Pilates Studio",
       description: "Schedule your next class at Reset Pilates, Nailsea.",
@@ -27,7 +27,7 @@ export default function BookPage() {
 
   return (
     <>
-      <MotionSection className="relative border-b border-light-grey bg-white py-14 md:py-20">
+      <MotionSection className="relative border-b border-light-grey bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Book</p>
           <h1 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl lg:text-[2.5rem]">
@@ -50,7 +50,7 @@ export default function BookPage() {
         </div>
       </MotionSection>
 
-      <MotionSection className="bg-white pb-16 md:pb-24" delay={0.05}>
+      <MotionSection className="bg-cream pb-16 md:pb-24" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <BookingWidget />
         </div>

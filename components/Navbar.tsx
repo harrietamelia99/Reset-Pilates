@@ -83,13 +83,13 @@ export function Navbar() {
     <>
     <header
       className={cn(
-        "sticky top-0 border-b border-light-grey bg-white font-sans",
+        "sticky top-0 border-b border-light-grey bg-cream font-sans",
         /** Menu open: stack above `PreLaunchBanner` (z-60) so overlay isn’t clipped under it */
         open ? "z-[70]" : "z-50"
       )}
     >
       {/** Toolbar must stack above `#mobile-nav` overlay or the menu button (→ X) is covered */}
-      <div className="relative z-50 mx-auto flex max-w-6xl items-center justify-between gap-6 bg-white px-4 py-5 md:px-6">
+      <div className="relative z-50 mx-auto flex max-w-6xl items-center justify-between gap-6 bg-cream px-4 py-5 md:px-6">
         <Link
           href="/"
           className="shrink-0"
@@ -151,7 +151,7 @@ export function Navbar() {
       <div
         id="mobile-nav"
         className={cn(
-          "fixed inset-0 z-40 bg-white transition lg:hidden",
+          "fixed inset-0 z-40 bg-cream transition lg:hidden",
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0 invisible"
         )}
       >

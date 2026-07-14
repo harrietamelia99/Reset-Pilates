@@ -12,6 +12,11 @@
     "email:preview": "tsx --tsconfig tsconfig.json scripts/render-email-previews.tsx",
     "email:waitlist-export-prelaunch-preview": "tsx --tsconfig tsconfig.json scripts/preview-waitlist-thank-you-csv.tsx",
     "email:waitlist-thankyou-preview": "tsx --tsconfig tsconfig.json scripts/preview-waitlist-thank-you-csv.tsx",
+    "email:waitlist-import": "tsx --tsconfig tsconfig.json scripts/import-waitlist-csv.ts",
+    "email:schedule-waitlist-bulk": "tsx --tsconfig tsconfig.json scripts/schedule-waitlist-bulk-send.tsx",
+    "email:cancel-scheduled-waitlist": "tsx --tsconfig tsconfig.json scripts/cancel-resend-scheduled-waitlist.tsx",
+    "email:intro-offers-test": "tsx --tsconfig tsconfig.json scripts/send-intro-offers-test.tsx",
+    "email:schedule-intro-offers-bulk": "tsx --tsconfig tsconfig.json scripts/schedule-intro-offers-bulk-send.tsx",
     "email:send-previews-for-approval": "tsx --tsconfig tsconfig.json scripts/send-template-previews-for-approval.tsx",
     "email:check-resend": "tsx --tsconfig tsconfig.json scripts/resend-list-domains.ts",
     "knockout-paperclip": "node scripts/knockout-paperclip.cjs"

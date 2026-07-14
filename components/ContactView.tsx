@@ -13,21 +13,21 @@ import { BOOKING_HREF, CONTACT, MAP_EXTERNAL_URL } from "@/lib/constants";
 export function ContactView() {
   return (
     <>
-      <MotionSection className="relative border-b border-light-grey bg-white py-14 md:py-20">
+      <MotionSection className="relative border-b border-light-grey bg-cream py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-warm-grey">Contact</p>
           <h1 className="mt-3 text-3xl font-bold uppercase tracking-heading text-charcoal md:text-4xl lg:text-[2.5rem]">
             Get in touch
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-mid-grey md:text-base">
-            Questions about classes, founding memberships, or the studio before we open? Send a message
+            Questions about classes, memberships, or the studio? Send a message
             below, email us directly, or say hello on Instagram.
           </p>
           <div className="rule-section mt-10 max-w-xs" aria-hidden />
         </div>
       </MotionSection>
 
-      <MotionSection className="relative bg-white pb-16 md:pb-24" delay={0.05}>
+      <MotionSection className="relative bg-cream pb-16 md:pb-24" delay={0.05}>
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-stretch lg:gap-14">
             <PaperSheet flat pin={false} className="flex h-full min-h-0 flex-col p-6 md:p-8 lg:p-10">

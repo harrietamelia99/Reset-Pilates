@@ -1,4 +1,4 @@
-import { Button, Heading, Hr, Img, Link, Text } from "@react-email/components";
+import { Button, Heading, Hr, Img, Link, Section, Text } from "@react-email/components";
 import * as React from "react";
 import { ResetDocument } from "./components/ResetDocument";
 import type { NewsletterContent } from "../lib/emails/newsletter-types";
@@ -9,6 +9,10 @@ export type NewsletterEmailProps = {
   content?: NewsletterContent;
   /** Small caps line above headline; defaults to "From Mari at Reset". */
   eyebrow?: string;
+  /** Inbox preview line; defaults to first ~110 chars of headline. */
+  preview?: string;
+  /** Rendered after eyebrow, before headline (e.g. personalised waitlist welcome). */
+  personalLead?: React.ReactNode;
 };
 
 const previewContent = (site: string): NewsletterContent => getExampleOpeningNewsletterContent(site);
@@ -28,10 +32,15 @@ function mergeNewsletterContent(site: string, raw?: NewsletterContent): Newslett
   };
 }
 
-export default function NewsletterEmail({ content, eyebrow = "From Mari at Reset" }: NewsletterEmailProps) {
+export default function NewsletterEmail({
+  content,
+  eyebrow = "From Mari at Reset",
+  preview: previewOverride,
+  personalLead,
+}: NewsletterEmailProps) {
   const site = getSiteUrl();
   const c = mergeNewsletterContent(site, content);
-  const preview = (c.headline || "Newsletter").slice(0, 110);
+  const preview = previewOverride ?? (c.headline || "Newsletter").slice(0, 110);
 
   return (
     <ResetDocument preview={preview}>
@@ -47,6 +56,7 @@ export default function NewsletterEmail({ content, eyebrow = "From Mari at Reset
       >
         {eyebrow}
       </Text>
+      {personalLead}
       <Heading
         as="h1"
         style={{
@@ -89,7 +99,7 @@ export default function NewsletterEmail({ content, eyebrow = "From Mari at Reset
         />
       ) : null}
       {(Array.isArray(c.sections) ? c.sections : []).map((s, i) => (
-        <div key={i}>
+        <React.Fragment key={i}>
           {i > 0 ? <Hr style={{ border: "none", borderTop: "1px solid #C6C5C4", margin: "20px 0" }} /> : null}
           <Text
             style={{
@@ -120,6 +130,74 @@ export default function NewsletterEmail({ content, eyebrow = "From Mari at Reset
               }}
             />
           ) : null}
+          {Array.isArray(s.priceBoxes) && s.priceBoxes.length > 0 ? (
+            <>
+              {(s.priceBoxes ?? []).map((box, tierIdx) => {
+                const last = tierIdx === (s.priceBoxes?.length ?? 0) - 1;
+                return (
+                  <Section
+                    key={tierIdx}
+                    style={{
+                      border: "1px solid #d9d9d9",
+                      backgroundColor: "#ffffff",
+                      padding: "16px 18px",
+                      marginTop: tierIdx === 0 ? "14px" : "12px",
+                      marginBottom: last ? "18px" : "0",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        margin: "0 0 8px",
+                        fontFamily: "IBM Plex Mono, ui-monospace, monospace",
+                        fontSize: "10px",
+                        letterSpacing: "0.16em",
+                        textTransform: "uppercase" as const,
+                        color: "#545456",
+                      }}
+                    >
+                      {box.eyebrow}
+                    </Text>
+                    <Text style={{ margin: "0 0 6px" }}>
+                      <span
+                        style={{
+                          fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+                          fontSize: "22px",
+                          fontWeight: 700,
+                          color: "#2b2b29",
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
+                        {box.price}
+                      </span>
+                      {box.priceSuffix ? (
+                        <span
+                          style={{
+                            fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+                            fontSize: "15px",
+                            fontWeight: 500,
+                            color: "#8E898A",
+                          }}
+                        >
+                          {box.priceSuffix}
+                        </span>
+                      ) : null}
+                    </Text>
+                    <Text
+                      style={{
+                        margin: 0,
+                        fontFamily: "IBM Plex Mono, ui-monospace, monospace",
+                        fontSize: "13px",
+                        lineHeight: 1.55,
+                        color: "#545456",
+                      }}
+                    >
+                      {box.detail}
+                    </Text>
+                  </Section>
+                );
+              })}
+            </>
+          ) : null}
           <Text
             style={{
               fontFamily: "IBM Plex Mono, ui-monospace, monospace",
@@ -131,7 +209,7 @@ export default function NewsletterEmail({ content, eyebrow = "From Mari at Reset
           >
             {s.body}
           </Text>
-        </div>
+        </React.Fragment>
       ))}
       <Hr style={{ border: "none", borderTop: "1px solid #C6C5C4", margin: "24px 0 16px" }} />
       <Text

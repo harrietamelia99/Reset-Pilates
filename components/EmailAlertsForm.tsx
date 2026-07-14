@@ -86,7 +86,7 @@ export function EmailAlertsForm({
         );
       } else if (payload.error === "subscriber_send_failed") {
         setErrorHint(
-          "We saved your sign-up for the studio, but the confirmation email to you didn't send. Check spam, or email hello@resetpilatesstudio.co.uk."
+          "We saved your sign-up for the studio, but the waitlist confirmation email didn't send. Check spam, or email hello@resetpilatesstudio.co.uk."
         );
       } else {
         setErrorHint(
@@ -225,7 +225,8 @@ export function EmailAlertsForm({
           )}
           role="status"
         >
-          You&apos;re on the list. Look out for a confirmation email from us (check spam), and news from Reset soon.
+          You&apos;re on the list. Look out for our waitlist confirmation email (check spam), and news from
+          Reset soon.
         </p>
       )}
       {status === "error" && (

@@ -9,12 +9,15 @@ import type { ProgressUpdateEmailProps } from "@/emails/progress-update";
 import type { PreLaunchWaitlistEmailProps } from "@/emails/prelaunch-waitlist";
 import type { WelcomeBookingEmailProps } from "@/emails/welcome-booking";
 
+import { minifyEmailHtml } from "@/lib/emails/minify-email-html";
+
 export async function renderWelcomeBookingHtml(props: WelcomeBookingEmailProps): Promise<string> {
   return render(<WelcomeBookingEmail {...props} />);
 }
 
 export async function renderPreLaunchWaitlistHtml(props: PreLaunchWaitlistEmailProps): Promise<string> {
-  return render(<PreLaunchWaitlistEmail {...props} />);
+  const raw = await render(<PreLaunchWaitlistEmail {...props} />);
+  return minifyEmailHtml(raw);
 }
 
 export async function renderPreLaunchWaitlistPlainText(props: PreLaunchWaitlistEmailProps): Promise<string> {
@@ -27,14 +30,29 @@ export async function renderProgressUpdateHtml(props: ProgressUpdateEmailProps):
 
 export async function renderNewsletterHtml(
   content: NewsletterContent,
-  options?: { eyebrow?: string }
+  options?: { eyebrow?: string; preview?: string; personalLead?: React.ReactNode }
 ): Promise<string> {
-  return render(<NewsletterEmail content={content} eyebrow={options?.eyebrow} />);
+  return render(
+    <NewsletterEmail
+      content={content}
+      eyebrow={options?.eyebrow}
+      preview={options?.preview}
+      personalLead={options?.personalLead}
+    />
+  );
 }
 
 export async function renderNewsletterPlainText(
   content: NewsletterContent,
-  options?: { eyebrow?: string }
+  options?: { eyebrow?: string; preview?: string; personalLead?: React.ReactNode }
 ): Promise<string> {
-  return render(<NewsletterEmail content={content} eyebrow={options?.eyebrow} />, { plainText: true });
+  return render(
+    <NewsletterEmail
+      content={content}
+      eyebrow={options?.eyebrow}
+      preview={options?.preview}
+      personalLead={options?.personalLead}
+    />,
+    { plainText: true }
+  );
 }
