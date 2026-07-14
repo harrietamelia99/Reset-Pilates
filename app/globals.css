@@ -53,8 +53,8 @@
   --color-warm-grey: #8e898a;
   --color-light-grey: #c6c5c4;
   --color-white: #ffffff;
-  /** Warm cream limewash page background (alternatives: #F4EFE6, #FAF7F2) */
-  --color-cream: #f5f0e8;
+  /** Warm grey-cream page background (alternatives: #F9F8F6 lighter, #F7F6F4 slightly deeper) */
+  --color-cream: #f8f7f5;
   --tracking-heading: 0.196em;
   /** Logo wordmark, Bethany Elingston (self-hosted OTF, see @font-face above) */
   --font-logo-wordmark: "Bethany Elingston", Georgia, serif;

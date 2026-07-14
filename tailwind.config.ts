@@ -15,8 +15,8 @@ const config: Config = {
         "warm-grey": "#8E898A",
         "light-grey": "#C6C5C4",
         white: "#FFFFFF",
-        /** Warm cream limewash site background */
-        cream: "#F5F0E8",
+        /** Light grey-cream site background */
+        cream: "#F8F7F5",
         /** Same as charcoal, headline ink on light surfaces */
         "editorial-ink": "#2b2b29",
       },
