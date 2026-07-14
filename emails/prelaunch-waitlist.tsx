@@ -22,31 +22,31 @@ const monoBody = {
  */
 export default function PreLaunchWaitlistEmail({ firstName, personalNote }: PreLaunchWaitlistEmailProps) {
   const site = getSiteUrl().replace(/\/+$/, "");
-  const preview = `Hi ${firstName}, you're on the Reset waitlist.`;
+  const preview = `Hi ${firstName}, thanks for joining the Reset mailing list.`;
 
   return (
     <NewsletterEmail
       content={{
-        headline: "You're on the waitlist",
-        intro: "Thanks for signing up early. I'll email you when booking updates and offers are worth knowing about.",
+        headline: "You're on the mailing list",
+        intro: "Thanks for signing up. I'll email you when offers and studio news are worth knowing about.",
         sections: [
           {
             heading: "What's next",
             body:
-              `We're opening at Crown Glass in Nailsea with reformer and hot mat Pilates. ` +
-              `Memberships and class packs are on ${site}/pricing, and you can book at ${site}/book when you're ready.`,
+              `We're at Crown Glass in Nailsea with reformer and hot mat Pilates. ` +
+              `Memberships and class packs are on ${site}/pricing, and you can book at ${site}/book.`,
           },
         ],
-        closing: "Thanks for being part of the early list. Mari 🤍",
-        ctaLabel: "View pricing",
-        ctaUrl: `${site}/pricing`,
+        closing: "Thanks for staying in touch. Mari 🤍",
+        ctaLabel: "Book a class",
+        ctaUrl: `${site}/book`,
       }}
       eyebrow="From Mari at Reset"
       preview={preview}
       personalLead={
         <>
           <Text style={monoBody}>
-            Hi {firstName}. Thanks for signing up early, it means a lot.
+            Hi {firstName}. Thanks for signing up, it means a lot.
           </Text>
           {personalNote ? (
             <Text

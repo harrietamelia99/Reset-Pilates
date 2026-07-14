@@ -84,7 +84,7 @@ export function Navbar() {
     <header
       className={cn(
         "sticky top-0 border-b border-light-grey bg-cream font-sans",
-        /** Menu open: stack above `PreLaunchBanner` (z-60) so overlay isn’t clipped under it */
+        /** Mobile menu overlay */
         open ? "z-[70]" : "z-50"
       )}
     >
@@ -238,12 +238,10 @@ export function Navbar() {
           </button>
           <p className="font-accent text-[10px] uppercase tracking-[0.14em] text-warm-grey">Booking</p>
           <h2 id={bookingTitleId} className="mt-2 text-xl font-bold uppercase tracking-heading text-charcoal sm:text-2xl">
-            Coming soon
+            Booking unavailable
           </h2>
           <p className="mt-4 font-accent text-sm leading-relaxed text-mid-grey md:text-[15px]">
-            You&apos;ll soon be able to schedule your classes in{" "}
-            <span className="font-medium text-charcoal">Momence</span>. We&apos;re finishing the live timetable and
-            booking link; in the meantime, pricing and FAQs are on the site, or email us at{" "}
+            Online booking isn&apos;t available from this link right now. Pricing and FAQs are on the site, or email us at{" "}
             <a href={`mailto:${CONTACT.email}`} className="text-charcoal underline underline-offset-2 hover:opacity-80">
               {CONTACT.email}
             </a>

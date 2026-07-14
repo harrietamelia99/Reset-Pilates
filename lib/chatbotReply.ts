@@ -4,7 +4,6 @@ import {
   BOOKING_HREF,
   CONTACT,
   MAP_EXTERNAL_URL,
-  OPENING_DATE_LABEL,
   SITE_NAME,
 } from "@/lib/constants";
 
@@ -138,22 +137,23 @@ export function getChatbotReply(raw: string): ChatbotReply {
     /\b(what time|what hours)\b.*\b(open|close|studio)\b/.test(q)
   ) {
     return {
-      text: `Planned hours: ${CONTACT.hours}. We’ll confirm nearer to opening.`,
+      text: `Studio hours: ${CONTACT.hours}.`,
     };
   }
 
-  /** First day / memberships (single line; founding detail is already in OPENING_DATE_LABEL) */
+  /** Are we open yet / where to book */
   if (
     /\bwhen do you open\b/.test(q) ||
     /\b(opening date|launch day|opening day|grand opening)\b/.test(q) ||
     /\b(pre-?launch|launch)\b/.test(q) ||
     /\b(june\s*1|1st\s*june|june\s*6|6th\s*june|june\s*2026)\b/.test(q) ||
     (/\b(june|2026)\b/.test(q) && /\b(open|launch|start)\b/.test(q)) ||
-    (/\bwhen\b/.test(q) && /\b(open|launch|start)\b/.test(q) && !/\b(times|hours)\b/.test(q))
+    (/\bwhen\b/.test(q) && /\b(open|launch|start)\b/.test(q) && !/\b(times|hours)\b/.test(q)) ||
+    /\bare you open\b/.test(q)
   ) {
     return {
-      text: `${OPENING_DATE_LABEL}.`,
-      cta: { href: "/pricing", label: "View pricing" },
+      text: "We're open at Crown Glass in Nailsea. Book reformer and hot mat classes through the Book page.",
+      cta: { href: BOOKING_HREF.startsWith("/") ? BOOKING_HREF : "/book", label: "Book a class" },
     };
   }
 
@@ -175,7 +175,7 @@ export function getChatbotReply(raw: string): ChatbotReply {
     return {
       text: hasMomenceScheduleEmbed()
         ? "You can book through our live scheduler (Momence) on the Book page."
-        : "Booking will be through Momence. Use Book in the nav when it’s live.",
+        : "Book through Momence on the Book page.",
       cta:
         BOOKING_HREF.startsWith("http")
           ? { href: BOOKING_HREF, label: "Book", external: true }

@@ -6,7 +6,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "How do I book a class?",
-        a: "All bookings are made via Momence, use the Book Now button in the navigation when scheduling goes live.",
+        a: "All bookings are made via Momence. Use the Book Now button in the navigation.",
       },
       {
         q: "Do I need previous experience?",

@@ -7,7 +7,7 @@ import { MotionSection } from "@/components/MotionSection";
 import { PaperSheet } from "@/components/PaperSheet";
 import { PosterCtaBand } from "@/components/PosterCtaBand";
 import { InstagramGlyph } from "@/components/icons/SocialBrandIcons";
-import { BOOKING_HREF, CONTACT, OPENING_DATE_LABEL } from "@/lib/constants";
+import { BOOKING_HREF, CONTACT } from "@/lib/constants";
 import { cn } from "@/lib/cn";
 
 export type ComingSoonProps = {
@@ -53,7 +53,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
               className="px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10 lg:px-11 lg:py-11"
             >
               <p className="text-center font-accent text-[9px] uppercase tracking-[0.2em] text-charcoal md:text-[10px]">
-                Pre-launch · {label}
+                {label}
               </p>
 
               <div className="rule-section my-2.5 md:my-4" />
@@ -70,10 +70,6 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
 
               <p className="text-center font-accent text-sm leading-relaxed tracking-[0.02em] text-charcoal md:text-[15px]">
                 {description}
-              </p>
-
-              <p className="mt-4 text-center font-accent text-[9px] uppercase leading-relaxed tracking-[0.18em] text-charcoal md:text-[10px]">
-                {OPENING_DATE_LABEL}
               </p>
 
               <div className="rule-section my-5 md:my-6" />
@@ -97,7 +93,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
               </div>
 
               <p className="mt-5 text-center font-accent text-[9px] uppercase tracking-[0.16em] text-charcoal/80 md:text-[10px]">
-                Booking via Momence, link updates before launch.
+                Booking via Momence.
               </p>
             </PaperSheet>
           </div>
@@ -112,7 +108,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
                 More on the home page
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-mid-grey md:text-[15px]">
-                Memberships, class packs, studio imagery, and launch-week email signup all live on the
+                Memberships, class packs, studio imagery, and email signup all live on the
                 homepage while we finish this section.
               </p>
             </div>
@@ -148,7 +144,7 @@ export function ComingSoon({ label, headline, description }: ComingSoonProps) {
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">{label}</p>
               <div className="rule-section mx-auto my-4 max-w-xs md:mx-0" aria-hidden />
               <p className="text-sm leading-relaxed text-mid-grey">
-                This URL stays live, we&apos;ll swap in the full page before opening day.
+                This page is being updated. In the meantime, explore the rest of the site.
               </p>
             </div>
             <div className="rule-section shrink-0 md:hidden" aria-hidden />

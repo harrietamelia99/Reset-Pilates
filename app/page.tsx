@@ -118,14 +118,14 @@ export default function HomePage() {
       <PosterCtaBand>
             <div className="min-w-0 flex-1">
               <p className="font-accent text-[10px] uppercase tracking-[0.15em] text-mid-grey">
-                Stay close to launch
+                Stay in touch
               </p>
               <div className="rule-section my-5 max-w-xs" aria-hidden />
               <h2 className="text-xl font-bold uppercase tracking-heading text-editorial-ink md:text-2xl">
                 Join the conversation.
               </h2>
               <p className="mt-2 text-sm text-mid-grey">
-                Follow along for opening updates, offers, and studio life.
+                Follow along for offers, timetables, and studio life.
               </p>
             </div>
             <div className="rule-section shrink-0 md:hidden" aria-hidden />

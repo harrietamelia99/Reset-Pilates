@@ -213,7 +213,7 @@ export function EmailAlertsForm({
             variant === "dark" ? "text-white" : "text-warm-grey"
           )}
         >
-          Opening dates, offers &amp; timetable drops, no spam.
+          Offers, timetable updates &amp; studio news, no spam.
         </p>
       </div>
 
@@ -225,7 +225,7 @@ export function EmailAlertsForm({
           )}
           role="status"
         >
-          You&apos;re on the list. Look out for our waitlist confirmation email (check spam), and news from
+          You&apos;re on the list. Look out for our confirmation email (check spam), and news from
           Reset soon.
         </p>
       )}

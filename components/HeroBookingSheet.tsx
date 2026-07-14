@@ -12,8 +12,7 @@ type Props = {
 };
 
 /**
- * Pre-launch flyer card for the home hero, announcement, location, headline,
- * class types, opening line, booking CTAs, and Momence note (matches studio poster layout).
+ * Home hero flyer card: location, headline, class types, booking CTAs, and Momence note.
  */
 export function HeroBookingSheet({ className }: Props) {
   return (
@@ -25,7 +24,7 @@ export function HeroBookingSheet({ className }: Props) {
       )}
     >
       <p className="text-center font-accent text-[9px] uppercase tracking-[0.2em] text-charcoal md:text-[10px]">
-        Pre-launch announcement
+        Reset Pilates Studio
       </p>
 
       <div className="rule-section my-2.5 md:my-4" />
@@ -50,10 +49,6 @@ export function HeroBookingSheet({ className }: Props) {
 
       <p className="text-center font-accent text-[13px] uppercase leading-snug tracking-[0.06em] text-charcoal md:text-sm">
         Reformer &amp; hot mat Pilates.
-      </p>
-
-      <p className="mt-2.5 text-center font-accent text-[9px] uppercase tracking-[0.18em] text-charcoal md:mt-3 md:text-[10px]">
-        Opening 6th June 2026
       </p>
 
       <div className="rule-section my-4 md:my-6 lg:my-7" />
@@ -87,7 +82,7 @@ export function HeroBookingSheet({ className }: Props) {
 
       <div className="mt-4 border-t border-charcoal pt-3 md:mt-6 md:pt-5">
         <p className="font-accent text-[8px] uppercase leading-relaxed tracking-[0.14em] text-charcoal md:text-[9px]">
-          Booking via Momence, link updates before launch.
+          Booking via Momence.
         </p>
       </div>
     </PaperSheet>

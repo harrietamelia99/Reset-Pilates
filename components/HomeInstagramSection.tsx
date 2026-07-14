@@ -18,7 +18,7 @@ export function HomeInstagramSection() {
             Studio snapshots
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-mid-grey md:text-base">
-            A glimpse of life at Reset, follow for opening news, timetables, and behind the scenes.
+            A glimpse of life at Reset. Follow for timetables, offers, and behind the scenes.
           </p>
         </div>
         <Link

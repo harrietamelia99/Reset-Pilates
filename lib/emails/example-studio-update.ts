@@ -1,42 +1,34 @@
 import type { ProgressUpdateEmailProps } from "../../emails/progress-update";
 
 /**
- * Example studio / build update for previews and React Email dev.
- * Voice: warm, British, short sentences, no em dashes (aligned with other mail).
+ * Example studio update for previews and React Email dev.
  */
 export function getExampleStudioUpdateEmailContent(): ProgressUpdateEmailProps {
   const content: ProgressUpdateEmailProps = {
-    issueTitle: "Studio update: we're almost at the finish line",
+    issueTitle: "Studio update from Crown Glass",
     lead:
-      "Quick note from Crown Glass. The space is starting to feel like Reset, not a building site, and 6 June is getting real. " +
-      "Here's what's been happening this fortnight, and what we're sorting next.",
+      "Quick note from Nailsea. The studio is open and classes are running. " +
+      "Here's what's been happening lately, and what's coming up.",
     sections: [
       {
-        title: "On site",
+        title: "On the timetable",
         body:
-          "Flooring is down and mirrors are going in. Reformers are built and we're testing springs and straps so everything feels smooth for your first class. " +
-          "The hot mat room is next on the list, we're balancing warmth with airflow so it's lovely, not stifling.",
+          "Reformer and hot mat sessions are live in Momence. If you haven't booked yet, memberships and class packs are on the pricing page.",
       },
       {
-        title: "Booking and timetable",
+        title: "In the studio",
         body:
-          "We're still lining up Momence with founding memberships first, then drop-ins when we're ready to shout about dates. " +
-          "You'll get a proper heads-up before anything goes live. No surprises, just clear steps when it's time to book.",
-      },
-      {
-        title: "Little things that matter",
-        body:
-          "Reception is getting the same attention as the studios, hooks, shelves, somewhere to leave your shoes without it feeling cramped. " +
-          "It's the small stuff that makes a place feel like home. ✨",
+          "We're still fine-tuning the little things that make a visit feel smooth, kit checks, room flow, and the reception area. " +
+          "It's the small stuff that makes a place feel like home.",
       },
       {
         title: "What's next",
         body:
-          "Acoustic panels in hot mat, final kit checks, then a deep clean before we welcome you through the door. " +
-          "If you've got a question, reply to this or message us on Instagram. I read everything.",
+          "More timetable slots, seasonal offers, and the occasional studio update by email. " +
+          "If you've got a question, reply to this or message us on Instagram.",
       },
     ],
-    ctaLabel: "Catch up on the site",
+    ctaLabel: "Book a class",
   };
   return content;
 }

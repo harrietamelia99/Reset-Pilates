@@ -48,5 +48,3 @@ export const CONTACT_API_PATH = "/api/contact";
 
 /** Homepage email alerts form posts here (Resend on the server). */
 export const EMAIL_ALERTS_API_PATH = "/api/email-alerts";
-
-export const OPENING_DATE_LABEL = "Opening 6th June 2026";

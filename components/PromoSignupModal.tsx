@@ -124,7 +124,7 @@ export function PromoSignupModal() {
             id={titleId}
             className="mt-2 text-xl font-bold uppercase tracking-heading text-white sm:text-2xl [text-shadow:0_1px_4px_rgba(0,0,0,0.55),0_0_28px_rgba(0,0,0,0.35)]"
           >
-            Get opening updates
+            Get studio updates
           </h2>
           <p className="mt-3 font-accent text-sm leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
             Timetable drops, offers, and studio news. No spam, just what you need to be first on the list.

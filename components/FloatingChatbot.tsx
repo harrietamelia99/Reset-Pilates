@@ -14,10 +14,10 @@ type Msg = {
 };
 
 const WELCOME =
-  "Hi! Ask about opening, where we are, classes, or booking. For anything personal or detailed, I’ll send you to the right page or email.";
+  "Hi! Ask about classes, booking, hours, or where we are. For anything personal or detailed, I'll send you to the right page or email.";
 
 const QUICK_PROMPTS: { label: string; send: string }[] = [
-  { label: "When do you open?", send: "When do you open" },
+  { label: "Studio hours", send: "What are your opening hours" },
   { label: "Where is the studio?", send: "Where is the studio" },
   { label: "How do I book?", send: "How do I book a class" },
   { label: "Email the team", send: "I want to contact you" },

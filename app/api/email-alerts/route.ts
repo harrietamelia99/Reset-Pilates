@@ -98,7 +98,7 @@ export async function POST(request: Request) {
     subscriberResult = await resend.emails.send({
       from: config.from,
       to: email,
-      subject: "You're on the waitlist | Reset Pilates",
+      subject: "You're on the mailing list | Reset Pilates",
       html: subscriberHtml,
       text: subscriberText,
     });
